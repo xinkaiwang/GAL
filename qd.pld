@@ -1,0 +1,16 @@
+GAL16V8
+QD decoder
+1    2    3    4    5    6   7   8    9    10
+11   12  13   14   15   16  17   18   19  20
+CLK   A   B   NC    NC    NC   NC   NC   NC  GND
+OE  BP  FRD  F2   F4  BCK  B2  B4   NC  VCC
+
+BP:=B
+FRD=/B*BP*A
+F2:=F2*/FRD+/F2*FRD
+F4:=F4*/F2 + F4*/FRD + /F4*F2*FRD
+BCK=B*/BP*A
+B2:=B2*/BCK+/B2*BCK
+B4:=B4*/B2 + B4*/BCK + /B4*B2*BCK
+
+DESCRIPTION

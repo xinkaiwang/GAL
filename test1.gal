@@ -1,0 +1,28 @@
+module M273                                         "这是一个类似于74LS273的锁存器程序
+title '8-bit Locker
+xiaoqi  Data I/O Corp.'
+
+M273 device 'P16V8R';                               "这里我们使用GAL16V8进行编程
+
+"引脚定义，注意CLK,OE的定义只能使用芯片约定的引脚，不能转移
+Clk,OC,I0,I1,I2,I3,I4,I5,I6,I7  pin  1,11,2,3,4,5,6,7,8,9;
+Q0,Q1,Q2,Q3,Q4,Q5,Q6,Q7         pin  19,18,17,16,15,14,13,12;
+
+H,L,X,Z,K       = 1,0, .X.,.Z.,.K.;                 "类似于c语言的宏定义（代数）
+Input           = [I7,I6,I5,I4,I3,I2,I1,I0];        "两个集合群定义
+Output          = [Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0];
+
+equations   " global
+[Q7..Q0].clk = Clk;                                 "输出与CLK有关
+[Q7..Q0].oe  = !OC;                                 "输出受!OC才有效
+WHEN !OC THEN                                       "如果OC为低电平则
+Output := Input;                                    "受时钟触发的锁存
+
+test_vectors  ' test Load & Output'
+([Clk,OC, Input ] -> Output)                     "写入芯片以后编程器需要校验的内容
+[ K, L, ^h55 ] -> ^h55;
+[ K, L, ^hAA ] -> ^hAA;
+[ K, L, ^hFF ] -> ^hFF;
+[ X, H, X  ] -> Z;
+
+end M273                                                "本模块程序结束
