@@ -1,0 +1,54 @@
+module SN74190 
+title 'Synchronous 4-bit up/down counter 
+Michael Holley    Data I/O Corp    13 Sep 199'
+
+	sn74190 device 'P22V10';
+
+	Clk,Load,EnaG,Down		pin 1,2,3,4;
+	DataA,DataB,DataC,DataD		pin 6,7,8,9;
+	QA,QB,QC,QD			pin 16,17,18,19;
+	RC,MaxMin			pin 20,21;
+
+	QA,QB,QC,QD			istype 'reg_D,buffer';
+	RC,MaxMin			istype 'com';
+
+	Count    = [QD   ,QC   ,QB   ,QA   ];
+	Data     = [DataD,DataC,DataB,DataA];
+
+equations
+
+      Count.d = (Count.q + 1) &  Load &  EnaG & !Down & (Count.q  < 9)
+	      # (Count.q - 1) &  Load &  EnaG &  Down & (Count.q != 0)
+	      # ([1,0,0,1])   &  Load &  EnaG &  Down & (Count.q == 0)
+	      # (Count.q)     &  Load & !EnaG
+	      #  Data         & !Load;
+
+      Count.c = Clk;
+
+      MaxMin  = (Count.q == 9) & !Down
+	      # (Count.q == 0) &  Down;
+
+      RC      = !(MaxMin & !Clk & !EnaG);
+
+test_vectors
+       ([Clk,Load,EnaG,Down,Data] -> [Count,MaxMin,RC])
+	[.C., 0  ,  0 ,  0 ,  7 ] -> [  7  ,  0   , 1];
+	[.C., 1  ,  1 ,  0 ,  0 ] -> [  8  ,  0   , 1];
+	[ 0 , 1  ,  1 ,  0 ,  0 ] -> [  8  ,  0   , 1];
+	[ 1 , 1  ,  1 ,  0 ,  0 ] -> [  9  ,  1   , 1];
+	[ 0 , 1  ,  1 ,  0 ,  0 ] -> [  9  ,  1   , 1];
+	[.C., 1  ,  1 ,  0 ,  0 ] -> [  0  ,  0   , 1];
+	[.C., 1  ,  1 ,  0 ,  0 ] -> [  1  ,  0   , 1];
+	[.C., 1  ,  1 ,  0 ,  0 ] -> [  2  ,  0   , 1];
+	[.C., 1  ,  0 ,  0 ,  0 ] -> [  2  ,  0   , 1];
+	[.C., 1  ,  1 ,  0 ,  0 ] -> [  3  ,  0   , 1];
+	[.C., 1  ,  1 ,  0 ,  0 ] -> [  4  ,  0   , 1];
+	[.C., 1  ,  1 ,  1 ,  0 ] -> [  3  ,  0   , 1];
+	[.C., 1  ,  1 ,  1 ,  0 ] -> [  2  ,  0   , 1];
+	[.C., 1  ,  1 ,  1 ,  0 ] -> [  1  ,  0   , 1];
+	[.C., 1  ,  1 ,  1 ,  0 ] -> [  0  ,  1   , 1];
+	[.C., 1  ,  1 ,  1 ,  0 ] -> [  9  ,  0   , 1];
+	[.C., 1  ,  1 ,  1 ,  0 ] -> [  8  ,  0   , 1];
+	[.C., 1  ,  1 ,  1 ,  0 ] -> [  7  ,  0   , 1];
+end
+

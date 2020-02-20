@@ -1,0 +1,30 @@
+module simple 
+title 'Simple ABEL example
+Dan Poole   Data I/O Corp   15 Oct 1987'
+
+		U7	device	'P14H4';
+	A1,A2,A3	pin 1,2,3;
+	N1,N2,N3	pin 4,5,6;
+	AND,NAND	pin 14,15;
+
+equations
+	 AND	= A1 & A2 & A3;
+
+	!NAND	= N1 & N2 & N3;
+
+test_vectors  'Test And Gate'
+	      ( [A1,A2,A3] -> AND )	
+		[ 0, 0, 0] ->  0;
+		[ 1, 0, 0] ->  0;
+		[ 0, 1, 0] ->  0;
+		[ 0, 0, 1] ->  0;
+		[ 1, 1, 1] ->  1;
+
+test_vectors  'Test Nand Gate'
+	      ( [N1,N2,N3] -> NAND )	
+		[ 0, 0, 0] ->  1;
+		[ 1, 0, 0] ->  1;
+		[ 0, 1, 0] ->  1;
+		[ 0, 0, 1] ->  1;
+		[ 1, 1, 1] ->  0;
+end simple  

@@ -1,0 +1,67 @@
+module dstate2a
+title 'State machine showing how an arbitrary default state can be used
+to recover from illegal states.  Dave Pellerin - Data I/O Corp.'
+
+        dstate device 'p16r4';
+        clock pin 1;
+        reset pin 2;
+        get_lost pin 3;
+        q0,q1,q2,q3 pin 14,15,16,17;
+        sreg = [q3..q0];
+
+        S1 = [0,0,0,1];
+        S2 = [0,0,1,1];
+        S3 = [0,1,1,1];
+        S4 = [0,1,1,0];
+        S5 = [1,1,1,0];
+        S6 = [1,1,0,1];
+        S7 = [1,0,0,1];
+        SX = [0,1,0,1];         "Illegal state
+
+equations
+
+        sreg.clk = clock;
+        sreg.d = reset & !S1;
+
+  "The preceding equation will reset us to S1 from any state, including
+  "those that are not defined in the state diagram. Note that this
+  "design relies on the D-type flip-flops resetting to register-zero
+  "states after illegal transitions. This means that @DCSET can not be
+  "used to mimimize logic for this design. Also note that the reset
+  "equation is written for the .D nodes of the state register set. This
+  "is required because the state diagram produces detailed (.D/.Q)
+  "equations. It's not possible to combine detailed and pin-to-pin
+  "equations for the same output, so the inverted state values are used
+  "in conjunction with the .D dot extension.  
+  "
+  "Design file DSTATE2B.ABL describes an alternate pin-to-pin method.
+
+state_diagram sreg
+
+        state S1: if get_lost then SX else S2;
+        state S2: if get_lost then SX else S3;
+        state S3: if get_lost then SX else S4;
+        state S4: if get_lost then SX else S5;
+        state S5: if get_lost then SX else S6;
+        state S6: if get_lost then SX else S7;
+        state S7: if get_lost then SX else S1;
+
+        " Note: there is no transition provided out of SX
+
+test_vectors([clock, get_lost, reset]->sreg)
+             [ .c. ,    0    ,   1  ]-> S1;
+             [ .c. ,    0    ,   0  ]-> S2;
+             [ .c. ,    0    ,   0  ]-> S3;
+             [ .c. ,    1    ,   0  ]-> SX;    "Lost until a reset happens...
+             [ .c. ,    0    ,   0  ]-> .x.;
+             [ .c. ,    0    ,   1  ]-> S1;
+             [ .c. ,    0    ,   0  ]-> S2;
+             [ .c. ,    0    ,   0  ]-> S3;
+             [ .c. ,    0    ,   0  ]-> S4;
+             [ .c. ,    0    ,   0  ]-> S5;
+             [ .c. ,    1    ,   0  ]-> SX;
+             [ .c. ,    0    ,   0  ]-> .x.;
+             [ .c. ,    0    ,   0  ]-> .x.;
+             [ .c. ,    0    ,   1  ]-> S1;
+end
+

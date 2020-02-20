@@ -1,0 +1,85 @@
+module DEMO332
+title 'Cypress 332 example  14 Sep 1990'
+
+"   Input and I/O Feedback Registers
+"   Pin number      1   2   3   4   5   6   7   9  10  11  12  13  14
+"   Feedback Node  78  79  80  81  82  83  84  85  86  87  88  89  90
+
+"   Pin number     15  16  17  18  19  20  23  24  25  26  27  28
+"   Feedback Node  91  92  93  94  95  96  97  98  99 100 101 102
+
+	demo332 device  'P332';
+
+	Clk1,Clk2,Ena14			pin  1, 2,14;
+	I3,I4,I5,I6,I7,I9,I10,I11       pin  3, 4, 5, 6, 7, 9,10,11;
+	F15,F16,F17,F18,F19,F20		pin 15,16,17,18,19,20;
+	F23,F24,F25,F26,F27,F28		pin 23,24,25,26,27,28;
+
+	C,H,L,Z,X = .C.,1,0,.Z.,.X.;
+
+Declarations
+	I3in node 80 istype 'reg_D';
+
+Equations
+	F15    =  I3in.Q;
+
+	I3in.C = !Clk2; "Clk2 falling edge
+	I3in.D =  I3;
+
+Test_Vectors   ([Clk2,I3] -> [F15,I3in])
+		[ C  , 0] -> [ 0 ,  0 ];
+		[ 0  , 1] -> [ 0 ,  0 ];
+		[ C  , 1] -> [ 1 ,  1 ];
+		[ 0  , 0] -> [ 1 ,  1 ];
+		[ 1  , 0] -> [ 1 ,  1 ];
+		[ 0  , 0] -> [ 0 ,  0 ];
+
+Declarations
+	F17in node 93 istype 'reg_D';
+
+Equations
+	F16     = F17in.Q;
+
+	F17in.C = Clk1; "Clk1 rising edge
+	F17in.D = F17;
+
+Test_Vectors   ([Clk1,F17] -> [F16,F17in])
+		[ C  , 0 ] -> [ 0 ,  0  ];
+		[ 0  , 1 ] -> [ 0 ,  0  ];
+		[ C  , 1 ] -> [ 1 ,  1  ];
+		[ 0  , 0 ] -> [ 1 ,  1  ];
+		[ 1  , 0 ] -> [ 0 ,  0  ];
+		[ 0  , 0 ] -> [ 0 ,  0  ];
+
+"Active High Combinatorial Equation
+Declarations
+	F18 istype 'com';
+
+Equations
+	F18  = I4 & I5 & I6 & I7;
+
+Test_Vectors   ([I4,I5,I6,I7] -> F18)
+		[ 0, 0, 0, 0] ->  0;
+		[ 1, 1, 1, 1] ->  1;
+		[ 0, 1, 0, 1] ->  0;
+		[ 1, 0, 1, 0] ->  0;
+
+Declarations
+	I9in node 85 istype 'reg_L';
+
+Equations
+	F19     =  I9in.Q;
+
+	I9in.LE = Clk1;  "Clk1 High Asserted
+	I9in.D  =  I9;
+
+Test_Vectors   ([Clk1,I9] -> [F19,I9in])
+		[ 0  , 0] -> [ 0 ,  0 ];
+		[ 0  , 1] -> [ 1 ,  1 ];
+		[ 1  , 1] -> [ 1 ,  1 ];
+		[ 1  , 0] -> [ 1 ,  1 ];
+		[ 0  , 0] -> [ 0 ,  0 ];
+		[ 1  , 0] -> [ 0 ,  0 ];
+		[ 1  , 1] -> [ 0 ,  0 ];
+end
+

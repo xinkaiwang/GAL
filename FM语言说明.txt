@@ -1,0 +1,31 @@
+第一行：器件型号，必须用大写。如：GAL20V8B
+第二行：标题（TITLE）
+第三行：设计者姓名，日期等
+第四行：电子标签
+第i：引脚名称，按引脚号排列，可占用多行
+第j行：逻辑表达式，可占用多行
+第k行：程序描述，DESCRIPTION是关键字，大写且不可少
+
+逻辑方程有三种方式：
+1. a = b
+2. a := b
+3. a.oe = c
+
+逻辑表达式中采用的运算符：
+*   “与”
++   “或”
+/   “反”
+
+一个示例：
+
+GAL16V8
+A TEST EXAMPLE 
+2011-11-07，by Moen
+e-mail:MoenYoung@126.com
+
+Q7 Q6 Q5 Q4 Q3 Q2 Q1 Q0 NC GND
+NC OUT1 NC NC NC NC NC NC NC VCC
+
+OUT1=/Q7*/Q6*/Q5*/Q4*/Q3*/Q2*/Q1*/Q0
+
+DESCRIPTION

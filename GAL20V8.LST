@@ -1,0 +1,55 @@
+
+GAL20V8B
+SANHUA ALT VISION
+2013-11-07£¬DESIGN BY MOEN
+1  2  3  4   5  6  7  8  9  10 11  12
+A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 AEN GND 
+IOW IOR WR0 WR2 RD1 WR1 WR3 RD2 RD0 RST RESET VCC
+/WR0 = /A0*/A1*/A2*/A3*/A4*/A5*/A6*A7*/A8*A9*/RESET*AEN*/IOW
+/WR1 = A0*/A1*/A2*/A3*/A4*/A5*/A6*A7*/A8*A9*/RESET*AEN*/IOW
+/WR2 = /A0*A1*/A2*/A3*/A4*/A5*/A6*A7*/A8*A9*/RESET*AEN*/IOW
+/WR3 = A0*A1*/A2*/A3*/A4*/A5*/A6*A7*/A8*A9*/RESET*AEN*/IOW
+/RD0 = /A0*/A1*/A2*/A3*/A4*/A5*/A6*A7*/A8*A9*/RESET*AEN*/IOR
+/RD1 = A0*/A1*/A2*/A3*/A4*/A5*/A6*A7*/A8*A9*/RESET*AEN*/IOR
+/RD2 = /A0*A1*/A2*/A3*/A4*/A5*/A6*A7*/A8*A9*/RESET*AEN*/IOR
+RST = /RESET
+DESCRIPTION
+
+
+
+
+GAL20V8B
+SANHUA ALT VISION
+2013-11-07£¬DESIGN BY MOEN
+1  2  3  4   5  6  7  8  9  10 11  12
+
+                            __________    __________ 
+                            |         \__/         | 
+                            |                      | 
+                      A0    | 01                24 |         VCC
+                            |                      | 
+                      A1    | 02                23 |       RESET
+                            |                      | 
+                      A2    | 03                22 |         RST
+                            |                      | 
+                      A3    | 04                21 |         RD0
+                            |                      | 
+                      A4    | 05                20 |         RD2
+                            |                      | 
+                      A5    | 06                19 |         WR3
+                            |                      | 
+                      A6    | 07                18 |         WR1
+                            |                      | 
+                      A7    | 08                17 |         RD1
+                            |                      | 
+                      A8    | 09                16 |         WR2
+                            |                      | 
+                      A9    | 10                15 |         WR0
+                            |                      | 
+                     AEN    | 11                14 |         IOR
+                            |                      | 
+                     GND    | 12                13 |         IOW
+                            |                      | 
+                            |______________________| 
+
+

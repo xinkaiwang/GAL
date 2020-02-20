@@ -1,0 +1,67 @@
+module PORT  
+title '7-bit I/O Port with handshake logic from MMI App Note 131
+Joe Peterson  Data I/O Corp  18 Apr 1990'
+
+	port	device 'P20RA10';
+
+	PL,CE,DClk,Clr,OE		pin  1, 9,10,11,13;
+
+	D0,D1,D2,D3,D4,D5,D6		pin  2, 3, 4, 5, 6, 7, 8;
+	Q0,Q1,Q2,Q3,Q4,Q5,Q6		pin 23,22,21,20,19,18,17;
+	Q0,Q1,Q2,Q3,Q4,Q5,Q6		istype 'invert';
+
+	Input  = [D6,D5,D4,D3,D2,D1,D0];
+	Output = [Q6,Q5,Q4,Q3,Q2,Q1,Q0];
+
+equations
+
+	Output    := Input;
+
+	Output.oe  = !CE & !OE;
+	Output.clk = DClk;
+	Output.ar  = Clr;
+	Output.ap  = 0;
+
+test_vectors
+	([PL,CE,OE,Clr,DClk,Input] -> Output)
+	 [ 1, 0, 1, 0 , 0  ,  0  ] ->  .Z. ;	" Tristate outputs
+	 [ 1, 1, 0, 0 , 0  ,  0  ] ->  .Z. ;	" Tristate outputs
+	 [ 1, 0, 0, 1 , 0  ,  0  ] ->  ^hFF;	" Clear registers
+	 [ 1, 0, 0, 0 , 0  ,^hAA ] ->  .X. ;
+	 [ 1, 0, 0, 0 , 1  ,^hAA ] ->  ^hAA;	" Clock data
+	 [ 1, 0, 0, 0 , 0  ,^h55 ] ->  .X. ;
+	 [ 1, 0, 0, 0 , 1  ,^h55 ] ->  ^h55;	" Clock data
+
+"Handshake operation
+"              __
+" DCLK _______|  |_____________
+"
+"               _________
+" DRDY ________|         |_____
+"
+"                        __
+" DACK _________________|  |___
+
+Declarations
+	DACK,DRDY	pin  14,15;
+	DRDY		istype 'invert';
+
+equations
+	DRDY            := 0;
+	DRDY.C           = DACK;
+	DRDY.AR          = DClk;
+	DRDY.AP          = Clr ;
+	DRDY.OE          = !OE ;
+
+test_vectors
+	([PL,OE,Clr,DClk,DACK] -> DRDY)
+	 [ 1, 1, 0 , 0  , 0  ] -> .Z. ;	" Tristate outputs
+	 [ 1, 0, 1 , 0  , 0  ] ->  0  ;	" Preset register 
+	 [ 1, 0, 0 , 0  , 0  ] ->  0  ;	" Hold
+	 [ 1, 0, 0 , 1  , 0  ] ->  1  ;	" DRDY high
+	 [ 1, 0, 0 , 0  , 0  ] ->  1  ;	" Hold
+	 [ 1, 0, 0 , 0  , 1  ] ->  0  ;	" DRDY low 
+	 [ 1, 0, 0 , 0  , 0  ] ->  0  ;	" Hold
+
+end
+

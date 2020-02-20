@@ -1,0 +1,68 @@
+module CNTBUF   
+title 'Counter and Bidirectional Buffer
+Dennis Freidman   Data I/O Corp   22 May 1990'
+
+        cntbuf  device 'E0320';
+" Works in E0310, E0320, P16R4, P16RP4, P16V8R, P18U8 and others
+
+        Clk,Clr,Dir,OE          pin 1,2,3,11;
+        Q3,Q2,Q1,Q0             pin 14,15,16,17;
+        A1,A0,B1,B0             pin 12,13,18,19;
+        
+        Ck,X,Z  = .C. , .X., .Z.;
+
+        A    = [A1,A0];
+        B    = [B1,B0];
+        Count = [Q3,Q2,Q1,Q0];
+
+equations
+
+        Count.OE = !OE;
+        Count.C  = Clk;
+
+        Count := (Count.fb + 1) & !Clr;
+
+trace ([Clk,OE,Clr,Dir] -> [Count,A,B])
+test_vectors 'Counter'
+       ([Clk,OE,Clr] -> Count)
+        [ Ck, 0, 1 ] ->    0;
+        [ Ck, 0, 0 ] ->    1;
+        [ Ck, 0, 0 ] ->    2;
+        [ Ck, 0, 0 ] ->    3;
+        [ Ck, 1, 0 ] ->    Z;
+        [ Ck, 0, 0 ] ->    5;
+        [ Ck, 0, 0 ] ->    6;
+        [ Ck, 0, 0 ] ->    7;
+        [ Ck, 0, 0 ] ->    8;
+        [ Ck, 0, 0 ] ->    9;
+        [ Ck, 0, 0 ] ->   10;
+        [ Ck, 0, 0 ] ->   11;
+        [ Ck, 0, 0 ] ->   12;
+        [ Ck, 0, 0 ] ->   13;
+        [ Ck, 0, 0 ] ->   14;
+        [ Ck, 0, 0 ] ->   15;
+        [ Ck, 0, 0 ] ->    0;
+        [ Ck, 0, 0 ] ->    1;
+        [ Ck, 0, 0 ] ->    2;
+        [ Ck, 0, 0 ] ->    3;
+        [ Ck, 0, 1 ] ->    0;
+        [ Ck, 0, 1 ] ->    0;
+
+equations
+        A = B;  A.OE =  Dir;
+        B = A;  B.OE = !Dir;
+
+trace([Clk,OE,Clr,Dir]-> [Count,A,B]);
+test_vectors 'Buffer'
+       ([ A , B ,Dir] -> [ A , B ])
+        [ X , X , 0 ] -> [ Z , X ];
+        [ X , X , 1 ] -> [ X , Z ];
+        [^h0, X , 0 ] -> [ X ,^h0];
+        [^h1, X , 0 ] -> [ X ,^h1];
+        [^h2, X , 0 ] -> [ X ,^h2];
+        [^h3, X , 0 ] -> [ X ,^h3];
+        [ X ,^h0, 1 ] -> [^h0, X ];
+        [ X ,^h1, 1 ] -> [^h1, X ];
+        [ X ,^h2, 1 ] -> [^h2, X ];
+        [ X ,^h3, 1 ] -> [^h3, X ];
+end

@@ -1,0 +1,52 @@
+module COMP4A 
+title '4-bit look-ahead comparator              5 June 1990
+Steve Weil & Gary Thomas  Data I/O Corp.'
+
+	comp4a	device 'F153';
+
+	A3,A2,A1,A0	pin  1,2,3,4;	A = [A3,A2,A1,A0];
+	B3,B2,B1,B0	pin  5,6,7,8;	B = [B3,B2,B1,B0];
+
+	A_NE_B,A_EQ_B,A_GT_B,A_LT_B	pin 16,17,18,19;
+
+	A_EQ_B istype 'neg';
+
+	No,Yes	= 0,1;
+
+equations
+	A_EQ_B	=   A == B;
+
+ 	A_NE_B	= !(A == B);  
+
+	A_GT_B	=   A > B;
+
+	A_LT_B	= !((A > B) # (A == B));
+
+test_vectors  'test for A = B'
+       ([ A, B] -> [A_EQ_B, A_GT_B, A_LT_B, A_NE_B])
+	[ 0, 0] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[ 1, 1] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[ 2, 2] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[ 5, 5] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[ 8, 8] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[10,10] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[15,15] -> [ Yes  ,   No  ,   No  ,   No  ];
+
+test_vectors  'test for A > B'
+       ([ A, B] -> [A_EQ_B, A_GT_B, A_LT_B, A_NE_B])
+	[ 1, 0] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 2, 1] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 4, 3] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 8, 7] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[15,14] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 6, 2] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 5, 0] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+
+test_vectors  'test for A < B'
+       ([ A, B] -> [A_EQ_B, A_GT_B, A_LT_B, A_NE_B])
+	[ 3, 9] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+	[14,15] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+	[ 7, 8] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+	[ 3, 4] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+	[ 2, 8] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+end 

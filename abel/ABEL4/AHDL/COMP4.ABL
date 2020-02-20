@@ -1,0 +1,59 @@
+module comp4 
+title '4-bit look-ahead comparator 
+Charles Olivier & Mary Bailey    Data I/O Corp.   24 Feb 1984'
+
+	IC1	device 'P16HD8';
+
+	A3,A2,A1,A0	pin	1,2,3,4;
+	B3,B2,B1,B0	pin	5,6,7,8;
+	E3,E2,E1,E0	pin	14,15,16,17;
+	A_NE_B,A_EQ_B	pin	12,13;
+	A_GT_B,A_LT_B	pin	18,19;
+
+	No,Yes	= 0,1;
+	A	= [A3,A2,A1,A0];
+	B	= [B3,B2,B1,B0];
+	E	= [E3,E2,E1,E0];
+	C0	macro {(A0>B0)};
+	C1	macro {(A1>B1) # E1 & (C0)};
+	C2	macro {(A2>B2) # E2 & (C1)};
+
+equations
+	E	= A !$ B;	"intermediate An = Bn
+
+	A_EQ_B	= E3 & E2 & E1 & E0;
+
+	A_NE_B	= !A_EQ_B;
+
+	A_GT_B	= (A3>B3) # E3 & (C2);
+
+	A_LT_B	= !A_GT_B & !A_EQ_B;
+
+test_vectors  'test for A = B'
+       ([ A, B] -> [A_EQ_B, A_GT_B, A_LT_B, A_NE_B])
+	[ 0, 0] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[ 1, 1] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[ 2, 2] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[ 5, 5] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[ 8, 8] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[10,10] -> [ Yes  ,   No  ,   No  ,   No  ];
+	[15,15] -> [ Yes  ,   No  ,   No  ,   No  ];
+
+test_vectors  'test for A > B'
+       ([ A, B] -> [A_EQ_B, A_GT_B, A_LT_B, A_NE_B])
+	[ 1, 0] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 2, 1] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 4, 3] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 8, 7] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[15,14] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 6, 2] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+	[ 5, 0] -> [  No  ,  Yes  ,   No  ,  Yes  ];
+
+test_vectors  'test for A < B'
+       ([ A, B] -> [A_EQ_B, A_GT_B, A_LT_B, A_NE_B])
+	[ 3, 9] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+	[14,15] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+	[ 7, 8] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+	[ 3, 4] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+	[ 2, 8] -> [  No  ,   No  ,  Yes  ,  Yes  ];
+end comp4  

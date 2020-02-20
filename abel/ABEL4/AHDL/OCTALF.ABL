@@ -1,0 +1,134 @@
+module OCTALF 
+title' Octal counter with xor factoring
+Adam Zilinskas     Data I/O Corp.   14 Aug 1990'
+
+        octalf device 'P20X8';        "Also works with P22V10
+
+        D0,D1,D2,D3,D4,D5,D6,D7         pin  3,4,5,6,7,8,9,10;
+        Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0         pin  16,17,15,18,19,20,21,22;
+        CLK,I0,I1,OC,CarryOut,CarryIn   pin  1,2,11,13,14,23;
+
+        H,L,X,Z,C = 1, 0, .X., .Z., .C.;
+
+        Data  = [D7,D6,D5,D4,D3,D2,D1,D0];
+        Count = [Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0];
+
+        Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0         istype 'invert';
+
+        Mode  = [I1,I0];
+        Clear = [ 0, 0];
+        Hold  = [ 0, 1];
+        Load  = [ 1, 0];
+        Inc   = [ 1, 1];
+
+xor_factor
+        Count := Count & I0;
+
+" The xor factor is 'divided' into the sum of product equation
+" producting two factors that when XORed together produce the
+" orginal sum of products funtcion.
+
+equations
+        Count  := (Count + 1) & (Mode == Inc) & !CarryIn
+                # (Count    ) & (Mode == Inc) &  CarryIn
+                # (Count    ) & (Mode == Hold)
+                # (Data     ) & (Mode == Load)
+                # (0        ) & (Mode == Clear);
+
+        !CarryOut       = !CarryIn & (Count == ^hFF);
+
+        Count.C  = CLK;
+        Count.OE = !OC;
+
+test_vectors 'test load and increment'
+             ([CLK,OC,Mode ,Data,CarryIn] -> [CarryOut,Count])
+              [ C ,L ,Load , 1  ,    X  ] -> [    H   ,  1  ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,  2  ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,  3  ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,  4  ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,  5  ];
+              [ C ,L ,Load , 3  ,    X  ] -> [    H   ,  3  ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,  4  ];
+              [ C ,L ,Load , 7  ,    X  ] -> [    H   ,  7  ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,  8  ];
+              [ C ,L ,Load ,^h0F,    X  ] -> [    H   ,^h0F ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,^h10 ];
+              [ C ,L ,Load ,^h1F,    X  ] -> [    H   ,^h1F ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,^h20 ];
+              [ C ,L ,Load ,^h3F,    X  ] -> [    H   ,^h3F ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,^h40 ];
+              [ C ,L ,Load ,^h7F,    X  ] -> [    H   ,^h7F ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,^h80 ];
+              [ C ,L ,Load ,^hFF,    L  ] -> [    L   ,^hFF ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,^h00 ];
+
+test_vectors 'test load'
+             ([CLK,OC,Mode ,Data,CarryIn] -> [CarryOut,Count])
+              [ C ,L ,Load ,^hFF,    L  ] -> [    L   ,^hFF ];
+              [ C ,L ,Load ,^hFE,    X  ] -> [    H   ,^hFE ];
+              [ C ,L ,Load ,^hFD,    X  ] -> [    H   ,^hFD ];
+              [ C ,L ,Load ,^hFB,    X  ] -> [    H   ,^hFB ];
+              [ C ,L ,Load ,^hF7,    X  ] -> [    H   ,^hF7 ];
+              [ C ,L ,Load ,^hEF,    X  ] -> [    H   ,^hEF ];
+              [ C ,L ,Load ,^hDF,    X  ] -> [    H   ,^hDF ];
+              [ C ,L ,Load ,^hBF,    X  ] -> [    H   ,^hBF ];
+              [ C ,L ,Load ,^h7F,    X  ] -> [    H   ,^h7F ];
+              [ C ,L ,Load ,^hFF,    L  ] -> [    L   ,^hFF ];
+
+test_vectors 'test count'
+             ([CLK,OC,Mode ,Data,CarryIn] -> [CarryOut,Count])
+              [ C ,L ,Clear, X  ,    X  ] -> [    H   ,   0 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   1 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   2 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   3 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   4 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   5 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   6 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   7 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   8 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   ,   9 ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   , ^hA ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   , ^hB ];
+              [ C ,L ,Inc  , X  ,    L  ] -> [    H   , ^hC ];
+
+test_vectors 'test hold and High Z'
+             ([CLK,OC,Mode ,Data,CarryIn] -> [CarryOut,Count])
+              [ C ,L ,Load ,^hFE,    X  ] -> [    H   ,^hFE ];
+              [ C ,L ,Inc  ,  X ,    L  ] -> [    L   ,^hFF ];
+              [ C ,L ,Inc  ,  X ,    H  ] -> [    H   ,^hFF ];
+              [ C ,L ,Hold ,  X ,    L  ] -> [    L   ,^hFF ];
+              [ C ,L ,Inc  ,  X ,    L  ] -> [    H   ,^h00 ];
+              [ X ,H , X   ,  X ,    X  ] -> [    X   , Z   ];
+
+"From MMI PAL HANDBOOK
+"This is an 8-bit synchronous counter with parallel load, clear, and 
+"hold capability.  The load operation loads the inputs (D7-D0) into the
+"output register (Q7-Q0).  The clear operation resets the output register
+"to all lows.  The hold operation holds the previous value regardless of
+"clock transitions.  The increment operation adds one to the output 
+"register when the carry-in is true (!CarryIn=L), otherwise the operation
+"is a hold.  The carry-out (!CarryOut) is true (!CarryOut=L) when the 
+"output register (Q7-Q0) is all highs, otherwise false (/CarryOut=H).
+
+"These operations are exercised in the test vectors and summarized in the
+"Operations Table:
+" 
+"    !OC  CLK  I1  I0  !CarryIn  D7-D0  Q7-Q0     Operation
+"    --------------------------------------------------
+"     H    X   X   X        X     X      Z       HI-Z
+"     L    C   L   L        X     X      L       Clear
+"     L    C   L   H        X     X      Q       Hold
+"     L    C   H   L        X     D      D       Load
+"     L    C   H   H        H     X      Q       Hold
+"     L    C   H   H        L     X   Q PLUS 1   Increment
+"    --------------------------------------------------
+
+"Two or more octal counters may be cascaded to provide larger counters.
+"The operation codes were chosen such that when I1 is high, I0 may be
+"used to select between load and increment as in a program counter
+"(jump/increment).  Also, carry-out (!CarryOut) and carry-in (!CarryIn) 
+"are located on pins 14 and 23 respectively, which provides for convenient
+"interconnections when two or more octal counters are cascaded to
+"implement larger counters.
+
+end OCTALF;

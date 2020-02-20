@@ -1,0 +1,388 @@
+*Welcome
+
+                         ABEL Design Environment
+                               Version 1.0
+
+  ABEL Release 4.00 Copyright 1990 Data I/O Corp. All Rights Reserved
+              Vermont Views Library Software, Version 2.0
+              Copyright 1988,1990 Vermont Creative Software
+*ErrorMsg
+/* 00 */ "Unknown error",
+/* 01 */ "Can't find \"%s\" section in menu definition file\n",
+/* 02 */ "Row length of %s section is defined incorrectly: %d!=%d\n",
+/* 03 */ "String \"%s\" in section \"%s\" too long for menu: strlen > %d\n",
+/* 04 */ "Can't find %s\n",
+/* 05 */ "Couldn't insert Form(%d:%d) in menu tree\n",
+/* 06 */ "Couldn't find sub-menu %d\n",
+/* 07 */ "Couldn't change radio-button %s to %c\n",
+/* 08 */ "Error updating radio-button field %s\n",
+/* 09 */ "Out of memory",
+/* 10 */ "Couldn't lookup extension %d in depend list\n",
+/* 11 */ "Error while reading file \"%s\"",
+/* 12 */ "Couldn't find/open file \"%s\"",
+/* 13 */ "File \"%s\" is empty",
+/* 14 */ "Couldn't save options to file \"%s\"",
+/* 15 */ "Unable to find section \"%s\" in menu definition file",
+/* 16 */ "Couldn'write file \"%s\"",
+*GenericMsg
+/* 00 */ "Press any key to continue",
+/* 01 */ "Display: %s     (Esc to quit)",
+/* 02 */ "Error occurred: ",
+/* 03 */ "Line(s) too long.",
+/* 04 */ "One line deleted",
+/* 05 */ "One line replicated",
+/* 06 */ "Couldn't find text \"%s\"",
+/* 07 */ "File \"%s\" sent to printer",
+/* 08 */ "Incorrect range specification.  Press F1 for help.",
+/* 09 */ "Available Memory = %dkb",
+/* 10 */ "%s succesfully completed.",
+/* 11 */ "Updating %s pass.",
+/* 12 */ "Running %s.",
+/* 13 */ "Done with %s.  Esc to edit.",
+/* 14 */ "Error during %s.  Use View-Error.  Esc to edit.",
+/* 15 */ "Error during %s update. Use View-Error.  Esc to edit.",
+/* 16 */ "Paused: ",
+/* 17 */ "Press F1 for Help.  Esc or Alt-letter for menu.",
+/* 18 */ "< Yes >",
+/* 19 */ "< No >",
+/* 20 */ "Press F2 for list, F6 to clear list",
+/* 21 */ "Loading Help. Please wait...",
+/* 22 */ "Press space bar to toggle check box",
+/* 23 */ "Press space bar to select item",
+/* 24 */ "Type in data",
+/* 25 */ "Press Enter to perform button action",
+/* 26 */ "Enter in range data of the form #, < #, > #, or #-#",
+/* 27 */ "Disabling auto-update for non ABEL-HDL file",
+/* 28 */ "No \"Device List File\" specified: please specify file",
+/* 29 */ "Choose from list.  Press Enter when done",
+/* 30 */ "No choice list found - enter data directly",
+/* 31 */ "Function not supported yet",
+/* 32 */ "Press F2 for SmartPart Device Selector generated list",
+/* 33 */ "Press F2 for Fitter generated list",
+/* 34 */ "No device specfied in source or on Fitter Options dialog box.\n Can't continue without a device.",
+/* 35 */ " Simulate Optimized     ", /* This must not change length */
+/* 36 */ "Simulate the optimized equations",
+/* 37 */ "Type \"exit\" to return to abel4.\n",
+/* 38 */ " Help ",
+/* 39 */ "Choose a sub-topic and press enter.",
+/* 40 */ "Press F2 for list of Module names",
+/* 41 */ "Error occured during processing flow for file \"%s\".",
+/* 42 */ "Error occured during processing flow for file \"%s\".\nFile is out of date.",
+/* 43 */ "Help menu \"%s\" not found.",
+/* 44 */ "Press F1 for Help",
+/* 45 */ "Not enough memory to load file \"%s\".",
+/* 46 */ "Unloading Help to gain more free memory.",
+/* 47 */ "Error making backup (.sav).  Disk may be full.",
+/* 48 */ "DOS error during program execution.  Please Save&Exit.",
+/* 49 */ "Not enough space to swap ABEL4 to disk.  Couldn't run requested program.",
+/* 50 */ "Error: program couldn't execute.",
+/* 51 */ "Couldn't find JEDEC file \"%s\".",
+/* 52 */ "Loading file \"%s\"...",
+/* 53 */ "Copied file \"%s\" to \"%s\".",
+/* 54 */ "Choose from list.  Space bar to select, press Enter when done",
+/* 55 */ "Illegal filename \"%s\"",
+/* 56 */ "Error reading help file",
+/* 57 */ "Insufficient memory to perform requested task",
+*Comment
+          1    1    2    2    3    3    4    4    5    5    6    6    7    7
+0    5    0    5    0    5    0    5    0    5    0    5    0    5    0    5   
+ File  Edit  View  Compile  Optimize  SmartPart  PartMap  Defaults         Help
+ File  Edit  View  Compile  Optimize  Select/Fit  Map  Defaults            Help
+ File  Edit  View  Compile  Optimize  Select/Fit  Map  Utilities  Defaults  Help
+*Top Menu
+0 0 1 80
+0  0    1 " File "
+0  6    1 " Edit "
+0 12    1 " View "
+0 18    1 " Compile "
+0 27    1 " Optimize "
+0 37    1 " SmartPart "
+0 48    1 " PartMap "
+0 57    1 " Defaults "
+0 74    1 " Help "
+*File Menu
+1 0 12 17
+$BOX
+1  1    1 " New           "          "Clear the current design"
+2  1    1 " Open...       "          "Open and read a design file"
+3  1    1 " Save          "          "Write the current design"
+4  1    6 " Save As...    "          "Save the current design with a new name"
+$LINE
+6  1    1 " Print...      "          "Send a file to the printer"
+7  1    1 " DOS Shell     "          "Temporarily exit to a DOS shell"
+$LINE
+9  1   10 " Save and Exit "          "Save file and exit the ABEL Design Environment"
+10 1    2 " Exit          "          "Exit the ABEL Design Environment without save"
+*Edit Menu
+1  6  12 24
+$BOX
+1  1    1 " Delete Line        ^D"        "Delete the current line"
+2  1    1 " Replicate Line     ^R"        "Replicate the current line"
+$LINE
+4  1    1 " Search...            "        "Search for text in file"
+5  1    1 " Next               ^N"        "Next occurence of search text"
+$LINE
+7  1    1 " Edit                 "        "Invoke your text editor"
+8  1    1 " My Text Editor Is... "        "Specify your text editor"
+$LINE
+10 1    3 " Repaint            ^L"        "Repaint the entire screen"
+*View Menu
+1 12 18 24
+$BOX
+1  1   10 " Compiler Listing     "      "View the ABEL-HDL listing file (*.lst)"
+2  1    1 " Compiled Equations   "      "View the compiled equations (from *.tt1)"
+3  1    1 " Optimized Equations  "      "View the optimized equations (from *.tt2)"
+4  1    1 " Fitted Equations     "      "View the fitted equations (from *.tt3)"
+$LINE
+6  1    1 " Device Candidates    "      "View the Selector device candidate list (*.sel)"
+7  1    8 " Fitter Assignments   "      "View the pin assignments made by the Fitter (*.fit)"
+$LINE
+9  1    8 " PLDmap Report        "      "View the PLDmap documentation file (*.doc)"
+10 1    1 " JEDEC/PROM Fuse File "      "View the fuse file (*.jed, etc.)"
+$LINE
+12 1    1 " Simulation Results   "      "View the latest simulation results (from *.sm?)"
+13 1    4 " PLDgrade Report      "      "View the PLDgrade fault grading results"
+$LINE
+15 1    1 " Errors               "      "View errors from the last executed program"
+16 1    1 " View File...         "      "View any file of your choice"
+*Compile Menu
+1 18 10 22
+$BOX
+1  1    1 " Compile            "        "Compile the design and generate .tt1 PLA file"
+2  1    1 " Error Check        "        "Check for syntax errors only"
+3  1    1 " Vectors Only       "        "Compile the test vectors only"
+4  1    1 " Options...         "        "Set the compile processing options"
+$LINE
+6  1    1 " Simulate Equations "        "Simulate the compiled equations"
+7  1    1 " Re-Simulate        "        "Simulate the design with updated test vectors"
+8  1    1 " Trace Options...   "        "Set the equation simulation trace options "
+*Optimize Menu
+1 27 7 23
+$BOX
+1  1    1 " Reduce              "       "Optimize the design with logic reduction"
+2  1    1 " Options...          "       "Set the reduction options"
+$LINE
+4  1    1 " Simulate Optimized  "       "Simulate the optimized equations"
+5  1    1 " Trace Options...    "       "Set the optimized simulation trace options"
+*SmartPart Menu
+1 37 11 26
+$BOX
+1  1    1 " Database Search        "     "Search the SmartPart database and select parts"
+2  1    1 " Modify Criteria...     "     "Set the device selection criteria"
+$LINE
+4  1    1 " Fit                    "     "Fit the design into specific device(s)"
+5  1   10 " Fit from List File     "     "Fit the design using list of candidate devices"
+6  1    1 " Options...             "     "Set the fitter options"
+$LINE
+8  1    1 " Simulate Fitted Design "     "Simulate the design after fitting"
+9  1    1 " Trace Options...       "     "Set the fit simulation trace options"
+*PartMap Menu
+1 48 16 27
+$BOX
+1  1    1 " PLDmap                  "   "Map the design using specified device"
+2  1    1 " Options...              "   "Set the PLDmap options"
+$LINE
+4  1    1 " FPGA Translate          "   "Translate the design to an FPGA format"
+5  1    3 " FPGA Options...         "   "Set the FPGA translate options"
+$LINE
+7  1    1 " Simulate JEDEC       F4 "   "Simulate the JEDEC file"
+8  1    1 " Re-Simulate JEDEC       "   "Re-Simulate the JEDEC file using new vectors"
+9  1    1 " Trace Options...        "   "Set the JEDEC simulation options"
+$LINE
+11 1    2 " PLDgrade                "   "Fault grade the JEDEC file using PLDgrade"
+12 1    6 " PLDgrade Options...     "   "Set PLDgrade options"
+$LINE
+14 1    9 " Program Device   Alt-F1 "   "Invoke the terminal emulator"
+*Defaults Menu
+1 57 7 21
+$BOX
+1  2    1 " Auto Update      "             "Enable automatic design update"
+2  2    1 " Force Fit Update "             "Force fit during auto-update"
+$LINE
+4  2    1 " Spaces to Tabs   "             "Convert spaces to tabs when saving file"
+5  2    1 " Program Pause    "             "Pause after running any program"
+*Help Menu
+1 58 15 22
+$BOX
+1  1    1 " Help For Help...   "        "Help on how and when to get help"
+$LINE
+3  1    1 " Index...           "        "Indexed help topics"
+4  1    1 " Keyboard...        "        "Help for Keys"
+5  1    1 " Design Process...  "        "Help for ABEL4 Design Process"
+6  1    1 " Menus...           "        "Help for Menus"
+7  1    1 " Program Options... "        "Help for ABEL4 Program Options"
+8  1    1 " Language...        "        "Help for the ABEL-HDL Language"
+$LINE
+10 1    3 " Devices...         "        "Help for ABEL Devices"
+11 1    1 " Errors...          "        "Help for ABEL error numbers"
+$LINE
+13 1    1 " About...           "        "About the ABEL-HDL design environment"
+*File Open form
+10  5  7 -9     " File Open "           "*File Open Options"
+2 3  -1 "File Name: "                   "*File Open Name"
+4 20  0 "< Open >"                      "*OK Button"
+4 40  0 "<Cancel> (Esc)"                "*Cancel Button"
+*Save As form
+10  5  7 -9 " Save As "                 "*Save As Options"
+2 3  -1 "New File Name: "               "*Save As Name"
+4 15  0 "< Save >"                      "*OK Button"
+4 40  0 "<Cancel> (Esc)"              "*Cancel Button"
+*Print form
+10  5  7 -9 " Print "                   "*Print Options"
+2 3  -1 "File to Print: "               "*File Print Name"
+4 15  0 "< Print >"                     "*OK Button"
+4 40  0 "<Cancel> (Esc)"              "*Cancel Button"
+*Search Editor form
+12  5  9 -9 " Search "                  "*Search Options"
+2 3  -1 "Text to Search For: "          "*Search String"
+4 3  2 "[ ] Case Insensitive Search"    "*Search Insensitive"
+6 15  2 "< Search >"                    "*OK Button"
+6 40  2 "<Cancel> (Esc)"              "*Cancel Button"
+*Select Editor form
+14  5  7 -9 " Text Editor "             "*Text Editor Options"
+2 3  -1 "Text Editor Program Name: "    "*Editor Name"
+4 15  2 "<OK> (F5)"                   "*OK Button"
+4 40  2 "<Cancel> (Esc)"              "*Cancel Button"
+*Your Choice form
+10  5  8 -8     " View File "           "*View File Options"
+2 3  -1 "File Name: "                   "*View File"
+4 20  0 "< View >"                      "*OK Button"
+4 40  0 "<Cancel> (Esc)"              "*Cancel Button"
+*Compile Options form
+6 17 11 47 " Compile Options "          "*Compile Options"
+2 3   2 "( ) No Listing"                "*Compile Listing"
+3 3   2 "( ) Standard Listing"          "*Compile Listing"
+4 3   2 "( ) Expanded Listing"          "*Compile Listing"
+6 3  -1 "Module Arguments: "            "*Compile Args"
+8 13  0 "<OK> (F5)"                   "*OK Button"
+8 27  0 "<Cancel> (Esc)"              "*Cancel Button"
+*Optimize Options form
+6 16 15 42 " Reduction Options "         "*Optimize Options"
+2 3   2 "( ) Use Default"               "*Reduction Options"
+3 3   2 "( ) Reduce by Pin,   Auto Polarity"            "*Reduction Options"
+4 3   2 "( ) Reduce by Pin,   Fixed Polarity"           "*Reduction Options"
+5 3   2 "( ) Reduce as Group, Auto Polarity"            "*Reduction Options"
+6 3   2 "( ) Reduce as Group, Fixed Polarity"           "*Reduction Options"
+7 3   2 "( ) D/T Flip-Flop    Auto Synthesize"          "*Reduction Options"
+8 3   2 "( ) No Reduce, Merge Only"                     "*Reduction Options"
+10 3  2 "[ ] Exact Reduction"                           "*Reduce Exact"
+12  5  0 "<OK> (F5)"                  "*OK Button"
+12 20  0 "<Cancel> (Esc)"             "*Cancel Button"
+*Simulate Options form
+1 16 21 49 " Simulate Trace Options "   "*Simulate Trace Options"
+2 3   2 "( ) No Trace"                  "*Trace Format"
+3 3   2 "( ) Pins Format"               "*Trace Format"
+4 3   2 "( ) Wave Format"               "*Trace Format"
+5 3   2 "( ) Wave Format ASCII"         "*Trace Format"
+6 3   2 "( ) Table Format"              "*Trace Format"
+7 3   2 "( ) Macro-Cell Format"         "*Trace Format"
+9 3   2 "( ) Register Powerup 0"        "*Trace Powerup"
+10 3  2 "( ) Register Powerup 1"        "*Trace Powerup"
+2 28  2 "( ) X-Value 0"                 "*Trace X Value"
+3 28  2 "( ) X-Value 1"                 "*Trace X Value"
+5 28  2 "( ) Z-Value 0"                 "*Trace Z Value"
+6 28  2 "( ) Z-Value 1"                 "*Trace Z Value"
+8 28  2 "( ) Brief Trace"               "*Trace Output"
+9 28  2 "( ) Detailed Trace"            "*Trace Output"
+10 28 2 "( ) Clock Trace"               "*Trace Output"
+12 3  2 "[ ] Use .tmv File"             "*Trace .tmv
+14 3 -1 "Signal: "                      "*Trace Signal"
+15 3 -1 "First Display Vector: "        "*Trace First Vector"
+16 3 -1 "Last Display Vector: "         "*Trace Last Vector"
+18 10 0 "<OK> (F5)"                   "*OK Button"
+18 25 0 "<Cancel> (Esc)"              "*Cancel Button"
+*Select Options form
+3  3  19 70 " SmartPart Device Selector Criteria " "*SmartPart Device Selector Criteria"
+2  3  32 "Manufacturer    : "           "*SmartPart Manufacturer"
+3  3  32 "Device          : "           "*SmartPart Device"
+4  3  32 "Temperature Spec: "           "*SmartPart Temperature Spec."
+5  3  32 "Technology      : "           "*SmartPart Technology"
+6  3  32 "Package Type    : "           "*SmartPart Package Type"
+8  3  32 "Preload         : "           "*SmartPart Jamload"
+9  3  32 "Eraseable       : "           "*SmartPart Eraseable"
+2  34 64 "Pins            : "           "*SmartPart Pins"
+3  34 64 "Speed (ns)      : "           "*SmartPart Speed"
+4  34 64 "Set-Up Time (ns): "           "*SmartPart Set-Up Time"
+5  34 64 "Hold Time (ns)  : "           "*SmartPart Hold Time"
+6  34 64 "Price           : "           "*SmartPart Price"
+7  34 64 "Utilization     : "           "*SmartPart Utilization"
+8  34 64 "Power (mW)      : "           "*SmartPart Power"
+9  34 64 "User 1          : "           "*SmartPart User"
+10 34 64 "User 2          : "           "*SmartPart User"
+11 3  -1 "Report File Name: "           "*SmartPart Report File"
+12 3  -1 "Report Sort Order: "          "*SmartPart Report Sort Order"
+14 3  -1 "Database Directory: "         "*SmartPart Database Directory"
+16 33 0 "<OK> (F5)"                   "*OK Button"
+16 47 0 "<Cancel> (Esc)"              "*Cancel Button"
+*Fit Options form
+5 12 14 60 " Fitter Options "          "*Fitter Options"
+1  3 -1 "Device: "                              "*Fitter Device"
+3  3  2 "( ) Keep Preassignments"               "*Fitter Preassign"
+4  3  2 "( ) Attempt to Keep Preassignments"    "*Fitter Preassign"
+5  3  2 "( ) Ignore Preassignments"             "*Fitter Preassign"
+7  3  -1 "Device List File: "                	"*Fitter Device List File"
+8  3  2  "[ ] Stop on First Fit"        	"*Fitter Stop"
+10 3  -1 "Alternate Fit Strategy: "    	        "*Fitter Strategy"
+12 20 0 "<OK> (F5)"                   		"*OK Button"
+12 35 0 "<Cancel> (Esc)"              		"*Cancel Button"
+$HLINE 2  1 58
+$HLINE 6  1 58
+$HLINE 9  1 58
+*Fuseasm Options form
+2 14 20 50 " Fuseasm Options "          "*PLDmap Options"
+1  3  -1 "Device: "                     "*PLDmap Device"
+3  3   2 "( ) No Checksum"              "*PLDmap Checksum"
+4  3   2 "( ) Full Checksum"            "*PLDmap Checksum"
+5  3   2 "( ) Dummy Checksum"           "*PLDmap Checksum"
+7  3   2 "( ) Brief Document"           "*PLDmap Document"
+8  3   2 "( ) Long Document"            "*PLDmap Document"
+9  3   2 "[ ] PLCC Chip Diagram"        "*PLDmap PLCC"
+11 3   2 "[ ] Turbo"                    "*PLDmap Turbo"
+12 3   2 "[ ] Miser"                    "*PLDmap Miser"
+13 3   2 "[ ] Blow Product Terms"       "*PLDmap Blow"
+14 3   2 "[ ] Lock"                     "*PLDmap Lock"
+3  26  2 "( ) X-Value 0"                "*Trace X Value"
+4  26  2 "( ) X-Value 1"                "*Trace X Value"
+6  26  2 "( ) Default Format"           "*PLDmap Format"
+7  26  2 "( ) Brief JEDEC Format"       "*PLDmap Format"
+8  26  2 "( ) Hex JEDEC Format"         "*PLDmap Format"
+9  26  2 "( ) Full JEDEC Format"        "*PLDmap Format"
+10 26  2 "( ) 82 PROM Format"           "*PLDmap Format"
+11 26  2 "( ) 83 PROM Format"           "*PLDmap Format"
+12 26  2 "( ) 87 PROM Format"           "*PLDmap Format"
+13 26  2 "( ) 88 PROM Format"           "*PLDmap Format"
+14 26  2 "( ) POF Format"               "*PLDmap Format"
+16 3  46 "User Electronic Signature: "  "*PLDmap Signature"
+18 17  0 "<OK> (F5)"                  "*OK Button"
+18 30  0 "<Cancel> (Esc)"             "*Cancel Button"
+*FPGA Options form
+5 22 10 36 " FPGA Translate Options "   "*FPGA Translate Options"
+2  3   2 "( ) PDS"                      "*FPGA Translation Format"
+3  3   2 "( ) Xilinx PDS"               "*FPGA Translation Format"
+4  3   2 "( ) Signetics Snap"           "*FPGA Translation Format"
+5  3   2 "( ) ABEL-PLA"                 "*FPGA Translation Format"
+7   7  0 "<OK> (F5)"                    "*OK Button"
+7  20  0 "<Cancel> (Esc)"               "*Cancel Button"
+*Fault Options form
+5 16 11 45 " PLDgrade Options "         "*PLDgrade Options"
+2 3   2 "( ) Brief Document"            "*PLDgrade Document"
+3 3   2 "( ) Long Document"             "*PLDgrade Document"
+5 3   2 "( ) Register Powerup 0"        "*Trace Powerup"
+6 3   2 "( ) Register Powerup 1"        "*Trace Powerup"
+2 29  2 "( ) X-Value 0"                 "*Trace X Value"
+3 29  2 "( ) X-Value 1"                 "*Trace X Value"
+5 29  2 "( ) Z-Value 0"                 "*Trace Z Value"
+6 29  2 "( ) Z-Value 1"                 "*Trace Z Value"
+8 16  0 "<OK> (F5)"                     "*OK Button"
+8 29  0 "<Cancel> (Esc)"                "*Cancel Button"
+*Focus Module form
+5 25 7  33 " Focus Module "           "*Focus Module"
+2  3  -1 "Focus Module: "             "*Focus Module"
+4   3  0 "<OK> (F5)"                  "*OK Button"
+4  16  0 "<Cancel> (Esc)"             "*Cancel Button"
+*Exit form
+10 0 6  53 ""           	      "*Exit"
+3  16  0 "<Yes>"               	      "*OK Button"
+3  24  0 "<No>"			      "*Cancel Button"
+$TEXT 2 2 "You will lose all of your edits/option changes!"
+$TEXT 3 2 "Quit anyway?"

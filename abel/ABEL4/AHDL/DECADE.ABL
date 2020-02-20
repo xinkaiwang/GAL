@@ -1,0 +1,53 @@
+module DECADE  
+title 'Decade Counter   Uses Complement Array 
+Bob Hamilton   Data I/O Corp    13 Aug 1990'
+
+	decade		device 'F105';
+
+	Clk,Clr,F0,PR	pin  1,8,18,19;
+	P3,P2,P1,P0	node 40,39,38,37;
+	COMP		node 49;
+
+	F0,P3,P2,P1,P0	istype 'reg_rs';
+
+	_State		= [P3,P2,P1,P0];
+	H,L,Ck,X	= 1, 0, .C., .X.;
+
+equations
+    [P3,P2,P1,P0,F0].ap  = PR;
+    [F0,P3,P2,P1,P0].clk = Clk;
+
+   "Output          Next State             Present State        Input 
+    [F0.S, COMP,               P0.S] = !P3 & !P2 & !P1 & !P0 & !Clr; "0 to 1
+    [      COMP,          P1.S,P0.R] = !P3 & !P2 & !P1 &  P0 & !Clr; "1 to 2
+    [      COMP,               P0.S] = !P3 & !P2 &  P1 & !P0 & !Clr; "2 to 3
+    [      COMP,     P2.S,P1.R,P0.R] = !P3 & !P2 &  P1 &  P0 & !Clr; "3 to 4
+    [      COMP,               P0.S] = !P3 &  P2 & !P1 & !P0 & !Clr; "4 to 5
+    [F0.R, COMP,          P1.S,P0.R] = !P3 &  P2 & !P1 &  P0 & !Clr; "5 to 6
+    [      COMP,               P0.S] = !P3 &  P2 &  P1 & !P0 & !Clr; "6 to 7
+    [      COMP,P3.S,P2.R,P1.R,P0.R] = !P3 &  P2 &  P1 &  P0 & !Clr; "7 to 8
+    [      COMP,               P0.S] =  P3 & !P2 & !P1 & !P0 & !Clr; "8 to 9
+    [           P3.R,P2.R,P1.R,P0.R] =                        !COMP; "Clear
+
+"After Preset, clocking is inhibited until a High-to-Low clock transition.
+
+test_vectors   ([Clk,PR,Clr] -> [_State,F0  ])
+		[ 0 , 0, 0 ] -> [   X  , X];
+		[ 1 , 1, 0 ] -> [^b1111, H]; " Preset high
+		[ 1 , 0, 0 ] -> [^b1111, H]; " Preset low
+		[ Ck, 0, 0 ] -> [   0  , H]; " COMP forces to State 0
+		[ Ck, 0, 0 ] -> [   1  , H];
+		[ Ck, 0, 0 ] -> [   2  , H];
+		[ Ck, 0, 0 ] -> [   3  , H];
+		[ Ck, 0, 0 ] -> [   4  , H];
+		[ Ck, 0, 0 ] -> [   5  , H];
+		[ Ck, 0, 0 ] -> [   6  , L];
+		[ Ck, 0, 0 ] -> [   7  , L];
+		[ Ck, 0, 0 ] -> [   8  , L];
+		[ Ck, 0, 0 ] -> [   9  , L];
+		[ Ck, 0, 0 ] -> [   0  , L];
+		[ Ck, 0, 0 ] -> [   1  , H];
+		[ Ck, 0, 0 ] -> [   2  , H];
+		[ Ck, 0, 1 ] -> [   0  , H]; " Clear
+end 
+

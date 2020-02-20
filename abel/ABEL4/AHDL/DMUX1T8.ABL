@@ -1,0 +1,49 @@
+module DMUX1T8  
+title '1 to 8 line demultiplexer
+Susan Todd and Mark Kuenster   Data I/O Corp.  5 Aug 1990'
+
+		dmux1t8	device	'P16L8';
+
+	y0,y1,y2,y3,y4,y5,y6,y7	pin	12,13,14,15,16,17,18,19;
+	s0,s1,s2,data,enb	pin	1,2,3,4,5;
+
+	H,L,Z	=	1,0,.Z.;
+	select	=	[s2, s1, s0];
+        outputs = 	[y7, y6, y5, y4, y3, y2, y1, y0];
+
+equations
+	!y0	= (select == 0) & data;
+	!y1 	= (select == 1) & data;
+	!y2	= (select == 2) & data;
+	!y3	= (select == 3) & data;
+	!y4	= (select == 4) & data;
+	!y5	= (select == 5) & data;
+	!y6	= (select == 6) & data;
+	!y7	= (select == 7) & data;
+
+	outputs.oe = enb;
+
+test_vectors  'Test the demuliplexer with a high input'
+	([enb,select,data] -> [y7,y6,y5,y4,y3,y2,y1,y0])
+	 [ H ,   0  , H  ] -> [H, H, H, H, H, H, H, L];  "Select y0
+	 [ H ,   1  , H  ] -> [H, H, H, H, H, H, L, H];  "Select y1
+	 [ H ,   2  , H  ] -> [H, H, H, H, H, L, H, H];  "Select y2	
+	 [ H ,   3  , H  ] -> [H, H, H, H, L, H, H, H];  "Select y3
+	 [ H ,   4  , H  ] -> [H, H, H, L, H, H, H, H];  "Select y4
+	 [ H ,   5  , H  ] -> [H, H, L, H, H, H, H, H];  "Select y5
+	 [ H ,   6  , H  ] -> [H, L, H, H, H, H, H, H];  "Select y6
+	 [ H ,   7  , H  ] -> [L, H, H, H, H, H, H, H];  "Select y7
+	 [ L ,   0  , H  ] -> [Z, Z, Z, Z, Z, Z, Z, Z];  
+
+test_vectors  'Test the demuliplexer with a low input'
+	([enb,select,data] -> [y7,y6,y5,y4,y3,y2,y1,y0])
+	 [ H ,   0  , L  ] -> [H, H, H, H, H, H, H, H];  "Select y0
+	 [ H ,   1  , L  ] -> [H, H, H, H, H, H, H, H];  "Select y1
+	 [ H ,   2  , L  ] -> [H, H, H, H, H, H, H, H];  "Select y2
+	 [ H ,   3  , L  ] -> [H, H, H, H, H, H, H, H];  "Select y3
+	 [ H ,   4  , L  ] -> [H, H, H, H, H, H, H, H];  "Select y4
+	 [ H ,   5  , L  ] -> [H, H, H, H, H, H, H, H];  "Select y5
+	 [ H ,   6  , L  ] -> [H, H, H, H, H, H, H, H];  "Select y6
+	 [ H ,   7  , L  ] -> [H, H, H, H, H, H, H, H];  "Select y7
+	 [ L ,   0  , L  ] -> [Z, Z, Z, Z, Z, Z, Z, Z];
+end 

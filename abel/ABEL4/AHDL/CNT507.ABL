@@ -1,0 +1,87 @@
+module cnt507 	 	
+title 'TexIns PSG507 FPLS counter test case
+Michael Holley    Data I/O Corp  7 Dec 1987'
+
+	cnt507	device	'F507';
+
+	CK	pin 1;		VCC	pin 24;
+	I02	pin 2;		I23	pin 23;
+	I03	pin 3;		I22	pin 22;
+	I04	pin 4;		I21	pin 21;
+	I05	pin 5;		I20	pin 20;
+	I06	pin 6;		I19	pin 19;
+	I07	pin 7;		I18	pin 18;
+	Q08	pin 8;		OE17	pin 17;
+	Q09	pin 9;		Q16	pin 16;
+	Q10	pin 10;		Q15	pin 15;
+	Q11	pin 11;		Q14	pin 14;
+	GND	pin 12;		Q13	pin 13;
+
+	SClr0, SClr1		node 25,26; " counter reset
+	CtHd0, CtHd1		node 28,29; " counter !HOLD
+
+	" Counter bits, input to AND-array
+	C0,C1,C2,C3,C4,C5	node 55,56,57,58,59,60;
+
+	" Buried SR-regs
+	P0,P1,P2,P3,P4,P5,P6,P7	node 31,32,33,34,35,36,37,38; 
+
+	C,H,L,X,Z = .C.,1,0,.X.,.Z.;
+	counter  = [C5,C4,C3,C2,C1,C0];
+	countout = [Q14,Q13,Q11,Q10,Q09,Q08];
+
+equations	
+"     6-Bit counter conrtol function table
+"     SClr0   SClr1   CtHd0   CtHd1     Ctr.Ctrl
+"	L	L	L	L	count active
+"	H	X	X	X	sync clear
+"	X	H	X	X	sync clear
+"	L	L	H	X	hold counter
+"	L	L	X	H	hold counter
+
+    SClr0	 = I02; "Combinatoral Clear
+    SClr1.S	 = I03;	"Registered Clear
+    SClr1.R	 = I04;
+
+    CtHd0	 = I05; "Combinatoral Hold
+    CtHd1.S	 = I06;	"Registered Hold
+    CtHd1.R	 = I07;
+
+   countout.oe = !OE17;
+   countout = counter;
+
+test_vectors	
+    ([CK,OE17,  I02,I03,I04,  I05,I06,I07] -> countout);
+     [ C,  0 ,   1 , 0 , 1 ,   1 , 0 , 1 ] ->    X	 ; " poweron 
+     [ C,  0 ,   1 , 0 , 0 ,   0 , 0 , 0 ] ->    0	 ; " clear   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    1	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    2	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    3	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    4	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    5	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    6	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    7	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   1 , 0 , 0 ] ->    7	 ; " hold   (HLD0)
+     [ C,  0 ,   0 , 0 , 0 ,   1 , 0 , 0 ] ->    7	 ; " hold    
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    8	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    9	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    10	 ; " count   
+     [ C,  1 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    Z 	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    12	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 1 , 0 ] ->    13	 ; " hold (HLD1)
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    13	 ; " hold (HLD1) 
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 1 ] ->    13	 ; " hold (HLD1)   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    14	 ; " count   
+     [ 0,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    14	 ; " no clock
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    15	 ; " count   
+     [ C,  0 ,   1 , 0 , 0 ,   0 , 0 , 0 ] ->    0	 ; " clear   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    1	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    2	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    3	 ; " count   
+     [ C,  0 ,   0 , 1 , 0 ,   0 , 0 , 0 ] ->    4	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    0	 ; " clear   
+     [ C,  0 ,   0 , 0 , 1 ,   0 , 0 , 0 ] ->    0	 ; " clear   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    1	 ; " count   
+     [ C,  0 ,   0 , 0 , 0 ,   0 , 0 , 0 ] ->    2	 ; " count   
+end _cnt507
+

@@ -1,0 +1,45 @@
+
+GAL16V8
+A EXAMPLE for clock logic
+2020-02-17，by xinkai
+e-mail:aakwxk@hotmail.com
+
+CLK Q6 Q5 Q4 Q3 Q2 Q1 Q0 NC GND
+NC OUT1 OUT2 NC NC NC NC NC NC VCC
+
+OUT2=Q5*Q6*Q4
+OUT1=Q5+Q6+Q4
+
+DESCRIPTION
+
+GAL16V8
+A EXAMPLE for clock logic
+2020-02-17，by xinkai
+e-mail:aakwxk@hotmail.com
+
+                            __________    __________ 
+                            |         \__/         | 
+                            |                      | 
+                     CLK    | 01                20 |         VCC
+                            |                      | 
+                      Q6    | 02                19 |          NC
+                            |                      | 
+                      Q5    | 03                18 |          NC
+                            |                      | 
+                      Q4    | 04                17 |          NC
+                            |                      | 
+                      Q3    | 05                16 |          NC
+                            |                      | 
+                      Q2    | 06                15 |          NC
+                            |                      | 
+                      Q1    | 07                14 |          NC
+                            |                      | 
+                      Q0    | 08                13 |        OUT2
+                            |                      | 
+                      NC    | 09                12 |        OUT1
+                            |                      | 
+                     GND    | 10                11 |          NC
+                            |                      | 
+                            |______________________| 
+
+

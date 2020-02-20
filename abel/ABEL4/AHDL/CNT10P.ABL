@@ -1,0 +1,91 @@
+module CNT10P
+title 'decimal counter 
+Note: preload the data on pins into the registers
+Denny Siu   Data I/O Corp   9 Aug 1990'
+
+	cnt10p	  device 'P16R4';
+
+	Clk,Clr,OE      pin 1,2,11;
+	Q3,Q2,Q1,Q0     pin 14,15,16,17 istype 'reg_D,invert';
+
+	Ck,X,Z,P	= .C. , .X., .Z., .P.;
+
+" Counter States
+	S0 = ^b1111;    S4 = ^b1011;    S8 = ^b0111;    S12= ^b0011;
+	S1 = ^b1110;    S5 = ^b1010;    S9 = ^b0110;    S13= ^b0010;
+	S2 = ^b1101;    S6 = ^b1001;    S10= ^b0101;    S14= ^b0001;
+	S3 = ^b1100;    S7 = ^b1000;    S11= ^b0100;    S15= ^b0000;
+
+equations
+	[Q3,Q2,Q1,Q0].c = Clk;
+	[Q3,Q2,Q1,Q0].oe = !OE;
+
+state_diagram [Q3,Q2,Q1,Q0]
+	State S0:       IF !Clr THEN S1 ELSE S0;
+
+	State S1:       IF !Clr THEN S2 ELSE S0;
+
+	State S2:       IF !Clr THEN S3 ELSE S0;
+
+	State S3:       IF !Clr THEN S4 ELSE S0;
+
+	State S4:       IF !Clr THEN S5 ELSE S0;
+
+	State S5:       IF !Clr THEN S6 ELSE S0;
+
+	State S6:       IF !Clr THEN S7 ELSE S0;
+
+	State S7:       IF !Clr THEN S8 ELSE S0;
+
+	State S8:       IF !Clr THEN S9 ELSE S0;
+
+	State S9:       GOTO S0;
+
+"Ensure return from illegal state
+	State S10:      GOTO S0;
+	State S11:      GOTO S0;
+	State S12:      GOTO S0;
+	State S13:      GOTO S0;
+	State S14:      GOTO S0;
+	State S15:      GOTO S0;
+
+@page 
+test_vectors 'Test Counter'
+      ( [Clk ,OE, Clr ] -> [Q3,Q2,Q1,Q0])
+	[ Ck , 0,  1  ] ->    S0;       
+	[ Ck , 0,  0  ] ->    S1;
+	[ Ck , 0,  0  ] ->    S2;
+	[ Ck , 0,  0  ] ->    S3;
+	[ Ck , 0,  0  ] ->    S4;
+	[ Ck , 0,  0  ] ->    S5;
+	[ Ck , 1,  0  ] ->    Z ;
+	[ Ck , 0,  0  ] ->    S7;
+	[ 0  , 0,  0  ] ->    S7;
+	[ Ck , 0,  0  ] ->    S8;
+	[ Ck , 0,  0  ] ->    S9;
+	[ Ck , 0,  0  ] ->    S0;
+	[ Ck , 0,  0  ] ->    S1;
+	[ Ck , 0,  0  ] ->    S2;
+	[ Ck , 0,  1  ] ->    S0;
+
+test_vectors 'preload to illegal states'
+      ( [Clk ,OE, Clr,[Q3,Q2,Q1,Q0]] -> [Q3,Q2,Q1,Q0])
+	[ P  , 1,  0 ,      S10    ] ->     X ; 
+	[ 0  , 0,  0 ,       X     ] ->    S10; 
+	[ Ck , 0,  0 ,       X     ] ->    S0 ; 
+	[ P  , 1,  0 ,      S11    ] ->     X ; 
+	[ 0  , 0,  0 ,       X     ] ->    S11; 
+	[ Ck , 0,  0 ,       X     ] ->    S0 ; 
+	[ P  , 1,  0 ,      S12    ] ->     X ; 
+	[ 0  , 0,  0 ,       X     ] ->    S12; 
+	[ Ck , 0,  0 ,       X     ] ->    S0 ; 
+	[ P  , 1,  0 ,      S13    ] ->     X ; 
+	[ 0  , 0,  0 ,       X     ] ->    S13; 
+	[ Ck , 0,  0 ,       X     ] ->    S0 ; 
+	[ P  , 1,  0 ,      S14    ] ->     X ; 
+	[ 0  , 0,  0 ,       X     ] ->    S14; 
+	[ Ck , 0,  0 ,       X     ] ->    S0 ; 
+	[ P  , 1,  0 ,      S15    ] ->     X ; 
+	[ 0  , 0,  0 ,       X     ] ->    S15; 
+	[ Ck , 0,  0 ,       X     ] ->    S0 ; 
+end 

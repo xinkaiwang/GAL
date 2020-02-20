@@ -1,0 +1,29 @@
+module TTLload
+title 'TTL load example
+Dave Kohlmeier   Data I/O Corp  9 Aug 1990'
+
+        TTL59   device  'F159';
+
+        C,L,H,X,Z       = .C.,0,1,.X.,.Z.;
+
+        Clk,J_IN,K_IN,LOAD,Ena,F0       pin 1,2,3,4,11,12;
+
+        F0 istype 'reg_JK,invert';
+
+equations
+         F0.OE  = !Ena; 
+         F0.J   = J_IN;
+         F0.K   = K_IN;
+         F0.L   = LOAD;
+         F0.C   = Clk;
+
+test_vectors    
+       ([Clk,Ena,J_IN,K_IN,LOAD,F0] -> F0)
+        [ C , L ,  1 ,  0 ,  0 , X] ->  0 ; "Set
+        [ C , L ,  0 ,  1 ,  0 , X] ->  1 ; "Reset
+        [ C , L ,  1 ,  1 ,  0 , X] ->  0 ; "Toggle
+        [ C , L ,  1 ,  1 ,  0 , X] ->  1 ; "Toggle
+        [ C , H ,  0 ,  0 ,  1 , 0] ->  X ; "Load
+        [ 0 , L ,  0 ,  0 ,  0 , X] ->  0 ; "Test
+        [ C , L ,  1 ,  1 ,  0 , X] ->  1 ; "Toggle
+end 

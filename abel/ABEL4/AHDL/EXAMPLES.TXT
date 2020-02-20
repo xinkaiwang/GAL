@@ -1,0 +1,85 @@
+    Source    Device    Load        Description                ABEL 4.00
+    File      Type      File
+   |---------|---------|---------|-----------------------------------------|
+  * barrel    P20R8     P7095     Set Notation in Equations
+  * bcd7      P16P8     BCD7      7 Segment Truth Table
+  * binbcd    P16L8     BINBCD    Blackjack Machine Binary to BCD Converter
+  * bjack     P16R6     BJACK     Blackjack Machine Controler
+    brlshft   PML501    BRLSHFT   Example from Signetics PLHS501 App. Notes
+  * cnt10p    P16R4     CNT10P    Test Vector Super-voltage Preload
+    cnt507    F507      CNT507    TexIns PSG507 FPLS counter
+    cnt600    E0600     CNT600    4-bit toggle flip-flop counter
+    cntbuf    E0320     CNTBUF    Test Case for 20 Pin PLDs
+    comp4     P16HD8    IC1       4-bit look-ahead comparator
+  * comp4a    F153      COMP4A    Relational Operators, Group Reduction
+    count116  P16R8     COUNT116  Counter Equations
+  * count4    P16R4     COUNT4    4-bit counter with 2 input mux
+  * count4a   P16R4     COUNT4A   Multiple equations for One Output
+  * decade    F105      DECADE    Complement Array & Transition Equations
+    demo1800  E1800     DEMO1800  Advanced Macrocell Control
+    demo32    P32VX10   DEMO32    Buried registers and dual feedback
+    demo330   P330      DEMO330   Use of P330 macrocells and node numbers
+    demo331   P331      DEMO331   Use of P331 macrocells and node numbers
+    demo332   P332      DEMO332   Use of P332 macrocells and node numbers
+    demo600   E0600     DEMO600   4-bit counters and bidirectional buffer
+  * dmux1t8   P16L8     DMUX1T8   Sets in Equations
+  * dstate2a  P16R4     DSTATE    State machine with illegal state recovery 
+  * dstate2b  P16R4     DSTATE2B  State machine with pin-to-pin description
+  * feedback  P16HD8    FEEDBACK  Simulator Example
+  * findout   P16L8     F1        Don't Cares in Simulation
+    fpls      F157      FPLS      Logic Sequencer Features
+  * inreg     P19L8R    INREG     Input registers use
+    jack1800  E1800     JACK1800  Blackjack machine using EP1800 
+  * langref    ...        ...     Collections of ABEL-HDL examples
+  * m6809a    P14L4     M6809A    Sets, Relational Operators
+  * m6809b    P14L4     M6809B    Macros with Test Vectors
+  * m6809c    P14L4     M6809C    Macros with Test Vectors
+    m6809d    P16HD8    M6809D    Device type from Command Line
+  * mac       P16H8     M1        Macros and Declared Equations
+  * mealy     F167      MEALY     Mealy state machine description 
+  * moore     P22V10    MOORE     Moore state machine description
+  * mux12t4   P16V8S    MUX12T4   12 to 4 multiplexer
+  * muxadd    P22V10    MUXADD    Blackjack Machine Adder
+  * octalf    P20X8     OCTAL     Exclusive OR Factoring
+    pmlgates  F501      PLMGATES  Example from Signetics PLHS501 App. Notes
+    port      P20RA10   PORT      Test Vectors for Asyncronous PLDs
+  * preset    F167      PRESET    Async Preset of 105 & 167
+  * regfb     P16R4     FB2       Simulator Example
+  * reset22a  P22V10    RESET22A  Register Preset and Reset (.RE and .PR)
+  * sequence  P16R4     SEQUENCE  State Machine Example
+    shiftcnt  F159      IFL4      Control of D and JK Flip Flops
+    simple    P14H4     U7        A simple introductory ABEL example
+    sn74190   P22V10    SN74190   Synch. 4-bit up/down counter
+    test448   P448Z     T448A     Internal feedback for PLX/448
+  * traffic   F167      TRAFFIC   Traffic signal controller (complement array)
+  * traffic1  F167      TRAFFIC1  Traffic signal controller (@DCSET)
+    trafsig   F159      TRAFSIG   Traffic signal controller (moore machine)
+  * tsbuffer  F153      TSB1      Bi-directional three state buffer
+  * ttlload   F159      TTL59     Loading Registers with Data
+    xorpol    P20X10    XORPOL    Polarity control with XORs
+
+    Source    Device    Load        Description                ABEL 4.00
+    File      Type      File
+   |---------|---------|---------|-----------------------------------------|
+    The following 5 examples are included with the Generic fitter.
+    control     -       CONTROL   Traffic Signal Controller (device independent)
+    counter     -       COUNTER   Device independent counter
+    display     -       DISPLAY   @DCSET example
+    ttl74190    -       TTL74190  Synch. 4-bit up/down counter (device indep.)
+    decoder     -       DECODER   Device independent Memory decoder
+
+    The following 3 examples are included with the P5032 fitter.
+    addmax    P5032A    ADDMAX    16 bit adder
+    cnt5016   P5016A    CNT5016   Arbitrary length counter with Carry Out
+    jack5032  P5032S    JACK5032  Blackjack machine using MAX P5032
+
+    The following 2 examples are included with the E1800 fitter.
+    f18demo   E1800     F18DEMO   Fit1800 test case
+    f18jack   E1800     F18JACK   Blackjack machine using E1800
+
+* Example from ABEL Manual
+
+    Langref.abl contains the following ABEL files:
+    act_low1, act_low2, declare, detail1, detail2, foo_1, foo_2, foo_3, 
+    foo_5, foo_7, par_det, pin2pin, sm1, sm2, source, source2, statema, 
+    tt1, x1, x2, xorfact

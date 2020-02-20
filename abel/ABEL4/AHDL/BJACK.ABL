@@ -1,0 +1,185 @@
+module BJACK   
+title 'BlackJack state machine controller
+Michael Holley  Data I/O Corp.  9 Aug 1990'
+        
+        bjack   device  'P16R6';
+
+"Inputs
+        Clk,ClkIN       pin 1,2;      "System clock
+        GT16,LT22       pin 3,4;      "Score less than 17 and 22
+        is_Ace          pin 5;        "Card is ace
+        Restart         pin 6;        "Restart game
+        CardIn,CardOut  pin 7,8;      "Card present switches
+        Ena             pin 11;
+
+        Sensor          = [CardIn,CardOut];
+        _In             = [  0   ,   1   ];
+        InOut           = [  1   ,   1   ];
+        Out             = [  1   ,   0   ];
+
+"Outputs
+        AddClk          pin 12;         "Adder clock
+        Add10           pin 13;         "Input Mux control      
+        Sub10           pin 14;         "Input Mux control      
+        Q2,Q1,Q0        pin 15,16,17;   
+        Ace             pin 18;         "Ace Memory 
+
+        High,Low        = 1,0;
+        H,L,C,X         = 1,0,.C.,.X.;  "test vector charactors
+
+        AddClk                  istype 'com';
+        Ace                     istype 'invert,reg_D'; 
+        Add10,Sub10,Q2,Q1,Q0    istype 'invert,reg_D'; 
+
+        Qstate          =  [Add10,Sub10,Q2,Q1,Q0]; 
+        Clear           =  [  1  ,  1  , 1, 1, 1]; "31
+        ShowHit         =  [  1  ,  1  , 1, 1, 0]; "30
+        AddCard         =  [  1  ,  1  , 0, 0, 0]; "24
+        Add_10          =  [  0  ,  1  , 0, 0, 0]; "16
+        Wait            =  [  1  ,  1  , 0, 0, 1]; "25
+        Test_17         =  [  1  ,  1  , 0, 1, 0]; "26
+        Test_22         =  [  1  ,  1  , 0, 1, 1]; "27
+        ShowStand       =  [  1  ,  1  , 1, 0, 0]; "28
+        ShowBust        =  [  1  ,  1  , 1, 0, 1]; "29
+        Sub_10          =  [  1  ,  0  , 0, 0, 1]; "17
+        Zero            =  [  0  ,  0  , 0, 0, 0]; "0
+
+equations
+        [Qstate,Ace].c  = Clk;
+        [Qstate,Ace].oe = !Ena;
+         
+@page    
+@dcset
+state_diagram Qstate
+
+        State Clear:    AddClk    = !ClkIN;
+                        Ace      := Low;
+                        if (Restart==Low) then Clear else ShowHit;
+
+        State ShowHit:  AddClk    = Low;
+                        Ace      := Ace;
+                        if (CardIn==Low) then AddCard else ShowHit;
+
+        State AddCard:  AddClk    = !ClkIN;
+                        Ace      := Ace;
+                        if (is_Ace & !Ace) then Add_10 else Wait;
+
+        State Add_10:   AddClk    = !ClkIN;
+                        Ace      := High;
+                        goto      Wait;
+
+        State Wait:     AddClk    = Low;
+                        Ace      := Ace;
+                        if (CardOut==Low) then Test_17 else Wait;
+
+        State Test_17:  AddClk    = Low;
+                        Ace      := Ace;
+                        if !GT16 then ShowHit else Test_22;
+
+        State Test_22:  AddClk    = Low;
+                        Ace      := Ace;
+                        case     LT22           : ShowStand;
+                                !LT22 & !Ace    : ShowBust;
+                                !LT22 &  Ace    : Sub_10;
+                        endcase;
+
+        State Sub_10:   AddClk    = !ClkIN;
+                        Ace      := Low;
+                        goto      Test_17;
+
+        State ShowBust: AddClk    = Low;
+                        Ace      := Ace;
+                        if (Restart==Low) then Clear else ShowBust;
+
+       State ShowStand: AddClk    = Low;
+                        Ace      := Ace;
+                        if (Restart==Low) then Clear else ShowStand;
+
+       State Zero:      goto Clear;
+
+@page 
+test_vectors 'Assume two cards that total between 16 and 21'
+([Ena,Clk,ClkIN,GT16,LT22,is_Ace,Restart,Sensor] -> [Ace,Qstate,AddClk])
+ [ L , C ,   L ,  L ,  H ,   L  ,   L   ,  Out ] -> [ X ,Clear    , H ];" 1
+ [ L , C ,   L ,  L ,  H ,   L  ,   L   ,  Out ] -> [ L ,Clear    , H ];" 2
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowHit  , L ];" 3
+
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,InOut ] -> [ L ,ShowHit  , L ];" 4
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  _In ] -> [ L ,AddCard  , H ];" 5
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  _In ] -> [ L ,Wait     , L ];" 6
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,InOut ] -> [ L ,Wait     , L ];" 7
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ L ,Test_17  , L ];" 8
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowHit  , L ];" 9
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowHit  , L ];" 10
+
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  _In ] -> [ L ,AddCard  , H ];" 11
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  _In ] -> [ L ,Wait     , L ];" 12
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,InOut ] -> [ L ,Wait     , L ];" 13
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ L ,Test_17  , L ];" 14
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ L ,Test_22  , L ];" 15
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowStand, L ];" 16
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowStand, L ];" 17
+ [ L , C ,   L ,  H ,  H ,   L  ,   L   ,  Out ] -> [ L ,Clear    , H ];" 18
+ 
+test_vectors 'Assume 2 Aces and another card that total between 16 and 21'
+([Ena,Clk,ClkIN,GT16,LT22,is_Ace,Restart,Sensor] -> [Ace,Qstate,AddClk])
+ [ L , C ,   L ,  L ,  H ,   L  ,   L   ,  Out ] -> [ L ,Clear    , H ];" 19
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowHit  , L ];" 20
+
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,InOut ] -> [ L ,ShowHit  , L ];
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,  _In ] -> [ L ,AddCard  , H ];
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,  _In ] -> [ L ,Add_10   , H ];
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,  _In ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,InOut ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,Test_17  , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowHit  , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowHit  , L ];
+
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,  _In ] -> [ H ,AddCard  , H ];
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,  _In ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,InOut ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,Test_17  , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowHit  , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowHit  , L ];
+
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  _In ] -> [ H ,AddCard  , H ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  _In ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,InOut ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ H ,Test_17  , L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ H ,Test_22  , L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowStand, L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowStand, L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   L   ,  Out ] -> [ H ,Clear    , H ];
+@page  
+test_vectors 'Assume an Ace and 2 cards that total between 16 and 21'
+([Ena,Clk,ClkIN,GT16,LT22,is_Ace,Restart,Sensor] -> [Ace,Qstate,AddClk])
+ [ L , C ,   L ,  L ,  H ,   L  ,   L   ,  Out ] -> [ L ,Clear    , H ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowHit  , L ];
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,InOut ] -> [ L ,ShowHit  , L ];
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,  _In ] -> [ L ,AddCard  , H ];
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,  _In ] -> [ L ,Add_10   , H ];
+ [ L , C ,   L ,  L ,  H ,   H  ,   H   ,  _In ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,InOut ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,Test_17  , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowHit  , L ];
+
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowHit  , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  _In ] -> [ H ,AddCard  , H ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  _In ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,InOut ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,Test_17  , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowHit  , L ];
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  Out ] -> [ H ,ShowHit  , L ];
+
+ [ L , C ,   L ,  L ,  H ,   L  ,   H   ,  _In ] -> [ H ,AddCard  , H ];
+ [ L , C ,   L ,  H ,  L ,   L  ,   H   ,  _In ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  H ,  L ,   L  ,   H   ,InOut ] -> [ H ,Wait     , L ];
+ [ L , C ,   L ,  H ,  L ,   L  ,   H   ,  Out ] -> [ H ,Test_17  , L ];
+ [ L , C ,   L ,  H ,  L ,   L  ,   H   ,  Out ] -> [ H ,Test_22  , L ];
+ [ L , C ,   L ,  H ,  L ,   L  ,   H   ,  Out ] -> [ H ,Sub_10   , H ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ L ,Test_17  , L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ L ,Test_22  , L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowStand, L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   H   ,  Out ] -> [ L ,ShowStand, L ];
+ [ L , C ,   L ,  H ,  H ,   L  ,   L   ,  Out ] -> [ L ,Clear    , H ];
+end 

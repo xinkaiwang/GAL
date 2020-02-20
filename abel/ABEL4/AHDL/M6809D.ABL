@@ -1,0 +1,36 @@
+module M6809D (dev)
+title '6809 memory decode
+Jean Designer    Data I/O Corp Redmond WA   24 Feb 1987'
+
+" The device type may be specified on the command line with
+" ABEL4 m6809d -arg P16L8
+
+@ifnb (?dev) { m6809d device '?dev';   @message 'Using "?dev".'};
+
+@ifb  (?dev) { m6809d device 'P14L4';  @message 'Using "P14L4".'};
+
+	A15,A14,A13,A12,A11,A10	pin 1,2,3,4,5,6;
+	ROM1,IO,ROM2,DRAM	pin 14,15,16,17;
+
+	H,L,X	= 1,0,.X.;
+	Address	= [A15,A14,A13,A12, A11,A10,X,X, X,X,X,X, X,X,X,X];
+
+equations
+	!DRAM	= (Address <= ^hDFFF);
+
+	!IO	= (Address >= ^hE000) & (Address <= ^hE7FF);
+
+	!ROM2   = (Address >= ^hF000) & (Address <= ^hF7FF);
+
+	!ROM1	= (Address >= ^hF800);
+
+test_vectors (Address -> [ROM1,ROM2,IO,DRAM])
+	      ^h0000  -> [  H,  H,  H,   L ];
+	      ^h4000  -> [  H,  H,  H,   L ];
+	      ^h8000  -> [  H,  H,  H,   L ];
+	      ^hC000  -> [  H,  H,  H,   L ];
+	      ^hE000  -> [  H,  H,  L,   H ];
+	      ^hE800  -> [  H,  H,  H,   H ];
+	      ^hF000  -> [  H,  L,  H,   H ];
+	      ^hF800  -> [  L,  H,  H,   H ];
+end 

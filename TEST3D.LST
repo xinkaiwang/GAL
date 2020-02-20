@@ -1,0 +1,47 @@
+
+GAL16V8B
+A EXAMPLE for clock logic
+2020-02-17，by xinkai
+e-mail:aakwxk@hotmail.com
+
+CLK I6 I5 I4 I3 I2 I1 I0 NC GND
+OE Q1 Q2 Q3 Q4 NC NC NC NC VCC
+
+Q2:=I5*I6*I4
+Q1:=I5+I6+I4
+
+DESCRIPTION
+Q1.OE = Q0
+
+
+GAL16V8B
+A EXAMPLE for clock logic
+2020-02-17，by xinkai
+e-mail:aakwxk@hotmail.com
+
+                            __________    __________ 
+                            |         \__/         | 
+                            |                      | 
+                     CLK    | 01                20 |         VCC
+                            |                      | 
+                      I6    | 02                19 |          NC
+                            |                      | 
+                      I5    | 03                18 |          NC
+                            |                      | 
+                      I4    | 04                17 |          NC
+                            |                      | 
+                      I3    | 05                16 |          NC
+                            |                      | 
+                      I2    | 06                15 |          Q4
+                            |                      | 
+                      I1    | 07                14 |          Q3
+                            |                      | 
+                      I0    | 08                13 |          Q2
+                            |                      | 
+                      NC    | 09                12 |          Q1
+                            |                      | 
+                     GND    | 10                11 |          OE
+                            |                      | 
+                            |______________________| 
+
+

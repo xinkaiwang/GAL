@@ -1,0 +1,4248 @@
+*Global Keys,A
+Global Keys
+    F1          Context sensitive, multi-level help
+    Esc         Toggles between Editor Window and Menu Bar
+    ^L          Redraw screen
+    Alt-letter  Pops up menu with highlighted character that
+                matches letter
+*Devices Help,A
+--ABEL Devices--
+e0310
+e0320
+e0600
+e0900
+e0900c
+e10p8
+e12p6
+e14p4
+e16p2
+e16p8
+e16rp4
+e16rp6
+e16rp8
+e1800
+e204
+e224
+e224c
+e5ac312
+e5ac324
+ec12c4a
+ec16c4a
+ec16et6
+ec16lc4n
+ec16lc8n
+ec16ld4n
+ec16ld8n
+ec16lm4n
+ec16p4a
+ec16p8c
+ec16p8n
+ec16pe8
+ec16rc4n
+ec16rc8n
+ec16rd4n
+ec16rd8n
+ec16rm4n
+ec16te6
+ec20eg8a
+ec20ev8a
+ec20g8m
+ec20p8m
+f100
+f103
+f105
+f128s24
+f151
+f153
+f155
+f157
+f159
+f161
+f162
+f163
+f167
+f168
+f173
+f179
+f253
+f2605
+f2678
+f273
+f30k12
+f30s16
+f405
+f415
+f42va12
+f473
+f506
+f507
+f529
+f6001
+f839
+f9800
+p10h8
+p10l8
+p10p8
+p12h10
+p12h6
+p12l10
+p12l6
+p12p10
+p12p6
+p14h4
+p14h8
+p14l4
+p14l8
+p14p4
+p14p8
+p16c1
+p16h2
+p16h6
+p16h8
+p16hd8
+p16l2
+p16l6
+p16l8
+p16ld8
+p16n8
+p16p2
+p16p6
+p16p8
+p16r4
+p16r6
+p16r8
+p16ra8
+p16rp4
+p16rp6
+p16rp8
+p16sv8
+p16v8as
+p16v8c
+p16v8r
+p16v8s
+p16z8as
+p16z8c
+p16z8r
+p16z8s
+p18cv8
+p18g8
+p18h4
+p18l4
+p18n8
+p18p4
+p18p8
+p18u8
+p18v10g
+p18v8
+p18v8z
+p19l8l
+p19l8r
+p19r4l
+p19r4r
+p19r6l
+p19r6r
+p19r8l
+p19r8r
+p20arp10
+p20arp4
+p20arp6
+p20arp8
+p20c1
+p20cg10
+p20g10
+p20g10c
+p20h2
+p20h8
+p20l10
+p20l10c
+p20l2
+p20l8
+p20l8c
+p20l8fnc
+p20p2
+p20p8
+p20r4
+p20r4c
+p20r4fnc
+p20r6
+p20r6c
+p20r6fnc
+p20r8
+p20r8c
+p20r8fnc
+p20ra10
+p20ra10c
+p20rp4
+p20rp6
+p20rp8
+p20rs10
+p20rs4
+p20rs8
+p20s10
+p20sv8
+p20v8as
+p20v8c
+p20v8r
+p20v8s
+p20x10
+p20x10c
+p20x4
+p20x4c
+p20x8
+p20x8c
+p22ap10
+p22cv10z
+p22ip6
+p22rx8a
+p22v10
+p22v10c
+p22v10g
+p22vf10
+p22vp10
+p22vp10c
+p23s8
+p23sv8
+p241
+p24l10
+p24r10
+p24v10c
+p24v10r
+p24v10s
+p2500
+p26cv12
+p26v12
+p29m16
+p29ma16
+p32vx10
+p32vx10a
+p330
+p331
+p332
+p448
+p448c
+p448z
+p464
+p464c
+p464z
+p48n22
+p5016a
+p5016s
+p5024a
+p5024s
+p5032a
+p5032s
+p508
+p6l16
+p750
+p8l14
+pml501
+pml601
+ra10p4
+ra10p8
+ra10r8
+ra11p4
+ra11p8
+ra11r8
+ra12p4
+ra12p8
+ra5p16
+ra5p8
+ra6p16
+ra8p4
+ra8p8
+ra9p4
+ra9p8
+ra9r8
+re8p4
+*--ABEL Devices--,A
+*e0310,A
+     ------------            E0310
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*e0320,A
+     ------------            E0320
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*e0600,A
+     -------------            E0600
+  1 | Clk     Vcc | 24
+  2 | In       In | 23  D or T flip flops
+  3 | I/O     I/O | 22
+  4 | I/O     I/O | 21
+  5 | I/O     I/O | 20
+  6 | I/O     I/O | 19
+  7 | I/O     I/O | 18
+  8 | I/O     I/O | 17
+  9 | I/O     I/O | 16
+ 10 | I/O     I/O | 15
+ 11 | In       In | 14
+ 12 | Gnd     Clk | 13
+     -------------
+
+*e0900,A
+     ------------            E0900
+  1 | Clk    Vcc | 40
+  2 | In      In | 39  D or T flip flops
+  3 | In      In | 38
+  4 | In      In | 37
+  5 | I/O    I/O | 36
+  6 | I/O    I/O | 35
+  7 | I/O    I/O | 34
+  8 | I/O    I/O | 33
+  9 | I/O    I/O | 32
+ 10 | I/O    I/O | 31
+ 11 | I/O    I/O | 30
+ 12 | I/O    I/O | 29
+ 13 | I/O    I/O | 28
+ 14 | I/O    I/O | 27
+ 15 | I/O    I/O | 26
+ 16 | I/O    I/O | 25
+ 17 | In      In | 24
+ 18 | In      In | 23
+ 19 | In      In | 22
+ 20 | Gnd    Clk | 21
+     ------------
+
+*e0900c,A
+     ------------            E0900C
+  1 | Vcc    Vcc | 44
+  2 | Clk     In | 43  D or T flip flops
+  3 | In      In | 42
+  4 | In      In | 41
+  5 | In     I/O | 40
+  6 | I/O    N/C | 39
+  7 | I/O    I/O | 38
+  8 | I/O    I/O | 37
+  9 | I/O    I/O | 36
+ 10 | I/O    I/O | 35
+ 11 | I/O    I/O | 34
+ 12 | I/O    I/O | 33
+ 13 | I/O    I/O | 32
+ 14 | I/O    I/O | 31
+ 15 | I/O    I/O | 30
+ 16 | I/O    I/O | 29
+ 17 | N/C    I/O | 28
+ 18 | I/O     In | 27
+ 19 | In      In | 26
+ 20 | In      In | 25
+ 21 | In     Clk | 24
+ 22 | Gnd    Gnd | 23
+     ------------
+
+*e10p8,A
+     ------------            E10P8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*e12p6,A
+     ------------            E12P6
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*e14p4,A
+     ------------            E14P4
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*e16p2,A
+     ------------            E16P2
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In      In | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In      In | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*e16p8,A
+     ------------            E16P8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*e16rp4,A
+     ------------            E16RP4
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*e16rp6,A
+     ------------            E16RP6
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*e16rp8,A
+     ------------            E16RP8
+  1 | Clk    Vcc | 20
+  2 | In     Out | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     Out | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*e1800,A
+                           6 6 6 6 6 6 6 6
+       9 8 7 6 5 4 3 2  1  8 7 6 5 4 3 2 1
+      --------------------------------------
+    |  I I I I I I I I  G  I I I I I I I I  |
+    |  / / / / / / / /  N  / / / / / / / /  |
+    |  O O O O O O O O  D  O O O O O O O O  |
+    |                                       |
+ 10 | I/O Global                 Global I/O | 60
+ 11 | I/O Global                 Global I/O | 59
+ 12 | I/O Global     E1800       Global I/O | 58
+ 13 | I/O Global                 Global I/O | 57
+ 14 | In                                 In | 56
+ 15 | In                                 In | 55
+ 16 | In                                 In | 54
+ 17 | Clk                               Clk | 53
+ 18 | Vcc                               Vcc | 52
+ 19 | Clk                               Clk | 51
+ 20 | In                                 In | 50
+ 21 | In                                 In | 49
+ 22 | In                                 In | 48
+ 23 | I/O Global                 Global I/O | 47
+ 24 | I/O Global                 Global I/O | 46
+ 25 | I/O Global                 Global I/O | 45
+ 26 | I/O Global                 Global I/O | 44
+    |                                       |
+    |  I I I I I I I I  G  I I I I I I I I  |
+    |  / / / / / / / /  N  / / / / / / / /  |
+    |  O O O O O O O O  D  O O O O O O O O  |
+     --------------------------------------
+       2 2 2 3 3 3 3 3  3  3 3 3 3 4 4 4 4
+       7 8 9 0 1 2 3 4  5  6 7 8 9 0 1 2 3
+
+*e204,A
+     ------------            E204
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*e224,A
+     ------------            E224
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*e224c,A
+     ------------            E224C
+  1 | N/C    Vcc | 28
+  2 | Clk     In | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | In     N/C | 22
+  8 | N/C    I/O | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In      In | 17
+ 13 | In      In | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*e5ac312,A
+     ---------------         E5AC312
+  1 | Clk       Vcc | 24
+  2 | I/O       I/O | 23
+  3 | InR 113   I/O | 22    Input registers, nodes 113-120
+  4 | InR 114   I/O | 21
+  5 | InR 115   I/O | 20
+  6 | InR 116   I/O | 19
+  7 | InR 117   I/O | 18
+  8 | InR 118   I/O | 17
+  9 | InR 119   I/O | 16
+ 10 | InR 120   I/O | 15
+ 11 | I/O       I/O | 14
+ 12 | Gnd       Clk | 13
+     ---------------
+
+*e5ac324,A
+     -------------------        E5AC324
+  1 | Clk       214 InR | 40
+  2 | InR 205   213 InR | 39
+  3 | InR 206   212 InR | 38
+  4 | I/O           I/O | 37    Input registers, nodes 205-214
+  5 | I/O           I/O | 36
+  6 | I/O           I/O | 35
+  7 | I/O           I/O | 34
+  8 | Gnd           Vcc | 33
+  9 | I/O           I/O | 32
+ 10 | I/O           I/O | 31
+ 11 | I/O           I/O | 30
+ 12 | I/O           I/O | 29
+ 13 | Vcc           Gnd | 28
+ 14 | I/O           I/O | 27
+ 15 | I/O           I/O | 26
+ 16 | I/O           I/O | 25
+ 17 | I/O           I/O | 24
+ 18 | InR 207   211 InR | 23
+ 19 | InR 208   210 InR | 22
+ 20 | InR 209       Clk | 21
+     -------------------
+
+*ec12c4a,A
+     ------------            EC12C4A
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | Out    Out | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | Out    Out | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     In | 13
+     ------------
+
+*ec16c4a,A
+     ------------            EC16C4A
+  1 | In     Vcc | 28
+  2 | In      In | 27
+  3 | In      In | 26
+  4 | In     Out | 25
+  5 | Out    Out | 24
+  6 | Out    Gnd | 23
+  7 | Gnd    Out | 22
+  8 | Out    Out | 21
+  9 | Out     In | 20
+ 10 | In      In | 19
+ 11 | In      In | 18
+ 12 | In      In | 17
+ 13 | In      In | 16
+ 14 | Vcc     In | 15
+     ------------
+
+*ec16et6,A
+     ------------            EC16ET6
+  1 | Vcc    Gnd | 24
+  2 | In     Clk | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Gnd | 19
+  7 | In     Gnd | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In      OE | 14
+ 12 | Vcc    Vcc | 13
+     ------------
+
+*ec16lc4n,A
+     ------------            EC16LC4N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | I/O    I/O | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | I/O    I/O | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     OE | 13
+     ------------
+
+*ec16lc8n,A
+     ------------            EC16LC8N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | Out    Out | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | Out    Out | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     OE | 13
+     ------------
+
+*ec16ld4n,A
+     ------------            EC16LD4N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | I/O    I/O | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | I/O    I/O | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     OE | 13
+     ------------
+
+*ec16ld8n,A
+     ------------            EC16LD8N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | Out    Out | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | Out    Out | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     OE | 13
+     ------------
+
+*ec16lm4n,A
+     ------------            EC16LM4N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | In      In | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc    Clk | 13
+     ------------
+
+*ec16p4a,A
+     ------------            EC16P4A
+  1 | In     Gnd | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | In      In | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     In | 13
+     ------------
+
+*ec16p8c,A
+     ------------            EC16P8C
+  1 | N/C    Gnd | 28
+  2 | In      In | 27
+  3 | In      In | 26
+  4 | In     I/O | 25
+  5 | I/O    Out | 24
+  6 | Out    Gnd | 23
+  7 | Gnd    N/C | 22
+  8 | N/C    Out | 21
+  9 | Out    I/O | 20
+ 10 | I/O     In | 19
+ 11 | In      In | 18
+ 12 | In      In | 17
+ 13 | In      In | 16
+ 14 | Vcc    N/C | 15
+     ------------
+
+*ec16p8n,A
+     ------------            EC16P8N
+  1 | In     Gnd | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | I/O    I/O | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | I/O    I/O | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     In | 13
+     ------------
+
+*ec16pe8,A
+     ------------            EC16PE8
+  1 | In     Gnd | 28
+  2 | In      In | 27
+  3 | In      In | 26
+  4 | In     Out | 25
+  5 | Out    Out | 24
+  6 | Out    Gnd | 23
+  7 | Gnd    Out | 22
+  8 | Out    Out | 21
+  9 | Out     In | 20
+ 10 | In      In | 19
+ 11 | In      In | 18
+ 12 | In      In | 17
+ 13 | In      In | 16
+ 14 | Vcc     In | 15
+     ------------
+
+*ec16rc4n,A
+     ------------            EC16RC4N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | I/O    I/O | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | I/O    I/O | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     OE | 13
+     ------------
+
+*ec16rc8n,A
+     ------------            EC16RC8N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | Out    Out | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | Out    Out | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     OE | 13
+     ------------
+
+*ec16rd4n,A
+     ------------            EC16RD4N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | I/O    I/O | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | I/O    I/O | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     OE | 13
+     ------------
+
+*ec16rd8n,A
+     ------------            EC16RD8N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | Out    Out | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | Out    Out | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     OE | 13
+     ------------
+
+*ec16rm4n,A
+     ------------            EC16RM4N
+  1 | OE     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | Out    Out | 20
+  6 | Gnd    Gnd | 19
+  7 | Out    Out | 18
+  8 | In      In | 17
+  9 | Clk    Clk | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc    Clk | 13
+     ------------
+
+*ec16te6,A
+     ------------            EC16TE6
+  1 | Vcc    Gnd | 24
+  2 | In     Clk | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Gnd | 19
+  7 | In     Gnd | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In      OE | 14
+ 12 | Vcc    Gnd | 13
+     ------------
+
+*ec20eg8a,A
+     ------------            EC20EG8A
+  1 | In     Gnd | 24
+  2 | In      In | 23
+  3 | Clk     In | 22
+  4 | I/O    I/O | 21
+  5 | I/O    I/O | 20
+  6 | Gnd    Gnd | 19
+  7 | I/O    I/O | 18
+  8 | I/O    I/O | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     In | 13
+     ------------
+
+*ec20ev8a,A
+     ------------            EC20EV8A
+  1 | In     Gnd | 24
+  2 | In      In | 23
+  3 | Clk     In | 22
+  4 | I/O    I/O | 21
+  5 | I/O    I/O | 20
+  6 | Gnd    Gnd | 19
+  7 | I/O    I/O | 18
+  8 | I/O    I/O | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     In | 13
+     ------------
+
+*ec20g8m,A
+     ------------            EC20G8M
+  1 | Clk    Gnd | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | I/O    I/O | 21
+  5 | I/O    I/O | 20
+  6 | Gnd    Gnd | 19
+  7 | I/O    I/O | 18
+  8 | I/O    I/O | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc    Clk | 13
+     ------------
+
+*ec20p8m,A
+     ------------            EC20P8M
+  1 | In     Gnd | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | I/O    I/O | 21
+  5 | I/O    I/O | 20
+  6 | Gnd    Gnd | 19
+  7 | I/O    I/O | 18
+  8 | I/O    I/O | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Vcc     In | 13
+     ------------
+
+*f100,A
+     ------------            F100
+  1 | N/C    Vcc | 28
+  2 | In      In | 27
+  3 | In      In | 26
+  4 | In      In | 25
+  5 | In      In | 24
+  6 | In      In | 23
+  7 | In      In | 22
+  8 | In      In | 21
+  9 | In      In | 20
+ 10 | Out     OE | 19
+ 11 | Out    Out | 18
+ 12 | Out    Out | 17
+ 13 | Out    Out | 16
+ 14 | Gnd    Out | 15
+     ------------
+
+*f103,A
+     ------------            F103
+  1 | In     Vcc | 28
+  2 | In      In | 27
+  3 | In      In | 26
+  4 | In      In | 25
+  5 | In      In | 24
+  6 | In      In | 23
+  7 | In      In | 22
+  8 | In      In | 21
+  9 | Out     In | 20
+ 10 | Out     OE | 19
+ 11 | Out    Out | 18
+ 12 | Out    Out | 17
+ 13 | Out    Out | 16
+ 14 | Gnd    Out | 15
+     ------------
+
+*f105,A
+     ------------            F105
+  1 | Clk    Vcc | 28
+  2 | In      In | 27    SR flip flops
+  3 | In      In | 26
+  4 | In      In | 25    6 buried registers, nodes 37-42
+  5 | In      In | 24
+  6 | In      In | 23    complement term, node 49
+  7 | In      In | 22
+  8 | In      In | 21
+  9 | In      In | 20
+ 10 | Out  PR/OE | 19    Pin 19 can be preset or enable
+ 11 | Out    Out | 18
+ 12 | Out    Out | 17
+ 13 | Out    Out | 16
+ 14 | Gnd    Out | 15
+     ------------
+
+*f128s24,A
+     ------------            F128S24
+  1 | Clk    Vcc | 28
+  2 | In      In | 27
+  3 | In      In | 26
+  4 | In      In | 25
+  5 | In      In | 24
+  6 | In     I/O | 23
+  7 | I/O    I/O | 22
+  8 | I/O    I/O | 21
+  9 | I/O    I/O | 20
+ 10 | I/O    I/O | 19
+ 11 | I/O    I/O | 18
+ 12 | Out    I/O | 17
+ 13 | Out    Out | 16
+ 14 | Gnd    Out | 15
+     ------------
+
+*f151,A
+     ------------            F151
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | I/O    I/O | 14
+  8 | I/O    I/O | 13
+  9 | I/O    I/O | 12
+ 10 | Gnd    I/O | 11
+     ------------
+
+*f153,A
+     ------------            F153
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | I/O    I/O | 12
+ 10 | Gnd    I/O | 11
+     ------------
+
+*f155,A
+     ------------            F155
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     Out | 17
+  5 | In     Out | 16    complement term, node 28
+  6 | I/O    Out | 15
+  7 | I/O    Out | 14
+  8 | I/O    I/O | 13
+  9 | I/O    I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*f157,A
+     ------------            F157
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16    complement term, node 28
+  6 | I/O    Out | 15
+  7 | I/O    Out | 14
+  8 | I/O    Out | 13
+  9 | I/O    I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*f159,A
+     ------------            F159
+  1 | Clk    Vcc | 20
+  2 | In     Out | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16    complement term, node 28
+  6 | I/O    Out | 15
+  7 | I/O    Out | 14
+  8 | I/O    Out | 13
+  9 | I/O    Out | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*f161,A
+     ------------            F161
+  1 | N/C    Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In      In | 20
+  6 | In      In | 19
+  7 | In      In | 18
+  8 | Out     OE | 17
+  9 | Out    Out | 16
+ 10 | Out    Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*f162,A
+     ------------            F162
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In      In | 20
+  6 | In      In | 19
+  7 | In      In | 18
+  8 | In      In | 17
+  9 | Out     In | 16
+ 10 | Out     OE | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*f163,A
+     ------------            F163
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In      In | 20
+  6 | In      In | 19
+  7 | Out     In | 18
+  8 | Out     OE | 17
+  9 | Out    Out | 16
+ 10 | Out    Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*f167,A
+     ------------            F167
+  1 | Clk    Vcc | 24
+  2 | In      In | 23    SR flip flops
+  3 | In      In | 22
+  4 | In      In | 21    6 buried registers, nodes 31-36
+  5 | In      In | 20
+  6 | In      In | 19    complement term, node 43
+  7 | In      In | 18
+  8 | In      In | 17
+  9 | Out  PR/OE | 16    Pin 16 can be preset or enable
+ 10 | Out    Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*f168,A
+     ------------            F168
+  1 | Clk    Vcc | 24
+  2 | In      In | 23    SR flip flops
+  3 | In      In | 22
+  4 | In      In | 21    6 buried registers, nodes 33-38
+  5 | In      In | 20
+  6 | In      In | 19    complement term, node 45
+  7 | In      In | 18
+  8 | Out  PR/OE | 17    Pin 17 can be preset or enable
+  9 | Out    Out | 16
+ 10 | Out    Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*f173,A
+     ------------            F173
+  1 | In     Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*f179,A
+     ------------            F179
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20    complement term, node 32
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | I/O    Out | 15
+ 11 | I/O    I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*f253,A
+     ------------            F253
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | I/O    I/O | 12
+ 10 | Gnd    I/O | 11
+     ------------
+
+*f2605,A
+     ------------            F2605
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | I/O    I/O | 12
+ 10 | Gnd    I/O | 11
+     ------------
+
+*f2678,A
+     ------------            F2678
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | I/O    I/O | 12
+ 10 | Gnd    I/O | 11
+     ------------
+
+*f273,A
+     ------------            F273
+  1 | In     Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*f30k12,A
+     ------------            F30K12
+  1 | Clk    Vcc | 28
+  2 | In      In | 27
+  3 | In      In | 26
+  4 | Clk     In | 25
+  5 | In      In | 24
+  6 | In      In | 23
+  7 | In      In | 22
+  8 | I/O     In | 21
+  9 | I/O    I/O | 20
+ 10 | Out    I/O | 19
+ 11 | Out    Out | 18
+ 12 | Out    Out | 17
+ 13 | Out    Out | 16
+ 14 | Gnd    Out | 15
+     ------------
+
+*f30s16,A
+     ---------------         F30S16
+  1 | Clk       Vcc | 28
+  2 | In         In | 27
+  3 | In         In | 26
+  4 | Clk        In | 25
+  5 | In    113 InR | 24    Input registers, nodes 110-113
+  6 | In    112 InR | 23
+  7 | In    111 InR | 22
+  8 | I/O   110 InR | 21
+  9 | I/O       I/O | 20    2 complement terms, nodes 32-33
+ 10 | Out       I/O | 19
+ 11 | Out       Out | 18
+ 12 | Out       Out | 17
+ 13 | Out       Out | 16
+ 14 | Gnd       Out | 15
+     ---------------
+
+*f405,A
+     ------------            F405
+  1 | Clk    Vcc | 28
+  2 | In      In | 27
+  3 | In      In | 26    JK flip flops
+  4 | In/Clk  In | 25
+  5 | In      In | 24    8 buried registers, nodes 31-38
+  6 | In      In | 23
+  7 | In      In | 22    2 complement terms, nodes 29-30
+  8 | In      In | 21
+  9 | In      In | 20
+ 10 | Out  PR/OE | 19    Pin 19 can be preset or enable
+ 11 | Out    Out | 18
+ 12 | Out    Out | 17
+ 13 | Out    Out | 16
+ 14 | Gnd    Out | 15
+     ------------
+
+*f415,A
+     ------------            F415
+  1 | Clk    Vcc | 28
+  2 | In      In | 27
+  3 | In      In | 26    JK flip flops
+  4 | In/Clk  In | 25
+  5 | In      In | 24    8 buried registers, nodes 31-38
+  6 | In      In | 23
+  7 | In      In | 22    2 complement terms, node 29-30
+  8 | In      In | 21
+  9 | In      In | 20
+ 10 | Out     In | 19
+ 11 | Out    Out | 18
+ 12 | Out    Out | 17
+ 13 | Out    Out | 16
+ 14 | Gnd    Out | 15
+     ------------
+
+*f42va12,A
+     ------------            F42VA12
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21    complement term, node 114
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | I/O    I/O | 15
+ 11 | I/O    I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*f473,A
+     ------------            F473
+  1 | In     Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd    I/O | 13
+     ------------
+
+*f506,A
+     ------------            F506
+  1 | Clk    Vcc | 24
+  2 | In      In | 23    SR flip flops
+  3 | In      In | 22
+  4 | In      In | 21    16 buried registers, nodes 33-48
+  5 | In      In | 20
+  6 | In      In | 19    2 complement terms, node 65,66
+  7 | In      In | 18
+  8 | Out  In/OE | 17    Pin 17 can be enable
+  9 | Out    Out | 16
+ 10 | Out    Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*f507,A
+     ------------            F507
+  1 | Clk    Vcc | 24
+  2 | In      In | 23    SR flip flops
+  3 | In      In | 22    8 buried registers, nodes 31-38
+  4 | In      In | 21    Buried counter
+  5 | In      In | 20    C0-C5, nodes 55-60
+  6 | In      In | 19    SCLR0,SCLR1,CNT0,CNT1, nodes 25-29
+  7 | In      In | 18
+  8 | Out  In/OE | 17    Pin 17 can be enable
+  9 | Out    Out | 16
+ 10 | Out    Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*f529,A
+     ------------            F529
+  1 | OE     Vcc | 20
+  2 | In      OE | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     Out | 12
+ 10 | Gnd    Out | 11
+     ------------
+
+*f6001,A
+     --------------------      F6001
+  1 | Clk            Vcc | 24
+  2 | InR 70  InR 89 I/O | 23    8 buried registers
+  3 | InR 71  InR 88 I/O | 22    SLMC   0 to 7
+  4 | InR 72  InR 87 I/O | 21    Nodes 26 to 33
+  5 | InR 73  InR 86 I/O | 20
+  6 | InR 74  InR 85 I/O | 19
+  7 | InR 75  InR 84 I/O | 18
+  8 | InR 76  InR 83 I/O | 17
+  9 | InR 77  InR 82 I/O | 16
+ 10 | InR 78  InR 81 I/O | 15
+ 11 | InR 79  InR 80 I/O | 14
+ 12 | Gnd            Clk | 13
+     --------------------
+
+*f839,A
+     ------------            F839
+  1 | N/C    Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In      In | 20
+  6 | In      In | 19
+  7 | In      In | 18
+  8 | In      In | 17
+  9 | Out    Out | 16
+ 10 | Out    Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*f9800,A
+     ------------            F9800
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd    I/O | 11
+     ------------
+
+*p10h8,A
+     ------------            P10H8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p10l8,A
+     ------------            P10L8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p10p8,A
+     ------------            P10P8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p12h10,A
+     ------------            P12H10
+  1 | In     Vcc | 24
+  2 | In     Out | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     Out | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p12h6,A
+     ------------            P12H6
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p12l10,A
+     ------------            P12L10
+  1 | In     Vcc | 24
+  2 | In     Out | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     Out | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p12l6,A
+     ------------            P12L6
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p12p10,A
+     ------------            P12P10
+  1 | In     Vcc | 24
+  2 | In     Out | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     Out | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p12p6,A
+     ------------            P12P6
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p14h4,A
+     ------------            P14H4
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p14h8,A
+     ------------            P14H8
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p14l4,A
+     ------------            P14L4
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p14l8,A
+     ------------            P14L8
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p14p4,A
+     ------------            P14P4
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p14p8,A
+     ------------            P14P8
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p16c1,A
+     ------------            P16C1
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In      In | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In      In | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16h2,A
+     ------------            P16H2
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In      In | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In      In | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16h6,A
+     ------------            P16H6
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p16h8,A
+     ------------            P16H8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16hd8,A
+     ------------            P16HD8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16l2,A
+     ------------            P16L2
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In      In | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In      In | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16l6,A
+     ------------            P16L6
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p16l8,A
+     ------------            P16L8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16ld8,A
+     ------------            P16LD8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16n8,A
+     ------------            P16N8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16p2,A
+     ------------            P16P2
+  1 | In     Vcc | 20
+  2 | In      In | 19
+  3 | In      In | 18
+  4 | In      In | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In      In | 14
+  8 | In      In | 13
+  9 | In      In | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16p6,A
+     ------------            P16P6
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p16p8,A
+     ------------            P16P8
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16r4,A
+     ------------            P16R4
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*p16r6,A
+     ------------            P16R6
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*p16r8,A
+     ------------            P16R8
+  1 | Clk    Vcc | 20
+  2 | In     Out | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     Out | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*p16ra8,A
+     ------------            P16RA8
+  1 | PL     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18    Pin 1 must be high for normal operation
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*p16rp4,A
+     ------------            P16RP4
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*p16rp6,A
+     ------------            P16RP6
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*p16rp8,A
+     ------------            P16RP8
+  1 | Clk    Vcc | 20
+  2 | In     Out | 19
+  3 | In     Out | 18
+  4 | In     Out | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     Out | 14
+  8 | In     Out | 13
+  9 | In     Out | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*p16sv8,A
+     ------------            P16SV8
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19    Signetics style 16V8
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16v8as,A
+     ------------            P16V8AS
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18   Simple combinational mode with feedback
+  4 | In     I/O | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16v8c,A
+     ------------            P16V8C
+  1 | In     Vcc | 20
+  2 | In     Out | 19
+  3 | In     I/O | 18   Combinational mode with OE term
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     Out | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16v8r,A
+     ------------            P16V8R
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18    Registered mode
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     OE | 11
+     ------------
+
+*p16v8s,A
+     ------------            P16V8S
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18   Simple combinational mode without feedback
+  4 | In     I/O | 17
+  5 | In     Out | 16
+  6 | In     Out | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p16z8as,A
+     ------------            P16Z8AS
+  1 | In     Vcc | 24
+  2 | N/C    N/C | 23
+  3 | In     I/O | 22   Simple combinational mode with feedback
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | N/C    N/C | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p16z8c,A
+     ------------            P16Z8C
+  1 | In     Vcc | 24
+  2 | N/C    N/C | 23
+  3 | In     Out | 22
+  4 | In     I/O | 21   Combinational mode with OE term
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     Out | 15
+ 11 | N/C    N/C | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p16z8r,A
+     ------------            P16Z8R
+  1 | Clk    Vcc | 24
+  2 | N/C    N/C | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21    Registered mode
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | N/C    N/C | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p16z8s,A
+     ------------            P16Z8S
+  1 | In     Vcc | 24
+  2 | N/C    N/C | 23
+  3 | In     I/O | 22   Simple combinational mode without feedback
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | N/C    N/C | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p18cv8,A
+     ------------            P18CV8
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p18g8,A
+     ------------            P18G8
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p18h4,A
+     ------------            P18H4
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p18l4,A
+     ------------            P18L4
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p18n8,A
+     ------------            P18N8
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p18p4,A
+     ------------            P18P4
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p18p8,A
+     ------------            P18P8
+  1 | In     Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p18u8,A
+     ------------            P18U8
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p18v10g,A
+     ------------            P18V10G
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | I/O    I/O | 12
+ 10 | Gnd    I/O | 11
+     ------------
+
+*p18v8,A
+     ------------            P18V8
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p18v8z,A
+     ------------            P18V8Z
+  1 | Clk    Vcc | 20
+  2 | In     I/O | 19
+  3 | In     I/O | 18
+  4 | In     I/O | 17
+  5 | In     I/O | 16
+  6 | In     I/O | 15
+  7 | In     I/O | 14
+  8 | In     I/O | 13
+  9 | In     I/O | 12
+ 10 | Gnd     In | 11
+     ------------
+
+*p19l8l,A
+     ----------------        P19L8L
+  1 | In         Vcc | 24
+  2 | InL 29  39 InL | 23    Input latches, nodes 29-39
+  3 | InL 30     Out | 22
+  4 | InL 31     I/O | 21          -------  node    Latch Operation
+  5 | InL 32     I/O | 20   Pin --| D   Q |---      LE    D    Q
+  6 | InL 33     I/O | 19         |       |         0     1    1
+  7 | InL 34     I/O | 18   ILE --| LE    |         0     1    1
+  8 | InL 35     I/O | 17          -------          1     X  Last Q
+  9 | InL 36     I/O | 16
+ 10 | InL 37     Out | 15
+ 11 | InL 38     ILE | 14
+ 12 | Gnd         In | 13
+     ----------------
+
+*p19l8r,A
+     ----------------        P19L8R
+  1 | In         Vcc | 24
+  2 | InR 29  39 InR | 23    Input registers, nodes 29-39
+  3 | InR 30     Out | 22
+  4 | InR 31     I/O | 21
+  5 | InR 32     I/O | 20
+  6 | InR 33     I/O | 19
+  7 | InR 34     I/O | 18
+  8 | InR 35     I/O | 17
+  9 | InR 36     I/O | 16
+ 10 | InR 37     Out | 15
+ 11 | InR 38   InClk | 14
+ 12 | Gnd         In | 13
+     ----------------
+
+*p19r4l,A
+     ----------------           P19R4L
+  1 | Clk        Vcc | 24
+  2 | InL 29  39 InL | 23    Input latches, nodes 29-39
+  3 | InL 30     I/O | 22
+  4 | InL 31     I/O | 21          -------  node    Latch Operation
+  5 | InL 32     Out | 20   Pin --| D   Q |---      LE    D    Q
+  6 | InL 33     Out | 19         |       |         0     1    1
+  7 | InL 34     Out | 18   ILE --| LE    |         0     1    1
+  8 | InL 35     Out | 17          -------          1     X  Last Q
+  9 | InL 36     I/O | 16
+ 10 | InL 37     I/O | 15
+ 11 | InL 38     ILE | 14
+ 12 | Gnd         OE | 13
+     ----------------
+
+*p19r4r,A
+     ----------------        P19R4R
+  1 | Clk        Vcc | 24
+  2 | InR 29  39 InR | 23    Input registers, nodes 29-39
+  3 | InR 30     I/O | 22
+  4 | InR 31     I/O | 21
+  5 | InR 32     Out | 20
+  6 | InR 33     Out | 19
+  7 | InR 34     Out | 18
+  8 | InR 35     Out | 17
+  9 | InR 36     I/O | 16
+ 10 | InR 37     I/O | 15
+ 11 | InR 38   InClk | 14
+ 12 | Gnd         OE | 13
+     ----------------
+
+*p19r6l,A
+     ----------------        P19R6L
+  1 | Clk        Vcc | 24
+  2 | InL 29  39 InL | 23    Input latches, nodes 29-39
+  3 | InL 30     I/O | 22
+  4 | InL 30     Out | 21          -------  node    Latch Operation
+  5 | InL 30     Out | 20   Pin --| D   Q |---      LE    D    Q
+  6 | InL 30     Out | 19         |       |         0     1    1
+  7 | InL 30     Out | 18   ILE --| LE    |         0     1    1
+  8 | InL 30     Out | 17          -------          1     X  Last Q
+  9 | InL 30     Out | 16
+ 10 | InL 30     I/O | 15
+ 11 | InL 30     Clk | 14
+ 12 | Gnd         OE | 13
+     ----------------
+
+*p19r6r,A
+     ----------------        P19R6R
+  1 | Clk        Vcc | 24
+  2 | InR 29  39 InR | 23    Input registers, nodes 29-39
+  3 | InR 30     I/O | 22
+  4 | InR 31     Out | 21
+  5 | InR 32     Out | 20
+  6 | InR 33     Out | 19
+  7 | InR 34     Out | 18
+  8 | InR 35     Out | 17
+  9 | InR 36     Out | 16
+ 10 | InR 37     I/O | 15
+ 11 | InR 38     Clk | 14
+ 12 | Gnd         OE | 13
+     ----------------
+
+*p19r8l,A
+     ----------------        P19R8L
+  1 | Clk        Vcc | 24
+  2 | InL 29  39 InL | 23    Input latches, nodes 29-39
+  3 | InL 30     Out | 22
+  4 | InL 31     Out | 21          -------  node    Latch Operation
+  5 | InL 32     Out | 20   Pin --| D   Q |---      LE    D    Q
+  6 | InL 33     Out | 19         |       |         0     1    1
+  7 | InL 34     Out | 18   ILE --| LE    |         0     1    1
+  8 | InL 35     Out | 17          -------          1     X  Last Q
+  9 | InL 36     Out | 16
+ 10 | InL 37     Out | 15
+ 11 | InL 38     ILE | 14
+ 12 | Gnd         OE | 13
+     ----------------
+
+*p19r8r,A
+     ----------------        P19R8R
+  1 | Clk        Vcc | 24
+  2 | InR 29  39 InR | 23    Input registers, nodes 29-39
+  3 | InR 30     Out | 22
+  4 | InR 31     Out | 21
+  5 | InR 32     Out | 20
+  6 | InR 33     Out | 19
+  7 | InR 34     Out | 18
+  8 | InR 35     Out | 17
+  9 | InR 36     Out | 16
+ 10 | InR 37     Out | 15
+ 11 | InR 38     Clk | 14
+ 12 | Gnd         OE | 13
+     ----------------
+
+*p20arp10,A
+     ------------            P20ARP10
+  1 | Clk    Vcc | 24
+  2 | In     Out | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     Out | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20arp4,A
+     ------------            P20ARP4
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20arp6,A
+     ------------            P20ARP6
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20arp8,A
+     ------------            P20ARP8
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20c1,A
+     ------------            P20C1
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In      In | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In      In | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20cg10,A
+     ------------            P20CG10
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20g10,A
+     ------------            P20G10
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20g10c,A
+     ------------            P20G10C
+  1 | Clk    Vcc | 28    Non JEDEC pinout PLCC
+  2 | In     I/O | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | N/C    I/O | 24
+  6 | In     I/O | 23
+  7 | In     I/O | 22
+  8 | N/C    I/O | 21
+  9 | In     I/O | 20
+ 10 | In     N/C | 19
+ 11 | N/C    I/O | 18
+ 12 | In     I/O | 17
+ 13 | In      In | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p20h2,A
+     ------------            P20H2
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In      In | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In      In | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20h8,A
+     ------------            P20H8
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20l10,A
+     ------------            P20L10
+  1 | In     Vcc | 24
+  2 | In     Out | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     Out | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20l10c,A
+     ------------            P20L10C
+  1 | In     Vcc | 28    Non JEDEC pinout PLCC
+  2 | In     Out | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | N/C    I/O | 24
+  6 | In     I/O | 23
+  7 | In     I/O | 22
+  8 | N/C    I/O | 21
+  9 | In     I/O | 20
+ 10 | In     N/C | 19
+ 11 | N/C    I/O | 18
+ 12 | In     Out | 17
+ 13 | In      In | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p20l2,A
+     ------------            P20L2
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In      In | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In      In | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20l8,A
+     ------------            P20L8
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20l8c,A
+     ------------            P20L8C
+  1 | In     Vcc | 28    Non JEDEC pinout PLCC
+  2 | In      In | 27
+  3 | In     Out | 26
+  4 | In     I/O | 25
+  5 | N/C    I/O | 24
+  6 | In     I/O | 23
+  7 | In     I/O | 22
+  8 | N/C    I/O | 21
+  9 | In     I/O | 20
+ 10 | In     N/C | 19
+ 11 | N/C    Out | 18
+ 12 | In      In | 17
+ 13 | In      In | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p20l8fnc,A
+     ------------            P20L8FNC
+  1 | N/C    Vcc | 28    JEDEC pinout PLCC
+  2 | In      In | 27
+  3 | In     Out | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | In     N/C | 22
+  8 | N/C    I/O | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     Out | 18
+ 12 | In      In | 17
+ 13 | In      In | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p20p2,A
+     ------------            P20P2
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In      In | 21
+  5 | In      In | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In      In | 17
+  9 | In      In | 16
+ 10 | In      In | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20p8,A
+     ------------            P20P8
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20r4,A
+     ------------            P20R4
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20r4c,A
+     ------------            P20R4C
+  1 | Clk    Vcc | 28    Non JEDEC pinout PLCC
+  2 | In      In | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | N/C    Out | 24
+  6 | In     Out | 23
+  7 | In     Out | 22
+  8 | N/C    Out | 21
+  9 | In     I/O | 20
+ 10 | In     N/C | 19
+ 11 | N/C    I/O | 18
+ 12 | In      In | 17
+ 13 | In      OE | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p20r4fnc,A
+     ------------            P20R4FNC
+  1 | N/C    Vcc | 28    JEDEC pinout PLCC
+  2 | Clk     In | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     Out | 24
+  6 | In     Out | 23
+  7 | In     N/C | 22
+  8 | N/C    Out | 21
+  9 | In     Out | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In      In | 17
+ 13 | In      OE | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p20r6,A
+     ------------            P20R6
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20r6c,A
+     ------------            P20R6C
+  1 | Clk    Vcc | 28    Non JEDEC pinout PLCC
+  2 | In      In | 27
+  3 | In     I/O | 26
+  4 | In     Out | 25
+  5 | N/C    Out | 24
+  6 | In     Out | 23
+  7 | In     Out | 22
+  8 | N/C    Out | 21
+  9 | In     Out | 20
+ 10 | In     N/C | 19
+ 11 | N/C    I/O | 18
+ 12 | In      In | 17
+ 13 | In      OE | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p20r6fnc,A
+     ------------            P20R6FNC
+  1 | N/C    Vcc | 28    JEDEC pinout PLCC
+  2 | Clk     In | 27
+  3 | In     I/O | 26
+  4 | In     Out | 25
+  5 | In     Out | 24
+  6 | In     Out | 23
+  7 | In     N/C | 22
+  8 | N/C    Out | 21
+  9 | In     Out | 20
+ 10 | In     Out | 19
+ 11 | In     I/O | 18
+ 12 | In      In | 17
+ 13 | In      OE | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p20r8,A
+     ------------            P20R8
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20r8c,A
+     ------------            P20R8C
+  1 | Clk    Vcc | 28    Non JEDEC pinout PLCC
+  2 | In      In | 27
+  3 | In     Out | 26
+  4 | In     Out | 25
+  5 | N/C    Out | 24
+  6 | In     Out | 23
+  7 | In     Out | 22
+  8 | N/C    Out | 21
+  9 | In     Out | 20
+ 10 | In     N/C | 19
+ 11 | N/C    Out | 18
+ 12 | In      In | 17
+ 13 | In      OE | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p20r8fnc,A
+     ------------            P20R8FNC
+  1 | N/C    Vcc | 28    JEDEC pinout PLCC
+  2 | Clk     In | 27
+  3 | In     Out | 26
+  4 | In     Out | 25
+  5 | In     Out | 24
+  6 | In     Out | 23
+  7 | In     N/C | 22
+  8 | N/C    Out | 21
+  9 | In     Out | 20
+ 10 | In     Out | 19
+ 11 | In     Out | 18
+ 12 | In      In | 17
+ 13 | In      OE | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p20ra10,A
+     ------------            P20RA10
+  1 | PL     Vcc | 24
+  2 | In     I/O | 23    Pin 1 must be high for normal operation
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20ra10c,A
+     ------------            P20RA10C
+  1 | N/C    Vcc | 28    JEDEC pinout PLCC
+  2 | PL     I/O | 27    Pin 2 must be high for normal operation
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | In     N/C | 22
+  8 | N/C    I/O | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     I/O | 17
+ 13 | In      OE | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p20rp4,A
+     ------------            P20RP4
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20rp6,A
+     ------------            P20RP6
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20rp8,A
+     ------------            P20RP8
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20rs10,A
+     ------------            P20RS10
+  1 | Clk    Vcc | 24
+  2 | In     Out | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     Out | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20rs4,A
+     ------------            P20RS4
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20rs8,A
+     ------------            P20RS8
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20s10,A
+     ------------            P20S10
+  1 | In     Vcc | 24
+  2 | In     Out | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     Out | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20sv8,A
+     ------------            P20SV8
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22    Signetics style 20V8
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20v8as,A
+     ------------            P20V8AS
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22     Combinational mode with feedback
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20v8c,A
+     ------------            P20V8C
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     Out | 22
+  4 | In     I/O | 21    Combinational mode with OE term
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     Out | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20v8r,A
+     ------------            P20V8R
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22    Registered mode
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20v8s,A
+     ------------            P20V8S
+  1 | In     Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22   Simple combinational mode without feedback
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p20x10,A
+     ------------            P20X10
+  1 | Clk    Vcc | 24
+  2 | In     Out | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     Out | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20x10c,A
+     ------------            P20X10C
+  1 | Clk    Vcc | 28    Non JEDEC pinout PLCC
+  2 | In     Out | 27
+  3 | In     Out | 26
+  4 | In     Out | 25
+  5 | N/C    Out | 24
+  6 | In     Out | 23
+  7 | In     Out | 22
+  8 | N/C    Out | 21
+  9 | In     Out | 20
+ 10 | In     N/C | 19
+ 11 | N/C    Out | 18
+ 12 | In     Out | 17
+ 13 | In      OE | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p20x4,A
+     ------------            P20X4
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20x4c,A
+     ------------            P20X4C
+  1 | Clk    Vcc | 28    Non JEDEC pinout PLCC
+  2 | In     I/O | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | N/C    Out | 24
+  6 | In     Out | 23
+  7 | In     Out | 22
+  8 | N/C    Out | 21
+  9 | In     I/O | 20
+ 10 | In     N/C | 19
+ 11 | N/C    I/O | 18
+ 12 | In     I/O | 17
+ 13 | In      OE | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p20x8,A
+     ------------            P20X8
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     OE | 13
+     ------------
+
+*p20x8c,A
+     ------------            P20X8C
+  1 | Clk    Vcc | 28    Non JEDEC pinout PLCC
+  2 | In     I/O | 27
+  3 | In     Out | 26
+  4 | In     Out | 25
+  5 | N/C    Out | 24
+  6 | In     Out | 23
+  7 | In     Out | 22
+  8 | N/C    Out | 21
+  9 | In     Out | 20
+ 10 | In     N/C | 19
+ 11 | N/C    Out | 18
+ 12 | In     I/O | 17
+ 13 | In      OE | 16
+ 14 | In     Gnd | 15
+     ------------
+
+*p22ap10,A
+     ------------            P22AP10
+  1 | In     Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p22cv10z,A
+     ------------            P22CV10Z
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p22ip6,A
+     ------------            P22IP6
+  1 | In      In | 24
+  2 | In      In | 23
+  3 | In      In | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | Vcc    I/O | 19
+  7 | In     Vcc | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | In      In | 13
+     ------------
+
+*p22rx8a,A
+     ------------            P22RX8A
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In      In | 14
+ 12 | OE      In | 13
+     ------------
+
+*p22v10,A
+     ------------            P22V10
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p22v10c,A
+     ------------            P22V10C
+  1 | N/C    Vcc | 28    JEDEC pinout PLCC
+  2 | Clk    I/O | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | In     N/C | 22
+  8 | N/C    I/O | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     I/O | 17
+ 13 | In      In | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p22v10g,A
+     ------------            P22V10G
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p22vf10,A
+     ------------            P22VP10
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p22vp10,A
+     ------------            P22VP10
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p22vp10c,A
+     ------------            P22VP10C
+  1 | N/C    Vcc | 28    JEDEC pinout PLCC
+  2 | Clk    I/O | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | In     N/C | 22
+  8 | N/C    I/O | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     I/O | 17
+ 13 | In      In | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p23s8,A
+     --------------          P23S8
+  1 | Clk      Vcc | 20
+  2 | In       I/O | 19    6 buried registers, nodes 21-26
+  3 | In    26 I/O | 18    Observability term, node 27
+  4 | In    25 I/O | 17
+  5 | In    24 I/O | 16
+  6 | In    23 I/O | 15
+  7 | In    22 I/O | 14
+  8 | In    21 I/O | 13
+  9 | In       I/O | 12
+ 10 | Gnd       In | 11
+     --------------
+
+*p23sv8,A
+     --------------          P23SV8
+  1 | Clk      Vcc | 20
+  2 | In       I/O | 19
+  3 | In    26 I/O | 18    6 buried registers, nodes 21-26
+  4 | In    25 I/O | 17    Observability term, node 27
+  5 | In    24 I/O | 16
+  6 | In    23 I/O | 15
+  7 | In    22 I/O | 14
+  8 | In    21 I/O | 13
+  9 | In    20 I/O | 12
+ 10 | Gnd       In | 11
+     --------------
+
+*p241,A
+     ------------            P241
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | I/O    I/O | 21
+  5 | I/O    I/O | 20
+  6 | I/O    I/O | 19
+  7 | I/O    I/O | 18
+  8 | I/O    I/O | 17
+  9 | I/O    I/O | 16
+ 10 | In     I/O | 15
+ 11 | Clk    I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p24l10,A
+     ------------            P24L10
+  1 | In      In | 28
+  2 | In     Out | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | Gnd    I/O | 22
+  8 | In     Vcc | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     Out | 17
+ 13 | In      In | 16
+ 14 | In      In | 15
+     ------------
+
+*p24r10,A
+     ------------            P24R10
+  1 | Clk     In | 28
+  2 | In     Out | 27
+  3 | In     Out | 26
+  4 | In     Out | 25
+  5 | In     Out | 24
+  6 | In     Out | 23
+  7 | Gnd    Out | 22
+  8 | In     Vcc | 21
+  9 | In     Out | 20
+ 10 | In     Out | 19
+ 11 | In     Out | 18
+ 12 | In     Out | 17
+ 13 | In      In | 16
+ 14 | In      OE | 15
+     ------------
+
+*p24v10c,A
+     ------------            P24V10C
+  1 | In      In | 28
+  2 | In      In | 27
+  3 | In     Out | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | Vcc    I/O | 22
+  8 | In     Gnd | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     I/O | 17
+ 13 | In     Out | 16
+ 14 | In      In | 15
+     ------------
+
+*p24v10r,A
+     ------------            P24V10R
+  1 | Clk     In | 28
+  2 | In      In | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | Vcc    I/O | 22
+  8 | In     Gnd | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     I/O | 17
+ 13 | In     I/O | 16
+ 14 | In      OE | 15
+     ------------
+
+*p24v10s,A
+     ------------            P24V10S
+  1 | In      In | 28
+  2 | In      In | 27
+  3 | In     Out | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | Vcc    I/O | 22
+  8 | In     Gnd | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     I/O | 17
+ 13 | In     Out | 16
+ 14 | In      In | 15
+     ------------
+
+*p2500,A
+     -------------------------        P2500
+  1 | In                   In | 40
+  2 | In                   In | 39
+  3 | In  Q1  Q2           In | 38
+  4 | I/O 169 41   Q1  Q2  In | 37
+  5 | I/O 170 42   192 64 I/O | 36
+  6 | I/O 171 43   191 63 I/O | 35  Buried registers    Nodes
+  7 | I/O 172 44   190 62 I/O | 34       Q1 (24)        169-192
+  8 | I/O 173 45   189 61 I/O | 33       Q2 (24)        41-64
+  9 | I/O 174 46   188 60 I/O | 32
+ 10 | Vcc          187 59 I/O | 31
+ 11 | I/O 175 47          Gnd | 30
+ 12 | I/O 176 48   186 58 I/O | 29
+ 13 | I/O 177 49   185 57 I/O | 28
+ 14 | I/O 178 50   184 56 I/O | 27
+ 15 | I/O 179 51   183 55 I/O | 26
+ 16 | I/O 180 52   182 54 I/O | 25
+ 17 | In           181 53 I/O | 24
+ 18 | In                   In | 23
+ 19 | In                   In | 22
+ 20 | In                   In | 21
+     -------------------------
+
+*p26cv12,A
+     ------------            P26CV12
+  1 | Clk     In | 28
+  2 | In     I/O | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | Vcc    I/O | 22
+  8 | In     Gnd | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     I/O | 17
+ 13 | In     I/O | 16
+ 14 | In     I/O | 15
+     ------------
+
+*p26v12,A
+     ------------            P26V12
+  1 | Clk     In | 28
+  2 | In     I/O | 27
+  3 | In     I/O | 26
+  4 | Clk    I/O | 25
+  5 | In     I/O | 24
+  6 | In     I/O | 23
+  7 | Vcc    I/O | 22
+  8 | In     Gnd | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     I/O | 17
+ 13 | In     I/O | 16
+ 14 | In     I/O | 15
+     ------------
+
+*p29m16,A
+     ------------            P29M16
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | I/O    I/O | 22
+  4 | I/O    I/O | 21
+  5 | I/O    I/O | 20
+  6 | I/O    I/O | 19
+  7 | I/O    I/O | 18
+  8 | I/O    I/O | 17
+  9 | I/O    I/O | 16
+ 10 | I/O    I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p29ma16,A
+     ------------            P29MA16
+  1 | Clk    Vcc | 24
+  2 | In      In | 23
+  3 | I/O    I/O | 22
+  4 | I/O    I/O | 21
+  5 | I/O    I/O | 20
+  6 | I/O    I/O | 19
+  7 | I/O    I/O | 18
+  8 | I/O    I/O | 17
+  9 | I/O    I/O | 16
+ 10 | I/O    I/O | 15
+ 11 | In      In | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p32vx10,A
+     ------------            P32VX10
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p32vx10a,A
+     ------------            P32VX10A
+  1 | Clk    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     I/O | 20
+  6 | In     I/O | 19
+  7 | In     I/O | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | In     I/O | 14
+ 12 | Gnd     In | 13
+     ------------
+
+*p330,A
+     ----------------------            P330
+  1 | Clk        R 127 I/O | 28 Share fb
+  2 | Clk        R 126 I/O | 27 node 40
+  3 | InR 105    R 125 I/O | 26
+  4 | InR 106    R 124 I/O | 25 node 39
+  5 | InR 107    R 123 I/O | 24
+  6 | InR 108    R 122 I/O | 23 node 38
+  7 | InR 109          Vcc | 22    4 buried registers, nodes 31-34
+  8 | Gnd              Gnd | 21   23 input registers, nodes 105-127
+  9 | InR 110    R 121 I/O | 20    6 share fb registers, nodes 35-40
+ 10 | InR 111    R 120 I/O | 19 node 37
+ 11 | InR 112    R 119 I/O | 18
+ 12 | InR 113    R 118 I/O | 17 node 36
+ 13 | InR 114    R 117 I/O | 16
+ 14 | InR 115    R 116 I/O | 15 node 35
+     ----------------------
+
+*p331,A
+     ----------------            P331
+  1 | In   R 154 I/O | 28
+  2 | In   R 153 I/O | 27 node 34
+  3 | In   R 152 I/O | 26
+  4 | In   R 151 I/O | 25 node 33
+  5 | In   R 150 I/O | 24
+  6 | In   R 149 I/O | 23 node 32
+  7 | In         Vcc | 22     12 input registers, nodes 143-154
+  8 | Gnd        Gnd | 21      6 share fb registers, nodes 29-34
+  9 | In   R 148 I/O | 20
+ 10 | In   R 147 I/O | 19 node 31
+ 11 | In   R 146 I/O | 18
+ 12 | In   R 145 I/O | 17 node 30
+ 13 | In   R 144 I/O | 16
+ 14 | In   R 143 I/O | 15 node 29
+     ----------------
+
+*p332,A
+     ---------------------        P332
+  1 | ClkR 78   R 102 I/O | 28
+  2 | ClkR 79   R 101 I/O | 27
+  3 | InR 80    R 100 I/O | 26
+  4 | InR 81    R  99 I/O | 25
+  5 | InR 82    R  98 I/O | 24
+  6 | InR 83    R  97 I/O | 23
+  7 | InR 84          Vcc | 22    24 input registers, nodes 78-102
+  8 | Gnd             Gnd | 21
+  9 | InR 85    R  96 I/O | 20
+ 10 | InR 86    R  95 I/O | 19
+ 11 | InR 87    R  94 I/O | 18
+ 12 | InR 88    R  93 I/O | 17
+ 13 | InR 89    R  92 I/O | 16
+ 14 | InR 90    R  91 I/O | 15
+     ---------------------
+
+*p448,A
+     ------------            P448
+  1 | N/C    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Gnd | 20
+  6 | In     I/O | 19
+  7 | In     Gnd | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | Clk    Clk | 14
+ 12 | Gnd    I/O | 13
+     ------------
+
+*p448c,A
+     ------------            P448C
+  1 | N/C    Vcc | 28
+  2 | N/C    I/O | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     Gnd | 24
+  6 | In     I/O | 23
+  7 | In     N/C | 22
+  8 | N/C    Gnd | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     Clk | 17
+ 13 | Clk    I/O | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p448z,A
+     ------------            P448Z
+  1 | N/C    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Gnd | 20
+  6 | In     I/O | 19
+  7 | In     Gnd | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | Clk    Clk | 14
+ 12 | Gnd    I/O | 13
+     ------------
+
+*p464,A
+     ------------            P464
+  1 | N/C    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Gnd | 20
+  6 | In     I/O | 19
+  7 | In     Gnd | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | Clk    Clk | 14
+ 12 | Gnd    I/O | 13
+     ------------
+
+*p464c,A
+     ------------            P464C
+  1 | N/C    Vcc | 28
+  2 | N/C    I/O | 27
+  3 | In     I/O | 26
+  4 | In     I/O | 25
+  5 | In     Gnd | 24
+  6 | In     I/O | 23
+  7 | In     N/C | 22
+  8 | N/C    Gnd | 21
+  9 | In     I/O | 20
+ 10 | In     I/O | 19
+ 11 | In     I/O | 18
+ 12 | In     Clk | 17
+ 13 | Clk    I/O | 16
+ 14 | Gnd    N/C | 15
+     ------------
+
+*p464z,A
+     ------------            P464Z
+  1 | N/C    Vcc | 24
+  2 | In     I/O | 23
+  3 | In     I/O | 22
+  4 | In     I/O | 21
+  5 | In     Gnd | 20
+  6 | In     I/O | 19
+  7 | In     Gnd | 18
+  8 | In     I/O | 17
+  9 | In     I/O | 16
+ 10 | In     I/O | 15
+ 11 | Clk    Clk | 14
+ 12 | Gnd    I/O | 13
+     ------------
+
+*p48n22,A
+     ------------            P48N22
+  1 | In     I/O | 68
+  2 | In     I/O | 67
+  3 | In     Gnd | 66
+  4 | Vcc    I/O | 65
+  5 | In     I/O | 64
+  6 | In     Out | 63
+  7 | In     Out | 62
+  8 | In     Out | 61
+  9 | In     Out | 60
+ 10 | In     Out | 59
+ 11 | In     Out | 58
+ 12 | In     Out | 57
+ 13 | In     Out | 56
+ 14 | Gnd    Vcc | 55
+ 15 | Gnd    Out | 54
+ 16 | In     Out | 53
+ 17 | In     I/O | 52
+ 18 | In     I/O | 51
+ 19 | In     I/O | 50
+ 20 | In     Gnd | 49
+ 21 | Vcc    Gnd | 48
+ 22 | In     I/O | 47
+ 23 | In     I/O | 46
+ 24 | In     I/O | 45
+ 25 | In     I/O | 44
+ 26 | In     I/O | 43
+ 27 | In      In | 42
+ 28 | In      In | 41
+ 29 | In      In | 40
+ 30 | In      In | 39
+ 31 | In     Vcc | 38
+ 32 | Gnd     In | 37
+ 33 | In      In | 36
+ 34 | In      In | 35
+     ------------
+
+*p5016a,A
+     ------------            P5016A
+  1 | In      In | 20
+  2 | In      In | 19
+  3 | I/O    I/O | 18   8 buried macrocells, nodes 21-28
+  4 | I/O    I/O | 17   16 shared expander terms, nodes 29-44
+  5 | Vcc    Vcc | 16   16 expander terms, nodes 45-60
+  6 | Gnd    Gnd | 15
+  7 | I/O    I/O | 14
+  8 | I/O    I/O | 13
+  9 | In      In | 12
+ 10 | In      In | 11
+     ------------
+
+*p5016s,A
+     ------------            P5016S
+  1 | In      In | 20
+  2 | Clk     In | 19   Synchronous Clock Mode
+  3 | I/O    I/O | 18   8 buried macrocells, nodes 21-28
+  4 | I/O    I/O | 17   16 shared expander terms, nodes 29-44
+  5 | Vcc    Vcc | 16   16 expander terms, nodes 45-60
+  6 | Gnd    Gnd | 15
+  7 | I/O    I/O | 14
+  8 | I/O    I/O | 13
+  9 | In      In | 12
+ 10 | In      In | 11
+     ------------
+
+*p5024a,A
+     ------------            P5024A
+  1 | In      In | 24
+  2 | In      In | 23
+  3 | I/O    I/O | 22   12 buried macrocells, nodes 25-36
+  4 | I/O    I/O | 21   24 shared expander terms, nodes 37-60
+  5 | I/O    I/O | 20   24 expander terms, nodes 61-84
+  6 | Vcc    Vcc | 19
+  7 | Gnd    Gnd | 18
+  8 | I/O    I/O | 17
+  9 | I/O    I/O | 16
+ 10 | I/O    I/O | 15
+ 11 | In      In | 14
+ 12 | In      In | 13
+     ------------
+
+*p5024s,A
+     ------------            P5024S
+  1 | In      In | 24
+  2 | Clk     In | 23   Synchronous Clock Mode
+  3 | I/O    I/O | 22   12 buried macrocells, nodes 25-36
+  4 | I/O    I/O | 21   24 shared expander terms, nodes 37-60
+  5 | I/O    I/O | 20   24 expander terms, nodes 61-84
+  6 | Vcc    Vcc | 19
+  7 | Gnd    Gnd | 18
+  8 | I/O    I/O | 17
+  9 | I/O    I/O | 16
+ 10 | I/O    I/O | 15
+ 11 | In      In | 14
+ 12 | In      In | 13
+     ------------
+
+*p5032a,A
+     ------------            P5032A
+  1 | In      In | 28
+  2 | In      In | 27
+  3 | I/O    I/O | 26   16 buried macrocells, nodes 29-44
+  4 | I/O    I/O | 25   32 shared expander terms, nodes 45-76
+  5 | I/O    I/O | 24   32 expander terms, nodes 77-108
+  6 | I/O    I/O | 23
+  7 | Vcc    Vcc | 22
+  8 | Gnd    Gnd | 21
+  9 | I/O    I/O | 20
+ 10 | I/O    I/O | 19
+ 11 | I/O    I/O | 18
+ 12 | I/O    I/O | 17
+ 13 | In      In | 16
+ 14 | In      In | 15
+     ------------
+
+*p5032s,A
+     ------------            P5032S
+  1 | In      In | 28
+  2 | Clk     In | 27   Synchronous Clock Mode
+  3 | I/O    I/O | 26   16 buried macrocells, nodes 29-44
+  4 | I/O    I/O | 25   32 shared expander terms, nodes 45-76
+  5 | I/O    I/O | 24   32 expander terms, nodes 77-108
+  6 | I/O    I/O | 23
+  7 | Vcc    Vcc | 22
+  8 | Gnd    Gnd | 21
+  9 | I/O    I/O | 20
+ 10 | I/O    I/O | 19
+ 11 | I/O    I/O | 18
+ 12 | I/O    I/O | 17
+ 13 | In      In | 16
+ 14 | In      In | 15
+     ------------
+
+*p508,A
+     ------------            P508
+  1 | Gnd    Vcc | 28
+  2 | In      In | 27
+  3 | In      In | 26
+  4 | In     Out | 25
+  5 | In     Out | 24
+  6 | In     Out | 23
+  7 | In     Out | 22
+  8 | In     Out | 21
+  9 | In     Out | 20
+ 10 | In     Out | 19
+ 11 | In     Out | 18
+ 12 | In      In | 17
+ 13 | In      In | 16
+ 14 | Gnd    Clk | 15
+     ------------
+
+*p6l16,A
+     ------------            P6L16
+  1 | Out    Vcc | 24
+  2 | Out    Out | 23
+  3 | Out    Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | Out    Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*p750,A
+     -------------           P750
+  1 | In      Vcc | 24
+  2 | In   35 I/O | 23
+  3 | In   34 I/O | 22    10 buried registers, nodes 26-35
+  4 | In   33 I/O | 21
+  5 | In   32 I/O | 20
+  6 | In   31 I/O | 19
+  7 | In   30 I/O | 18
+  8 | In   29 I/O | 17
+  9 | In   28 I/O | 16
+ 10 | In   27 I/O | 15
+ 11 | In   26 I/O | 14
+ 12 | Gnd      In | 13
+     -------------
+
+*p8l14,A
+     ------------            P8L14
+  1 | Out    Vcc | 24
+  2 | Out    Out | 23
+  3 | In     Out | 22
+  4 | In     Out | 21
+  5 | In     Out | 20
+  6 | In     Out | 19
+  7 | In     Out | 18
+  8 | In     Out | 17
+  9 | In     Out | 16
+ 10 | In     Out | 15
+ 11 | Out    Out | 14
+ 12 | Gnd    Out | 13
+     ------------
+
+*pml501,A
+     ------------            PML501
+  1 | In      In | 52
+  2 | In      In | 51
+  3 | In      In | 50
+  4 | In      In | 49   NAND foldback terms, nodes 53-124
+  5 | In      In | 48
+  6 | In      In | 47
+  7 | In     Vcc | 46
+  8 | Vcc     In | 45
+  9 | In      In | 44
+ 10 | In      In | 43
+ 11 | In      In | 42
+ 12 | In      In | 41
+ 13 | In     I/O | 40
+ 14 | In     I/O | 39
+ 15 | I/O    I/O | 38
+ 16 | I/O    I/O | 37
+ 17 | I/O    Out | 36
+ 18 | I/O    Out | 35
+ 19 | Out    Gnd | 34
+ 20 | Gnd    Out | 33
+ 21 | Out    Out | 32
+ 22 | Out    Out | 31
+ 23 | Out    Out | 30
+ 24 | Out    Out | 29
+ 25 | Out    Out | 28
+ 26 | Out    Out | 27
+     ------------
+
+*pml601,A
+     ------------            PML601
+  1 | In      In | 68
+  2 | In     Gnd | 67
+  3 | Vcc     In | 66
+  4 | In      In | 65   XOR foldback terms, nodes 69-76
+  5 | In      In | 64
+  6 | In     Gnd | 63   NAND foldback terms, nodes 77-154
+  7 | In      In | 62
+  8 | In      In | 61
+  9 | Gnd    Gnd | 60
+ 10 | In      In | 59
+ 11 | In      In | 58
+ 12 | Gnd     In | 57
+ 13 | In      In | 56
+ 14 | In      In | 55
+ 15 | In     Vcc | 54
+ 16 | Gnd     In | 53
+ 17 | In      In | 52
+ 18 | In     Out | 51
+ 19 | In     Gnd | 50
+ 20 | Vcc    Out | 49
+ 21 | I/O    Out | 48
+ 22 | I/O    Out | 47
+ 23 | I/O    Gnd | 46
+ 24 | I/O    Out | 45
+ 25 | I/O    Out | 44
+ 26 | Gnd    Gnd | 43
+ 27 | I/O    Out | 42
+ 28 | I/O    Out | 41
+ 29 | Gnd    Out | 40
+ 30 | I/O    Out | 39
+ 31 | I/O    Out | 38
+ 32 | I/O    Vcc | 37
+ 33 | Gnd    Out | 36
+ 34 | I/O    I/O | 35
+     ------------
+
+*ra8p4,A
+     ------------            RA8P4
+  1 | A6     Vcc | 16
+  2 | A5      A7 | 15
+  3 | A4     N/C | 14
+  4 | A3      OE | 13
+  5 | A0      O1 | 12
+  6 | A1      O2 | 11
+  7 | A2      O3 | 10
+  8 | Gnd     O4 |  9
+     ------------
+
+*ra9p4,A
+     ------------            RA9P4
+  1 | A6     Vcc | 16
+  2 | A5      A7 | 15
+  3 | A4      A8 | 14
+  4 | A3      OE | 13
+  5 | A0      O1 | 12
+  6 | A1      O2 | 11
+  7 | A2      O3 | 10
+  8 | Gnd     O4 |  9
+     ------------
+
+*ra10p4,A
+     ------------            RA10P4
+  1 | A6     Vcc | 18
+  2 | A5      A7 | 17
+  3 | A4      A8 | 16
+  4 | A3      A9 | 15
+  5 | A0      O1 | 14
+  6 | A1      O2 | 13
+  7 | A2      O3 | 12
+  8 | N/C     O4 | 11
+  9 | Gnd     OE | 10
+     ------------
+
+*ra11p4,A
+     ------------            RA11P4
+  1 | A6     Vcc | 18
+  2 | A5      A7 | 17
+  3 | A4      A8 | 16
+  4 | A3      A9 | 15
+  5 | A0      O1 | 14
+  6 | A1      O2 | 13
+  7 | A2      O3 | 12
+  8 | A10     O4 | 11
+  9 | Gnd     OE | 10
+     ------------
+
+*ra12p4,A
+     ------------            RA12P4
+  1 | A8     Vcc | 20
+  2 | A7      A8 | 19
+  3 | A6     A10 | 18
+  4 | A5     A11 | 17
+  5 | A4      OE | 16
+  6 | A3     N/C | 15
+  7 | A2      O1 | 14
+  8 | A1      O2 | 13
+  9 | A0      O3 | 12
+ 10 | Gnd     O4 | 11
+     ------------
+
+*ra5p8,A
+     ------------            RA5P8
+  1 | O1     Vcc | 16
+  2 | O2      OE | 15
+  3 | O3      A4 | 14
+  4 | O4      A3 | 13
+  5 | O5      A2 | 12
+  6 | O6      A1 | 11
+  7 | O7      A0 | 10
+  8 | Gnd    Out |  9
+     ------------
+
+*ra8p8,A
+     ------------            RA8P8
+  1 | A0     Vcc | 20
+  2 | A1      A7 | 19
+  3 | A2      A6 | 18
+  4 | A3      A5 | 17
+  5 | A4     N/C | 16
+  6 | O1      OE | 15
+  9 | O2      O8 | 14
+  8 | O3      O7 | 13
+  9 | O4      O6 | 12
+ 10 | Gnd     O5 | 11
+     ------------
+
+*ra9p8,A
+     ------------            RA9P8
+  1 | A0     Vcc | 20
+  2 | A1      A8 | 19
+  3 | A2      A7 | 18
+  4 | A3      A6 | 17
+  5 | A4      A5 | 16
+  6 | O1      OE | 15
+  9 | O2      O8 | 14
+  8 | O3      O7 | 13
+  9 | O4      O6 | 12
+ 10 | Gnd     O5 | 11
+     ------------
+
+*ra10p8,A
+     ------------            RA10P8
+  1 | A7     Vcc | 24
+  2 | A6      A8 | 23
+  3 | A5      A9 | 22
+  4 | A4      OE | 21
+  5 | A3     N/C | 20
+  6 | A2     N/C | 19
+  7 | A1     N/C | 18
+  8 | A0      O8 | 17
+  9 | O1      O7 | 16
+ 10 | O2      O6 | 15
+ 11 | O3      O5 | 14
+ 12 | Gnd     O4 | 13
+     ------------
+
+*ra11p8,A
+     ------------            RA11P8
+  1 | A7     Vcc | 24
+  2 | A6      A8 | 23
+  3 | A5      A9 | 22
+  4 | A4     A10 | 21
+  5 | A3      OE | 20
+  6 | A2     N/C | 19
+  7 | A1     N/C | 18
+  8 | A0      O8 | 17
+  9 | O1      O7 | 16
+ 10 | O2      O6 | 15
+ 11 | O3      O5 | 14
+ 12 | Gnd     O4 | 13
+     ------------
+
+*ra12p8,A
+     ------------            RA12P8
+  1 | A7     Vcc | 24
+  2 | A6      A8 | 23
+  3 | A5      A9 | 22
+  4 | A4     A10 | 21
+  5 | A3      OE | 20
+  6 | A2     A11 | 19
+  7 | A1     N/C | 18
+  8 | A0      O8 | 17
+  9 | O1      O7 | 16
+ 10 | O2      O6 | 15
+ 11 | O3      O5 | 14
+ 12 | Gnd     O4 | 13
+     ------------
+
+*ra9r8,A
+     ------------            RA9R8
+  1 | A7     Vcc | 24
+  2 | A6      A8 | 23
+  3 | A5     N/C | 22
+  4 | A4      OE | 21
+  5 | A3     N/C | 20
+  6 | A2     N/C | 19
+  7 | A1     Clk | 18
+  8 | A0      O8 | 17
+  9 | O1      O7 | 16
+ 10 | O2      O6 | 15
+ 11 | O3      O5 | 14
+ 12 | Gnd     O4 | 13
+     ------------
+
+*ra10r8,A
+     ------------            RA10R8
+  1 | A7     Vcc | 24
+  2 | A6      A8 | 23
+  3 | A5      A9 | 22
+  4 | A4      OE | 21
+  5 | A3     N/C | 20
+  6 | A2     N/C | 19
+  7 | A1     Clk | 18
+  8 | A0      O8 | 17
+  9 | O1      O7 | 16
+ 10 | O2      O6 | 15
+ 11 | O3      O5 | 14
+ 12 | Gnd     O4 | 13
+     ------------
+
+*ra11r8,A
+     ------------            RA11R8
+  1 | A7     Vcc | 24
+  2 | A6      A8 | 23
+  3 | A5      A9 | 22
+  4 | A4     A10 | 21
+  5 | A3      OE | 20
+  6 | A2     N/C | 19
+  7 | A1     Clk | 18
+  8 | A0      O8 | 17
+  9 | O1      O7 | 16
+ 10 | O2      O6 | 15
+ 11 | O3      O5 | 14
+ 12 | Gnd     O4 | 13
+     ------------
+
+*ra5p16,A
+     ------------            RA5P16
+  1 | O12    O11 | 24
+  2 | O13    O10 | 23
+  3 | O14     O9 | 22
+  4 | O15     O8 | 21
+  5 | O16     O7 | 20
+  6 | Vcc     O6 | 19
+  7 | A0     Gnd | 18
+  8 | A1      O5 | 17
+  9 | A2      O4 | 16
+ 10 | A3      O3 | 15
+ 11 | A4      O2 | 14
+ 12 | OE      O1 | 13
+     ------------
+
+*ra6p16,A
+     ------------            RA6P16
+  1 | O12    O11 | 24
+  2 | O13    O10 | 23
+  3 | O14     O9 | 22
+  4 | O15     O8 | 21
+  5 | O16     O7 | 20
+  6 | Vcc     O6 | 19
+  7 | A0     Gnd | 18
+  8 | A1      O5 | 17
+  9 | A2      O4 | 16
+ 10 | A3      O3 | 15
+ 11 | A4      O2 | 14
+ 12 | A5      O1 | 13
+     ------------
+
+*re8p4,A
+     ------------            RE8P4
+  1 | Vpp    Vcc | 16
+  2 | A1      O0 | 15
+  3 | A2      O1 | 14
+  4 | A0      OE | 13
+  5 | A6      O2 | 12
+  6 | A5      O3 | 11
+  7 | A7      A4 | 10
+  8 | Vee     A3 |  9
+     ------------
+

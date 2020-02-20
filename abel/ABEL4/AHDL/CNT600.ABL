@@ -1,0 +1,60 @@
+module cnt600;  
+title '4 bit toggle flip flop counter
+Michael Holley   Data I/O  21 Feb 1987'
+
+	cnt600	device	'e0600';
+
+" Pin 1 clock for pins 3..10, pin 13 clock for pins 15..22
+" input pins 2,11,14,23
+" programmable i/o pins 3..10 and 15..22
+"
+" Reset nodes labeled with .RE
+" Async clock nodes labeled with .C
+"
+	Clk1,Clk2	pin   1,13;
+	Dir,Ena,Clr	pin   2,3,11;	
+	Q3,Q2,Q1,Q0	pin  15,16,17,18;
+
+	Q3,Q2,Q1,Q0	istype 'reg_T,pos';
+
+	Count		= [Q3,Q2,Q1,Q0];
+	X,Z,H,L		= .X.,.Z.,1,0;
+
+equations   "4 bit toggle flip flop counter
+
+"Count Up
+	Q0.t =  Dir;
+	Q1.t =  Dir &  Q0.fb;
+	Q2.t =  Dir &  Q0.fb &  Q1.fb;
+	Q3.t =  Dir &  Q0.fb &  Q1.fb &  Q2.fb;
+
+"Count Down
+	Q0.t = !Dir;
+	Q1.t = !Dir & !Q0.fb;
+	Q2.t = !Dir & !Q0.fb & !Q1.fb;
+	Q3.t = !Dir & !Q0.fb & !Q1.fb & !Q2.fb;
+
+"Reset
+	[Q3,Q2,Q1,Q0].AR  = !Clr;
+	[Q3,Q2,Q1,Q0].CLK = Clk2;
+	[Q3,Q2,Q1,Q0].OE  = Ena;
+
+@message 'Use the -e flag to get an expanded listing of test vectors';
+test_vectors 'Count Up'
+	([Clk2,Ena,Dir,Clr] -> Count)
+	 [ L  , 1 , H , L ] ->   0;
+@const n = 0; @repeat 16 {
+	 [ L  , 1 , H , H ] ->   @expr n; ; @const n = n+1;
+	 [ H  , 1 , H , H ] ->   @expr n; ;}
+
+	 [ L  , 1 , H , H ] ->   @expr n; ;
+
+test_vectors 'Count Down'
+	([Clk2,Ena,Dir,Clr] -> Count)
+@repeat 6 {
+	 [ L  , 1 , L , H ] ->   @expr n; ; @const n = n-1;
+	 [ H  , 1 , L , H ] ->   @expr n; ;}
+
+	 [ L  , 1 , L , H ] ->   @expr n; ;
+	 [ L  , 1 , L , L ] ->   0;
+end

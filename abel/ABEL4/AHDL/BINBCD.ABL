@@ -1,0 +1,95 @@
+module BINBCD 
+title 
+'comparator and binary to bcd decoder for Blackjack Machine
+Michael Holley   Data I/O Corp   9 Aug 1990'
+
+" The 5 -bit binary (0 - 31) score is converted into two BCD outputs.
+" The interger division '/' and the modulus operator '%' are used to
+" extract the individual digits from the two digit score.
+" 'Score % 10' will yield the 'units' and
+" 'Score / 10' will yield the 'tens'
+"
+" The 'GT16' and 'LT22' outputs are for the state machine controller.
+
+        binbcd  device  'P16L8';
+
+        S4,S3,S2,S1,S0  pin 5,4,3,2,1;
+        score           = [S4,S3,S2,S1,S0];
+
+        LT22,GT16       pin 12,13;
+
+        D5,D4           pin 14,15;
+        bcd2            = [D5,D4];
+
+        D3,D2,D1,D0     pin 16,17,18,19;
+        bcd1            = [D3,D2,D1,D0];
+
+" Digit separation macros
+        binary    = 0;      "scratch variable
+        clear   macro (a) {@const ?a=0};
+        inc     macro (a) {@const ?a=?a+1;};
+
+equations
+        LT22    = (score < 22);  "Bust
+        GT16    = (score > 16);  "Hit / Stand
+
+test_vectors ( score -> [GT16,LT22])
+                 1   -> [ 0  , 1  ];
+                 6   -> [ 0  , 1  ];
+                 8   -> [ 0  , 1  ];
+                16   -> [ 0  , 1  ];
+                17   -> [ 1  , 1  ];
+                18   -> [ 1  , 1  ];
+                20   -> [ 1  , 1  ];
+                21   -> [ 1  , 1  ];
+                22   -> [ 1  , 0  ];
+                23   -> [ 1  , 0  ];
+                24   -> [ 1  , 0  ];
+@page
+truth_table ( score -> [bcd2,bcd1])
+                 0  -> [  0 ,  0 ];
+                 1  -> [  0 ,  1 ];
+                 2  -> [  0 ,  2 ];
+                 3  -> [  0 ,  3 ];
+                 4  -> [  0 ,  4 ];
+                 5  -> [  0 ,  5 ];
+                 6  -> [  0 ,  6 ];
+                 7  -> [  0 ,  7 ];
+                 8  -> [  0 ,  8 ];
+                 9  -> [  0 ,  9 ];
+                10  -> [  1 ,  0 ];
+                11  -> [  1 ,  1 ];
+                12  -> [  1 ,  2 ];
+                13  -> [  1 ,  3 ];
+                14  -> [  1 ,  4 ];
+                15  -> [  1 ,  5 ];
+                16  -> [  1 ,  6 ];
+                17  -> [  1 ,  7 ];
+                18  -> [  1 ,  8 ];
+                19  -> [  1 ,  9 ];
+                20  -> [  2 ,  0 ];
+                21  -> [  2 ,  1 ];
+                22  -> [  2 ,  2 ];
+                23  -> [  2 ,  3 ];
+                24  -> [  2 ,  4 ];
+                25  -> [  2 ,  5 ];
+                26  -> [  2 ,  6 ];
+                27  -> [  2 ,  7 ];
+                28  -> [  2 ,  8 ];
+                29  -> [  2 ,  9 ];
+                30  -> [  3 ,  0 ];
+                31  -> [  3 ,  1 ];
+
+" This truth table could be replaced with the following macro.
+"       clear(binary);
+"       @repeat 32 {
+"               binary -> [binary/10,binary%10]; inc(binary);}
+"
+" 
+" The test vectors will demonstrate the use of the macro.
+"
+test_vectors ( score -> [bcd2,bcd1])
+        clear(binary); 
+        @repeat 32 {
+                binary -> [binary/10,binary%10]; inc(binary);}
+end 

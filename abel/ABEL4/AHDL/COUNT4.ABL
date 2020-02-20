@@ -1,0 +1,95 @@
+module COUNT4  
+title '4-bit counter with 2 input mux       9 Aug 1990
+based on an example by Birkner/Coli in the MMI PAL Handbook
+Dan Burrier & Mike McGee   Data I/O Corp.'
+
+	count4	 device 'P16R4';
+
+	Clk,OC,CO,I1,I0,CI	pin  1,11,12,13,18,19;
+	A0,A1,A2,A3,B0,B1,B2,B3	pin  2,3,4,5,6,7,8,9;
+	Q3,Q2,Q1,Q0		pin  14,15,16,17;
+
+	H,L,X,Z,C		= 1,0, .X.,.Z.,.C.;
+	InputA			= [A3,A2,A1,A0];
+	InputB			= [B3,B2,B1,B0];
+	Output			= [CO,Q3,Q2,Q1,Q0];
+	Mode			= [I1,I0];
+	Hold,LoadA,LoadB,Incr	= 0,1,2,3;	" define Modes
+
+
+equations
+	[Q3..Q0].clk = Clk;
+	[Q3..Q0].oe  = !OC;
+
+	!Q0	:= (Mode==Hold ) & !Q0
+		 # (Mode==LoadA) & !A0
+		 # (Mode==LoadB) & !B0
+		 # (Mode==Incr ) & !CI & !Q0		"Hold if no carry
+		 # (Mode==Incr ) &  CI &  Q0 ;
+
+	!Q1 	:= (Mode==Hold ) & !Q1 
+		 # (Mode==LoadA) & !A1 
+		 # (Mode==LoadB) & !B1 
+		 # (Mode==Incr ) & !CI & !Q1		"Hold if no carry
+		 # (Mode==Incr ) & !Q0 & !Q1		"Hold if Q0=L
+		 # (Mode==Incr ) &  CI &  Q0 &  Q1 ;
+
+	!Q2 	:= (Mode==Hold ) & !Q2 
+		 # (Mode==LoadA) & !A2 
+		 # (Mode==LoadB) & !B2 
+		 # (Mode==Incr ) & !CI & !Q2		"Hold if no carry
+		 # (Mode==Incr ) & !Q0 & !Q2		"Hold if Q0=L
+		 # (Mode==Incr ) & !Q1 & !Q2		"Hold if Q1=L
+		 # (Mode==Incr ) &  CI &  Q0 &  Q1 &  Q2 ;
+
+	!Q3 	:= (Mode==Hold ) & !Q3 
+		 # (Mode==LoadA) & !A3 
+		 # (Mode==LoadB) & !B3 
+		 # (Mode==Incr ) & !CI & !Q3		"Hold if no carry
+		 # (Mode==Incr ) & !Q0 & !Q3		"Hold if Q0=L
+		 # (Mode==Incr ) & !Q1 & !Q3		"Hold if Q1=L
+		 # (Mode==Incr ) & !Q2 & !Q3		"Hold if Q2=L
+		 # (Mode==Incr ) &  CI &  Q0 &  Q1 &  Q2 &  Q3 ;
+
+	!CO 	= !CI # !Q0 # !Q1 # !Q2 # !Q3 ;
+@page
+test_vectors   ' test Load A and B'
+       ([Clk,OC, Mode, InputA, InputB,CI ] -> Output)
+	[ C, L, LoadA,  ^h0  ,  ^hF  ,X  ] -> ^h0;
+	[ C, L, LoadB,  ^h0  ,  ^hF  ,L  ] -> ^hF;
+	[ C, L, LoadA,  ^h1  ,  ^h7  ,X  ] -> ^h1;
+	[ C, L, LoadB,  ^h1  ,  ^h7  ,X  ] -> ^h7;
+	[ C, L, LoadA,  ^h2  ,  ^hB  ,X  ] -> ^h2;
+	[ C, L, LoadB,  ^h2  ,  ^hB  ,X  ] -> ^hB;
+	[ C, L, LoadA,  ^h4  ,  ^hD  ,X  ] -> ^h4;
+	[ C, L, LoadB,  ^h4  ,  ^hD  ,X  ] -> ^hD;
+	[ C, L, LoadA,  ^h8  ,  ^hE  ,X  ] -> ^h8;
+	[ C, L, LoadB,  ^h8  ,  ^hE  ,X  ] -> ^hE;
+	[ C, L, LoadA,  ^h0  ,  ^hF  ,X  ] -> ^h0;
+	[ C, L, LoadB,  ^h0  ,  ^hF  ,L  ] -> ^hF;
+
+test_vectors   ' test increment'
+       ([Clk,OC, Mode, InputA, InputB,CI ] -> Output)
+	[ C, L, LoadB,   X   ,  ^h1  ,X  ] -> ^h1;
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^h2;
+	[ C, L, LoadB,   X   ,  ^h3  ,X  ] -> ^h3;
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^h4;
+	[ C, L, LoadA,  ^h7  ,   X   ,X  ] -> ^h7;
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^h8;
+	[ C, L, LoadA,  ^hF  ,   X   ,L  ] -> ^hF;
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^h0;	"roll over
+	[ C, L, LoadB,   X   ,  ^hC  ,X  ] -> ^hC;
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^hD;
+	[ C, L, Hold ,   X   ,   X   ,H  ] -> ^hD;
+
+test_vectors   ' test carry'
+       ([Clk,OC, Mode, InputA, InputB,CI ] -> Output)
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^hE;
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^h1F;	"carry out
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^h0;	"roll over
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^h1;
+	[ C, L, Incr ,   X   ,   X   ,L  ] -> ^h1;	"no carry in
+	[ C, L, Incr ,   X   ,   X   ,H  ] -> ^h2;
+	[ L, H, Hold ,   X   ,   X   ,X  ] -> [X,Z,Z,Z,Z];
+end COUNT4  
+

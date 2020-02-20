@@ -1,0 +1,221 @@
+module JACK1800;
+title 'BlackJack machine 
+Adam Zilinskas Data I/O Corporation   3 Oct 1989'
+
+        jack1800 device 'E1800';
+
+"Inputs
+        Ck1,Ck2,Ck3,Ck4         pin 17,19,51,53;
+        V4,V3,V2,V1,V0          pin 14,15,16,20,21;
+        Clr                     pin 22;
+        CardIn,CardOut          pin 48,49;      
+
+"Combintoral Outputs
+        D5,D4,D3,D2,D1,D0       pin 68,67,66,65,64,63;
+        Hit,Bust                pin 30,29;
+        C4,C3,C2,C1             pin 10,11,12,13;
+
+        D5,D4,D3,D2,D1,D0       istype 'pos,com';
+        Hit,Bust                istype 'pos,com';
+        C4,C3,C2,C1             istype 'pos,com';
+
+"Registered Outputs
+        Q2,Q1,Q0,Ace            pin 34,33,32,31;
+        Add10,Sub10             pin 23,24;
+        S4,S3,S2,S1,S0          pin 44,45,46,47,57;
+
+        Add10,Sub10,Q2,Q1,Q0    istype 'pos,reg_d';
+        Ace                     istype 'pos,reg_d';
+        S4,S3,S2,S1,S0          istype 'pos,reg_t';
+
+@ifdef _AHDL_
+{
+        Add10,Sub10,Q2,Q1,Q0	istype 'buffer'; 
+        S4,S3,S2,S1,S0          istype 'buffer';
+}
+
+        X,C,L,H   = .X., .C., 0, 1;
+
+        Clk       = [Ck1,Ck2,Ck3,Ck4];
+        BCD2      = [D5,D4];
+        BCD1      = [D3,D2,D1,D0];
+        Card      = [V4,V3,V2,V1,V0];
+        Score     = [S4,S3,S2,S1,S0];
+        CarryIn   = [C4,C3,C2,C1, 0];
+        CarryOut  = [ X,C4,C3,C2,C1];
+        ten       = [ 0, 1, 0, 1, 0];
+        minus_ten = [ 1, 0, 1, 1, 0];
+        zero      = [ 0, 0, 0, 0, 0];
+
+	" Input Multiplexer
+        Data      =  Add10 &  Sub10 & Card 
+                  #  Add10 & !Sub10 & ten
+                  # !Add10 & !Sub10 & zero
+                  # !Add10 &  Sub10 & minus_ten;
+
+equations
+
+        [Add10,Sub10,Q2,Q1,Q0].CLK = Ck1;
+        Ace.CLK = Ck2;
+        [S4,S3,S2,S1,S0].CLK = Ck3;
+
+equations
+        CarryOut  = Data & Score # (Data # Score) & CarryIn;  
+
+@ifdef _ABELHDL_
+{
+        Score.t   = Data $ CarryIn;
+}
+@ifndef _ABELHDL_
+{
+        Score    := Data $ CarryIn;
+}
+
+	Score.ar  = !Clr;
+
+equations
+        Bust      = (Score > 21);
+
+        Hit       = (Score < 17);
+
+@page 
+declarations
+        Sensor    = [CardIn,CardOut];
+        _In       = [  0   ,   1   ];
+        InOut     = [  1   ,   1   ];
+        Out       = [  1   ,   0   ];
+
+        Qstate    =  [Add10,Sub10,Q2,Q1,Q0]; 
+        Clear     =  [  0  ,  0  , 0, 0, 0]; 
+        ShowHit   =  [  0  ,  0  , 0, 0, 1]; 
+        AddCard   =  [  1  ,  1  , 0, 1, 1]; 
+        Add_10    =  [  1  ,  0  , 0, 1, 0]; 
+        Wait      =  [  0  ,  0  , 0, 1, 0]; 
+        Test_17   =  [  0  ,  0  , 1, 1, 0]; 
+        Test_22   =  [  0  ,  0  , 1, 1, 1]; 
+        ShowStand =  [  0  ,  0  , 1, 0, 1]; 
+        ShowBust  =  [  0  ,  0  , 1, 0, 0]; 
+        Sub_10    =  [  0  ,  1  , 1, 1, 1]; 
+
+        is_Ace    = (Card == 1);
+        
+        High,Low  = 1,0;
+
+equations
+	Qstate.ar = !Clr;
+	Ace.ar    = !Clr;
+
+state_diagram Qstate
+        State Clear:    Ace      := Low;
+                        goto ShowHit;
+
+        State ShowHit:  Ace      := Ace;
+                        if (CardIn==Low) then AddCard else ShowHit;
+
+        State AddCard:  Ace      := Ace;
+                        if (is_Ace & !Ace) then Add_10 else Wait;
+
+        State Add_10:   Ace      := High;
+                        goto      Wait;
+
+        State Wait:     Ace      := Ace;
+                        if (CardOut==Low) then Test_17 else Wait;
+
+        State Test_17:  Ace      := Ace;
+                        if Hit then ShowHit else Test_22;
+
+        State Test_22:  Ace      := Ace;
+                        case    !Bust   : ShowStand;
+                                 Bust & !Ace    : ShowBust;
+                                 Bust &  Ace    : Sub_10;
+                        endcase;
+
+        State Sub_10:   Ace      := Low;
+                        goto      Test_17;
+
+        State ShowBust: Ace      := Ace;
+                        goto ShowBust;   "Loop until reset
+
+       State ShowStand: Ace      := Ace;
+                        goto ShowStand;  "Loop until reset
+
+@page 
+declarations
+	" Digit separation macros
+        binary          = 0;            "scratch variable
+        clear   macro (a) {@const ?a=0};
+        inc     macro (a) {@const ?a=?a+1;};
+
+truth_table ( Score -> [BCD2,BCD1])
+        clear(binary);
+        @repeat 32 {
+                binary -> [binary/10,binary%10]; inc(binary);}
+
+test_vectors 'Assume two cards that total between 16 and 21'
+([Clr,Clk,Sensor,Card] -> [Qstate   ,Score,Hit,Bust,BCD2,BCD1])
+ [ L , C ,  Out ,  0 ] -> [Clear    ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ L , C ,  Out ,  0 ] -> [Clear    ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ H , C ,  Out ,  9 ] -> [ShowHit  ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ H , C ,InOut ,  9 ] -> [ShowHit  ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ H , C ,  _In ,  9 ] -> [AddCard  ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ H , C ,  _In ,  9 ] -> [Wait     ,  9  , 1 ,  0 ,  0 ,  9 ];
+ [ H , C ,InOut ,  9 ] -> [Wait     ,  9  , 1 ,  0 ,  0 ,  9 ];
+ [ H , C ,  Out ,  9 ] -> [Test_17  ,  9  , 1 ,  0 ,  0 ,  9 ];
+ [ H , C ,  Out ,  0 ] -> [ShowHit  ,  9  , 1 ,  0 ,  0 ,  9 ];
+ [ H , C ,  Out ,  8 ] -> [ShowHit  ,  9  , 1 ,  0 ,  0 ,  9 ];
+ [ H , C ,  _In ,  8 ] -> [AddCard  ,  9  , 1 ,  0 ,  0 ,  9 ];
+ [ H , C ,  _In ,  8 ] -> [Wait     , 17  , 0 ,  0 ,  1 ,  7 ];
+ [ H , C ,InOut ,  8 ] -> [Wait     , 17  , 0 ,  0 ,  1 ,  7 ];
+ [ H , C ,  Out ,  8 ] -> [Test_17  , 17  , 0 ,  0 ,  1 ,  7 ];
+ [ H , C ,  Out ,  0 ] -> [Test_22  , 17  , 0 ,  0 ,  1 ,  7 ];
+ [ H , C ,  Out ,  0 ] -> [ShowStand, 17  , 0 ,  0 ,  1 ,  7 ];
+ [ H , C ,  Out ,  0 ] -> [ShowStand, 17  , 0 ,  0 ,  1 ,  7 ];
+ [ L , C ,  Out ,  0 ] -> [Clear    ,  0  , 1 ,  0 ,  0 ,  0 ];
+
+@page 
+
+test_vectors 'Assume 2 Aces and 3 cards that total over 21'
+([Clr,Clk,Sensor,Card] -> [Qstate   ,Score,Hit,Bust,BCD2,BCD1])
+ [ L , C ,  Out ,  0 ] -> [Clear    ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ L , C ,  Out ,  0 ] -> [Clear    ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ H , C ,  Out ,  4 ] -> [ShowHit  ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ H , C ,InOut ,  4 ] -> [ShowHit  ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ H , C ,  _In ,  4 ] -> [AddCard  ,  0  , 1 ,  0 ,  0 ,  0 ];
+ [ H , C ,  _In ,  4 ] -> [Wait     ,  4  , 1 ,  0 ,  0 ,  4 ];
+ [ H , C ,InOut ,  4 ] -> [Wait     ,  4  , 1 ,  0 ,  0 ,  4 ];
+ [ H , C ,  Out ,  4 ] -> [Test_17  ,  4  , 1 ,  0 ,  0 ,  4 ];
+ [ H , C ,  Out ,  0 ] -> [ShowHit  ,  4  , 1 ,  0 ,  0 ,  4 ];
+ [ H , C ,  Out ,  1 ] -> [ShowHit  ,  4  , 1 ,  0 ,  0 ,  4 ];
+ [ H , C ,  _In ,  1 ] -> [AddCard  ,  4  , 1 ,  0 ,  0 ,  4 ];
+ [ H , C ,  _In ,  1 ] -> [Add_10   ,  5  , 1 ,  0 ,  0 ,  5 ];
+ [ H , C ,  _In ,  1 ] -> [Wait     , 15  , 1 ,  0 ,  1 ,  5 ];
+ [ H , C ,InOut ,  1 ] -> [Wait     , 15  , 1 ,  0 ,  1 ,  5 ];
+ [ H , C ,  Out ,  1 ] -> [Test_17  , 15  , 1 ,  0 ,  1 ,  5 ];
+ [ H , C ,  Out ,  0 ] -> [ShowHit  , 15  , 1 ,  0 ,  1 ,  5 ];
+ [ H , C ,InOut ,  1 ] -> [ShowHit  , 15  , 1 ,  0 ,  1 ,  5 ];
+ [ H , C ,  _In ,  1 ] -> [AddCard  , 15  , 1 ,  0 ,  1 ,  5 ];
+ [ H , C ,  _In ,  1 ] -> [Wait     , 16  , 1 ,  0 ,  1 ,  6 ];
+ [ H , C ,InOut ,  1 ] -> [Wait     , 16  , 1 ,  0 ,  1 ,  6 ];
+ [ H , C ,  Out ,  0 ] -> [Test_17  , 16  , 1 ,  0 ,  1 ,  6 ];
+ [ H , C ,  Out ,  0 ] -> [ShowHit  , 16  , 1 ,  0 ,  1 ,  6 ];
+ [ H , C ,InOut ,  9 ] -> [ShowHit  , 16  , 1 ,  0 ,  1 ,  6 ];
+ [ H , C ,  _In ,  9 ] -> [AddCard  , 16  , 1 ,  0 ,  1 ,  6 ];
+ [ H , C ,  _In ,  9 ] -> [Wait     , 25  , 0 ,  1 ,  2 ,  5 ];
+ [ H , C ,InOut ,  9 ] -> [Wait     , 25  , 0 ,  1 ,  2 ,  5 ];
+ [ H , C ,  Out ,  9 ] -> [Test_17  , 25  , 0 ,  1 ,  2 ,  5 ];
+ [ H , C ,  Out ,  0 ] -> [Test_22  , 25  , 0 ,  1 ,  2 ,  5 ]; 
+ [ H , C ,  Out ,  0 ] -> [Sub_10   , 25  , 0 ,  1 ,  2 ,  5 ]; 
+ [ H , C ,  Out ,  0 ] -> [Test_17  , 15  , 1 ,  0 ,  1 ,  5 ];
+ [ H , C ,  Out ,  0 ] -> [ShowHit  , 15  , 1 ,  0 ,  1 ,  5 ]; 
+ [ H , C ,InOut ,  8 ] -> [ShowHit  , 15  , 1 ,  0 ,  1 ,  5 ]; 
+ [ H , C ,  _In ,  8 ] -> [AddCard  , 15  , 1 ,  0 ,  1 ,  5 ]; 
+ [ H , C ,  _In ,  8 ] -> [Wait     , 23  , 0 ,  1 ,  2 ,  3 ]; 
+ [ H , C ,InOut ,  8 ] -> [Wait     , 23  , 0 ,  1 ,  2 ,  3 ]; 
+ [ H , C ,  Out ,  8 ] -> [Test_17  , 23  , 0 ,  1 ,  2 ,  3 ]; 
+ [ H , C ,  Out ,  0 ] -> [Test_22  , 23  , 0 ,  1 ,  2 ,  3 ]; 
+ [ H , C ,  Out ,  0 ] -> [ShowBust , 23  , 0 ,  1 ,  2 ,  3 ]; 
+ [ H , C ,  Out ,  0 ] -> [ShowBust , 23  , 0 ,  1 ,  2 ,  3 ]; 
+ [ L , C ,  Out ,  0 ] -> [Clear    ,  0  , 1 ,  0 ,  0 ,  0 ]; 
+
+end
+

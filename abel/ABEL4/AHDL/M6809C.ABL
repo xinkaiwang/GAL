@@ -1,0 +1,34 @@
+module M6809C  
+title '6809 memory decode
+Jean Designer    Data I/O Corp  5 Aug 1990'
+
+	m6809c			device	'P14L4';
+	A15,A14,A13,A12,A11,A10	pin 1,2,3,4,5,6;
+	ROM1,IO,ROM2,DRAM	pin 14,15,16,17;
+
+	H,L,X	= 1,0,.X.;
+	Address	= [A15,A14,A13,A12, A11,A10,X,X, X,X,X,X, X,X,X,X];
+
+" This macro will return an 'L' if the address (a) is between the
+" two limits (b,c), otherwise it returns an 'H'.
+between macro (a,b,c)
+	    {@if ((?a>=?b)&(?a<=?c)){L}@if!((?a>=?b)&(?a<=?c)){H}};
+
+equations
+	!DRAM	= (Address <= ^hDFFF);
+
+	!IO	= (Address >= ^hE000) & (Address <= ^hE7FF);
+
+	!ROM2   = (Address >= ^hF000) & (Address <= ^hF7FF);
+
+	!ROM1	= (Address >= ^hF800);
+
+test_vectors (Address -> [DRAM, IO, ROM2, ROM1])
+	@CONST	addrs = ^hD000;
+	@REPEAT 6 {
+		addrs   -> [ between (addrs,^h0000,^hDFFF),	" DRAM
+		             between (addrs,^hE000,^hE7FF),	" IO
+		             between (addrs,^hF000,^hF7FF),	" ROM2
+		             between (addrs,^hF800,^hFFFF)];	" ROM1
+	@CONST  addrs = addrs + ^h800;}
+end 

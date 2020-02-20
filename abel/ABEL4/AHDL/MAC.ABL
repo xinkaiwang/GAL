@@ -1,0 +1,37 @@
+module mac 
+title 'Demonstrates to difference between MACROs and declared equations'
+
+        m1      device 'P16H8';
+
+        A,B,C,X1,X2,X3  pin 1,2,3,14,15,16;
+
+        Y1  macro {B # C};
+
+        Y2 = B # C;
+
+equations
+        X1 = A & Y1;
+
+        X2 = A & (Y1);
+
+        X3 = A & Y2;
+
+" Note: Because Y1 is a text replacement macro the equation
+" for X1 will expand to  A & B # C. If the desired function
+" was A & (B # C) use parentheses around the macro or use
+" a sub expression in the declarations.
+
+" The macro could also be written       Y1 macro {(B # C)};
+
+test_vectors   ([A,B,C] -> [X1,X2,X3])
+                [0,0,0] -> [ 0, 0, 0];
+                [0,0,1] -> [ 1, 0, 0];
+                [0,1,0] -> [ 0, 0, 0];
+                [0,1,1] -> [ 1, 0, 0];
+                [1,0,0] -> [ 0, 0, 0];
+                [1,0,1] -> [ 1, 1, 1];
+                [1,1,0] -> [ 1, 1, 1];
+                [1,1,1] -> [ 1, 1, 1];
+
+
+end

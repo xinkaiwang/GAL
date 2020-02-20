@@ -1,0 +1,20 @@
+module feedback
+title
+'Operation of the simulator on devices with feedback
+                    DATA I/O Corp.      24 Feb 1983'
+
+	FB1	device 'P16HD8';
+
+	D1,D2,D3	pin 1,2,3;
+	F1,F2,F3	pin 13,14,15;
+
+equations
+
+	F1	= D1;
+	F2	= D2 & F1;
+	F3	= D3 & F2;
+
+test_vectors   ([D1,D2,D3] -> [F1,F2,F3])
+		[ 0, 0, 0] -> [ 0, 0, 0];
+		[ 1, 1, 1] -> [ 1, 1, 1];
+end feedback	

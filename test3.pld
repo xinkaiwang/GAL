@@ -1,0 +1,12 @@
+GAL16V8B
+A EXAMPLE for clock logic
+2020-02-17，by xinkai
+e-mail:aakwxk@hotmail.com
+
+CLK Q6 Q5 Q4 Q3 Q2 Q1 Q0 NC GND
+NC OUT1 OUT2 NC NC NC NC NC NC VCC
+
+OUT2=Q5*Q6*Q4
+OUT1=Q5+Q6+Q4
+
+DESCRIPTION

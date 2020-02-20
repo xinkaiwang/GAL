@@ -1,0 +1,4090 @@
+*Global Keys,A
+Global Keys
+    F1          Context sensitive, multi-level help
+    Esc         Toggles between Editor Window and Menu Bar
+    ^L          Redraw screen
+    Alt-letter  Pops up menu with highlighted character that
+                matches letter
+*==Errors Help==,A
+*--AHDL2PLA--,A
+*1000,A
+Command Error 1000: You must specify an ABEL-HDL source file.
+
+An ABEL-HDL source file is expected as the input to AHDL2PLA.
+The file should be specified as the first argument to the
+AHDL2PLA program.
+*1001,A
+Syntax Error 1001: String expected
+
+A string argument was expected in the indicated location in the
+source file. A string is a sequence of one or more characters
+delimited by ' (single-quote) or ` (back-quote)
+*1002,A
+Logical Error 1002: Source line length exceeds nn chars.
+
+Individual lines of an ABEL-HDL source file can not exceed the
+indicated number of characters.
+*1003,A
+Fatal Error 1003: Unable to open input file 'xxxx'.
+
+The indicated file could not be opened by AHDL2PLA. If the
+indicated file exists, check to make sure that it has the
+appropriate file protection settings to enable you to access it.
+*1004,A
+Warning 1004: FLAGS statement obsolete - mapping old flags to
+new options.
+
+The FLAGS statement, used in previous versions of ABEL, has been
+replaced with the OPTIONS statement in ABEL-HDL. In most cases the
+old-style flags specified in a FLAGS statement will be
+automatically mapped to the proper options.
+*1005,A
+Syntax Error 1005: Identifier length exceeds nn chars.
+
+Identifiers (module, device, signal and constant names) must not
+exceed the indicated length.
+*1006,A
+Syntax Error 1006: Undefined token
+
+An unrecognized sequence of non-alphabetic characters was
+encountered in the source file.
+*1007,A
+Syntax Error 1007: String length exceeds nn chars.
+
+A string was encountered that exceeds the maximum allowable number
+of characters. This is usually an indication that the terminating
+string delimiter was unintentionally omitted.
+*1008,A
+Syntax Error 1008: Only ^b, ^o, ^d or ^h radix allowed.
+
+The ^ (circumflex) character was encountered in the source file
+with an unknown radix character immediately following it.
+*1009,A
+Syntax Error 1009: Can't have letters imbedded in a number.
+
+An incorrect sequence of numeric and alphabetic characters was
+encountered in the source file.
+*1010,A
+Logical Error 1010: Numeric overflow
+
+An operation performed on constant values resulted in a number
+larger than allowable.
+*1011,A
+Syntax Error 1011: Actual argument length exceeds 35 chars.
+
+An actual argument (the text passed as an argument to a macro
+or module) exceeds the indicated maximum number of characters.
+*1012,A
+Syntax Error 1012: No more than nn arguments are declared.
+
+The macro or module being processed has only the indicated
+number of dummy arguments declared, and the macro or module was
+called with too many actual arguments.
+*1013,A
+Warning 1013: Attribute 'FEED_OR' is obsolete - substituting
+'.D' instead.
+
+The 'FEED_OR' signal attribute was used in previous versions of
+ABEL to specify the feedback configuration for the indicated
+signal. In ABEL-HDL, the feedback path is specified as a part of
+the related design description by using dot extensions. The
+appropriate dot extension to indicated the combinatorial feedback
+path from a registered output is typically '.D', so this dot
+extension will be appended to all affected signals when they are
+referenced as inputs.
+*1014,A
+Warning 1014: Attribute 'FEED_PIN' is obsolete - substituting
+'.PIN' instead.
+
+The 'FEED_PIN' signal attribute was used in previous versions of
+ABEL to specify the feedback configuration for the indicated
+signal. In ABEL-HDL, the feedback path is specified as a part of
+the related design description by using dot extensions. The
+appropriate dot extension to indicated the feedback path from an
+output pin is '.PIN', so this dot extension will be appended to
+all affected signals when they are referenced as inputs.
+*1015,A
+Warning 1015: Attribute 'FEED_REG' is obsolete - substituting
+'.FB' instead.
+
+The 'FEED_REG' signal attribute was used in previous versions of
+ABEL to specify the feedback configuration for the indicated
+signal. In ABEL-HDL, the feedback path is specified as a part of
+the related design description by using dot extensions. The
+appropriate dot extension to indicated the registered feedback
+path is typically '.FB', so this dot extension will be appended to
+all affected signals when they are referenced as inputs.
+*1016,A
+Fatal Error 1016: Unable to open output file 'xxxx'.
+
+The indicated file could not be opened. This can indicated a full
+disk drive, invalid path, or file protection problems.
+*1017,A
+Syntax Error 1017: ENDCASE expected
+
+The CASE transition statement must be terminated with an ENDCASE
+statement.
+*1018,A
+Syntax Error 1018: No register type specified for 'xxxx'
+- please use ISTYPE.
+
+The indicated signal has not been declared with a register type. If
+no device and pin number have been declared, you should use the
+ISTYPE statement to specify that the signal is either combinatorial
+(ISTYPE 'COM') or registered (ISTYPE 'REG' or ISTYPE 'REG_X'
+where X is either D, T, SR, JK, JKD or G).
+*1019,A
+Syntax Error 1019: Keyword 'xxxx' expected
+
+The indicated keyword was expected in the source file.
+*1020,A
+Syntax Error 1020: Identifier expected
+
+An identifier (module, device, signal or constant name) was
+expected in the source file.
+*1021,A
+Syntax Error 1021: Undefined compiler directive '@xxxx'.
+
+An '@' sign was encountered that was followed by an unknown
+directive name.
+*1022,A
+Syntax Error 1022: Special constant must end with a '.'.
+
+Special constants are delimited by '.' (period) characters.
+This Error can also indicated incorrect usage of dot extensions,
+which are prefixed by '.' characters.
+*1023,A
+
+Syntax Error 1023: Undefined special constant 'xxxx'.
+
+An unknown special constant was found delimited by '.' (period)
+characters.
+*1024,A
+Syntax Error 1024: Label expected
+
+A label was expected in the source file. A label is a sequence of
+alpha-numeric characters that does not begin with a number, and is
+not an ABEL-HDL reserved word (keyword).
+*1025,A
+
+Syntax Error 1025: Can't use ':=' operator with dot extension
+signal 'xxxx'.
+
+The ':=' (registered assignment) operator is used to indicated a
+pin-to-pin relationship between an input expression and a
+corresponding registered output pin. Dot extensions signals
+are inherently combinatorial, and should therefore be described
+with the '=' (unclocked assignment) operator.
+*1026,A
+Syntax Error 1026: ';' expected
+
+A semicolon was expected in the source file.
+*1027,A
+Syntax Error 1027: Module label doesn't match 'xxxx'.
+
+The END statement was followed by a module name that does not
+match the module name specified in the previous MODULE statement.
+*1028,A
+Syntax Error 1028: EQUATIONS, STATE_DIAGRAM, TRUTH_TABLE or END
+expected.
+
+A keyword was encountered out of place in the source file. This can
+indicate any number of syntax problems, including misplaced or
+missing semicolons or parenthesis, unbalanced IF-THEN, WHEN-THEN or
+CASE statements, or earlier syntax problems.
+*1029,A
+Syntax Error 1029: PIN, NODE, DEVICE, ISTYPE, MACRO or '='
+expected.
+
+A label, keyword or operator was encountered out of place in the
+declarations section of the source file. This Error will often
+result if a comma is omitted from a list of identifiers.
+*1030,A
+Warning 1030: Inconsistency in number of parameters - declaration
+ignored.
+
+A constant declaration statement had an unbalanced number of items
+on the right and left side of the '=' (constant assignment)
+operator.
+*1031,A
+Syntax Error 1031: Undefined label 'xxxx'.
+
+A label was referenced that was not declared in a declarations
+section of the source file.
+*1032,A
+Syntax Error 1032: Signal not allowed.
+
+A signal was not allowed as an operand or argument in the
+indicated expression.
+*1033,A
+Syntax Error 1033: Max of nn elements in set was exceeded.
+
+Set widths are restricted to 32 elements.
+*1034,A
+Syntax Error 1034: ']' expected
+
+A set was not terminated with a ']' (right bracket) delimiter
+character.
+*1035,A
+Syntax Error 1035: Illegal operation on special constant.
+
+Special constants are not allowed as operands in the indicated
+expression.
+*1036,A
+
+Syntax Error 1036: Can't compare set with nn members to one with
+nn members.
+
+Set widths must match when performing operations on two sets.
+*1037,A
+Syntax Error 1037: ')' expected
+
+The ')' (right parenthesis) character was expected as a delimiter.
+*1038,A
+Syntax Error 1038: Pin number, ISTYPE or semicolon expected.
+
+A signal (PIN or NODE) declaration was not properly terminated.
+*1039,A
+Warning 1039: Label 'xxxx' is already defined - declaration ignored.
+
+The indicated label was already used in a previous declaration. The
+new declaration will be ignored. This can indicate a missing or
+misplaced EQUATIONS keyword.
+*1040,A
+Syntax Error 1040: Number expected
+
+A number was expected in the source file. Numbers can be prefixed
+by a radix specification, or can be specified as a set of binary
+values.
+*1041,A
+Syntax Error 1041: Keyword 'xxxx' is out of context.
+
+The indicated keyword was used in an incorrect manner.
+*1042,A
+Logical Error 1042: Premature end of source file.
+
+The end of the source file was encountered before an END
+statement was found.
+*1043,A
+Warning 1043: ':=' should not be used with output type 'xxxx'.
+
+The ':=' (clocked assignment) operator is intended for use with
+D-type flip-flops only. For alternate flip-flop types, you should
+use the '=' (combinatorial assignment) operator in conjunction
+with either a '.T', '.J', '.K', '.S', '.R', or other register
+input port dot extension.
+*1045,A
+Warning 1045: 'INVERT' or 'BUFFER' not specified for 'xxxx' -
+output uncertain.
+
+An output signal has been described using a register input port
+dot extension ('.D', '.T', '.J', '.K', '.S', or '.R') but the
+associated output signal has not been declared with an 'INVERT'
+or 'BUFFER' attribute. Since there is no information about the
+existence of an inverter between the register and the associated
+output pin, the actual value observed on that pin is uncertain.
+*1046,A
+Syntax Error 1046: Cannot operate on signal 'xxxx'.
+
+The indicated signal was used in an expression in which only
+numbers or constant values are allowed.
+*1047,A
+Syntax Error 1047: Signal or .X. expected
+
+A declared signal (pin or node) or the special constant '.X.' was
+expected in the source file.
+*1048,A
+Syntax Error 1048: '=' or ':=' expected
+
+An assignment operator was expected in the source file.
+*1049,A
+Syntax Error 1049: Expression element expected
+
+An expression was expected in the source file. Expressions
+are composed of one or more signals, sets, numbers or special
+constants operated on by valid ABEL-HDL operators. Expressions
+may or may not be enclosed in a pair of parenthesis.
+*1050,A
+Warning 1050: 'INVERT' or 'BUFFER' not specified for 'xxxx' -
+feedback uncertain.
+
+Feedback from a registered signal has been described using the '.Q'
+dot extension, but the associated output signal has not been
+declared with an 'INVERT' or 'BUFFER' attribute. Since there is no
+information about the existence of an inverter between the register
+and the associated output pin, the relationship between the value
+observed on that pin and the value fed back from the register is
+uncertain.
+*1051,A
+Syntax Error 1051: GOTO, IF or CASE expected
+
+A state transition (GOTO, IF-THEN-ELSE, or CASE) statement was
+expected.
+*1052,A
+Syntax Error 1052: THEN expected
+
+The THEN portion of an IF-THEN-ELSE statement was omitted.
+*1053,A
+Syntax Error 1053: Signal 'xxxx' is combinatorial.
+
+The ':=' (clocked assignment) operator was used to describe a
+signal that was declared as combinatorial.
+*1054,A
+Syntax Error 1054: '(' expected
+
+A '(' (left parenthesis) character was expected as a delimiter.
+*1055,A
+Syntax Error 1055: '->>' expected
+
+The '->>' operator was expected to delimit the input and output
+portions of a truth table or test vector header or entry.
+*1056,A
+Logical Error 1056: Extension 'xxxx' is not legal for node 'xxxx'.
+
+The indicated dot extension is not appropriate for the indicated
+node.
+*1057,A
+Syntax Error 1057: Can't map set onto a non-set element.
+
+A set was specified in a test vector where a single-bit value was
+expected.
+*1058,A
+Syntax Error 1058: Special constant not allowed.
+
+Special constants are not allowed in the current context.
+*1059,A
+Syntax Error 1059: Undefined operation on sets.
+
+Sets may not be used as operands of '>>>' (shift right),
+'<<<' (shift left), '*' (multiply), '/' (divide) or '%' (modulo)
+operators.
+*1060,A
+
+Syntax Error 1060: Can't map set onto a different sized set.
+
+Set widths must match when performing operations on two sets, or
+when using nested sets in truth tables or test vectors.
+*1061,A
+Warning 1061: No output type specified for 'xxxx' - please use
+ISTYPE.
+
+You have used the indicated signal as an output, but have not
+declared whether it is combinatorial or registered.
+*1062,A
+Warning 1062: Extension 'xxxx' may not be legal for signal
+'xxxx'.
+
+You have used a dot extension that does not match the known dot
+extensions for the output type declared for the indicated signal.
+*1063,A
+Syntax Error 1063: Dummy argument 'xxxx' not recognized.
+
+You have indicated a dummy argument (by prefixing a label with the
+'?' character) that does not match the dummy arguments declared in
+the macro or module argument list.
+*1064,A
+Syntax Error 1064: Signal number for 'xxxx' is too large.
+
+You have specified a very large pin or node number.
+*1065,A
+Syntax Error 1065: Pin number nn is not defined for this device.
+
+You have specified a pin number that is undefined for the declared
+device.
+*1066,A
+Syntax Error 1066: Node number nn is not defined for this device.
+
+You have specified a node number that is undefined for the declared
+device.
+*1067,A
+
+Syntax Error 1067: Only one label allowed.
+
+You have specified a list of labels in a macro definition. Only one
+label is allowed for each macro.
+*1068,A
+Syntax Error 1068: Block expected
+
+A block was expected following a macro keyword or directive. A
+block is a section of ABEL-HDL source statements enclosed by
+braces.
+*1069,A
+Syntax Error 1069: Closing '}' of block not found.
+
+A terminating '}' (right brace) delimiter was not found in the
+source file.
+*1070,A
+Warning 1070: Pin number nn is already declared as 'xxxx'.
+
+You have declared the same pin number for two different named
+signals.
+*1071,A
+Syntax Error 1071: Closing ''' of string not found.
+
+The terminating ''' (single quote) character was omitted from a
+string. This Error can occur if a single quote (or back quote)
+character is imbedded in a string without being prefixed by a '\'
+(backslash) character.
+*1072,A
+Syntax Error 1072: ':+:' or ':*:' expected
+
+You have specified @ALTERNATE (use alternate operators) and have
+incorrectly specified an XOR or XNOR operation.
+*1073,A
+Syntax Error 1073: Constant label expected
+
+The @CONST directive requires a constant label. This label must not
+have been previously declared (as a signal, macro or other
+identifier) except that it can be used in previous @CONST directive
+statement.
+*1074,A
+Syntax Error 1074: '=' expected
+
+The '=' (assignment operator) was omitted from an @CONST directive
+or from a fuse assignment statement.
+
+Syntax Error 1075: Undefined operation on signal.
+
+A signal identifier is not legal in the current context.
+*1076,A
+Syntax Error 1076: Number is too large.
+
+Numbers (either literal values or values produced by complex
+expressions) must not exceed the maximum size of 32 bits
+(unsigned).
+*1077,A
+Syntax Error 1077: ':>>' or '->>' expected
+
+The ':>>' or '->>' operator was expected to delimit the input and
+output portions of a test vector header or entry line.
+*1078,A
+Syntax Error 1078: ':>>' expected
+
+The ':>>' operator was expected in a test vector entry line to
+match the ':>>' operator found in the test vector header.
+*1079,A
+Syntax Error 1079: Radix nn is not one of 2, 8, 10 or 16.
+
+The radix value specified in a @RADIX statement must be either 2
+(binary), 8 (octal), 10 (decimal) or 16 (hexadecimal).
+*1080,A
+Syntax Error 1080: nn actual arguments expected
+
+A macro or module was invoked with an incorrect number of actual
+arguments.
+*1081,A
+Syntax Error 1081: Dummy argument expected
+
+The '?' character indicates that the following sequence
+of characters is a dummy argument. The Error indicates that the
+dummy argument label does not match any of the dummy arguments
+listed in the macro or module declaration.
+*1082,A
+Syntax Error 1082: Digit not in radix nn.
+
+You have specified a radix value less than 10 (decimal) and have
+used a digit that is not legal for that number system.
+*1084,A
+Warning 1084: Unrecognized attribute 'xxxx' - ignored.
+
+The attribute string specified in an ISTYPE statement was not
+recognized as a valid signal attribute.
+*1085,A
+Syntax Error 1085: 'xxxx' attribute not allowed on this pin.
+
+The specified attribute is not legal for the device and pin or node
+number indicated, or the attribute conflicts with a previous
+attribute specified for the same signal.
+*1086,A
+Warning 1086: Signal 'xxxx' has not been declared as combinatorial.
+
+You have written a combinatorial function for the indicated signal,
+but have not specified that the signal is combinatorial (ISTYPE
+'COM').
+*1087,A
+Warning 1087: Signal 'xxxx' has not been declared as registered.
+
+You have written a registered (pin-to-pin) function for the
+indicated signal, but have not declared the signal as registered
+(ISTYPE 'REG' or ISTYPE 'REG_X' where X is a register type).
+*1091,A
+Logical Error 1091: nn actual arguments specified on command line.
+
+The number of actual arguments specified on the AHDL2PLA command
+line exceeds the number of dummy arguments specified in the MODULE
+statement.
+*1092,A
+Syntax Error 1092: Use '#' for OR instead of '|'.
+
+The '|' operator (used in some programming languages for a bitwise
+OR) is not used in ABEL-HDL. Instead you should use the '#'
+operator.
+*1093,A
+Syntax Error 1093: 'xxxx' undefined, maybe 'xxxx' was meant.
+
+An identifier was encountered that is undefined, but a similar
+identifier (one that matches if upper and lower case are ignored)
+exists in the design.
+*1094,A
+Syntax Error 1094: No operators allowed in this context.
+
+You have attempted to use a complex expression (one containing
+operators) when only signals, numbers or special constants are
+allowed. This Error most frequently occurs when dot extensions
+are applied to complex expressions.
+*1096,A
+Logical Error 1096: Arithmetic error
+
+A divide by zero or similar situation was encountered when
+evaluating an expression.
+*1098,A
+Syntax Error 1098: Negative declaration not allowed.
+
+Negative (active-low) declarations are only allowed in PIN and
+NODE statements.
+*1099,A
+Syntax Error 1099: Invalid set range.
+
+A range (specified with the '..' operator) is bounded by
+incompatible signals or numbers. Ranges must be specified that will
+result in 32 or fewer set elements.
+*1100,A
+Syntax Error 1100: Bad element 'xxxx' in range.
+
+The expansion of a range expression resulted in the creation of
+a previously unknown (undeclared) element.
+*1101,A
+Syntax Error 1101: Fuse number expected
+
+A number was expected that corresponds to a fuse location in the
+previously declared device.
+*1102,A
+Syntax Error 1102: Fuse value 1 or 0 expected
+
+A fuse value was expected. A value of 1 indicates an intact fuse,
+and a value of 1 indicates a programmed (blown) fuse.
+*1103,A
+Syntax Error 1103: Illegal nested set in state diagram header.
+
+A state diagram state register must be specified as a set of
+signals, and the set must not be nested (contain other sub-sets).
+*1104,A
+Syntax Error 1104: Dot extension 'xxxx' not legal in this context.
+
+The indicated dot extension is either unrecognized, or was used in
+an incorrect manner. Dot extensions can only be applied to signals
+or sets if signals.
+*1105,A
+Syntax Error 1105: Signal label expected
+
+An identifier was used that is not a previously declared signal,
+and a signal was expected.
+*1109,A
+Syntax Error 1109: Register type of 'xxxx' does not match other
+set elements.
+
+State diagrams require matching register types. The state register
+set specified contains signals of differing register types.
+*1110,A
+Syntax Error 1110: Pin nn (VCC) can't be used as input.
+
+You have specified a device and pin number combination that cannot
+be used as an input in your design.
+*1111,A
+Syntax Error 1111: Pin nn (GND) can't be used as input.
+
+You have specified a device and pin number combination that cannot
+be used as an input in your design.
+*1113,A
+Warning 1113: ENABLE keyword obsolete - use .OE extension instead.
+
+The ENABLE keyword is no longer supported in ABEL-HDL. Instead, you
+should use the '.OE' dot extension to indicate a three-state
+output.
+*1114,A
+Syntax Error 1114: 'xxxx' attribute not allowed for state
+registers.
+
+The indicated attribute is illegal for describing state register
+types. You must specify either 'COM', 'REG', or 'REG_X' where X is
+a valid register type.
+*1116,A
+Syntax Error 1116: Multiple attribute list not allowed in this
+context.
+
+You have used the '=' operator to specify signal attributes
+for signals that have not been assigned pins. You should use the
+'ISTYPE' attribute to assign attributes instead of the '='
+operator.
+*1120,A
+Syntax Error 1120: Only one device allowed.
+
+Multiple device declarations are no longer supported in ABEL-HDL.
+Instead, you should use the PLA splitter utility to split a large
+design into multiple devices.
+*1121,A
+Syntax Error 1121: Device declaration must be made before signal
+declarations.
+
+If a device declaration is made in the source file, it must be
+made before any signal declarations.
+*1122,A
+Logical Error 1122: File name 'xxxx.xxx' too long.
+
+The indicated file name is too long for the operating system.
+*1124,A
+Warning 1124: 'INVERT' or 'BUFFER' not specified for 'xxxx' -
+assuming 'buffer'.
+
+You have not specified whether the indicated output signal will
+have an inversion between the state register and the associated
+output pin. No inversion will be assumed, resulting in possibly
+incorrect operation if the design is implemented in a device with
+inverting outputs.
+*1126,A
+Syntax Error 1126: Can't use ':=' operator with dot extensions.
+
+The ':=' (clocked assignment) operator is used to describe the
+operation of an registered output pin. If dot extensions are used,
+you should use the '=' assignment operator, since dot extensions
+(including register input ports) are inherently combinatorial.
+*1128,A
+Syntax Error 1128: Can't have operators in state register.
+
+The state register set must consist of a set of signals, with no
+complex operators.
+*1129,A
+Syntax Error 1129: Can't expand expression - possibly recursive
+definition.
+
+The AHDL2PLA compiler has detected a recursive constant
+declaration. Check to make sure you have not referenced the same
+identifier on both sides of the '=' operator.
+*1130,A
+Syntax Error 1130: Missing set element.
+
+Set elements can consist of signals, numbers, special constants,
+sets or expressions and are separated by commas. One of these items
+was expected in the set.
+*1131,A
+Syntax Error 1131: Missing set range element.
+
+The '..' (set range) operator was used with no second boundary
+element.
+*1132,A
+Syntax Error 1132: Keyword IN no longer supported.
+
+Multiple device declarations and corresponding device-specific
+sections are no longer supported in ABEL-HDL. Instead, you should
+use the PLA splitter utility to split a large design into multiple
+devices.
+*1133,A
+Syntax Error 1133: Signal 'xxxx' already defined as type 'INVERT'.
+
+You have specified the 'BUFFER' attribute for a signal that was
+previously declared as 'INVERT'.
+*1134,A
+Syntax Error 1134: Signal 'xxxx' already defined as type 'BUFFER'.
+
+You have specified the 'INVERT' attribute for a signal that was
+previously declared as 'BUFFER'.
+*1135,A
+Fatal Error 1135: Unknown Error
+*--PLAopt--,A
+*2001,A
+Fatal Error 2001: Requires an input file with a .TTn extension.
+
+Plaopt requires input files with names such as m6809a.tt1 or
+foo.tt4. The default output file would be m6809a.tt2 or foo.tt5.
+*2002,A
+Fatal Error 2002: Input and output file names are the
+same 'file_name'.
+
+The input and output files must have different names.
+*2003,A
+Fatal Error 2003: Can't open input file 'file_name'.
+
+Input file not found.
+*2004,A
+Fatal Error 2004: AUXPLA and Output file names have the same
+'file_name'.
+
+The AUXPLA file from the input PLA file has the same name as
+the output file. The AUXPLA is created when the @DCSET is used
+in an ABEL source file.
+*2005,A
+Fatal Error 2005: Latte failed on 'file_name'.
+
+While producing the @DCSET offsets, the espresso program
+(latte) was not found or produced an internal error.
+*2006,A
+Fatal Error: Can't open input file 'file_name'.
+
+While processing the @DCSET, PLAOpt could not open an working file.
+*2007,A
+Fatal Error 2007: Can't open AUXPLA file 'file_name'.
+
+While processing the @DCSET, PLAOpt could not open the AUXPLA file.
+*2008,A
+Fatal Error 2008: Can't open output file 'file_name'.
+
+While processing the @DCSET, PLAOpt could not open the output file.
+*2009,A
+Fatal Error 2009: Can't open input file 'file_name'.
+
+While running '-reduce none', PLAOpt could not open the file.
+*2010,A
+Fatal Error 2010: Can't open output file 'file_name'.
+
+While running '-reduce none', PLAOpt could not open the file.
+*2011,A
+Fatal Error 2011: Latte failed on 'file_name'.
+
+While running '-reduce group fixed', the espresso program
+(latte) was not found or produced an internal error.
+*2012,A
+Fatal Error 2012: Latte failed on 'file_name'.
+
+While running '-reduce group choose', the espresso program
+(latte) was not found or produced an internal error.
+*2013,A
+Fatal Error 2013: Can't open input file 'file_name'.
+
+While running '-reduce group choose', PLAOpt could not open
+the file.
+*2014,A
+Fatale Error 2014: Can't open output file 'file_name'.
+
+While running '-reduce group choose', PLAOpt could not open
+the file.
+*2015,A
+Fatal Error 2015: Latte (on-set) failed on 'file_name'.
+
+While running '-reduce bypin fixed', the espresso program
+(latte) was not found or produced an internal error.
+*2016,A
+Fatal Error 2016: Can't open input file 'file_name'.
+
+While running '-reduce bypin fixed', PLAOpt could not open
+the file.
+*2017,A
+Fatal Error 2017: Can't open output file 'file_name'.
+
+While running '-reduce bypin fixed', PLAOpt could not open
+the file.
+*2019,A
+Fatal Error 2019: Latte (on-set) failed on 'file_name'.
+
+While running '-reduce bypin choose', the espresso program
+(latte) was not found or produced an internal error.
+*2020,A
+Fatal Error 2020: Latte (off-set) failed on 'file_name'.
+
+While running '-reduce bypin choose', the espresso program
+(latte) was not found or produced an internal error.
+*2021,A
+Fatal Error 2021: Can't open input file 'file_name'.
+
+While running '-reduce bypin choose', PLAOpt could not open
+the file.
+*2022,A
+Fatal Error 2022: Can't open input file 'file_name'.
+
+While running '-reduce bypin choose', PLAOpt could not open
+the file.
+*2023,A
+Fatal Error 2023: Can't open output file 'file_name'.
+
+While running '-reduce bypin choose', PLAOpt could not open
+the file.
+*2024,A
+Fatal Error 2024: Latte (on-set) failed on 'file_name'.
+
+While running '-reduce dt', the espresso program (latte)
+was not found or produced an internal error.
+*2025,A
+Fatal Error 2025: Latte (off-set) failed on 'file_name'.
+
+While running '-reduce dt', the espresso program (latte)
+was not found or produced an internal error.
+*2026,A
+Fatal Error 2026: Can't open input file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2027,A
+Fatal Error 2027: Design must use D or T flip flops.
+
+The ABEL design must use the .D or .T detailed equations.
+*2028,A
+Fatal Error 2028: Can't open output file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2029,A
+Fatal Error 2029: Can't open input file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2030,A
+Fatal Error 2030: Can't open output file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2031,A
+Fatal Error 2031: Latte failed on 'file_name'.
+
+While running '-reduce dt', the espresso program (latte)
+was not found or produced an internal error.
+*2032,A
+Fatal Error 2032: Latte failed on 'file_name'.
+
+While running '-reduce dt', the espresso program (latte)
+was not found or produced an internal error.
+*2033,A
+Fatal Error 2033: Can't open input file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2034,A
+Fatal Error 2034: Can't open input file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2035,A
+Fatal Error 2035: Can't open output file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2036,A
+Fatal Error 2036: Latte failed on 'file_name'.
+
+While running '-reduce dt', the espresso program (latte)
+was not found or produced an internal error.
+*2037,A
+Fatal Error 2037: Latte failed on 'file_name'.
+
+While running '-reduce gdt', the espresso program (latte)
+was not found or produced an internal error.
+*2038,A
+Fatal Error 2038: Can't open input file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2039,A
+Fatal Error 2039: Can't open input file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2040,A
+Fatal Error 2040: Can't open output file 'file_name'.
+
+While running '-reduce dt', PLAOpt could not open the file.
+*2041,A
+Fatal Error 2041: Could not rename 'file_name' to 'file_name'.
+*--Selector--,A
+*All these errors are for internal database problems*
+*-----------------------------------------------------*
+*3090,A
+Warning 3090: internal error ddd when reading device architecture
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3094,A
+Warning 3094: general internal error ddd with device architecture
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3381,A
+Warning 3381: general error ddd when handling chip  xxx
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3098,A
+Warning 3098: internal list handling error when handling arch to
+chip
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3099,A
+Warning 3099: internal list handling error when handling mfg to chip
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3382,A
+Warning 3382: Should never Happen!. Duplicate record problem ...
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3100,A
+Warning 3100: general error ddd when handling chip information
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3383,A
+Warning 3383: internal error ddd when finding chip data to remove
+
+DEVMRG only. Internal database error occurred. Maybe jammed
+database. Contact Data I/O Customer Resource Center.
+
+*3385,A
+Warning 3385: internal error ddd when merging chip information
+
+DEVMRG only. Internal database error occurred. Maybe jammed
+database. Contact Data I/O Customer Resource Center.
+
+*3101,A
+Warning 3101: internal error ddd when handling mfg info
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3102,A
+Warning 3102:  internal error ddd when reading mfg info
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3107,A
+Warning 3107: general error ddd when handling mfg info
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3084,A
+Warning 3084:   internal error ddd when initialize database
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3086,A
+Warning 3086: internal problem opening database...
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3088,A
+Warning 3088: Internal error code ddd when initializing database
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3089,A
+Warning 3089: Sorter database could not be initialized!
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3391,A
+Warning 3391: trouble updating arch record xxx  error was ddd
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3110,A
+Warning 3110: *** internal database error ddd occurred ...
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3111,A
+Warning 3111: Fatal internal database system error ddd occurred
+
+Internal database error occurred. Could be anything from a
+damaged database to someone defeating database interlock and
+jamming your run of the program. If internal error is -905,
+problem could be your PC configuration in not allowing enough
+open files. Contact Data I/O Customer Resource Center.
+
+*3168,A
+Warning 3168:  internal error ddd, could not retrieve parent
+architecture
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3171,A
+Warning 3171: Line ddd Manufacturer xxx could not be written in
+database
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3200,A
+Warning 3200: General database problem ddd when validating chip
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3216,A
+Warning 3216: internal database error ddd when accessing arch to
+chip list
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3220,A
+Warning 3220: current chip xxx of arch yyy could not be added to
+select list due to error ddd
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3273,A
+Warning 3273: internal error ddd when doing a non-sorting move
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3276,A
+Warning 3276: internal error index ddd is beyond the end of the
+list size ddd
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3277,A
+Warning 3277: Internal error, Could not connect item to empty list!
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3278,A
+Warning 3278: internal error with movement in quicksort ...
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3280,A
+Warning 3280: internal error ddd when connecting sorted chip
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3340,A
+Warning 3340:  problems with the sorter database
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3346,A
+Warning 3346:  problems with the sorter database
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3431,A
+Warning 3431: Internal error ddd in opening database
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*3165,A
+Warning 3165:  serious problem in storing parent architecture
+xxx for alias line ddd
+
+Internal database error occurred. Maybe jammed database. Contact
+Data I/O Customer Resource Center.
+
+*Errors caused by improper decoding of device or design information *
+*-------------------------------------------------------------------*
+*3016,A
+Warning 3016: Error encountered reading ABEL-PLA file
+
+An internal error occurred parsing the file containing your
+design.  Either the file specified was not an ABEL-PLA file or
+there is a bug. Contact Data I/O Customer Resource Center.
+
+*3018,A
+Warning 3018: Error generating signal information
+
+Contact Data I/O Customer Resource Center.
+
+*3130,A
+Warning 3130:  don't know what this enable is ...
+
+Contact Data I/O Customer Resource Center.
+
+*3261,A
+Warning 3261:  internal error, could not decode regtype ddd for
+signal yyy
+
+Contact Data I/O Customer Resource Center.
+
+*3331,A
+Warning 3331:  Internal error, ABEL-PLA parser failed!
+
+Contact Data I/O Customer Resource Center.
+
+*3354,A
+Warning 3354:  internal error could not decode EQNtype ddd
+
+Contact Data I/O Customer Resource Center.
+
+*Problems with files (protection opening, closing, writing ...)*
+*--------------------------------------------------------------------*
+*3371,A
+Warning 3371: Could not open Database Version file, ...
+
+SmartPart could not find a certain file inside the database.
+The directory specified may not contain a database or the
+database was damaged in some way. Another possibility is that
+you do not have permission to access the database (need
+read/write).
+
+*3373,A
+Warning 3373: could not find a database and ABEL4DB is not set!
+
+SmartPart could not find a device database. Set the environment
+variable ABEL4DB to the directory of the database, or specify
+the directory in the "Modify Criteria" menu.
+
+*3375,A
+Warning 3375: There is no database at 'xxx'
+
+SmartPart could not find a device database. The environment
+variable ABEL4DB or the database field in "Modify Criteria" has
+the wrong directory, fix it.
+
+*3137,A
+Warning 3137: Could not open log file xxx
+
+Obvious. Maybe bad pathname or a protection problem.
+
+*3377,A
+Warning 3377: Can't open file xxx
+
+Obvious. Maybe bad pathname or a protection problem.
+
+*3080,A
+Warning 3080:  init_database got an ACCESS_FAILURE ...
+
+Database could not be opened/created for some reason. The most-
+likely cause is specifying an invalid directory in the
+environment variable ABEL4DB, or damaging the database by
+removing some internal files. There also could be a file
+protection problem.
+
+*3081,A
+Warning 3081:  init_database got an ENVIRON_PROBLEM ...
+
+In creating a database, the environment variable DB_DICT must
+point to the directory containing the blank prototype database.
+
+
+*3141,A
+Warning 3141: could not open file xxx'
+
+Could not find input file or there is a protection problem.
+
+*3074,A
+Warning 3074: File I/O problem, Could not open output stream xxx
+
+Could not open the candidate device architecture list for writing.
+May be bad pathname or a protection problem.
+
+*3420,A
+Warning 3420:  Problems with chip report file name xxx
+
+The chip report file pathname did not pass the tests of illegal
+characters or allowed length.
+
+*3421,A
+Warning 3421:  Note report file xxx could not be opened
+
+The chip report file was not opened. Could be a bad pathname or a
+protection problem.
+
+*3468,A
+Warning 3468: write error during chip report
+
+The system could no longer write to the chip report file. Could be
+an access problem or the disk is full.
+
+*3439,A
+Warning 3439: write error during chip report
+
+The system could no longer write to the chip report file. Could be
+an access problem or the disk is full.
+
+*3424,A
+Warning 3424: Could not create version locking file xxx
+
+File protection or disk space problems while creating the
+database.
+
+*3000,A
+Warning 3000: Directory 'xxx' does not seem to have a database! ...
+
+The environment variable ABEL4DB seems to be pointing to a
+directory that does not have a database. Or there could be a file
+protection problem.
+
+*3460,A
+Warning 3460: cannot create lock file xxx
+
+A protection problem prevented making the interlock system work.
+Note the system may fail in a strange way if another user can get
+past the protection problem and try to use the database.
+
+*3463,A
+Warning 3463: could not delete lock file xxx
+
+A strange protection problem prevented removing the database
+interlock. The system will not allow another access to the
+database until the lock file is removed.
+
+*3172,A
+Warning 3172:  problems reading the ASCII dump file xxx
+
+Error signaled while reading chip information file.
+
+*3173,A
+Warning 3173:  file not found error (maybe bad pathname)
+
+Could not open the chip information file, either protection
+problem or wrong pathname.
+
+*3330,A
+Warning 3330:  Could not access the ABEL-PLA file xxx
+
+Could not open input design. May be a bad pathname or a protection
+problem.
+
+*Memory problems*
+*------------------------------------------------------------*
+*3085,A
+Warning 3085:  out of memory failure! ...
+
+Could not get enough memory to create internal cache for the
+database.  Either release more memory for the program by removing
+resident functions or reduce the database cache by changing the
+environment variable DB_PAGES (minimum recommended is 8)
+
+*3480,A
+Warning 3480: could not allocate memory in build_mfg_list!!
+
+Not enough memory to handle the list of manufactures specified.
+Free up more memory for the program.
+
+*3482,A
+Warning 3482: could not allocate memory in build_spc_list!!
+
+Not enough memory to handle the list of operating ranges
+specified.  Free up more memory for the program.
+
+*3483,A
+Warning 3483: could not allocate memory in build_tech_list!!
+
+Not enough memory to handle the list of device technologies
+specified.  Free up more memory for the program.
+
+*3485,A
+Warning 3485: Could not allocate memory in sigs!!!
+
+Not enough memory to handle decoding the input design. Free up
+more memory for the program.
+
+*3370,A
+Warning 3370: Out of memory in open_databases !!
+
+Not enough memory to handle startup. Free up more memory for the
+program.
+
+*3427,A
+Warning 3427:  Could not get any memory to open databases!
+
+Not enough memory for startup. Either release more memory for the
+program by removing resident functions or reduce the database
+cache by changing the environment variable DB_PAGES (minimum
+recommended is 8)
+
+*3481,A
+Warning 3481: could not allocate memory in build_pkg_list!!
+
+Not enough memory to handle the list of package types specified.
+Free up more memory for the program.
+
+*Command line parser problem*
+*------------------------------*
+*3394,A
+Warning 3394: Command line error occurred ...
+
+There was a serious problem in the command line. Correct the
+call to this program or contact Data I/O Customer Resource
+Center if this happened while using the design environment
+menus.
+
+*3403,A
+Warning 3403:  error in device description
+
+DEVSEL only. One of the specified device architectures is illegal.
+You may have mistyped the command line or that architecture is not
+in the database.
+
+*3414,A
+Warning 3414: You must specify some manufacturer
+
+-MAN command line option must have manufacturer names after it.
+
+*3028,A
+Warning 3028: Note package type sss is not known
+
+Illegal package type after the -PACK command line option.
+
+*3415,A
+Warning 3415:  You must specify some package
+
+-PACK command line option must have package types after it.
+
+*3029,A
+Warning 3029: Note operating range spec type sss is not known
+
+Illegal operating range after the -OPR command line option.
+
+*3416,A
+Warning 3416:  You must specify some operating range
+
+-OPR command line option must have operating ranges after it.
+
+*3030,A
+Warning 3030: Note technology type xxx is not known
+
+Illegal technology type after the -TECH command line option.
+
+*3417,A
+Warning 3417:  You must specify some technology
+
+-TECH command line option must have device technologies after it.
+
+*3031,A
+Warning 3031: exact range for xxx does not make sense
+
+In a range criteria, the "exact #" did not get an integer. If
+this is from the design environment menus, contact Data I/O
+Customer Resource Center.
+
+*3032,A
+Warning 3032:  less range for xxx does not make sense
+
+In a range criteria, the "less #" did not get an integer. If
+this is from the design environment menus, contact Data I/O
+Customer Resource Center.
+
+*3033,A
+Warning 3033: greater range for xxx does not make sense.
+
+In a range criteria, the "greater #" did not get an integer. If
+this is from the design environment menus, contact Data I/O
+Customer Resource Center.
+
+*3034,A
+Warning 3034: range for xxx does not make sense
+
+In a range criteria, the "range # #" did not get two integers,
+or the integer form a poor range (i.e. 3 to 1). If this is from
+the design environment menus, contact Data I/O Customer
+Resource Center.
+
+*3035,A
+Warning 3035: syntax error yyy is not exact, less, greater, or
+range for xxx
+
+In a range criteria, could not make sense out the the command.
+If this is from the design environment menus, contact Data I/O
+Customer Resource Center.
+
+*3036,A
+Warning 3036: Note that arg xxx for yyy did not make sense
+
+A command line error occurred. If this is from the design
+environment menus, contact Data I/O Customer Resource
+Center.
+
+*3075,A
+Warning 3075:  No more than 4 fields can be selected for sorting.
+
+Present system has a hard limit on 4 sorting fields. Contact
+Data I/O Customer Resource Center if that is a problem.
+
+*3076,A
+Warning 3076: direction xxx cannot be first word in sorting,
+must have field first
+
+For -SORT, the directions UP, DOWN, ... must follow a field name.
+
+*3077,A
+Warning 3077: word xxx not a field or a sorting direction
+
+For -SORT, the word could not be parsed.
+
+*3344,A
+Warning 3344: Note given device xxx in -devices is not valid
+
+There was an illegal device name after the -DEVICE command line
+option. This could be a typing error or that device architecture
+is not in the database.
+
+*3012,A
+Warning 3012: Command line error occurred ...
+
+There was a serious problem in the command line. Correct the
+call to this program or contact Data I/O Customer Resource
+Center if this happened while using the design environment
+menus.
+
+*3401,A
+Warning 3401: Error parsing command arguments
+
+One or more of the options in the command line was illegal.
+Other messages should have explained what was the problem.
+Correct the call to this program.
+
+*3027,A
+Message 3027: Note manufacturer ddd is not in the database
+
+manufacturer specified in -MAN was illegal. May be a typing
+mistake or that manufacturer is not in the database.
+
+*System Problems*
+*----------------------------------------------------------------*
+*3372,A
+Warning 3372: Wrong version of database, ...
+
+SmartPart's executables internal version number does not match the
+internal version number of the database. Data in the database may
+not align correctly and the the selector function may fail in
+strange ways. You may have to dump the database using the old
+executables and rebuild it using the new executables.
+
+*3374,A
+Warning 3374: Database name xxx is too long, aborting
+
+The directory name specified in the environment variable ABEL4DB
+or the database field in the "Modify Criteria" menu is unusable.
+Correct the name or move the database directory to a more
+reasonable place.
+
+*3376,A
+Warning 3376: Filename xxx is too big
+
+Obvious
+
+*3082,A
+Message 3082:  Note using existing database at 'xxx'
+
+A note that a new database was not created as one already exists.
+The device information will be added to the information already in
+the existing database.
+
+*3083,A
+Message 3083:  Note new database initialized at 'xxx'
+
+A note that a new database was created.
+
+*3467,A
+Warning 3467: Cleaning up for abort ...
+
+A ^c or break was detected and the program has terminated
+gracefully.
+
+*3455,A
+Warning 3455: could not enable INT error handler!
+
+System problem, could not enable ^c or break trapping functions.
+The database may get locked or corrupted if you try to abort the
+program.
+
+*3456,A
+Warning 3456: could not enable ABRT error handler!
+
+System problem, could not enable ^c or break trapping functions.
+The database may get locked or corrupted if you try to abort the
+program.
+
+*3457,A
+Warning 3457: could not enable TERM error handler!
+
+System problem, could not enable ^c or break trapping functions.
+The database may get locked or corrupted if you try to abort the
+program.
+
+*3425,A
+Warning 3425: Lockmgr program not running, its required
+
+Optional inter-network database manager is needed for this
+system and it is not there. Contact Data I/O Customer Resource
+Center.
+
+*3426,A
+Warning 3426: The Lockmgr said that the database is already in
+use...
+
+Optional inter-network database manager has determined that the
+database is already in use and you must try again later.
+
+*3428,A
+Warning 3428: your user_id (environment variable USER) is
+already in use
+
+Optional inter-network database manager has determined that you
+are already using a database on the network. Contact Data I/O
+Customer Resource Center.
+
+*3429,A
+Warning 3429: your user_id (environment variable USER) is not set!
+
+Optional inter-network database manager needs a user name to
+resolve database conflicts. Contact Data I/O Customer Resource
+Center.
+
+*3430,A
+Warning 3430: your user_id (environment variable USER) is garbage!
+
+Optional inter-network database manager needs a user name to
+resolve database conflicts. Contact Data I/O Customer Resource
+Center.
+
+*3459,A
+Warning 3459: Database is already locked by user xxx Database
+lock file is yyy
+
+The device database can only be used by on person at a time. If
+the user's name is 'anonymous', he did not set his environment
+variable USER. If you determine that there is no other users for
+the database, the lock system may be jammed, erase the lock file
+only to unjam the interlock.
+
+*Memory corruption (bad pointer type stuff)*
+*-------------------------------------------------------------------*
+*3335,A
+Warning 3335:  Utilization factor is unreliable ...
+
+Mathematics for calculating utilization factor failed in some
+way. Contact Data I/O Customer Resource Center.
+
+*3270,A
+Warning 3270: internal error for sorter direction on sort key ddd
+
+Contact Data I/O Customer Resource Center.
+
+*3271,A
+Warning 3271: internal error for decoding field for key ddd
+
+Contact Data I/O Customer Resource Center.
+
+*3407,A
+Warning 3407: internal options list is unsynced!!!
+
+Contact Data I/O Customer Resource Center.
+
+*Other errors not in a catagory*
+*------------------------------------------------------------------*
+*3022,A
+Message 3022:  No chip report done, use -log or -sort options
+
+DEVSEL only. A note that only the device architecture candidate
+list was created (or sent to STDOUT) and no chip report was
+done. Use the -LOG option on the command line or use the
+"Report File name" and "Report Sort order" in the design
+environment menus.
+
+*3013,A
+Message 3013: Selecting from given set of device architectures
+
+DEVSEL only. The normal mode of operation is to check all device
+architectures for suitability, you have specified only some device
+architectures and have limited the search area.
+
+*3014,A
+Message 3014: Selecting from all device architectures
+
+DEVSEL only. The normal mode of operation is check all device
+architectures for suitability.
+
+*3175,A
+Warning 3175:  other internal error ddd
+
+Unspecified internal error while reading chip information file.
+Contact Data I/O Customer Resource Center.
+
+*3026,A
+Message 3026: Since no *.tt2 file specified, all device
+architectures ...
+
+Normal mode of operation is to check estimated fit of each
+architecture against an input design. Since no design was
+specified all architectures will pass through that stage of
+selection.
+
+*3446,A
+Message 3446: Output candidate device list file: STDOUT
+
+No candidate device architecture file specified (with -O). The
+list will then goes to the output stream.
+
+*3449,A
+Message 3449: Chip report file: STDOUT
+
+The -SORT option was used without the -LOG option. So the chip
+report file will be sent to the output stream rather than to a
+file.
+
+*3450,A
+Warning 3450: Note that report xxx contains no data, and will
+be deleted
+
+There were no chips or architectures meeting your criteria or
+design needs and the empty output file is removed.
+
+*3272,A
+Message 3272: No sort order specified, arranging records in
+selected order
+
+When specifying the chip report file without specifying a sorting
+order, the selected chips will be presented in the selected order
+which is ordered by architecture and part-name.
+
+
+*--Fitter--,A
+*4000,A
+Warning 4000:  Input enabled for burying (inputs cannot be
+buried) - designation of input 'xxxx' as 'NODE' ignored.
+
+Change the problem signal from 'istype node' to 'istype pin'.
+*4002,A
+Fatal Error 4002: Unable to open file 'xxxx' for read.
+
+Check that you have read privilege for the specified file. Contact
+the Data I/O Customer Resource Center.
+*4003,A
+Fatal Error 4003: Unable to open file 'xxxx' for write.
+
+Check the access rights in the given directory. First look
+look for the given file to already exist without write privilege.
+Contact the Data I/O Customer Resource Center.
+*4004,A
+Internal Error 4004: Class Error:xxxx <various>
+
+Contact the Data I/O Customer Resource Center.
+*4005,A
+Command Error 4005: No input file specified
+
+Use the -i filename[.tt2] command line to specify input pla file
+name.
+*4006,A
+Command Error 4006: The Fitter does not have traditional output;
+argument 'xxxx' cannot be used.
+
+Do not use the "-o" flag with the fitter.
+*4007,A
+Command Error 4007: Candidate list file 'xxxx' and device name
+'XXX' cannot both be specified.
+
+Do not use -dev and -idev at the same time.
+*4009,A
+Warning 4009: Signal 'xxxx' is an input and cannot appear in the
+'$NODES' list.
+
+Remove the 'istype node' in the AHDL source file for the given
+signal.
+*4010,A
+Fatal Error 4010: Unable to open file 'xxxx' for write.
+
+Check that you have write privilege for the specified file.
+*4011,A
+Fatal Error 4011: Unable to open file 'xxxx' for read.
+
+Check that you have read privilege for the specified file.
+*4012,A
+Fatal Error 4012: No device names found in device list file 'xxxx'.
+
+Either edit the file and add device architecture names, or re-run
+the selector to select device architectures for you.
+*4013,A
+Internal Error 4013: Cluster_fits(): invalid pin
+
+Contact the Data I/O Customer Resource Center.
+*4014,A
+Internal Error 4014: Unknown RCxx type
+
+Contact the Data I/O Customer Resource Center.
+*4015,A
+Internal Error 4015: Cluster_fits(): bad pinty on pin NN.
+
+Contact the Data I/O Customer Resource Center.
+*4016,A
+Internal Error 4016: Illegal extension
+
+Contact the Data I/O Customer Resource Center.
+*4017,A
+Internal Error 4017: GetOEnode(): bad enable type
+
+Contact the Data I/O Customer Resource Center.
+*4018,A
+Internal Error 4018: Unknown RCxx type
+
+Contact the Data I/O Customer Resource Center.
+*4019,A
+Internal Error 4019: Process_IC(): invalid pin
+
+Contact the Data I/O Customer Resource Center.
+*4020,A
+Internal Error 4020: PT is null; signum = ####
+
+Contact the Data I/O Customer Resource Center.
+*4021,A
+Internal Error 4021: Pin ####'s TT should have been modified
+
+Contact the Data I/O Customer Resource Center.
+*4023,A
+Fatal Error 4023: No device specified with -dev, -idev, or via the
+input PLA.
+
+Either use the device statement in the AHDL source file or
+specify the device name with the command line flag -dev.
+*4024,A
+Internal Error 4024: Make_fitlist_sharing() not implemented
+
+Contact the Data I/O Customer Resource Center.
+*4025,A
+Warning 4025: Unused input 'xxxx' ignored; it was probably reduced
+out.
+
+Check your equations and remove offending signal from the design.
+*4026,A
+Internal Error 4026: Model_fixup(): invalid pin
+
+Contact the Data I/O Customer Resource Center.
+*4027,A
+Internal Error 4027: Fitter doesn't support term type ####.
+
+Contact the Data I/O Customer Resource Center.
+*4028,A
+Internal Error 4028: EP_fixup(): invalid polarity type
+
+Contact the Data I/O Customer Resource Center.
+*4029,A
+Command Error 4029: Improper command line.
+
+Type fit -usage to get proper command line syntax.
+*4030,A
+Warning 4030: Signal 'xxxx' preassigned to internal node -
+assignment will persist.
+
+The fitter will not attempt to fit this signal, it will remain
+assigned.
+*4031,A
+Command Error 4031: Improper input file name 'xxxx'.
+
+The name of the PLA input file should have no extension
+(.tt3 assumed), or some other .ttN extension.
+*4032,A
+Device Error 4032: Device 'xxxx' is not currently supported by any
+fitter.
+
+For this device, the pins must be assigned by manually. Assign the
+pins in the AHDL source file.
+*4033,A
+Warning 4033: Unable to run program 'xxxx'.
+
+An attempt to span another program failed. There may be no memory
+left, or there is not enough disk space.
+*4034,A
+Note 4034: Unable to preserve preassignments. Performing second
+pass without preassignments.
+*4035,A
+Note 4035: Signal 'xxxx' was preassigned to a non-design,
+pin - ignored.
+
+A signal was assigned to a non-functional pin such as power,
+ground, or no-connect.
+*4036,A
+Note 4036: Signal 'xxxx' is preassigned to nonexistant pin
+- ignored.
+
+Either allow the signal to NOT have a pin assignment (using pin
+number zero is equivalent to this), or check a logic diagram of
+the device and select a valid pin.
+*4037,A
+Note 4037: Signal 'xxxx' cannot be assigned, no input pins
+available.
+
+You must choose a device with more inputs. If there were problems
+fitting the outputs, this may be a spurious message.
+*4038,A
+Note 4038: Signal 'xxxx' could not be fit, device did not have
+enough banks with common reset, preset, and output-enable
+                  common reset and preset
+                  common clock
+                  common output-enable
+                  internal error - unknown banking
+One of the above conditions will be displayed in the message.
+
+The following message will be given once PER EXECUTION if the
+above warning is used.
+
+Note that the above message may be given for outputs WITHOUT the
+mentioned common signal(s). This is because the device is banked,
+and all outputs that don't use the common signal need their own
+bank.
+
+Investigate the logic diagram for the given device. To use this
+device, you must reduce the number of different reset/clock/oe
+(whichever is listed) equations.
+*4039,A
+Note 4039: Signal 'xxxx' is preassigned to a nonexistant
+pin - ignored.
+
+Either allow the signal to NOT have a pin assignment (using pin
+number zero is equivalent to this), or check a logic diagram of
+the device and select a valid pin.
+*4040,A
+Note 4040: Signal 'xxxx' is preassigned to xxxx ####. The yyyy is
+incompatible in direction - ignored.
+
+If the signal is an output, it must be assigned to an O/IO pin.
+Input signals must be assigned to I/IO pins.
+*4041,A
+Note 4041: Signal 'xxxx' is preassigned to xxxx ####. The
+preassignment is not possible - ignored.
+
+Either allow the signal to NOT have a pin assignment (using pin
+number zero is equivalent to this), or check a logic diagram of
+the device and select a valid pin.
+*4042,A
+Note 4042: Unable to assign 'xxxx', not enough xxxxs like xxxx ####.
+
+Unless you can shrink your design by one output, you will have to
+select a device with more outputs like the one referred to.
+*4043,A
+Internal Error 4043: Term_alloc(): Pin ####'s TT should have been
+modified.
+
+Contact the Data I/O Customer Resource Center.
+*4044,A
+Warning 4044: Unable to reopen file 'xxxx' for append. Log file
+messages being redirected to error out.
+
+Run the fitter again, don't use any invoked/adhoc fitters.
+*4045,A
+Note 4045: The preassignment of 'xxxx' to xxxx #### cannot be
+maintained - overidden.
+
+Do not assign a pin number to this signal.
+*4046,A
+Note 4046: Signal 'xxxx' (which has no OE) has been assigned to pin
+#### (which has pin OE).
+
+Add an OE input signal, and OE equations to your design.
+*4047,A
+Note 4047: Signal 'xxxx' was fed back in an unspecified manner;
+Q-feedback is being used (xxxx ####).
+
+An equation without a dot extension was used (CNT := CNT + 1)
+and the default is to use pin feedback. Since the device
+has no pin feedback, Q feedback is being used. If the
+equations is rewritten (CNT := CNT.FB + 1), the message no
+longer appear.
+*4049,A
+Note 4049: When attempting to fit equation 'xxxx' to xxxx ####, no
+dedicated input pin was available.
+
+Typically occurs for CLK, OE and similar functions. Choose a device
+with more than one input for the offending signal.
+*4050,A
+Note 4050: Design would require both xxxx and xxxx to be assigned
+to xxxx xxxx.
+
+Select a device that has more than one pin that provides the same
+function as the one mentioned.
+*4051,A
+Note 4051: Design would require xxxx to be assigned to both xxxx
+#### and xxxx ####.
+
+Modify your design to use two separate inputs for the same
+function (e.g. CLK1, and CLK2). Be sure to investigate the logic
+diagram.
+*4052,A
+Internal Error 4052: Invalid register type
+
+Contact the Data I/O Customer Resource Center.
+*4053,A
+Note 4053: Signal xxxx cannot be assigned (to xxxx ####) because
+pin #### is not an output pin.
+
+This error should not occur, contact the Data I/O Customer Resource
+Center for assistance.
+*4054,A
+Note 4054: Signal xxxx cannot be assigned (to xxxx ####) because
+'xxxx' Pin #### can't be used as input.
+
+This error should not occur, contact the Data I/O Customer
+Resource Center for assistance.
+*4055,A
+Note 4055: Signal #### cannot be assigned (to xxxx ####) because
+pin #### is not a registered pin.
+
+The design has registered equations. You will need to pick a
+device with registers.
+*4056,A
+Note 4056: Signal xxxx cannot be assigned (to yyyy ####) because
+pin #### is a registered pin and cannot be bypassed.
+
+The design has combinatorial equations. You will need to pick a
+device that either has combinatorial outputs or outputs that can
+be bypassed.
+*4057,A
+Note 4057: Signal xxxx cannot be assigned (to yyyy ####) because
+the design can't use an XOR for 'xxxx' pin ####.
+
+The design has XOR equations. You will need to choose a device
+with XOR gates, or remove the istype XOR from the design so
+the XOR is reduced to sum-of-products form.
+*4058,A
+Note 4058: Signal xxxx cannot be assigned (to yyyy ####) because the
+equation 'xxxx' pin #### can't be programmed inverted.
+
+The design needs inversion before the pin. You will need to pick
+a device that has inverters.
+*4059,A
+Note 4059: Signal xxxx cannot be assigned (to yyyy ####) because
+there are too many terms for output 'xxxx' pin ####.
+
+You will need to choose a device that has enough terms.
+*4060,A
+Note 4060: Signal xxxx cannot be assigned (to yyyy ####) because the
+register on pin #### does not have preset.
+
+You will need to choose a device with registers that can be preset.
+*4061,A
+Note 4061: Signal xxxx cannot be assigned (to yyyy ####) because the
+register on pin #### does not have asynchronous preset.
+
+You will need to choose a device with asynchronous preset
+registers.
+*4062,A
+Note 4062: Signal xxxx cannot be assigned (to yyyy ####) because the
+register on pin #### does not have synchronous preset.
+
+You will need to choose a device with synchronous preset
+registers.
+*4063,A
+Note 4063: Signal xxxx cannot be assigned (to yyyy ####) because the
+register on pin #### does not have reset.
+
+You will need to choose a device with registers that can be reset.
+*4064,A
+Note 4064: Signal xxxx cannot be assigned (to yyyy ####) because the
+register on pin #### does not have asynchronous reset.
+
+You will need to choose a device with asynchronous reset registers.
+*4065,A
+Note 4065: Signal xxxx cannot be assigned (to yyyy ####) because the
+register on pin #### does not have synchronous reset.
+
+You will need to choose a device with synchronous reset registers.
+*4066,A
+Note 4066: Signal xxxx cannot be assigned (to yyyy ####) because the
+register on pin #### does not have preload.
+
+You will need to choose a device with preloadable registers.
+*4067,A
+Note 4067: Signal xxxx cannot be assigned (to yyyy ####) because the
+register type of 'xxxx' pin #### is invalid.
+
+The design and the device have different register types,
+for example, D's and JK's. Either the design or the device
+choice must be modified so that both have the same register type.
+*4068,A
+Note 4068: Signal xxxx cannot be assigned (to yyyy ####) because the
+register on pin #### does not have function control.
+
+You will need to choose a device with selectable register types
+(e.g. JK/D registers).
+*4069,A
+Note 4069: Signal xxxx cannot be assigned (to yyyy ####) because the
+dynamic register type of 'xxxx' pin #### requires an FC equation.
+
+This device has selectable registers (JK/D), and an .FC equation
+needs to be added.
+*4070,A
+Note 4070: Signal xxxx cannot be assigned (to yyyy ####) because an
+FC equation of 'xxxx' pin #### must be low to use D flip flop.
+
+Either write .FC = 0, or stop using .D equations for the
+given output.
+*4071,A
+Note 4071: Signal xxxx cannot be assigned (to yyyy ####) because an
+enable equation is not allowed on pin ####.
+
+Either remove the .OE equations, or choose a device that
+has the proper output enabling mechanism.
+*4072,A
+Note 4072: Signal xxxx cannot be assigned (to yyyy ####) because the
+enable equation on pin #### can only be VCC or GND.
+
+Either assign 1 or 0 to the .OE equations, or select a device
+that has the proper output enabling mechanism.
+*4073,A
+Note 4073: Signal xxxx cannot be assigned (to yyyy ####) because the
+enable equation on pin #### can only come from the enable pin.
+
+Either assign an input to the .OE (signifing pin controlled OE),
+or select a device that has the proper output enabling mechanism.
+*4074,A
+Note 4074: Signal xxxx cannot be assigned (to yyyy ####) because the
+enable equation polarity does not match enable on pin ####.
+
+Reverse the polarity of the .OE equations.
+*4075,A
+Note 4075: Signal xxxx cannot be assigned (to yyyy ####) because
+no feedback is allowed for 'xxxx' pin ####.
+
+Select a device that has the proper feedback.
+*4076,A
+Note 4076: Signal xxxx cannot be assigned (to yyyy ####) because
+OR feedback is not allowed on 'xxxx' pin ####.
+
+Select a device that has the proper feedback.
+*4077,A
+Note 4077: Signal xxxx cannot be assigned (to yyyy ####) because
+registered feedback is not allowed on 'xxxx' pin ####.
+
+Select a device that has the proper feedback.
+*4078,A
+Note 4078: Signal xxxx cannot be assigned (to yyyy ####) because
+pin feedback is not allowed on 'xxxx' pin ####.
+
+Select a device that has the proper feedback.
+*4079,A
+Note 4079: Signal xxxx cannot be assigned (to yyyy ####) because
+too many feedbacks are used on 'xxxx' pin ####.
+
+Select a device that has the proper feedback.
+*4080,A
+Note 4080: Signal xxxx cannot be assigned (to yyyy ####) because it
+can't resolve the equation for select mux 'xxxx'.
+
+Refer to the device's logic diagram. The output macro has a
+select mux where neither choice is suitable. Select a device
+that has the necessary features.
+*4081,A
+Note 4081: Signal xxxx cannot be assigned (to yyyy ####) because the
+equation polarity for xxxx is not supported on pin ####.
+
+Do not issue the -fixed option to PLAOPT, or select a device
+with different or programmable polarity.
+*4083,A
+Note 4083: Signal 'xxxx' did not fit because it had too many
+product terms.
+
+Use the selector or logic diagrams to select a suitable device.
+*4084,A
+Note 4084: Signal 'xxxx' did not fit because it did not have banked
+preset, reset, and OE.
+
+Use the selector or logic diagrams to select a suitable device.
+*4085,A
+Note 4085: Signal 'xxxx' did not fit because it did not have
+banked preset and reset.
+
+Use the selector or logic diagrams to select a suitable device.
+*4086,A
+Note 4086: Signal 'xxxx' did not fit because it did not have a
+banked clock.
+
+Use the selector or logic diagrams to select a suitable device.
+*4087,A
+Note 4087: Signal 'xxxx' did not fit because it did not have
+a banked OE.
+
+Use the selector or logic diagrams to select a suitable device.
+*4088,A
+Note 4088: Signal 'xxxx' did not fit because potential output
+macros were not properly registered/combinatorial.
+
+Use the selector or logic diagrams to select a suitable device.
+*4089,A
+Note 4089: Signal 'xxxx' did not fit because potential output
+macros did not have the necessary Q/OR feedback.
+
+Use the selector or logic diagrams to select a suitable device.
+*4090,A
+Note 4090: Signal 'xxxx' did not fit because potential output
+macros did not have the necessary pin feedback.
+
+Use the selector or logic diagrams to select a suitable device.
+*4091,A
+Note 4091: Signal 'xxxx' did not fit because potential output
+macros did not have the necessary preset/reset.
+
+Use the selector or logic diagrams to select a suitable device.
+*4092,A
+Note 4092: Signal 'xxxx' did not fit because potential output
+macros did not have the proper enablin.
+
+Use the selector or logic diagrams to select a suitable device.
+*4093,A
+Note 4093: Signal 'xxxx' did not fit because potential output
+macros did not have output pins.
+
+Only nodes matched the requirements of the equations, but they were
+buried nodes and the design required real outputs. Use the selector
+or logic diagrams to select a suitable device.
+*4094,A
+Note 4094: Signal 'xxxx' did not fit because potential output
+macros did not have XOR's.
+
+Use the selector or logic diagrams to select a device with
+XOR's, or remove the 'istype XOR' so that the XOR equations are
+reduced to sum-of-products form.
+*4095,A
+Note 4095: Signal 'xxxx' did not fit because device output macros
+were not compatible with the equation.
+
+Use the selector or logic diagrams to select a suitable device.
+*4096,A
+Note 4096: Signal xxxx cannot be assigned (to yyyy ####)
+because the equation xxxx was specified 'invert' but yyyy ####
+is 'buffer'.
+
+Choose a device with inverters before the pin, or remove the
+istype invert from the AHDL source file.
+*4097,A
+Note 4097: Signal xxxx cannot be assigned (to yyyy ####)
+because the equation xxxx was specified 'buffer' but yyyy ####
+is 'invert'.
+
+Choose a device without inverters before the pin, or remove the
+istype buffer" from the AHDL source file.
+*4098,A
+Note 4098: Signal xxxx cannot be assigned (to yyyy ####) because
+input to register xxxx can only be from pin ####.
+
+This error should not occur, contact the Data I/O Customer
+Resource Center for assistance.
+*4099,A
+Note 4099: Design has too many product terms (####) for device
+(#### terms).
+Choose an FPLA that is bigger.
+*4101,A
+Logical Error 4101:  'xxxx.yy' is not a valid feedback term
+
+An equation term was encountered that has an illegal extension
+for use as feedback.
+*4102,A
+Logical Error 4102:  More signals than an 1800 can fit!
+
+The design is too big to fit in the E1800 device.
+*4103,A
+Logical Error 4103: Too many global signals! Maximum globals
+allowed is 'nn'.
+
+The design has too many signals that need to be global signals.
+The E1800 has only 16 global macrocells.
+*4104,A
+Logical Error 4104:  Unable to assign 'xxxx' as a global signal.
+
+The design has too many signals that need to be global signals.
+The E1800 has only 16 global macrocells.
+*4105,A
+Logical Error 4105:  Failed to fit equations into quadrant 'n'
+
+This indicates that the fitter was unable to complete assignments
+in this quadrant.  This is usually do to a macrocell configuration
+error, or a connectivity error (more than 8 signals that need to
+be local in one quadrant).
+*4106,A
+Logical Error 4106:  Design needs 'n1' inputs, only 'n2' inputs are
+    available
+
+Too many input signals in the design.
+*4107,A
+Logical Error 4107:  Signal 'xxxx' with clock term 'yyyy' requires
+        synchronous clock, but clock term 'yyyy' is not an input,
+        and can't be mapped to the quadrant clock pin.
+
+The design has an illegal clock term for the synchronous clock.
+*4108,A
+Internal Error 4108:  Failed to find global pin for 'xxxx'
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4109,A
+Internal Error 4109:  Failed to find local pin for 'xxxx'
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4110,A
+Logical Error 4110:  Pin 'nn' assigned to 'xxxx' is not a valid
+input pin.
+
+The design has an illegal pin preassignment.
+*4111,A
+Logical Error 4111:  Pin 'nn' assigned to 'xxxx' is not a valid
+I/O pin
+
+The design has an illegal pin preassignment.
+*4112,A
+Logical Error 4112:  Signal 'xxxx' needs to be global because:
+                 It drives more than 'nn' outputs.
+                 It requires dual feedback.
+     But the OE is disabled, so global feedback can't be used.
+
+This indicates that the signal needs to be a global signal, but
+the only path to the global bus is via pin feedback, and that
+can't be used because the design has the output enable disabled.
+*4113,A
+Logical Error 4113: Signal %s%s in '%s' is non-global input to %s
+     in '%s'
+
+Indicates a connectivity error in the fitter.  After fitter
+completion, the connectivity checker detected illegal assignments.
+Contact the Data I/O Customer Resource Center.
+*4114,A
+Logical Error 4114: Signal %s in '%s' wants FB from %s%s in '%s'
+
+Indicates a connectivity error in the fitter.  After fitter
+completion, the connectivity checker detected illegal assignments.
+Contact the Data I/O Customer Resource Center.
+*4115,A
+Logical Error 4115: Local signal %s in '%s' outputs to %s%s in '%s'
+
+Indicates a connectivity error in the fitter.  After fitter
+completion, the connectivity checker detected illegal assignments.
+Contact the Data I/O Customer Resource Center.
+*4116,A
+Logical Error 4116:  Signal 'xxxx' with clock term 'yyyy' requires
+                 synchronous clock, but clock term 'yyyy' is
+                 inverted.  There is no inversion on the
+                 quadrant clock pin.
+
+You cannot use inversion on the synchronous clock input term.
+*4117,A
+Internal Error 4117: nn placement error(s) detected
+
+Indicates a connectivity error in the fitter.  After fitter
+completion, the connectivity checker detected illegal assignments.
+Contact the Data I/O Customer Resource Center.
+*4118,A
+Logical Error 4118: Signal 'xxxx' was not assigned!
+
+Indicates a connectivity error in the fitter.  After fitter
+completion, the connectivity checker detected illegal assignments.
+Contact the Data I/O Customer Resource Center.
+*4119,A
+Logical Error 4119: Signal %s was assigned to more than 1 quadrant!
+
+Indicates a connectivity error in the fitter.  After fitter
+completion, the connectivity checker detected illegal assignments.
+Contact the Data I/O Customer Resource Center.
+*4120,A
+Logical Error 4120:  Signal 'xxxx' with clock term 'yyyy' requires
+     synchronous clock, but quadrant synchronous
+     clock is already assigned to 'zzzz'
+
+This usually occurs when two equations have been preassigned to the
+same quadrant, but they use two different synchronous clock input
+terms, and each quadrant has only one synchronous clock.
+*4121,A
+Logical Error 4121:  'xxxx.y' is not a valid register term.
+Device does not support this register type.
+
+An equation term was encountered that has an illegal register
+type for the E1800 device.
+*4122,A
+Logical Error 4122: 'xxxx.yy' is not a valid register term
+Device does not support this register option
+
+An equation term was encountered with a register option not
+supported on the E1800 device (i.e. register preset).
+*4123,A
+Internal Error 4123:  Dangling locals, mblocal:nn.
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4124,A
+Internal Error 4124:  unassigned list overflow
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4125,A
+Internal Error 4125:  mblocal list overflow
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4126,A
+Logical Error 4126:  Signal 'xxxx' with clock term 'yyyy' cannot
+be assigned to the synchronous clock.
+
+The named clock term could not be assigned to the quadrant
+synchronous clock.  This may be a program error.  Contact the Data
+I/O Customer Resource Center.
+*4127,A
+Internal Error 4127:  mbglobal list overflow
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4128,A
+Internal Error 4128:  mbaccess list overflow
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4129,A
+Internal Error 4129:  alocal list overflow
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4130,A
+Internal Error 4130:  aqglobal list overflow
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4131,A
+Internal Error 4131:  cglobal list overflow
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4132,A
+Logical Error 4132:  Signal 'xxxx' requires synchronous clock,
+             but no clock term was specified.
+
+There is no clock equation in the design for the specified signal.
+*4133,A
+Logical Error 4133:  All of the signals requiring synchronous
+    clocking from 'xxxx' will not fit in the same quadrant.
+
+There are more equations using a single synchronous clock term
+than will fit in one quadrant.
+*4134,A
+Internal Error 4134:  Pin assignment for 'xxxx', pin 'nn' is bad
+
+An internal program error.  Contact the Data I/O Customer Resource
+Center.
+*4135,A
+Logical Error 4135:  Signal 'xxxx' needs to be in quadrant 'n',
+                     but it's assigned to pin 'nn'
+
+This signal has been preassigned to a pin that puts it in
+a different quadrant than the signals it needs to communicate
+with.
+*4136,A
+Logical Error 4136:, Fitter failed using preassigned pins.  Another
+    attempt will be made ignoring preassignments.
+
+The pin preassignments in the design would not fit into the part,
+and "-preassign try" was selected, so the fitter will now attempt
+to fit the design by ignoring the preassigned pins.
+
+*4151,A
+Note 4151 Signal 'xxxx' could not be assigned to pin xxxx because
+pin #### does not feed the array, and other equations use 'xxxx'.
+
+Choose a device where the device allows the input to be
+a control signal (e.g. OE) as well as an array input.
+*4152,A
+Note 4152: Signal 'xxxx' - register feedback was used in the
+design but pin feedback is used in the device and the output
+(xxxx ####) has pin controlled OE.
+
+You should not get this message. Contact the Data I/OCustomer
+Resource Center.
+*4153,A
+Note 4153: Signal 'xxxx' is not used in the design and will not
+be assigned a pin.
+
+There is a signal that either wasn't used (input), or had no
+equations (output). If it has some special purpose, you may
+assign a pin number, otherwise it should be eliminated.
+*4154,A
+Note 4154: Signal 'xxxx' (pin ####) is not used in the design;
+neither the signal nor its pin will be reassigned.
+
+There is a signal that either wasn't used (input), or had no
+equations (output). If this signal/pin combination does
+not serve some special purpose, the signal should be eliminated.
+
+*4155,A
+Note 4155: Fitter 'xxxx' is not available; either the fitter was
+not found on your path or you do not have the necessary fitter.
+
+When attempting to fit a device, the device was denoted as
+requiring the ginve adhoc fitter. However, the fitter
+executable could not be found. Contact the Data I/O Customer
+Resource Center to purchase fitter.
+*4156,A
+Note 4156: Adhoc fitter 'xxxx' is not available; either the name
+is wrong or is is not on your path.
+
+You specified the name of an alternate fitter as an argument
+to the fitter. However, an executable of that name could not be
+found. Check that the correct name is provided and that it is
+available on your current path.
+*4157,A
+Note 4157: Filename extension on adhoc fitter argument 'xxxx'
+should not be specified and is being ignored.
+
+Adhoc fitters must be executables, however, even if a special
+extension is used to denote that (such as .exe on DOS), that
+extension should not be provided.
+*4158,A
+Warning 4158: Not enough disk space to swap the FIT program to
+the disk.
+
+Remove some files from your disk so that more space is available.
+The newfile could not be created, the files may be write protected.
+*4301,A
+Fatal Error 4301: Input file not specified.
+
+*4302,A
+Fatal Error 4302: Input and Output file names are the same 'xxx'.
+
+*4303,A
+Fatal Error 4303: Input and Log file names are the same 'xxx'.
+
+*4304,A
+Fatal Error 4304: Output and Log file names are the same 'xxx'.
+
+*4305,A
+Fatal Error 4305: Can't open input file 'xxx'.
+
+*4306,A
+Fatal Error 4306: Can't open output file 'xxx'.
+
+*4307,A
+Fatal Error 4307: Can't open log file 'xxx'.
+
+*4308,A
+Fatal Error 4308: Can't open log file 'xxx'.
+
+*4309,A
+Fatal Error 4309: Can't open output file 'xxx'.
+
+*4310,A
+Fatal Error 4310: Can't open output file 'xxx'.
+
+*4311,A
+Fatal Error 4311: Latte failed on 'xxx'.
+
+*4312,A
+Fatal Error 4312: Can't open input file 'xxx'.
+
+*4313,A
+Logical Error 4313: ## too many expander terms required.
+
+*4320,A
+Logical Error 4320: No pin number assigned to xxx.
+
+*4321,A
+Logical Error 4321: Input or feedback signal 'xxx' not allowed on
+output.
+
+*4322,A
+Logical Error 4322: Output signal 'xxx' not supported for this
+device.
+
+*4323,A
+Internal Error 4323: Illegal dot extension.
+
+*4324,A
+Logical Error 4324: Signal 'xxx' has multiple entries in #$ PINS
+list.
+
+*4325,A
+Logical Error 4325: Ignoring assignment of 'xxx' to ##, not a
+MacroCell.
+
+*4326,A
+Logical Error 4326: Signal 'xxx' has multiple entries in #$ NODES
+list.
+
+*4327,A
+Logical Error 4327: Ignoring assignment of 'xxx' to ##, not a
+MacroCell.
+
+*4328,A
+Logical Error 4328: Pin number '##' for 'xxx' is being ignored.
+
+*4329,A
+Logical Error 4329: Node number '##' for 'xxx' is being ignored.
+
+*4330,A
+Logical Error 4330: Signal 'xxx' not allowed as an input for this
+device.
+
+*4331,A
+Internal Error 4331: Illegal dot extension.
+
+*4333,A
+Logical Error 4333: Ignoring assignment of 'xxx' to ##, a power or
+ground pin.
+
+*4334,A
+Logical Error 4334: Illegal synchronous clock equation on 'xxx.xx'.
+
+*4335,A
+Logical Error 4334: Conflicting sync-clock assignment on 'xxx.xx'.
+
+*4340,A
+Logical Error 4340: Wrong polarity for signal xxx.
+
+*4341,A
+Logical Error 4341: Wrong polarity for signal xxx.
+
+*4342,A
+Logical Error 4342: Input or feedback signal xxx.xx not allowed on
+output.
+
+*4343,A
+Logical Error 4343: Output signal xxx.xx not supported for this
+device.
+
+*--Fuseasm--,A
+*5000,A
+Logical Error 5000: xxx.C and xxx.C have inconsistent modes.
+
+Use either asynchronous or synchronous clock through out the design.
+*5001,A
+Logical Error 5001: xxx pin ## can't be used as output.
+
+Reassign pin for the equation with a valid output pin.
+*5003,A
+Logical Error 5003: xxx pin ## can't be used as input nor feedback.
+
+Reassign pin for the input with a valid input/bidir pin.
+*5004,A
+Fatal Error 5004: Pin ## is an illegal assignment for xxx.
+
+Pin is out of range, try some other device or pin number.
+*5005,A
+Logical Error 5005: xxx pin ## can't be used as registered output.
+
+Reassign pin for the output with a registered pin.
+*5006,A
+Logical Error 5006: Register of xxx pin ## has no preset.
+
+Reassign pin for the output with a registered pin with preset.
+*5007,A
+Logical Error 5007: Register of xxx pin ## has no reset.
+
+Reassign pin for the output with a registered pin with reset.
+*5008,A
+Logical Error 5008: Register of xxx pin ## has no preload.
+
+Reassign pin for the output with a registered pin with preload.
+*5009,A
+Warning 5009: Register of xxx pin ## has no asynchronous reset.
+
+Part has Synchronous Reset; Reset may not work as expected.
+*5010,A
+Warning 5010: Register of xxx pin ## has no synchronous reset.
+
+Part has Asynchronous Reset; Reset may not work as expected.
+*5011,A
+Warning 5011: Register of xxx pin ## has no asynchronous preset.
+
+Part has Synchronous Preset; Preset may not work as expected.
+*5012,A
+Warning 5012: Register of xxx pin ## has no synchronous preset.
+
+Part has Asynchronous Preset; Preset may not work as expected.
+*5013,A
+Logical Error 5013: xxx can't be programmed to one-input flip flop
+of pin ##.
+
+Select a device with the specified flip-flop type.
+*5014,A
+Logical Error 5014: Register of xxx pin ## has no FC line.
+
+Select a device with Dynamic Register Control feature.
+*5016,A
+Logical Error 5016: xxx can't map to pin ##'s [OE | CK].
+
+Check the equation for invalid setting of the macrocell.
+*5017,A
+Logical Error 5017: xxx.OE is not allowed on pin ##.
+
+Select a part with the specified output enable.
+*5018,A
+Logical Error 5018: xxx can't map to OE of pin ##; only VCC or
+GND allowed.
+
+Select a part with the specified output enable.
+*5019,A
+Logical Error 5019: xxx can't map to OE of pin ## only pin ##
+allowed.
+
+Modify the OE equation to use the external OE pin.
+*5020,A
+Logical Error 5020: xxx can't map to OE of pin ##; output is
+always enabled.
+
+Select a part with the specified output enable.
+*5022,A
+Logical Error 5022: Polarity of pin ##'s OE doesn't match with xxx.
+
+Invert the OE equation.
+*5023,A
+Internal Error 5023: drive_pin(): invalid enable type.
+
+Contact the Data I/O Customer Resource Center.
+*5024,A
+Logical Error 5024: xxx pin ## is not a registered pin.
+
+Reassign pin for the output with a registered pin.
+*5025,A
+Logical Error 5025: Status of xxx register has already been set
+for this group.
+
+Reassign pin for the output with a registered pin.
+*5027,A
+Logical Error 5027: Register of xxx pin ## can't be bypassed.
+
+Reassign pin for the output with a bypassable registered pin
+*5028,A
+Internal Error 5028: progTerm(): bad node.
+
+Contact the Data I/O Customer Resource Center.
+*5029,A
+Logical Error 5029: Register type of xxx pin ## is invalid.
+
+Try other device with the specified flip flop type.
+*5030,A
+Logical Error 5030: Dynamic register type of xxx pin ## requires
+FC equation.
+
+Write FC equation to use the dynamic register control.
+*5031,A
+Logical Error 5031: FC equation of xxx pin ## must be low to
+use D flip flop.
+
+Invert the FC equation.
+*5032,A
+Logical Error 5032: Dynamic register type of xxx pin ##
+requires FC equation.
+
+Write FC equation to use the dynamic register control.
+*5033,A
+Internal Error 5033: pregtype(): invalid register type.
+
+Contact the Data I/O Customer Resource Center.
+*5034,A
+Internal Error 5034: Process_IC  pSIG for ## is NULL.
+
+Contact the Data I/O Customer Resource Center.
+*5035,A
+Logical Error 5035: xxx pin ## can't be used as feedback.
+
+Reassign pin for the feedback with bidir pin.
+*5036,A
+Logical Error 5036: OR feedback is not allowed on xxx pin ##.
+
+Reassign pin for the feedback with pin that has OR feedback.
+*5037,A
+Logical Error 5037: Registered feedback is not allowed on xxx
+pin ##.
+
+Reassign pin for the feedback with pin that has Q feedback.
+*5038,A
+Logical Error 5038: Pin feedback is not allowed on xxx pin ##.
+
+Reassign pin for the feedback with pin that has pin feedback.
+*5039,A
+Logical Error 5039: Too many feedbacks are used on xxx pin ##.
+
+Check the use of feedbacks in equation with the physical feedback
+paths.
+*5040,A
+Logical Error 5040: Only one feedback is allowed on xxx pin ##.
+
+Check the use of feedbacks in equation with the physical feedback
+path.
+*5041,A
+Internal Error 5041: term_alloc(): PT is null; signum = ##.
+
+Contact the Data I/O Customer Resource Center.
+*5042,A
+Logical Error 5042: xxx can't use XOR on pin ##.
+
+Reassign pin for the output with pin that has 2-input XOR gate.
+*5043,A
+Internal Error 5043: term_alloc(): Pin ddd's TT should have been
+modified.
+
+Contact the Data I/O Customer Resource Center.
+*5044,A
+Logical Error 5044: ## too many terms for output xxx pin ##.
+
+Read the Design Consideration chapter in the ABEL manual on Polarity
+Control.
+*5045,A
+Fatal Error 5045: Device file not specified.
+
+Run fuseasm with -dev <dev_name>; <dev_name> is the targeted device.
+*5046,A
+Fatal Error 5046: Invalid pin number assigned to signal xxx.
+
+Pin is out of range; try some other device.
+*5047,A
+Fatal Error 5047: Can't open file xxx.
+
+Maybe out of disk space. Run cleanup4 to make more room in the
+directory.
+*5048,A
+Fatal Error 5048: Unable to close file yyy.
+
+Maybe out of disk space. Run cleanup4 to make more room in the
+directory.
+*5050,A
+Logical Error 5050: Too many terms used by.
+
+Read the Design Consideration chapter in the ABEL manual on Polarity
+Control.
+*5051,A
+Internal Error 5051: Internal error: Pin2MC.
+
+Contact the Data I/O Customer Resource Center.
+*5052,A
+Internal Error 5052: Pin2MC324  Pin ##.
+
+Contact the Data I/O Customer Resource Center.
+*5053,A
+Internal Error 5053: EP_fixup(): invalid polarity type.
+
+Contact the Data I/O Customer Resource Center.
+*5054,A
+Logical Error 5054: Polarity of 'xxx.OE' pin ## does not match
+with that of the enable.
+
+Invert the OE equation.
+*5055,A
+Internal Error 5055: E0600_fixup(): OE has to be a select mux.
+
+Contact the Data I/O Customer Resource Center.
+*5056,A
+Internal Error 5056: E1800_fixup OE has to be a select mux.
+
+Contact the Data I/O Customer Resource Center.
+*5057,A
+Warning 5057: Only the first ## signature chars will be programmed.
+
+Use only one word with -ues <sig_word>.
+*5058,A
+Internal Error 5058: Too many product terms on pin ###.
+
+Contact the Data I/O Customer Resource Center.
+*5059,A
+Fatal Error 5059: Too many terms used. ## max; try group reduction.
+
+Read the Design Consideration chapter in the ABEL manual on Polarity
+Control.
+*5060,A
+Internal Error 5060: Too many bits in PROM word.
+
+Contact the Data I/O Customer Resource Center.
+*5061,A
+Command Error 5061: Invalid output type for PROM ##.
+
+Use -format with one of the valid type for PROM.
+*5062,A
+Warning 5062: Input/feedback xxxxxx has been reduced out.
+
+PLAopt has reduced out the input.
+*5063,A
+Logical Error 5063: Input xxx has no 'uncomplemented' array
+connection.
+
+Invert the input.
+*5064,A
+Logical Error 5064: Input xxx has no 'complement' array connection.
+
+Invert the input.
+*5065,A
+Logical Error 5065: Local feedback xxxxxx can't be used in
+quadrant ##.
+
+Use global feedback, i.e. feedback that can feed to any quadrant.
+*5066,A
+Internal Error 5066: Startfuse #### is not start of term.
+
+Contact the Data I/O Customer Resource Center.
+*5067,A
+Internal Error 5067: Startfuse #### is not in any array.
+
+Contact the Data I/O Customer Resource Center.
+*5068,A
+Internal Error 5068: fuseinc of array ddd is zero.
+
+Contact the Data I/O Customer Resource Center.
+*5069,A
+Logical Error 5069: Select mux xxx can't be re-configured.
+
+Check the equation for conflicting setting of the macrocell.
+*5070,A
+Logical Error 5070: xxx requires pin ## as its input.
+
+Modify the equation to use the pin as input.
+*5071,A
+Logical Error 5071: Pin ## can't be assigned to xxx.
+
+Reassign pin for the equation with a valid output pin.
+*5072,A
+Internal Error 5072: rpt_resrc(): Illegal feedback.
+
+Contact the Data I/O Customer Resource Center.
+*5073,A
+Logical Error 5073: ? not an odd # of pins on side of device for
+PLCC.
+
+Strange PLCC; ignore the message.
+*5074,A
+Warning 5074: Signal xxx was declared but not used.
+
+Make sure this is not a mistake.
+*5076,A
+Internal Error 5076: Get_reg_str  bad reg type.
+
+Contact the Data I/O Customer Resource Center.
+*5078,A
+Fatal Error 5078: Writing to document file xxx.
+
+Maybe out of disk space. Run cleanup4 to make more room in the
+directory.
+*5079,A
+Internal Error 5079: Missing keyword yyy in xxx.fus.
+
+Contact the Data I/O Customer Resource Center.
+*5080,A
+Internal Error 5080: ## fuses in a set; exceed ## limit in xxx.fus.
+
+Contact the Data I/O Customer Resource Center.
+*5081,A
+Internal Error 5081: 'c' expected, 'c' found while reading xxx.fus
+
+Contact the Data I/O Customer Resource Center.
+*5082,A
+Logical Error 5082: Fuse #### in xxx.fus is out of range.
+
+Check the fuses statement for invalid fuse numbers.
+*5083,A
+Fatal Error 5083: EOF found when writing X to JEDEC Hex file.
+
+Maybe out of disk space. Run cleanup4 to make more room in the
+directory.
+*5084,A
+Fatal Error 5084: EOF found when writing X to JEDEC file.
+
+Maybe out of disk space. Run cleanup4 to make more room in the
+directory.
+*5085,A
+Internal Error 5085: negative jedec number.
+
+Contact the Data I/O Customer Resource Center.
+*5086,A
+Internal Error 5086: No symbol found in xxx.tmv.
+
+Contact the Data I/O Customer Resource Center.
+*5087,A
+Warning 5087: Only one feedback is allowed on pin ##; mapping xxx
+to xxx.FB
+
+Check the feedback for incorrect use by the software
+*5088,A
+Command Error 5088: Programmer load file not specified.
+Use -o <filename>.
+
+Run fuseasm <in_file> -o <file_name.jed>.
+*5089,A
+Fatal Error 5089: Format code ## is not allowed.
+Use -format default.
+
+Run fuseasm <in_file> -format default.
+*5090,A
+Internal Error 5090: Illegal character xx found while reading
+xxx.tmv.
+
+Contact the Data I/O Customer Resource Center.
+*5091,A
+Internal Error 5091: xx expected. xx found while reading xxx.tmv.
+
+Contact the Data I/O Customer Resource Center.
+*5092,A
+Logical Error 5092: xxx node ## can't use shared feedback.
+
+Move one of the two equations that use shared feedback to another
+free pin.
+*5095,A
+Logical Error 5095: PR/RE is not allowed for latched output xxx.
+
+Remove PR/RE equation for latched output.
+*5096,A
+Internal Error 5096: Cluster has been clobbered.
+
+Contact the Data I/O Customer Resource Center.
+*5097,A
+Fatal Error 5097: Pin ## is an illegal pin assignment for xxx.
+
+Pin is out of range, try some other device.
+*5098,A
+Fatal Error 5098: PLA file type is not supported.
+
+Run PLAopt <in_file> -reduce default.
+*5099,A
+Internal Error 5099: Invalid output pin ##.
+
+Contact the Data I/O Customer Resource Center.
+*5100,A
+Internal Error 5100: Pal_choose bad pin ## index.
+
+Contact the Data I/O Customer Resource Center.
+*5101,A
+Internal Error 5101: get_node(): illegal extension.
+
+Contact the Data I/O Customer Resource Center.
+*5102,A
+Warning 5102: Polarity of yyy is not specified. Assume pos
+polarity.
+
+Output has programmable inversion both before and after register.
+*5103,A
+Warning 5103: Polarity of yyy is not specified. Pin has neg
+polarity.
+
+Output has fixed inversion after register; it may invert the
+PR/RE output.
+*5104,A
+Internal Error 5104: oe_choose(): bad enable type.
+
+Contact the Data I/O Customer Resource Center.
+*5105,A
+Internal Error 5105: comb_choose  pSIG ## is null.
+
+Contact the Data I/O Customer Resource Center.
+*5106,A
+Logical Error 5106: xxx can't map to node ##; wrong polarity.
+
+Output has fixed polarity type which is different from the equation;
+Run PLAopt with -red default.
+*5107,A
+Logical Error 5107: xxx can't map to pin ##; wrong polarity.
+
+Output has fixed polarity type which is different from the equation;
+Run PLAopt with -red default.
+*5108,A
+Internal Error 5108: invalid_output_pin(): bad pinty for pin ##.
+
+Contact the Data I/O Customer Resource Center.
+*5109,A
+Logical Error 5109: xxx istype 'BUFFER' is not allowed on pin ##.
+
+Select a device with no or programmable inversions.
+*5110,A
+Logical Error 5110: xxx istype 'INVERT' is not allowed on pin ##.
+
+Select a device with fixed or programmable inversions.
+*5111,A
+Logical Error 5111: PR/RE is not allowed for combinatorial
+output xxx.
+
+Modify to the primary equation to be registered.
+*5112,A
+Logical Error 5112: xxx.XR can't be used with xxx.T.
+
+XOR is required to perform D-T emulation.
+*5113,A
+Command Error 5113: No input file specified.
+
+Run fuseasm with a valid PLA file.
+*5114,A
+Logical Error 5114: Input to register xxx can only be from pin ##.
+
+Check the equation for improper input register assignment.
+*5115,A
+Command Error 5115: Illegal use of options.
+
+Check the command line options for illegal flags.
+*--JED/PLAsim--,A
+*6001,A
+Warning 6001: Device not supported by simulator.
+
+The current version of JEDSIM doesn't support this device.
+Simulate the design with PLASIM.
+
+*6002,A
+Fatal Error 6002: Error writing to output.
+
+The disk does not have enough free space to contain the file
+being written.
+
+*6003,A
+Fatal Error 6003: Input file not specified.
+
+A JEDEC file is expected as the input to JEDSIM.
+
+*6004,A
+Fatal Error 6004: Could not open input file xxx.
+
+The indicated file could not be opened by JEDSIM.  If the
+indicated file exists, check to make sure that it has the
+appropriate file protection settings to enable you to access it.
+
+*6005,A
+Fatal Error 6005: Could not open output file xxx.
+
+The file could not be opened by JEDSIM because there was not
+free space on the disk or a protected file of the same name
+already exists.
+
+*6006,A
+Fatal Error 6006: Device type must be specified.
+
+The ABEL device type must be specified on the command line if
+the JEDEC file does not have the device type in the header.
+For example, to specify a P16R8 device type add "-device P16R8"
+to the command line.
+
+The JEDEC file header could be modified to include the following
+text string:  "JEDEC file for: P16R8".
+
+*6007,A
+Fatal Error 6007: Could not open vector file xxx.
+
+The ".tmv" vector file produced by AHDL2PLA could not be opened.
+If it was deleted, rerun AHDL2PLA to recreate it.
+
+*6029,A
+Fatal Error 6029: Single number expected in '-signal' xxx
+
+A valid decimal number was not found after the "-signal" option.
+The ABEL 3.x range (14..17) is not supported.
+
+*6030,A
+Fatal Error 6030: No breakpoint vector number(s) found.
+
+A valid decimal number was not found after the "-break" option.
+
+*6031,A
+Fatal Error 6031: No signals found in '-signal' list.
+
+No signal names or numbers were found after the "-signal" option.
+
+*6032,A
+Warning 6032: '-signal' signal xxx not found in device.
+
+The signal xxx was not found in the device.  The names are case
+sensitive.
+
+*6033,A
+Warning 6033: No matching signals found in '-signal' list, using
+defaults.
+
+No matching signals were found.
+
+*6034,A
+Fatal Error 6034: File name too long xxx.
+
+The indicated file name is too long.
+
+*6035,A
+Fatal Error 6035: Reading input part of test vector.
+
+The .tmv test vector file is defective.
+
+*6036,A
+Fatal Error 6036: Reading test vector '->'.
+
+The .tmv test vector file is defective.
+
+*6037,A
+Fatal Error 6037: Reading output part of test vector.
+
+The .tmv test vector file is defective.
+
+*6038,A
+Fatal Error 6038: Reading test vector ';'.
+
+The .tmv test vector file is defective.
+
+*6051,A
+Fatal Error 6051: Multiple .C, .LE or .LH specified for xxx.
+
+Only one clock input is allowed for a register.  Remove the
+unnecessary equation and reprocess the design.
+
+*6052,A
+Warning 6052: Second part of xxx XOR equation not found in PLA.
+
+Two parts of a XOR equation must be present, indicated with a
+.X1 and .X2 suffix.  This defective PLA file was missing one
+part of the XOR equation.
+
+*6054,A
+Warning 6054: No clock equation found for xxx.
+
+PLASIM requires a clock equation for each registered equation.
+
+*6055,A
+Fatal Error 6055: Incomplete design, can not simulate.
+
+Information required by PLASIM was missing from the PLA file.
+
+*6056,A
+Fatal Error 6056: Input file not specified.
+
+A PLA file is expected as the input to PLASIM.
+
+*6057,A
+Fatal Error 6057: Could not open input file xxx.
+
+*6058,A
+Fatal Error 6058: Default output name requires input file with
+a .TTn extension.
+
+*6059,A
+Fatal Error 6059: Could not open output file xxx.
+
+The disk does not have enough free space to contain the file
+being written.
+
+*6060,A
+Fatal Error 6060: Vector file not specified.
+
+A ".tmv" test vector file must be specified on the command line
+with the "-ivector" option or in the PLA file with a "VECTORFILE"
+comment.
+
+*6061,A
+Fatal Error 6061: Could not open vector file xxx.
+
+The ".tmv" vector file produced by AHDL2PLA could not be opened by
+PLASIM.  If it was deleted, rerun AHDL2PLA to recreate it.
+
+*6062,A
+Fatal Error 6062: Could not open input file xxx.
+
+The ".tt0" PLA file produced by could AHDL2PLA not be opened by
+PLASIM.  If it was deleted, rerun AHDL2PLA to recreate it.
+
+*6063,A
+Fatal Error 6063: Could not open output file xxx.
+
+The indicated working file could not be opened by PLASIM.
+
+*6064,A
+Fatal Error 6064: Could not open input file xxx.
+
+The indicated working file could not be opened by PLASIM.
+
+*6065,A
+Fatal Error 6065: PLA has ## signals, the limit is ##.
+
+The number of input and output signals in the PLA file exceed
+the maximum allowed in PLASIM.
+
+*6066,A
+Internal Error 6066: Unknown extension xxx on pla output.
+
+The pla file is defective.
+
+*6100,A
+Warning 6100: Skipping unknown JEDEC field xx.
+
+A reserved field identifier was used.
+
+*6101,A
+Fatal Error 6101: L field address exceeds fuse limit ##.
+
+The fuses specified in the L field exceeded the maximum
+allowable fuses address for the device.  This error could
+be caused by selecting the wrong device.
+
+*6102,A
+Fatal Error 6102: Fuse address ## exceeds fuse limit ##.
+
+While processing a string of fuses in a L field, the calculated
+fuse address exceeded the maximum allowable fuses address for the
+device.  This error could be caused by selecting the wrong device.
+
+*6103,A
+Fatal Error 6103: Illegal fuse state xx at fuse address ##.
+
+The allowable fuse states for a L field are "1" and "0".
+
+*6104,A
+Fatal Error 6104: H field address exceeds fuse limit ##.
+
+The fuses specified in the H field exceeded the maximum
+allowable fuses address for the device.  This error could
+be caused by selecting the wrong device.
+
+*6105,A
+Fatal Error 6105: Fuse address ## exceeds fuse limit ##.
+
+While processing a string of fuses in a H field, the calculated
+fuse address exceeded the maximum allowable fuses address for the
+device.  This error could be caused by selecting the wrong device.
+
+*6106,A
+Fatal Error 6106: Illegal fuse state xx at fuse address ##.
+
+The allowable fuse states for a H field are "0" through "9"
+and "A" through "F".
+
+*6107,A
+Fatal Error 6107: Illegal default fuse state xx.
+
+The allowable default fuse states are "0" and "1".
+
+*6108,A
+Warning 6108: Illegal default test condition xx.
+
+The allowable default test conditions are "0" and "1".
+
+*6109,A
+Fatal Error 6109: QF value ## incorrect, ## fuses expected.
+
+The number of fuses specified in the JEDEC QF field doesn't agree
+with the device file.
+
+*6110,A
+Fatal Error 6110: QP value ## incorrect, '##' pins expected.
+
+The number of pins specified in the JEDEC QP field doesn't agree
+with the device file.
+
+*6111,A
+Fatal Error 6111: QV value ## is to large, '##' vectors allowed.
+
+The MS-DOS version is limited to 65000 bytes of memory for test
+vector storage.  This means a 24 pin device can have 2708 vectors
+and a 68 pin device can have 955 vectors.
+
+*6112,A
+
+Warning 6112: File Fuse Checksum = ####  RAM Fuse Checksum = ####.
+
+The calculated fuse checksum didn't match the value in the C field.
+
+*6114,A
+Warning 6114: Hex number expected.
+
+Allowed hexadecimal digits are "0" through "1" and "A" through "F".
+
+*6115,A
+Warning 6115: Hex number too large.
+
+Hexadecimal number was to large, normal limit is 4 digits.
+
+*6116,A
+Fatal Error 6116: Expecting end of field character '*'.
+
+The field had extra characters.
+
+*6117,A
+Warning 6117: Vector ## is out of sequence.
+
+A test vector was missing or out of sequence.
+
+*6118,A
+Warning 6118: Wrong number of test conditions in vector ##.
+
+The test vectors should have the same number of test conditions
+as the QP field.
+
+*6119,A
+Warning 6119: PIN or NODE xxx has invalid or missing number.
+
+The PIN and NODE note fields require a number for each signal.
+
+*6120,A
+Warning 6120: Pin or node ## has multiple names xxx and yyy.
+
+The PIN and NODE note fields require a unique number for each
+signal.
+*--JED2AHDL--,A
+*6500,A
+Fatal Error 6500:  Input file not specified.
+
+No input JEDEC file was specified on the command line.
+*6501,A
+Fatal Error 6501:  Could not open input file 'xxxx'.
+
+The indicated file could not be opened by JED2AHDL. If the file
+exists, check to make sure that it has the appropriate file
+protection settings to enable you to access it.
+
+*6502,A
+Fatal Error 6502:  Could not open output file 'xxxx'.
+
+The indicated file could not be opened for write. Check that
+you have available disk space, the specified path is valid, and
+the file directory protection allows you write access.
+
+*6503,A
+Fatal Error 6503:  Device type must be specified.
+
+There is no device name specified in the JEDEC file.  You must
+specify a device name on the command line in this case.
+*6504,A
+Fatal Error 6504:  Could not open report file 'xxxx'.
+
+The indicated file could not be opened for write.  Check that
+you have available disk space, the specified path is valid,
+and the file directory protection allows you write access.
+*6505,A
+Logical Error 6505:  PROMs are not supported by JED2AHDL.
+
+JED2AHDL cannot translate PROM devices.
+*6506,A
+Logical Error 6506:  Device not supported by JED2AHDL.
+
+This device cannot be translated by JED2AHDL.  This usually
+means that the device contains some complex feature that is
+not supported in the JED2AHDL translator.
+*6507,A
+Internal Error 6507:
+
+An internal program error has occurred. Contact the Data I/O
+Customer Resource Center.
+*6508,A
+Fatal Error 6508:  Error writing to disk.
+
+Check that disk space is available, and that the directory is
+not write protected.
+*6509,A
+Logical Error 6509: unknown f/f type 'nn' on pin 'nn'.
+
+A flip-flop type was encountered that is not known to JED2AHDL.
+Contact the Data I/O Customer Resource Center.
+*6510,A
+Fatal Error 6510:  Could not rename 'xxxx' to 'yyyy'.
+
+If an ABEL source file exists that has the same name as the
+source file that JED2AHDL will create, it renames the existing
+file to "name.bak". This error indicates the rename failed.
+This is usually indicative of a file protection problem.
+
+*--PLDgrade--,A
+*7001,A
+Fatal Error 7001: Bad Vector(s) detected - AFSIM abort
+
+Bad vectors detected in good device simulation. Rerun jedsim to
+make sure all vectors passed.
+*7002,A
+Fatal Error 7002: Cannot open tmpfile
+
+AFSIM cannot open temporay file during fault simulation.
+Check disk space, read/write protection and FILE command (DOS).
+*7003,A
+Fatal Error 7003: Device not supported by AFSIM fault simulator.
+
+The current version of AFSIM doesn't support this device.
+*7004,A
+Fatal Error 7004: Error writing to output.
+
+The file could not be opened by AFSIM because there was not
+free space on the disk or a protected file of the same name
+already exists.
+*7006,A
+Fatal Error 7006: Input file not specified.
+
+A JEDEC file is expected as the input to AFSIM.
+*7007,A
+Fatal Error 7007: Could not open input file 'xxxx'.
+
+The indicated file could not be opened by AFSIM.  If the
+indicated file exists, check to make sure that it has the
+appropriate file protection settings to enable you to access it.
+*7008,A
+Fatal Error 7008: Device type must be specified.
+
+The ABEL device type must be specified on the command line if
+the JEDEC file does not have the device type in the header.
+For example, to specify a P16R8 device type add "-device P16R8"
+to the command line.
+
+The JEDEC file header could be modified to include the following
+text string:  "JEDEC file for: P16R8".
+*7009,A
+Fatal Error 7009: Could not open vector file 'xxxx'.
+
+The ".tmv" vector file produced by AHDL2PLA could not be opened.
+If it was deleted, rerun AHDL2PLA to recreate it.
+*7010,A
+Fatal Error 7010: Could not open output file 'xxxx'.
+
+The file could not be opened by AFSIM because there was not
+free space on the disk or a protected file of the same name
+already exists.
+*7011,A
+Fatal Error 7011: Reading test vector
+
+The .tmv test vector file is defective.
+*7101,A
+Internal Error 7101: Unrecognizable Fault type 001
+
+Contact the Data I/O Customer Resource Center.
+*7102,A
+Internal Error 7102: Unrecognized fault type 002
+
+Contact the Data I/O Customer Resource Center.
+*7103,A
+Internal Error 7103: Unrecognized fault type 003
+
+Contact the Data I/O Customer Resource Center.
+*7104,A
+Internal Error 7104: Unrecognized gatetype 004
+
+Contact the Data I/O Customer Resource Center.
+*7105,A
+Internal Error 7105: Unrecognized fault type 005
+
+Contact the Data I/O Customer Resource Center.
+*7110,A
+Internal Error 7110: Unrecognized fault type 010
+
+Contact the Data I/O Customer Resource Center.
+*7111,A
+Internal Error 7111: Unrecognized fault type 011
+
+Contact the Data I/O Customer Resource Center.
+*Errors Help,A
+--AHDL2PLA--
+1000
+1001
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+1045
+1046
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1084
+1085
+1086
+1087
+1091
+1092
+1093
+1094
+1096
+1098
+1099
+1100
+1101
+1102
+1103
+1104
+1105
+1109
+1110
+1111
+1113
+1114
+1116
+1120
+1121
+1122
+1124
+1126
+1128
+1129
+1130
+1131
+1132
+1133
+1134
+1135
+--PLAopt--
+2001
+2002
+2003
+2004
+2005
+2006
+2007
+2008
+2009
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+2017
+2019
+2020
+2021
+2022
+2023
+2024
+2025
+2026
+2027
+2028
+2029
+2030
+2031
+2032
+2033
+2034
+2035
+2036
+2037
+2038
+2039
+2040
+2041
+--Selector--
+3000
+3012
+3013
+3014
+3016
+3018
+3022
+3026
+3027
+3028
+3029
+3030
+3031
+3032
+3033
+3034
+3035
+3036
+3074
+3075
+3076
+3077
+3080
+3081
+3082
+3083
+3084
+3085
+3086
+3088
+3089
+3090
+3094
+3098
+3099
+3100
+3101
+3102
+3107
+3110
+3111
+3130
+3137
+3141
+3165
+3168
+3171
+3172
+3173
+3175
+3200
+3216
+3220
+3261
+3270
+3271
+3272
+3273
+3276
+3277
+3278
+3280
+3330
+3331
+3335
+3340
+3344
+3346
+3354
+3370
+3371
+3372
+3373
+3374
+3375
+3376
+3377
+3381
+3382
+3383
+3385
+3391
+3394
+3401
+3403
+3407
+3414
+3415
+3416
+3417
+3420
+3421
+3424
+3425
+3426
+3427
+3428
+3429
+3430
+3431
+3439
+3446
+3449
+3450
+3455
+3456
+3457
+3459
+3460
+3463
+3467
+3468
+3480
+3481
+3482
+3483
+3485
+--Fitter--
+4000
+4002
+4003
+4004
+4005
+4006
+4007
+4009
+4010
+4011
+4012
+4013
+4014
+4015
+4016
+4017
+4018
+4019
+4020
+4021
+4023
+4024
+4025
+4026
+4027
+4028
+4029
+4030
+4031
+4032
+4033
+4034
+4035
+4036
+4037
+4038
+4039
+4040
+4041
+4042
+4043
+4044
+4045
+4046
+4047
+4049
+4050
+4051
+4052
+4053
+4054
+4055
+4056
+4057
+4058
+4059
+4060
+4061
+4062
+4063
+4064
+4065
+4066
+4067
+4068
+4069
+4070
+4071
+4072
+4073
+4074
+4075
+4076
+4077
+4078
+4079
+4080
+4081
+4083
+4084
+4085
+4086
+4087
+4088
+4089
+4090
+4091
+4092
+4093
+4094
+4095
+4096
+4097
+4098
+4099
+4101
+4102
+4103
+4104
+4105
+4106
+4107
+4108
+4109
+4110
+4111
+4112
+4113
+4114
+4115
+4116
+4117
+4118
+4119
+4120
+4121
+4122
+4123
+4124
+4125
+4126
+4127
+4128
+4129
+4130
+4131
+4132
+4133
+4134
+4135
+4136
+4151
+4152
+4153
+4154
+4155
+4156
+4157
+4158
+4301
+4302
+4303
+4304
+4305
+4306
+4307
+4308
+4309
+4310
+4311
+4312
+4313
+4320
+4321
+4322
+4323
+4324
+4325
+4326
+4327
+4328
+4329
+4330
+4331
+4333
+4334
+4335
+4340
+4341
+4342
+4343
+--Fuseasm--
+5000
+5001
+5003
+5004
+5005
+5006
+5007
+5008
+5009
+5010
+5011
+5012
+5013
+5014
+5016
+5017
+5018
+5019
+5020
+5022
+5023
+5024
+5025
+5027
+5028
+5029
+5030
+5031
+5032
+5033
+5034
+5035
+5036
+5037
+5038
+5039
+5040
+5041
+5042
+5043
+5044
+5045
+5046
+5047
+5048
+5050
+5051
+5052
+5053
+5054
+5055
+5056
+5057
+5058
+5059
+5060
+5061
+5062
+5063
+5064
+5065
+5066
+5067
+5068
+5069
+5070
+5071
+5072
+5073
+5074
+5076
+5078
+5079
+5080
+5081
+5082
+5083
+5084
+5085
+5086
+5087
+5088
+5089
+5090
+5091
+5092
+5095
+5096
+5097
+5098
+5099
+5100
+5101
+5102
+5103
+5104
+5105
+5106
+5107
+5108
+5109
+5110
+5111
+5112
+5113
+5114
+5115
+--JED/PLAsim--
+6001
+6002
+6003
+6004
+6005
+6006
+6007
+6029
+6030
+6031
+6032
+6033
+6034
+6035
+6036
+6037
+6038
+6051
+6052
+6054
+6055
+6056
+6057
+6058
+6059
+6060
+6061
+6062
+6063
+6064
+6065
+6066
+6100
+6101
+6102
+6103
+6104
+6105
+6106
+6107
+6108
+6109
+6110
+6111
+6112
+6114
+6115
+6116
+6117
+6118
+6119
+6120
+--JED2AHDL--
+6500
+6501
+6502
+6503
+6504
+6505
+6506
+6507
+6508
+6509
+6510
+--PLDgrade--
+7001
+7002
+7003
+7004
+7006
+7007
+7008
+7009
+7010
+7011
+7101
+7102
+7103
+7104
+7105
+7110
+7111

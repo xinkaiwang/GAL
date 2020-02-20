@@ -1,0 +1,11 @@
+
+PLAOPT  ABEL PLA Optimizer
+ABEL 4.00 Copyright 1990 Data I/O Corp.  All Rights Reserved
+
+Input file: 'Z:\src\GAL\abel4\DS00.tt1'.
+Choose ByPin Reduction
+Reducing for ON-SETs...
+Reducing for OFF-SETs...
+Merging results in 'Z:\src\GAL\abel4\DS00.tt2'.
+
+PLAOPT complete.  Time: 0 seconds

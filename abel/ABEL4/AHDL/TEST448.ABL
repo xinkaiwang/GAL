@@ -1,0 +1,205 @@
+module test448a
+title `Internal feedback for PLX/448
+Michael Holley   Data I/O Corp  30 July 1990'
+
+        t448a   device 'P448Z';
+
+        I2, I3, I4, I5, I6, I7, I8, I9,I10     pin   2, 3, 4, 5, 6, 7, 8, 9,10;
+        C11,C14                                 pin  11,14;
+        Q13,Q15,Q16,Q17,Q19,Q21,Q22,Q23         pin  13,15,16,17,19,21,22,23;
+        Vpp,Gnd1,Gnd2,Gnd3,Vcc                  pin   1,12,18,20,24;
+
+"Constants
+        H,L,C,Z,X = 1,0,.C.,.Z.,.X.;
+
+        Q13,Q15,Q16 istype 'INVERT';
+        Q17 istype 'BUFFER';
+
+equations
+        !Q13  = I2 & I3 # I4 & I5; "Com C0=0  Active Low C1 = 0
+         Q15  = I2 & I3 # I4 & I5; "Com C0=0  Active Hi  C1 = 1
+
+        [Q16,Q17].c = C11;
+
+        !Q16 := I2 & I3 # I4 & I5; "Reg C0=1  Active Low C1 = 0
+         Q17 := I2 & I3 # I4 & I5; "Reg C0=1  Active Hi  C1 = 1
+
+test_vectors 
+       ([C11,I2,I3,I4,I5] -> [Q13,Q15,Q16,Q17])
+        [ C , 0, 0, 0, 0] -> [ H , L , H , L ];
+        [ 0 , 1, 1, 1, 1] -> [ L , H , H , L ];
+        [ C , 1, 1, 1, 1] -> [ L , H , L , H ];
+        [ 0 , 0, 0, 0, 0] -> [ H , L , L , H ];
+        [ C , 0, 0, 0, 0] -> [ H , L , H , L ];
+
+"INTERNAL FEEDBACK  (PATH A)
+" The .FB extension is used to reference the 'A' feedback path in
+" both the registered and combinatorial modes.  The signal name
+" without any extension refers to the 'B' or pin feeback path. 
+" 
+" In the registered model the feedback is always from the !Q and
+" the programmable inversion is between the register and the output.
+" The .FB extension resolves this inversion automatically.
+" 
+" In the combinatorial model the feedback is alway from before the 
+" output inverter. The programmable inversion is before the feedback
+" path.
+" 
+equations 
+        "Feedback from OR, Q13 and Q15 have inverter after feedback tap
+         Q19 = Q13.FB & I6; 
+         Q21 = Q15.FB & I6; 
+
+        "Feedback from Q 
+         Q22 = Q16.FB & I6; "Q16 has an inverter on the output
+         Q23 = !Q17.FB & I6; "Q17 has an buffer on the output
+
+test_vectors 
+       ([C11,I2,I3,I4,I5,I6] -> [Q13,Q15,Q16,Q17, Q19,Q21,Q22,Q23])
+        [ C , 0, 0, 0, 0, 1] -> [ H , L , H , L ,  L , H , H , H ];
+        [ 0 , 1, 1, 1, 1, 1] -> [ L , H , H , L ,  H , L , H , H ];
+        [ C , 1, 1, 1, 1, 1] -> [ L , H , L , H ,  H , L , L , L ];
+        [ 0 , 0, 0, 0, 0, 1] -> [ H , L , L , H ,  L , H , L , L ];
+        [ C , 0, 0, 0, 0, 1] -> [ H , L , H , L ,  L , H , H , H ];
+
+end
+module test448b
+title `Pin feedback for PLX/448
+Michael Holley   Data I/O Corp  30 July 1990'
+
+        t448b   device 'P448Z';
+
+        I2, I3, I4, I5, I6, I7, I8, I9, I10     pin   2, 3, 4, 5, 6, 7, 8, 9,10;
+        C11,C14                                 pin  11,14;
+        Q13,Q15,Q16,Q17,Q19,Q21,Q22,Q23         pin  13,15,16,17,19,21,22,23;
+        Vpp,Gnd1,Gnd2,Gnd3,Vcc                  pin   1,12,18,20,24;
+        Reset,Preset                            node 25,26;
+
+"Constants
+        H,L,C,Z,X = 1,0,.C.,.Z.,.X.;
+
+equations
+        !Q13  = I2 & I3 # I4 & I5; "Com C0=0  Active Low C1 = 0
+         Q15  = I2 & I3 # I4 & I5; "Com C0=0  Active Hi  C1 = 1
+
+        [Q16,Q17].C = C11;
+        !Q16 := I2 & I3 # I4 & I5; "Reg C0=1  Active Low C1 = 0
+         Q17 := I2 & I3 # I4 & I5; "Reg C0=1  Active Hi  C1 = 1
+
+test_vectors 
+       ([C11,I2,I3,I4,I5] -> [Q13,Q15,Q16,Q17])
+        [ C , 0, 0, 0, 0] -> [ H , L , H , L ];
+        [ 0 , 1, 1, 1, 1] -> [ L , H , H , L ];
+        [ C , 1, 1, 1, 1] -> [ L , H , L , H ];
+        [ 0 , 0, 0, 0, 0] -> [ H , L , L , H ];
+        [ C , 0, 0, 0, 0] -> [ H , L , H , L ];
+
+equations 
+         Q19 = Q13 & I6;
+         Q21 = Q15 & I6;
+         Q22 = Q16 & I6;
+         Q23 = Q17 & I6;
+
+test_vectors 
+       ([C11,I2,I3,I4,I5,I6] -> [Q13,Q15,Q16,Q17, Q19,Q21,Q22,Q23])
+        [ C , 0, 0, 0, 0, 1] -> [ H , L , H , L ,  H , L , H , L ];
+        [ 0 , 1, 1, 1, 1, 1] -> [ L , H , H , L ,  L , H , H , L ];
+        [ C , 1, 1, 1, 1, 1] -> [ L , H , L , H ,  L , H , L , H ];
+        [ 0 , 0, 0, 0, 0, 1] -> [ H , L , L , H ,  H , L , L , H ];
+        [ C , 0, 0, 0, 0, 1] -> [ H , L , H , L ,  H , L , H , L ];
+end
+module test448c
+title `Internal feedback for PLX/448
+Michael Holley   Data I/O Corp  30 July 1990'
+
+        t448c   device 'P448Z';
+
+        I2, I3, I4, I5, I6, I7, I8, I9,I10     pin   2, 3, 4, 5, 6, 7, 8, 9,10;
+        C11,C14                                 pin  11,14;
+        Q13,Q15,Q16,Q17,Q19,Q21,Q22,Q23         pin  13,15,16,17,19,21,22,23;
+        Vpp,Gnd1,Gnd2,Gnd3,Vcc                  pin   1,12,18,20,24;
+        Reset,Preset                            node 25,26;
+
+"Constants
+        H,L,C,Z,X = 1,0,.C.,.Z.,.X.;
+
+         Q13.OE  istype 'neg';
+
+
+"Output state fuses    0 = totem pole   1 = open collector
+        Fuses[5115] = 1; "Pin 13
+        Fuses[5112] = 1; "Pin 15
+        Fuses[5101] = 1; "Pin 21
+        Fuses[5098] = 1; "Pin 23
+
+equations
+         Q13  = I2 & I3;
+         Q16  = I4 & Q13;
+
+         Q13.OE  = I9;
+
+test_vectors 'Open Collector'
+       ([I2,I3, I4,I9,Q13] -> [Q13,Q16])
+        [ 1, 1,  1, 1, X ] -> [ H , H ];
+        [ 0, 0,  1, 1, X ] -> [ L , L ];
+        [ 1, 1,  1, 1, X ] -> [ H , H ];
+        [ 0, 0,  1, 1, X ] -> [ L , L ];
+        [ 1, 1,  1, 1, 1 ] -> [ X , H ];
+        [ 0, 0,  1, 1, 0 ] -> [ X , L ];
+
+test_vectors 'Tri-State'
+       ([I2,I3, I4,I9,Q13] -> [Q13,Q16])
+        [ 1, 1,  1, 0, 0 ] -> [ X , L ];
+        [ 0, 0,  1, 0, 0 ] -> [ X , L ];
+        [ 1, 1,  1, 0, 0 ] -> [ X , L ];
+        [ 0, 0,  1, 0, 0 ] -> [ X , L ];
+
+        [ 1, 1,  1, 0, 1 ] -> [ X , H ];
+        [ 0, 0,  1, 0, 1 ] -> [ X , H ];
+        [ 1, 1,  1, 0, 1 ] -> [ X , H ];
+        [ 0, 0,  1, 0, 1 ] -> [ X , H ];
+end
+
+module _buf448
+title `Dual clock registered buffer for PLX/448
+Michael Holley   Data I/O Corp  30 July 1990'
+
+        buf448  device 'P448Z';
+
+        I2, I3, I4, I5, I6, I7, I8, I9, I10     pin   2, 3, 4, 5, 6, 7, 8, 9,10;
+        C11,C14                                 pin  11,14;
+        Q13,Q15,Q16,Q17,Q19,Q21,Q22,Q23         pin  13,15,16,17,19,21,22,23;
+        Vpp,Gnd1,Gnd2,Gnd3,Vcc                  pin   1,12,18,20,24;
+        Reset,Preset                            node 25,26;
+
+        Input  = [ I2, I3, I4, I5, I6, I7, I8, I9];
+        Output = [Q13,Q15,Q16,Q17,Q19,Q21,Q22,Q23];
+        Q13.oe,Q15.oe,Q16.oe,Q17.oe,Q19.oe,Q21.oe,Q22.oe,Q23.oe istype 'neg';
+
+"Constants
+        H,L,C,Z,X = 1,0,.C.,.Z.,.X.;
+
+"Output state fuses    0 = totem pole   1 = open collector
+        Fuses[5115] = 0; "Pin 13
+        Fuses[5112] = 0; "Pin 15
+        Fuses[5101] = 0; "Pin 21
+        Fuses[5098] = 0; "Pin 23
+
+equations
+        Output.oe = !I10;
+
+	[Q13,Q15,Q16,Q17].C = C11;
+	[Q19,Q21,Q22,Q23].C = C14;
+        Output := Input;
+
+test_vectors   ([C11,C14,I10,Input] -> Output)
+                [ C , C , L , ^h00] ->  ^h00;
+                [ C , C , L , ^h55] ->  ^h55;
+                [ C , C , L , ^hAA] ->  ^hAA;
+                [ C , C , L , ^hFF] ->  ^hFF;
+                [ C , L , L , ^h00] ->  ^h0F;
+                [ L , C , L , ^hAA] ->  ^h0A;
+                [ C , L , L , ^hA0] ->  ^hAA;
+                [ C , C , H , ^h00] ->   Z  ;
+                [ L , L , L , ^hFF] ->  ^h00;
+end

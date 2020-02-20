@@ -1,0 +1,265 @@
+module DEMO1800
+title 'Intel 5C180 and Altera EP1800 example - ABEL 4.00
+Bob Hamilton Data I/O Corp   5 June 1990'
+
+	demo1800	device	'E1800';
+
+	C,K,X,Z,H,L		= .C.,.K.,.X.,.Z.,1,0;
+
+"Power Pins
+	Vcc1,Vcc2	pin  18,52;
+	Gnd1,Gnd2	pin   1,35;
+
+"Pins for global bidirectional buffer (Quardants B and C)
+Declarations
+	AtoB		pin  22;
+	A3,A2,A1,A0	pin  23,24,25,26;
+	B3,B2,B1,B0	pin  44,45,46,47;
+
+	SideA		= [A3,A2,A1,A0];
+	SideB		= [B3,B2,B1,B0];
+
+"Equations Global bidirectional buffer
+equations 
+	SideA.OE =  AtoB;
+	SideB.OE = !AtoB;
+
+	SideA = SideB;
+	SideB = SideA;
+
+test_vectors 'SideA to SideB'
+	([AtoB,SideA,SideB] -> [SideA,SideB])
+	 [ L  ,  X  ,  X  ] -> [  Z  ,  X  ];
+	 [ L  , ^h0 ,  X  ] -> [  X  , ^h0 ];
+	 [ L  , ^hF ,  X  ] -> [  X  , ^hF ];
+	 [ L  , ^hA ,  X  ] -> [  X  , ^hA ];
+	 [ L  , ^h5 ,  X  ] -> [  X  , ^h5 ];
+
+test_vectors 'SideB to SideA'
+	([AtoB,SideA,SideB] -> [SideA,SideB])
+	 [ H  ,  X  ,  X  ] -> [  X  ,   Z ];
+	 [ H  ,  X  ,^h0  ] -> [ ^h0 ,   X ];
+	 [ H  ,  X  ,^hF  ] -> [ ^hF ,   X ];
+	 [ H  ,  X  ,^hA  ] -> [ ^hA ,   X ];
+	 [ H  ,  X  ,^h5  ] -> [ ^h5 ,   X ];
+
+@page 
+"Pins for local bidirectional buffer (Quadrant B)
+Declarations
+	CtoD		pin  21;
+	C3,C2,C1,C0	pin  27,28,29,30;
+	D3,D2,D1,D0	pin  31,32,33,34;
+
+	SideC		= [C3,C2,C1,C0];
+	SideD		= [D3,D2,D1,D0];
+
+"Equations Local bidirectional buffer
+equations 
+	SideC.OE =  CtoD;
+	SideD.OE = !CtoD;
+
+	SideC = SideD;
+	SideD = SideC;
+
+test_vectors 'SideC to SideD'
+	([CtoD,SideC,SideD] -> [SideC,SideD])
+	 [ L  ,  X  ,  X  ] -> [  Z  ,  X  ];
+	 [ L  , ^h0 ,  X  ] -> [  X  , ^h0 ];
+	 [ L  , ^hF ,  X  ] -> [  X  , ^hF ];
+	 [ L  , ^hA ,  X  ] -> [  X  , ^hA ];
+	 [ L  , ^h5 ,  X  ] -> [  X  , ^h5 ];
+
+test_vectors 'SideD to SideC'
+	([CtoD,SideC,SideD] -> [SideC,SideD])
+	 [ H  ,  X  ,  X  ] -> [  X  ,   Z ];
+	 [ H  ,  X  ,^h0  ] -> [ ^h0 ,   X ];
+	 [ H  ,  X  ,^hF  ] -> [ ^hF ,   X ];
+	 [ H  ,  X  ,^hA  ] -> [ ^hA ,   X ];
+	 [ H  ,  X  ,^h5  ] -> [ ^h5 ,   X ];
+
+@page 
+"Pins for 4 bit toggle up/down counter (Quadrant A - Local)
+Declarations
+	Clk1		pin  17;
+	Up,Down,Clr	pin  16,15,14;
+
+	Q3,Q2,Q1,Q0	pin   2, 3, 4, 5;
+
+	Q3,Q2,Q1,Q0	istype 'reg_T,pos';
+
+	CountL		= [Q3,Q2,Q1,Q0];
+
+"Equations 4 bit toggle up/down counter (Quadrant A - Local)
+equations   
+
+	CountL.t = (CountL.q + 1) &  Up & !Down
+	         # (CountL.q - 1) & !Up &  Down
+	         # (CountL.q    ) & !Up & !Down
+	         # (CountL.q    ) &  Up &  Down
+	         $  CountL.q;
+
+	CountL.ar = !Clr;
+	CountL.clk = Clk1;
+
+test_vectors 'Up/Down Counter'
+	([Clk1,Up ,Down,Clr] -> CountL)
+	 [ L  , L ,  L , L ] ->   0; "Clear
+	 [ C  , H ,  L , H ] ->   1;
+	 [ C  , H ,  L , H ] ->   2;
+	 [ C  , H ,  L , H ] ->   3;
+	 [ C  , H ,  L , H ] ->   4;
+	 [ C  , H ,  L , H ] ->   5;
+	 [ C  , H ,  L , H ] ->   6;
+	 [ C  , H ,  L , H ] ->   7;
+	 [ C  , L ,  L , H ] ->   7; "Hold
+	 [ C  , H ,  L , H ] ->   8;
+	 [ C  , H ,  L , H ] ->   9;
+	 [ C  , H ,  L , H ] ->  10;
+	 [ C  , H ,  L , H ] ->  11;
+	 [ C  , L ,  H , H ] ->  10; "Down
+	 [ C  , L ,  H , H ] ->   9;
+	 [ C  , L ,  H , H ] ->   8;
+	 [ C  , H ,  L , H ] ->   9; "Up
+	 [ C  , H ,  L , H ] ->  10;
+	 [ C  , H ,  L , H ] ->  11;
+	 [ C  , H ,  L , H ] ->  12;
+	 [ C  , H ,  L , H ] ->  13;
+	 [ C  , H ,  H , H ] ->  13; "Hold
+	 [ C  , H ,  L , H ] ->  14;
+	 [ C  , H ,  L , H ] ->  15;
+	 [ C  , H ,  L , H ] ->   0;
+	 [ C  , H ,  L , H ] ->   1;
+	 [ C  , H ,  L , H ] ->   2;
+	 [ L  , H ,  L , L ] ->   0; "Clear
+@page 
+
+"Pins for 4 bit buried toggle counter (Quadrant A - Global)
+Declarations
+	Dir		pin  19;
+	Q7,Q6,Q5,Q4	pin  10,11,12,13;
+	E3,E2,E1,E0	pin  40,41,42,43;
+	F7,F6,F5,F4	pin   6, 7, 8, 9;
+
+	Q7,Q6,Q5,Q4	istype 'reg_T';
+
+	CountOut	= [F7,F6,F5,F4];
+	BufOut		= [E3,E2,E1,E0];
+	BufIn		= [Q7,Q6,Q5,Q4];
+	Buried		= [Q7,Q6,Q5,Q4];
+
+"Equations 4 bit buried toggle flip flop counter and buffer
+equations	
+
+" Use .Q for the local register feedback
+
+	Buried.t = (Buried.q + 1) &  Dir
+	         # (Buried.q - 1) & !Dir
+	         $  Buried.q;
+
+	Buried.ar  = !Clr;
+	Buried.clk = Clk1;
+	Buried.oe  = 0;  "Used as inputs
+
+"Have the buried count come out on these pins 
+	CountOut = Buried.Q;
+
+"Buffer
+	BufOut = BufIn;
+
+test_vectors 'Buried Counter and Buffer'
+	([Clk1,Dir,Clr,BufIn ] -> [CountOut,BufOut])
+	 [ L  , H , L ,   0  ] -> [   0    ,  0   ];
+	 [ C  , H , H ,   5  ] -> [   1    ,  5   ];
+	 [ C  , H , H ,  10  ] -> [   2    , 10   ];
+	 [ C  , H , H ,  15  ] -> [   3    , 15   ];
+	 [ C  , H , H ,   0  ] -> [   4    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [   5    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [   6    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [   7    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [   8    ,  0   ];
+	 [ L  , L , L ,   0  ] -> [   0    ,  0   ];
+	 [ C  , L , H ,   0  ] -> [  15    ,  0   ];
+	 [ C  , L , H ,   0  ] -> [  14    ,  0   ];
+	 [ C  , L , H ,   0  ] -> [  13    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [  14    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [  15    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [   0    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [   1    ,  0   ];
+	 [ C  , H , H ,   0  ] -> [   2    ,  0   ];
+ 
+@page 
+"Pins for 4 bit ripple counter (Quadrant C)
+Declarations
+	InA,ClrW	pin  48,49;
+	QD,QC,QB,QA	pin  36,37,38,39;
+
+	QD  ,QC  ,QB  ,QA	istype 'reg_T';
+
+	Ripple		= [QD,QC,QB,QA];
+
+"Equations 4 bit ripple counter
+equations   
+
+	Ripple.t   = [1,1,1,1];
+	Ripple.ar  = ClrW;
+	Ripple.clk = ![QC,QB,QA,InA];
+
+test_vectors 'Count Up'
+	([InA,ClrW] -> Ripple)
+	 [ L , H  ] ->   0;
+	 [ L , L  ] ->   0;
+	 [ C , L  ] ->   1;
+	 [ C , L  ] ->   2;
+	 [ C , L  ] ->   3;
+	 [ C , L  ] ->   4;
+	 [ C , L  ] ->   5;
+	 [ C , L  ] ->   6;
+	 [ C , L  ] ->   7;
+	 [ C , L  ] ->   8;
+	 [ C , L  ] ->   9;
+	 [ C , L  ] ->  10;
+	 [ C , L  ] ->  11;
+	 [ C , L  ] ->  12;
+	 [ C , L  ] ->  13;
+	 [ C , L  ] ->  14;
+	 [ C , L  ] ->  15;
+	 [ C , L  ] ->   0;
+	 [ C , L  ] ->   1;
+	 [ C , L  ] ->   2;
+	 [ C , L  ] ->   3;
+	 [ L , H  ] ->   0;
+
+@page 
+"Pins for 4 bit serial shift register (Quadrant D)
+Declarations
+	Clk4,Load	pin  53,54;
+	S3,S2,S1,S0	pin  61,62,63,64;
+	L3,L2,L1,L0	pin  65,66,67,68;
+
+	Shift_Out = [S3,S2,S1,S0];
+	Shift_In  = [L3,L2,L1,L0];
+
+"Equations 4 bit serial shift register with load
+equations   
+
+	S0.d =  Load & L0 # !Load & S3.q;
+	S1.d =  Load & L1 # !Load & S0.q;
+	S2.d =  Load & L2 # !Load & S1.q;
+	S3.d =  Load & L3 # !Load & S2.q;
+
+	Shift_Out.clk = Clk4;
+
+test_vectors 'Shift Register'
+       ([Clk4,Load,Shift_In] -> Shift_Out)
+	[ C  ,  1 , ^b0111 ] ->  ^b0111; 
+	[ C  ,  0 ,   X    ] ->  ^b1110; 
+	[ C  ,  0 ,   X    ] ->  ^b1101; 
+	[ C  ,  0 ,   X    ] ->  ^b1011; 
+	[ C  ,  0 ,   X    ] ->  ^b0111; 
+	[ C  ,  1 , ^b1000 ] ->  ^b1000; 
+	[ C  ,  0 ,   X    ] ->  ^b0001; 
+	[ C  ,  0 ,   X    ] ->  ^b0010; 
+	[ C  ,  0 ,   X    ] ->  ^b0100; 
+	[ C  ,  1 , ^b1111 ] ->  ^b1111; 
+end
+

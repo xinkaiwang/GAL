@@ -1,0 +1,55 @@
+module Sequence
+title 'State machine example  D. B. Pellerin  Data I/O Corp';
+
+        sequence        device  'p16r4';
+
+        q1,q0                        pin   14,15 istype 'reg,invert';
+        clock,enab,start,hold,reset  pin   1,11,4,2,3;
+        abort                        pin   17;
+        in_B,in_C                    pin   12,13;
+        sreg                         =     [q1,q0];
+
+       "State Values...
+        A = 0;          B = 1;          C = 2;
+
+equations
+
+        [q1,q0,abort].clk = clock;
+        [q1,q0,abort].oe  = !enab;
+
+state_diagram sreg;
+        State A:                " Hold in state A until start is active.
+          in_B = 0;
+          in_C = 0;
+          IF (start & !reset) THEN B WITH abort := 0;
+          ELSE A WITH abort := abort.fb;
+
+        State B:                " Advance to state C unless reset is active
+          in_B = 1;             " or hold is active. Turn on abort indicator
+          in_C = 0;             " if reset.
+          IF (reset) THEN A WITH abort := 1;
+          ELSE IF (hold) THEN B WITH abort := 0;
+          ELSE C WITH abort := 0;
+
+        State C:                " Go back to A unless hold is active
+          in_B = 0;             " Reset overrides hold.
+          in_C = 1;
+          IF (hold & !reset) THEN C WITH abort := 0;
+          ELSE A WITH abort := 0;
+
+test_vectors([clock,enab,start,reset,hold]->[sreg,abort,in_B,in_C])
+             [ .p. ,  0 ,  0  ,  0  ,  0 ]->[  A ,  0  ,  0 ,  0 ];
+             [ .c. ,  0 ,  0  ,  0  ,  0 ]->[  A ,  0  ,  0 ,  0 ];
+             [ .c. ,  0 ,  1  ,  0  ,  0 ]->[  B ,  0  ,  1 ,  0 ];
+             [ .c. ,  0 ,  0  ,  0  ,  0 ]->[  C ,  0  ,  0 ,  1 ];
+
+             [ .c. ,  0 ,  1  ,  0  ,  0 ]->[  A ,  0  ,  0 ,  0 ];
+             [ .c. ,  0 ,  1  ,  0  ,  0 ]->[  B ,  0  ,  1 ,  0 ];
+             [ .c. ,  0 ,  0  ,  1  ,  0 ]->[  A ,  1  ,  0 ,  0 ];
+             [ .c. ,  0 ,  0  ,  0  ,  0 ]->[  A ,  1  ,  0 ,  0 ];
+
+             [ .c. ,  0 ,  1  ,  0  ,  0 ]->[  B ,  0  ,  1 ,  0 ];
+             [ .c. ,  0 ,  0  ,  0  ,  1 ]->[  B ,  0  ,  1 ,  0 ];
+             [ .c. ,  0 ,  0  ,  0  ,  1 ]->[  B ,  0  ,  1 ,  0 ];
+             [ .c. ,  0 ,  0  ,  0  ,  0 ]->[  C ,  0  ,  0 ,  1 ];
+end

@@ -1,0 +1,116 @@
+module TRAFFIC
+title 'Traffic Signal Controller
+Kim-Fu Lim  Data I/O Corp   5 June 1990'
+
+	traffic	device 'F167';
+
+	Clk,SenA,SenB	pin   1, 8, 7;
+	PR		pin  16;	"Preset control
+	GA,YA,RA	pin  15,14,13;
+	GB,YB,RB	pin  11,10,9;
+
+	"Node numbers are not required if fitter is used
+	"S3,S2,S1,S0	node;
+	"COMP		node;
+
+	S3,S2,S1,S0	node 31,32,33,34;
+	COMP		node 43;
+	S3,S2,S1,S0	istype 'buffer,reg_rs';
+
+	H,L,Ck,X	= 1, 0, .C., .X.;
+
+	Count 		= [S3,S2,S1,S0];
+
+"Define Set and Reset inputs to traffic light flip flops
+	GreenA	= [GA.S,GA.R];
+	YellowA	= [YA.S,YA.R];
+	RedA	= [RA.S,RA.R];
+	GreenB	= [GB.S,GB.R];
+	YellowB	= [YB.S,YB.R];
+	RedB	= [RB.S,RB.R];
+	On	= [ 1  ,  0 ];
+	Off	= [ 0  ,  1 ];
+
+test_vectors	
+       ([Clk,PR,SenA,SenB] -> [Count,GA,YA,RA,GB,YB,RB])
+	[ 0 , 0, 0  , 0  ] -> [  X  , X, X, X, X, X, X];
+	[ 1 , 1, 1  , 1  ] -> [ 15  , X, X, X, X, X, X];
+	[ 1 , 0, 1  , 1  ] -> [ 15  , X, X, X, X, X, X];
+	[ Ck, 0, 1  , 0  ] -> [  0  , H, L, L, L, L, H];
+
+test_vectors		
+       ([Clk,PR,SenA,SenB] -> [Count,GA,YA,RA,GB,YB,RB])
+	[ Ck, 0, 1  , 0  ] -> [  0  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 0  ] -> [  0  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 1  ] -> [  1  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 1  ] -> [  2  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 1  ] -> [  3  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 1  ] -> [  4  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 1  ] -> [  5  , L, H, L, L, L, H];
+	[ Ck, 0, 1  , 0  ] -> [  8  , L, L, H, H, L, L];
+	[ Ck, 0, 1  , 0  ] -> [ 12  , L, L, H, H, L, L];
+	[ Ck, 0, 1  , 0  ] -> [ 13  , L, L, H, L, H, L];
+	[ Ck, 0, 1  , 0  ] -> [  0  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 0  ] -> [  0  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 1  ] -> [  1  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 1  ] -> [  2  , H, L, L, L, L, H];
+	[ Ck, 0, 1  , 1  ] -> [  3  , H, L, L, L, L, H];
+	[ 1 , 1, 1  , 1  ] -> [ 15  , X, X, X, X, X, X];
+	[ 1 , 0, 1  , 1  ] -> [ 15  , X, X, X, X, X, X];
+	[ Ck, 0, 1  , 0  ] -> [  0  , H, L, L, L, L, H];
+
+@page 
+equations
+	[GB,YB,RB].AP = PR;
+	[GA,YA,RA].AP = PR;
+
+	[GB,YB,RB].CLK = Clk;
+	[GA,YA,RA].CLK = Clk;
+
+	[S3,S2,S1,S0].AP = PR;
+	[S3,S2,S1,S0].CLK = Clk;
+
+"Use Complement Array to initilize or restart
+	[S3,S2,S1,S0].R        = (!COMP & [1,1,1,1]);
+	[GreenA,YellowA,RedA]  = (!COMP & [On ,Off,Off]);
+	[GreenB,YellowB,RedB]  = (!COMP & [Off,Off,On ]);
+
+state_diagram Count
+
+	State 0:	if ( SenA & !SenB ) then 0 with COMP = 1;
+			if (!SenA &  SenB ) then 4 with COMP = 1;
+	 		if ( SenA == SenB ) then 1 with COMP = 1;
+
+	State 1:	goto  2 with COMP = 1;
+	State 2:	goto  3 with COMP = 1;
+	State 3:	goto  4 with COMP = 1;
+
+	State 4:	GreenA	= Off;
+			YellowA = On ;
+			goto  5 with COMP = 1;
+
+	State 5:	YellowA = Off;
+			RedA	= On ;
+			RedB	= Off;
+			GreenB	= On ;
+			goto  8 with COMP = 1;
+
+	State 8:	if (!SenA &  SenB ) then  8 with COMP = 1;
+			if ( SenA & !SenB ) then 12 with COMP = 1;
+	 		if ( SenA == SenB ) then  9 with COMP = 1;
+
+	State 9:	goto  10 with COMP = 1;
+	State 10:	goto  11 with COMP = 1;
+	State 11:	goto  12 with COMP = 1;
+
+	State 12:	GreenB	= Off;
+			YellowB = On ;
+			goto  13 with COMP = 1;
+
+	State 13:	YellowB = Off;
+			RedB	= On ;
+			RedA	= Off;
+			GreenA	= On ;
+			goto  0 with COMP = 1;
+end
+

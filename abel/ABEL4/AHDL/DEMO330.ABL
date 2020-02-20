@@ -1,0 +1,125 @@
+module DEMO330
+title 'Cypress 330 example  14 Sep 1990'
+@if 0 
+{
+    Input registers node numbers.
+    Pin number      3   4   5   6   7   9  10  11  12  13  14
+    Feedback Node 105 106 107 108 109 110 111 112 113 114 115
+
+    Feedback registers node numbers.
+    Pin number     15  16  17  18  19  20  23  24  25  26  27  28
+    Feedback Node 116 117 118 119 120 121 122 123 124 125 126 127
+
+    Buried register node numbers.
+    Register number              3   2   1   0
+    Node number                 31  32  33  34
+    Number of product terms     13  17  11  19
+
+    To use pin 3 as an input, fuse 17170 must be programmed.
+    For example, FUSES 17170 = 1;.
+}
+
+	demo330	device	'P330';
+
+	Clk1,Clk2,Clk3,Ena14		pin  1, 2, 3,14;
+	I4,I5,I6,I7,I9,I10,I11		pin  4, 5, 6, 7, 9,10,11;
+	Q15,Q16,Q17,Q18,Q19,Q20		pin 15,16,17,18,19,20;
+	Q23,Q24,Q25,Q26,Q27,Q28		pin 23,24,25,26,27,28;
+
+	C,H,L,Z,X = .C.,1,0,.Z.,.X.;
+
+"Using pin 3 clock on input register
+Declarations
+	IR4,IR5		node 106,107;
+Equations
+	!Q15    := IR4.Q & IR5.Q;
+	 Q15.C	 = Clk1;	
+	 Q15.OE  = !Ena14;
+
+	 IR4.D	= I4;
+	 IR5.D	= I5;
+	[IR4,IR5].C = Clk3;	"Use Pin 3 clock
+
+Test_Vectors   ([Clk1,Clk3,I4,I5,Ena14,I9] -> Q15)
+		[ 0  , C  , 0, 0,  1  , 0] ->  Z;
+		[ C  , 0  , 0, 0,  0  , 0] ->  1;
+		[ 0  , C  , 1, 1,  0  , 0] ->  1;
+		[ C  , 0  , 0, 0,  0  , 0] ->  0;
+
+"Using pin 3 clock on feedback register
+Declarations
+	Q17in	node 118;
+
+Equations
+	!Q16    := Q17in.Q & IR5.Q;
+	 Q16.C	 = Clk1;	
+
+	 Q17in.D  = Q17;
+	 Q17in.C  = Clk3;	"Use Pin 3 clock
+
+Test_Vectors   ([Clk1,Clk3,Q17  ,I5,I9] -> [Q16,Q17in,IR5])
+		[ 0  , C  ,  0  , 0, 0] -> [ X ,  0  , 0 ];
+		[ C  , 0  ,  0  , 0, 0] -> [ 1 ,  0  , 0 ];
+		[ 0  , C  ,  1  , 1, 0] -> [ 1 ,  1  , 1 ];
+		[ C  , 0  ,  0  , 0, 0] -> [ 0 ,  1  , 1 ];
+		[ 0  , C  ,  0  , 1, 0] -> [ 0 ,  0  , 1 ];
+		[ C  , 0  ,  0  , 1, 0] -> [ 1 ,  0  , 1 ];
+		[ 0  , C  ,  1  , 0, 0] -> [ 1 ,  1  , 0 ];
+		[ C  , 0  ,  1  , 0, 0] -> [ 1 ,  1  , 0 ];
+		[ 0  , C  ,  0  , 0, 0] -> [ 1 ,  0  , 0 ];
+		[ C  , 0  ,  0  , 0, 0] -> [ 1 ,  0  , 0 ];
+
+"Using shared feedback from a lower macrocell
+Declarations
+	Q27in		node 126;
+	IR6,IR7		node 108,109;
+	IR9,IR10	node 110,111;
+	Q27		istype 'reg_T';
+
+Equations
+	IR10.D	 = I10;
+	IR9.D	 = I9;
+	IR7.D	 = I7;
+	IR6.D	 = I6;
+	[IR10,IR9,IR7,IR6].C = Clk2;
+
+	 Q27.t	 = (IR6.q # IR7.q);
+	 Q27.sr	 = IR9.q;
+	 Q27.C	 = Clk1;
+	 Q27.OE	 = !IR10.q;
+
+	 Q26	:= Q27in.Q;
+	 Q26.C	 = Clk1;
+
+	 Q27in.C = Clk2;
+	 Q27in.D = Q27;
+
+Test_Vectors 'Check if Q27 goes HiZ'
+       ([Clk1,Clk2,I9,I10,Q27] -> [Q26,Q27in,IR10,Q27])
+	[ 0  , C  , 0, 1 , X ] -> [ X ,  X  ,  1 , Z ];
+	[ 0  , C  , 0, 1 , 0 ] -> [ X ,  0  ,  1 , X ];
+	[ C  , 0  , 0, 1 , 0 ] -> [ 0 ,  0  ,  1 , X ];
+
+Test_Vectors 'check Q26'
+       ([Clk1,Clk2,I9,I10,Q27] -> [Q26,Q27in,IR10])
+	[ 0  , C  , 0, 1 , 1 ] -> [ 0 ,  X  ,  1 ];
+	[ 0  , C  , 0, 1 , 1 ] -> [ 0 ,  1  ,  1 ];
+	[ C  , 0  , 0, 1 , 0 ] -> [ 1 ,  1  ,  1 ];
+	[ 0  , C  , 0, 1 , 0 ] -> [ 1 ,  0  ,  1 ];
+	[ 0  , C  , 0, 1 , 0 ] -> [ 1 ,  0  ,  1 ];
+	[ C  , 0  , 0, 1 , 0 ] -> [ 0 ,  0  ,  1 ];
+
+Test_Vectors 'Toggle ff'
+       ([Clk1,Clk2,I6,I7,I9,I10] -> Q27)
+	[ 0  , C  , 0, 0, 1, 0 ] ->  X ;
+	[ C  , 0  , 0, 0, 0, 0 ] ->  1 ;
+	[ 0  , C  , 1, 1, 0, 0 ] ->  1 ;
+	[ C  , 0  , 0, 0, 0, 0 ] ->  0 ;
+	[ C  , 0  , 0, 0, 0, 0 ] ->  1 ;
+	[ C  , 0  , 0, 0, 0, 0 ] ->  0 ;
+	[ C  , 0  , 0, 0, 0, 0 ] ->  1 ;
+	[ 0  , C  , 0, 0, 0, 0 ] ->  1 ;
+	[ C  , 0  , 0, 0, 0, 0 ] ->  1 ;
+	[ 0  , C  , 0, 0, 0, 1 ] ->  Z ;
+end
+

@@ -1,0 +1,62 @@
+Module Count116
+Title 'Arbitrary length counter with Carry Out
+Michael Holley    Data I/O Corp   30 May 1990'
+
+	count116 device 'P16R8';
+
+	Osc,IncAdr,ClrAdr,OE		pin 1,3,2,11;
+	!A6,!A5,!A4,!A3,!A2,!A1,!A0	pin 18,17,16,15,14,13,12;
+	!CarryA				pin 19;
+
+	" Note that the outputs are active low.
+
+	H,L,Z,X,C	= 1, 0, .Z., .X., .C.;
+
+	CountA	= [A6,A5,A4,A3,A2,A1,A0];
+
+" This counter uses registered look ahead carry to implement an 
+" arbitrary length count.
+" The D input to the CarryA register will be high at the 115 count.
+" On the next clock with IncAdr high the CarryA will be set and
+" the count will advance to 116. 
+" The counter keep incrementing as long a CarryA is low, so the
+" counter will return to 0 on the next clock with IncAdr high.
+
+Equations 
+
+CountA := (CountA.fb + 1) &  IncAdr & ClrAdr & !CarryA.fb
+	#  CountA.fb      & !IncAdr & ClrAdr;
+
+CarryA := (CountA.fb == 115) &  IncAdr & ClrAdr
+	#  CarryA.fb         & !IncAdr & ClrAdr;
+
+CountA.clk = Osc;
+CountA.oe = !OE;
+
+CarryA.clk = Osc;
+CarryA.oe = !OE;
+
+test_vectors
+       ([Osc,OE,ClrAdr,IncAdr] -> [CarryA,CountA])
+ 	[ C , 0,  0   ,  1   ] -> [  0   ,   0  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   ,   1  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   ,   2  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   ,   3  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   ,   4  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   ,   5  ];
+ 	[ C , 0,  1   ,  0   ] -> [  0   ,   5  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   ,   6  ];
+ 	[ C , 0,  0   ,  1   ] -> [  0   ,   0  ];
+
+@const i=1; @repeat 112 {
+	[ C , 0,  1   ,  1   ] -> [  0   , @expr i; ]; @const i=i+1;}
+
+ 	[ C , 0,  1   ,  1   ] -> [  0   , 113  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   , 114  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   , 115  ];
+ 	[ C , 0,  1   ,  0   ] -> [  0   , 115  ];
+ 	[ C , 0,  1   ,  1   ] -> [  1   , 116  ];
+ 	[ C , 0,  1   ,  0   ] -> [  1   , 116  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   ,   0  ];
+ 	[ C , 0,  1   ,  1   ] -> [  0   ,   1  ];
+end

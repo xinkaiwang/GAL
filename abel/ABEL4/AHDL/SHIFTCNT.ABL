@@ -1,0 +1,101 @@
+module shiftcnt 
+title 'universal counter / shift register
+Bjorn Benson   Data I/O Corp   31 July 1990'
+
+        IFL4    device 'F159';
+
+        Clk,JKD,I1,I2,I3,OE     pin 1,2,3,4,5,11;
+        F0,F1,F2,F3             pin 12,13,14,15;
+        F3,F2,F1,F0             istype 'reg_JK,invert';
+
+        H,L,X,Z,Ck      = 1,0,.X.,.Z.,.C.;
+
+" Define counter/shift modes
+        mode    = [I3,I2,I1,JKD];               " [I3,I2,I1,JKD]
+        Down    = [ 0, 1, 0, 1 ];       Left    = [ 0, 1, 0, 0 ];
+        Up      = [ 0, 0, 1, 1 ];       Right   = [ 0, 0, 1, 0 ]; 
+        Clear   = [ 1, X, X, X ];
+
+" Group register outputs into set
+        count           = [F3,F2,F1,F0];
+
+equations
+" Count Down    JK (T) Flip/Flop
+        [F0.J,F0.K] = (mode == Down) ;
+        [F1.J,F1.K] = (mode == Down) &                 !F0.Q;
+        [F2.J,F2.K] = (mode == Down) &         !F1.Q & !F0.Q;
+        [F3.J,F3.K] = (mode == Down) & !F2.Q & !F1.Q & !F0.Q;
+
+" Count Up      JK (T) Flip/Flop
+        [F0.J,F0.K] = (mode == Up)   ;
+        [F1.J,F1.K] = (mode == Up)   &                 F0.Q;
+        [F2.J,F2.K] = (mode == Up)   &          F1.Q &  F0.Q;
+        [F3.J,F3.K] = (mode == Up)   &  F2.Q &  F1.Q &  F0.Q;
+
+" Shift Left    D Flip/Flop
+        F0.J = (mode == Left)  & F3.Q;
+        F1.J = (mode == Left)  & F0.Q; 
+        F2.J = (mode == Left)  & F1.Q;
+        F3.J = (mode == Left)  & F2.Q;
+
+" Shift Right   D Flip/Flop
+        F0.J = (mode == Right) & F1.Q;
+        F1.J = (mode == Right) & F2.Q;
+        F2.J = (mode == Right) & F3.Q;
+        F3.J = (mode == Right) & F0.Q;
+@page 
+equations
+        [F3,F2,F1,F0].OE = !OE;
+        [F3,F2,F1,F0].FC = JKD;        
+        [F3,F2,F1,F0].C  = Clk;        
+        [F3,F2,F1,F0].RE = (mode == Clear);    
+
+test_vectors  'Count Up and Shift Left'
+       ([Clk,OE,mode ]  ->  count) 
+        [ Ck, L,Clear]  ->    !0  ;
+        [ Ck, L,Up   ]  ->    !1  ;
+        [ Ck, L,Up   ]  ->    !2  ;
+        [ Ck, L,Up   ]  ->    !3  ;
+        [ Ck, L,Left ]  ->    !6  ;
+        [ Ck, L,Left ]  ->    !12 ;
+        [ Ck, H,Left ]  ->    Z   ;
+
+test_vectors  'Shift right'
+       ([Clk,OE,mode ]  ->  count )
+        [ Ck, L,Clear]  ->  ^b1111;
+        [ Ck, L,Down ]  ->  ^b0000;
+        [ Ck, L,Down ]  ->  ^b0001;
+        [ Ck, L,Right]  ->  ^b1000;
+        [ Ck, L,Right]  ->  ^b0100;
+        [ Ck, L,Right]  ->  ^b0010;
+        [ Ck, L,Right]  ->  ^b0001;
+
+test_vectors   'Shift left'
+       ([Clk,OE,mode ]  ->  count )
+        [ Ck, L,Clear]  ->  ^b1111;
+        [ Ck, L,Up   ]  ->  ^b1110;
+        [ Ck, L,Left ]  ->  ^b1101;
+        [ Ck, L,Left ]  ->  ^b1011;
+        [ Ck, L,Left ]  ->  ^b0111;
+        [ Ck, L,Left ]  ->  ^b1110;
+
+test_vectors   'Count up'                               
+       ([Clk,OE,mode ]  ->  count )
+        [ Ck, L,Clear]  ->    !0 ;
+        [ Ck, L,Up   ]  ->    !1 ;
+        [ Ck, L,Up   ]  ->    !2 ;
+        [ Ck, L,Up   ]  ->    !3 ;
+        [ Ck, L,Up   ]  ->    !4 ;
+        [ Ck, L,Up   ]  ->    !5 ;
+        [ Ck, L,Up   ]  ->    !6 ;
+        [ Ck, L,Up   ]  ->    !7 ;
+        [ Ck, L,Up   ]  ->    !8 ;
+        [ Ck, L,Up   ]  ->    !9 ;
+        [ Ck, L,Up   ]  ->   !10 ;
+        [ Ck, L,Up   ]  ->   !11 ;
+        [ Ck, L,Up   ]  ->   !12 ;
+        [ Ck, L,Up   ]  ->   !13 ;
+        [ Ck, L,Up   ]  ->   !14 ;
+        [ Ck, L,Up   ]  ->   !15 ;
+        [ Ck, L,Up   ]  ->    !0 ;
+end 

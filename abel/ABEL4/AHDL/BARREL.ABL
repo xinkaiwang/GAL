@@ -1,0 +1,49 @@
+module	BARREL  
+title '8-bit barrel shifter  
+Don Flaherty    Data I/O Corp  9 Aug 1990'
+
+	barrel	device	'P20V8R';
+
+	D7,D6,D5,D4,D3,D2,D1,D0		Pin 2,3,4,5,6,7,8,9;
+	Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0		Pin 15,16,17,18,19,20,21,22;
+	Clk,OC,E,I2,I1,I0		Pin 1,13,23,10,11,14;
+
+	Input		= [D7,D6,D5,D4,D3,D2,D1,D0];
+	Output		= [Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0];
+	Sel		= [I2,I1,I0];
+	H,L,C,Z		= 1,0,.C.,.Z.;
+
+equations
+	 Output.clk = Clk;
+	 Output.oe = !OC;
+
+	!Output := E & (  (Sel == 0) & ![D7,D6,D5,D4,D3,D2,D1,D0]
+			# (Sel == 1) & ![D0,D7,D6,D5,D4,D3,D2,D1]
+			# (Sel == 2) & ![D1,D0,D7,D6,D5,D4,D3,D2]
+			# (Sel == 3) & ![D2,D1,D0,D7,D6,D5,D4,D3]
+			# (Sel == 4) & ![D3,D2,D1,D0,D7,D6,D5,D4]
+			# (Sel == 5) & ![D4,D3,D2,D1,D0,D7,D6,D5]
+			# (Sel == 6) & ![D5,D4,D3,D2,D1,D0,D7,D6]
+			# (Sel == 7) & ![D6,D5,D4,D3,D2,D1,D0,D7]) ;
+
+test_vectors
+	([Clk,OC, E, Sel,   Input]    ->   Output)
+	 [ C,  L, H,  0, ^b10000000]  -> ^b10000000;	" Shift 0
+	 [ C,  L, H,  1, ^b10000000]  -> ^b01000000;	" Shift 1
+	 [ C,  L, H,  2, ^b10000000]  -> ^b00100000;	" Shift 2
+	 [ C,  L, H,  3, ^b10000000]  -> ^b00010000;	" Shift 3
+	 [ C,  L, H,  4, ^b10000000]  -> ^b00001000;	" Shift 4
+	 [ C,  L, H,  5, ^b10000000]  -> ^b00000100;	" Shift 5
+	 [ C,  L, H,  6, ^b10000000]  -> ^b00000010;	" Shift 6
+	 [ C,  L, H,  7, ^b10000000]  -> ^b00000001;	" Shift 7
+
+	 [ C,  L, H,  0, ^b01111111]  -> ^b01111111;	" Shift 0
+	 [ C,  L, H,  1, ^b01111111]  -> ^b10111111;	" Shift 1
+	 [ C,  L, H,  3, ^b01111111]  -> ^b11101111;	" Shift 3
+	 [ C,  L, H,  7, ^b01111111]  -> ^b11111110;	" Shift 7
+
+	 [ C,  L, H,  1, ^b00000001]  -> ^b10000000;	" Shift 1/Wrap
+	 [ C,  L, H,  1, ^b11111110]  -> ^b01111111;	" Shift 1/Wrap
+	 [ C,  L, L,  0, ^b00000000]  -> ^b11111111;	" Preset
+	 [ C,  H, H,  0, ^b00000000]  ->      Z; 	" Test High Z
+end 

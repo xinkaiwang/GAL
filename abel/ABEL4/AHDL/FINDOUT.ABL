@@ -1,0 +1,21 @@
+module findout  options '-ivector findout.tmv'
+title 'The ABEL simulator will find the output levels
+Ngoc Nicholas    Data I/O Corp    9 Aug 1990'
+
+	F1	device 'P16L8';
+
+	A,B,Y1,Y2	pin 1,2,14,15;
+
+	X = .X.;
+
+equations
+	!Y1 = A # B;
+	!Y2 = A $ B;
+
+test_vectors   
+       ([A,B] -> [Y1,Y2])
+	[0,0] -> [ X, X];
+	[0,1] -> [ X, X];
+	[1,0] -> [ X, X];
+	[1,1] -> [ X, X];
+end

@@ -1,0 +1,26 @@
+module regfb
+title 'Operation of the simulator on devices with feedback
+       Data I/O Corp.      31 July 1990'
+
+        FB2     device 'P16R4';
+
+        Clk,OE          pin 1,11;
+        INIT,D1,D2,D3   pin 2,3,4,5,;
+        F1,F2           pin 14,13;
+
+        F1 istype 'reg_D,invert';
+
+equations
+        F1.D    = D1 & INIT;
+        F2      = D2 & F1.Q;
+
+        F2.OE  = D3;
+        F1.C   = Clk;
+        F1.OE  = !OE;
+
+test_vectors   ([Clk,OE,INIT,D1,D2,D3] -> [ F1, F2])
+                [.C., 0,  0 , 1, 1, 1] -> [ 1 , 0 ];
+                [.C., 0,  0 , 0, 0, 1] -> [ 1 , 0 ];
+                [.C., 0,  1 , 1, 1, 1] -> [ 0 , 1 ];
+                [ 0 , 0,  0 , 0, 0, 1] -> [ 0 , 0 ];
+end regfb       

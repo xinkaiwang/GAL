@@ -1,0 +1,164 @@
+module BRLSHFT 
+title 'Example from Signetics PLHS501 Application Notes Vol 1
+Michael Holley   Data I/O Corp  6 Aug 1990'
+
+        brlshft device 'PML501';
+
+" Pin List
+        A7,A6,A5,A4,A3,A2,A1,A0                 pin 14,13,12,11,10, 9, 7, 6;
+        L7,L6,L5,L4,L3,L2,L1,L0                 pin 18,17,16,15,37,38,39,40;
+        OUT7,OUT6,OUT5,OUT4,OUT3,OUT2,OUT1,OUT0 pin 36,35,33,32,31,30,29,28;
+        SHIFT2,SHIFT1,SHIFT0,COMPLMTO,!LE,!OE   pin  5, 4, 3, 2, 1,52;
+
+" Internal Nodes
+  L0_0,L0_1,L0_2,L0_3,L0_4,L0_5,L0_6,L0_7 node  53,54,55,56,57,58,59,60;
+  L1_0,L1_1,L1_2,L1_3,L1_4,L1_5,L1_6,L1_7 node  61,62,63,64,65,66,67,68;
+  L2_0,L2_1,L2_2,L2_3,L2_4,L2_5,L2_6,L2_7 node  69,70,71,72,73,74,75,76;
+  L3_0,L3_1,L3_2,L3_3,L3_4,L3_5,L3_6,L3_7 node  77,78,79,80,81,82,83,84;
+  L4_0,L4_1,L4_2,L4_3,L4_4,L4_5,L4_6,L4_7 node  85,86,87,88,89,90,91,92;
+  L5_0,L5_1,L5_2,L5_3,L5_4,L5_5,L5_6,L5_7 node  93,94,95,96,97,98,99,100;
+  L6_0,L6_1,L6_2,L6_3,L6_4,L6_5,L6_6,L6_7 node 101,102,103,104,105,106,107,108;
+  L7_0,L7_1,L7_2,L7_3,L7_4,L7_5,L7_6,L7_7 node 109,110,111,112,113,114,115,116;
+  i7,i6,i5,i4,i3,i2,i1,i0                 node 117,118,119,120,121,122,123,124;
+
+"Sets
+        OUT   = [OUT7,OUT6,OUT5,OUT4,OUT3,OUT2,OUT1,OUT0];
+        INPUT = [A7,A6,A5,A4,A3,A2,A1,A0];
+        SHIFT = [SHIFT2,SHIFT1,SHIFT0];
+        LATCH = [!L7,!L6,!L5,!L4,L3,L2,L1,L0];
+        LATCH_in  = [i7,i6,i5,i4,i3,i2,i1,i0];
+
+equations
+
+   !L7_0 = A7 & (SHIFT == 0) & !LE;
+   !L7_1 = A6 & (SHIFT == 1) & !LE;
+   !L7_2 = A5 & (SHIFT == 2) & !LE;
+   !L7_3 = A4 & (SHIFT == 3) & !LE;
+   !L7_4 = A3 & (SHIFT == 4) & !LE;
+   !L7_5 = A2 & (SHIFT == 5) & !LE;
+   !L7_6 = A1 & (SHIFT == 6) & !LE;
+   !L7_7 = A0 & (SHIFT == 7) & !LE;
+   !i7   = LE & !L7;
+
+    L7 =  L7_7 & L7_6 & L7_5 & L7_4 & L7_3 & L7_2 & L7_1 & L7_0 & i7;
+
+   !L6_0 = A6 & (SHIFT == 0) & !LE;
+   !L6_1 = A5 & (SHIFT == 1) & !LE;
+   !L6_2 = A4 & (SHIFT == 2) & !LE;
+   !L6_3 = A3 & (SHIFT == 3) & !LE;
+   !L6_4 = A2 & (SHIFT == 4) & !LE;
+   !L6_5 = A1 & (SHIFT == 5) & !LE;
+   !L6_6 = A0 & (SHIFT == 6) & !LE;
+   !L6_7 = A7 & (SHIFT == 7) & !LE;
+   !i6   = LE & !L6;
+
+    L6 =  L6_7 & L6_6 & L6_5 & L6_4 & L6_3 & L6_2 & L6_1 & L6_0 & i6;
+
+   !L5_0 = A5 & (SHIFT == 0) & !LE;
+   !L5_1 = A4 & (SHIFT == 1) & !LE;
+   !L5_2 = A3 & (SHIFT == 2) & !LE;
+   !L5_3 = A2 & (SHIFT == 3) & !LE;
+   !L5_4 = A1 & (SHIFT == 4) & !LE;
+   !L5_5 = A0 & (SHIFT == 5) & !LE;
+   !L5_6 = A7 & (SHIFT == 6) & !LE;
+   !L5_7 = A6 & (SHIFT == 7) & !LE;
+   !i5   = LE & !L5;
+
+    L5 =  L5_7 & L5_6 & L5_5 & L5_4 & L5_3 & L5_2 & L5_1 & L5_0 & i5;
+
+   !L4_0 = A4 & (SHIFT == 0) & !LE;
+   !L4_1 = A3 & (SHIFT == 1) & !LE;
+   !L4_2 = A2 & (SHIFT == 2) & !LE;
+   !L4_3 = A1 & (SHIFT == 3) & !LE;
+   !L4_4 = A0 & (SHIFT == 4) & !LE;
+   !L4_5 = A7 & (SHIFT == 5) & !LE;
+   !L4_6 = A6 & (SHIFT == 6) & !LE;
+   !L4_7 = A5 & (SHIFT == 7) & !LE;
+   !i4   = LE & !L4;
+
+    L4 =  L4_7 & L4_6 & L4_5 & L4_4 & L4_3 & L4_2 & L4_1 & L4_0 & i4;
+
+   !L3_0 = A3 & (SHIFT == 0) & !LE;
+   !L3_1 = A2 & (SHIFT == 1) & !LE;
+   !L3_2 = A1 & (SHIFT == 2) & !LE;
+   !L3_3 = A0 & (SHIFT == 3) & !LE;
+   !L3_4 = A7 & (SHIFT == 4) & !LE;
+   !L3_5 = A6 & (SHIFT == 5) & !LE;
+   !L3_6 = A5 & (SHIFT == 6) & !LE;
+   !L3_7 = A4 & (SHIFT == 7) & !LE;
+   !i3   = LE &  L3;
+
+   !L3 =  L3_7 & L3_6 & L3_5 & L3_4 & L3_3 & L3_2 & L3_1 & L3_0 & i3;
+
+   !L2_0 = A2 & (SHIFT == 0) & !LE;
+   !L2_1 = A1 & (SHIFT == 1) & !LE;
+   !L2_2 = A0 & (SHIFT == 2) & !LE;
+   !L2_3 = A7 & (SHIFT == 3) & !LE;
+   !L2_4 = A6 & (SHIFT == 4) & !LE;
+   !L2_5 = A5 & (SHIFT == 5) & !LE;
+   !L2_6 = A4 & (SHIFT == 6) & !LE;
+   !L2_7 = A3 & (SHIFT == 7) & !LE;
+   !i2   = LE &  L2;
+
+   !L2 =  L2_7 & L2_6 & L2_5 & L2_4 & L2_3 & L2_2 & L2_1 & L2_0 & i2;
+
+   !L1_0 = A1 & (SHIFT == 0) & !LE;
+   !L1_1 = A0 & (SHIFT == 1) & !LE;
+   !L1_2 = A7 & (SHIFT == 2) & !LE;
+   !L1_3 = A6 & (SHIFT == 3) & !LE;
+   !L1_4 = A5 & (SHIFT == 4) & !LE;
+   !L1_5 = A4 & (SHIFT == 5) & !LE;
+   !L1_6 = A3 & (SHIFT == 6) & !LE;
+   !L1_7 = A2 & (SHIFT == 7) & !LE;
+   !i1   = LE &  L1;
+
+   !L1 =  L1_7 & L1_6 & L1_5 & L1_4 & L1_3 & L1_2 & L1_1 & L1_0 & i1;
+
+   !L0_0 = A0 & (SHIFT == 0) & !LE;
+   !L0_1 = A7 & (SHIFT == 1) & !LE;
+   !L0_2 = A6 & (SHIFT == 2) & !LE;
+   !L0_3 = A5 & (SHIFT == 3) & !LE;
+   !L0_4 = A4 & (SHIFT == 4) & !LE;
+   !L0_5 = A3 & (SHIFT == 5) & !LE;
+   !L0_6 = A2 & (SHIFT == 6) & !LE;
+   !L0_7 = A1 & (SHIFT == 7) & !LE;
+   !i0   = LE &  L0;
+
+   !L0 =  L0_7 & L0_6 & L0_5 & L0_4 & L0_3 & L0_2 & L0_1 & L0_0 & i0;
+
+    OUT = !LATCH $ !COMPLMTO;
+
+test_vectors
+       ([SHIFT,INPUT,LE,OE,COMPLMTO] -> OUT )
+        [  0  ,^h00 , 0, 0,    0   ] -> ^h00;
+        [  0  ,^hFF , 0, 0,    0   ] -> ^hFF;
+        [  0  ,^hAA , 0, 0,    0   ] -> ^hAA;
+        [  0  ,^h55 , 0, 0,    0   ] -> ^h55;
+
+        [  0  ,^h01 , 0, 0,    0   ] -> ^h01;
+        [  1  ,^h01 , 0, 0,    0   ] -> ^h02;
+        [  2  ,^h01 , 0, 0,    0   ] -> ^h04;
+        [  3  ,^h01 , 0, 0,    0   ] -> ^h08;
+        [  4  ,^h01 , 0, 0,    0   ] -> ^h10;
+        [  5  ,^h01 , 0, 0,    0   ] -> ^h20;
+        [  6  ,^h01 , 0, 0,    0   ] -> ^h40;
+        [  7  ,^h01 , 0, 0,    0   ] -> ^h80;
+
+        [  4  ,^h0F , 0, 0,    0   ] -> ^hF0;
+        [  1  ,^hAA , 0, 0,    0   ] -> ^h55;
+        [  0  ,^h00 , 0, 0,    0   ] -> ^h00;
+        [  0  ,^h00 , 0, 0,    1   ] -> ^hFF;
+
+        [  0  ,^h0F , 0, 0,    0   ] -> ^h0F;
+        [  0  ,^h0F , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h01 , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h02 , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h04 , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h08 , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h10 , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h20 , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h40 , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h80 , 1, 0,    0   ] -> ^h0F;
+        [  0  ,^h00 , 0, 0,    0   ] -> ^h00;
+
+end;

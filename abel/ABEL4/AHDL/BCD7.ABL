@@ -1,0 +1,50 @@
+module  BCD7
+title 'seven segment display decoder    1 Aug 1990
+Walter Bright  Data I/O Corp  Redmond WA'
+"          a
+"         ---       BCD-to-seven-segment decoder similar to the 7449
+"       f| g |b
+"         ---           segment identification
+"       e| d |c
+"         ---
+        bcd7 device  'P16V8R';
+
+        D3,D2,D1,D0     pin 2,3,4,5;
+        a,b,c,d,e,f,g   pin 13,14,15,16,17,18,19 istype 'com';
+
+        bcd     = [D3,D2,D1,D0];
+        led     = [a,b,c,d,e,f,g];
+
+        ON,OFF  = 0,1;                  " for common anode LEDs 
+        L,H,X,Z = 0,1,.X.,.Z.;
+@dcset
+truth_table (bcd -> [ a ,  b ,  c ,  d ,  e ,  f ,  g ])
+              0  -> [ ON,  ON,  ON,  ON,  ON,  ON, OFF];
+              1  -> [OFF,  ON,  ON, OFF, OFF, OFF, OFF];
+              2  -> [ ON,  ON, OFF,  ON,  ON, OFF,  ON];
+              3  -> [ ON,  ON,  ON,  ON, OFF, OFF,  ON];
+              4  -> [OFF,  ON,  ON, OFF, OFF,  ON,  ON];
+              5  -> [ ON, OFF,  ON,  ON, OFF,  ON,  ON];
+              6  -> [ ON, OFF,  ON,  ON,  ON,  ON,  ON];
+              7  -> [ ON,  ON,  ON, OFF, OFF, OFF, OFF];
+              8  -> [ ON,  ON,  ON,  ON,  ON,  ON,  ON];
+              9  -> [ ON,  ON,  ON,  ON, OFF,  ON,  ON];
+
+test_vectors (bcd -> [ a ,  b ,  c ,  d ,  e ,  f ,  g ])
+               0  -> [ ON,  ON,  ON,  ON,  ON,  ON, OFF];
+               1  -> [OFF,  ON,  ON, OFF, OFF, OFF, OFF];
+               2  -> [ ON,  ON, OFF,  ON,  ON, OFF,  ON];
+               3  -> [ ON,  ON,  ON,  ON, OFF, OFF,  ON];
+               4  -> [OFF,  ON,  ON, OFF, OFF,  ON,  ON];
+               5  -> [ ON, OFF,  ON,  ON, OFF,  ON,  ON];
+               6  -> [ ON, OFF,  ON,  ON,  ON,  ON,  ON];
+               7  -> [ ON,  ON,  ON, OFF, OFF, OFF, OFF];
+               8  -> [ ON,  ON,  ON,  ON,  ON,  ON,  ON];
+               9  -> [ ON,  ON,  ON,  ON, OFF,  ON,  ON];
+              10  -> [ X ,  X ,  X ,  X ,  X ,  X ,  X ];
+              11  -> [ X ,  X ,  X ,  X ,  X ,  X ,  X ];
+              12  -> [ X ,  X ,  X ,  X ,  X ,  X ,  X ];
+              13  -> [ X ,  X ,  X ,  X ,  X ,  X ,  X ];
+              14  -> [ X ,  X ,  X ,  X ,  X ,  X ,  X ];
+              15  -> [ X ,  X ,  X ,  X ,  X ,  X ,  X ];
+end

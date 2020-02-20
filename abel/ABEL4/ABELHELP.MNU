@@ -1,0 +1,4089 @@
+*====Program Options Help====,A
+*--Setting Program Options--,A
+*Multiple Choice Fields,A
+Multiple Choice Fields
+
+Space or Enter          Toggle current selection
+Esc or Enter            Done selecting from list
+Home (twice)            Move to first item displayed
+End (twice)             Move to last item displayed
+arrow keys              move up/down in list
+Pg Up                   scroll back in list
+Pg Dn                   scroll forward in list
+Tab                     move to next field on dialog box
+Shift-Tab               move to previous field on dialog box
+*Dialog Box,A
+Dialog Box
+
+Purpose/Usage:  A dialog box is a screen that allows you to
+select different program options. Selection is made by command
+buttons, check boxes, mode buttons, and entry fields. Use arrow
+keys to move between selections in a dialog box. Pressing the
+Space bar toggles the check box off and on and also selects the
+mode buttons. Select command buttons by pressing the Enter key.
+
+Elements in the Dialog Box
+        - Tab/Shift-Tab key moves you to the next/previous field
+        - (*) Radio Buttons are used to choose one option from
+          several possibilities. The Space bar will select the
+          option.
+        - [X] Select Item(s) turn an option on or off by pressing
+          the Space bar when the cursor is on a particular item.
+        - <OK> saves the entries made to the menu and returns you
+          to the opening menu.
+        - F2 brings up a list of choices if you are in a field
+          where you may type a choice. Select the choice by
+          pressing the Space bar. Arrow keys move the cursor up and
+          down the list. Pressing the ESC key when more than one
+          choice is possible accepts your selections and removes
+          the select list.
+        - F5 saves and exits the dialog box as is. (Same
+          as <OK>.)
+        - ESC exits the dialog box without saving changes.
+        - Cursor keys help you move around in the dialog box. The
+          left and right keys move you back and forth in a type-in
+          field. If the dialog box items are not type-ins but are
+          in columns, cursor keys move you around the box. Because
+          of this restriction, the TAB key is recommended for
+          navigating in the Dialog box.
+*Cancel button,A
+Cancel button
+
+Press the Enter key here to exit this dialog box without saving
+the options selected.  You may also use the Esc key.
+*OK button,A
+OK button
+
+Press the Enter key here to accept the options entered on
+this dialog box. You may also use the F5 key anywhere on the dialog
+box.
+*--File Menu Options--,A
+*File Open Name,A
+File Open Name
+
+Enter the name of an ABEL-HDL source file to edit or create. The
+default filename extension for ABEL-HDL source files is .abl.
+If you are currently editing a different ABEL-HDL source file,
+be sure to save the current file before opening a new one.
+
+A copy of the file is saved to the .sav extension whenever you open
+a file for editing in the ABEL Design Environment.
+*Save As Name,A
+Save As Name
+
+Enter the name of the file in which to save the current design. If
+no filename extension is specified, the extension .abl will be
+appended to the specified name.
+*File Print Name,A
+File Print Name
+
+Enter the name of a file to print. The file specified will be sent
+to your printer through the parallel port assigned to LPR: (PCDOS)
+or to the printer that you have set with PRINTER (UNIX).
+*Exit,A
+Exit without Save
+
+If you select <YES> you will lose all of your edits since your last
+File-Save or since you last invoked Compile.
+*--Edit Menu Options--,A
+*Search String,A
+Edit Search String
+
+Enter a string of characters to search for in the currently edited
+file.  Wildcards are not supported.
+*Search Insensitive,A
+Search Insensitive
+
+Space bar toggles the check box.
+
+If this option is checked, a case insensitive search will be done.
+*Editor Name,A
+Editor Name
+
+Enter the name of the text editing program to be used when the
+"Edit" menu item is selected. The program name can include a drive
+and path specification; if no drive or path is specified, the text
+editor program will be searched for in the current PATH.
+*--View Menu Options--,A
+*View File,A
+View File
+
+Enter the name of a text file to display in a scrollable window.
+*--Compile Menu Options--,A
+*Compile Listing,A
+Compile Listing
+
+Space bar selects the item.
+
+Select the desired listing format. The options supported are:
+
+(.) No Listing
+        No listing will be generated.
+
+( ) Standard Listing
+        A listing containing numbered source file lines and
+        error messages (if any) will be generated.
+
+( ) Expanded Listing
+        A listing containing numbered source file lines,
+        expanded macros, directives, and error
+        messages (if any) will be generated.
+*Compile Args,A
+Compile Args
+
+The module arguments field is used to specify actual argument
+text that is to be substituted for dummy arguments specified
+in the MODULE keyword of the current ABEL-HDL source file.
+If no dummy module arguments are specified in the current
+design, you should leave this field blank.
+
+Enter as a list separated by spaces.
+*--Optimize Menu Options--,A
+*Reduction Options,A
+Reduction Options
+
+Space bar selects the item.
+
+(.) Use default
+        Looks at the device specified in the source file and
+        does a bypin auto polarity for PAL-like parts, and a group
+        fixed for FPLA parts. If no part was specified, bypin
+        auto polarity is used.
+
+( ) Reduce bypin, auto polarity
+        Reduces the logic so that each signal will have the
+        minimum number of terms possible. The optimization
+        will produce both ON-set and OFF-set equations so that
+        the minimum number of product terms will be used in
+        programmable polarity parts. This is the default
+        logic reduction if no part is specified, and works
+        even for parts with fixed polarity.
+
+( ) Reduce bypin, fixed polarity
+        Reduces so that each signal will have the minimum
+        number of product terms, maintaining the polarity
+        of the signals as specified in the source file.
+        This should only be used when you want to force
+        the polarity to the specified level.
+
+( ) Reduce as group, auto polarity
+        Reduces all the signals as a group for FPLA-like
+        parts where complete term sharing is possible. The
+        combination of active levels that gives the least
+        number of terms is chosen. This can be time consuming.
+
+( ) Reduce as group, fixed polarity
+        Reduces all the signals as a group for FPLA-like
+        parts where complete term sharing is possible. The
+        polarity specified in the source file is maintained.
+
+( ) D/T flip-flop auto-synthsize
+        Parts that have programmable D/T flip-flops or XOR
+        logic could use this option to gain the most optimal
+        logic reduction. This can save a lot of terms.
+
+( ) No Reduce, merge only
+        Merges all the compiled equations into a single ABEL-PLA
+        file.  No logic reduction is done.
+*Reduce Exact,A
+[X] Exact Reduction
+
+Space bar toggles the check box.
+
+Select the "Exact reduction" option to invoke Espresso's exact
+minimization option. This option will produce better minimization
+is most cases. The "Exact" option tries to remove the order
+dependancy from the inputs. Note that this option may result in
+unacceptably long execution times, and should only be selected if
+absolutely necessary.
+*--Simulation Trace Options--,A
+*Trace Format,A
+Trace Format
+
+Select the format in which to display the simulation results.  The
+following formats are supported:
+
+Space bar selects the item.
+
+( ) No trace
+        No simulation output will be generated.
+
+( ) Pins format
+        The values appearing on the input and output pins will be
+        displayed for each test vector.
+
+( ) Wave format
+        The values appearing on the input and output pins will be
+        displayed as a vertical waveform using standard IBM
+        character graphics.
+
+( ) Wave format ASCII 
+        The values appearing on the input and output pins will be
+        displayed as a vertical waveform using standard ASCII 
+        characters that all printers support.
+
+(.) Table format
+        The values appearing on the input and output pins will be
+        displayed in a tabular vector format.
+
+( ) Macrocell format
+        The simulation results will be displayed for all dot
+        extensions associated with I/O macrocells. Note that this
+        display option is detailed, and should be used in 
+        conjunction with the "Signal" option.
+*Trace Output,A
+Trace Output
+
+Select the simulation trace level desired.
+
+Space bar selects the item.
+
+(.) Brief trace
+        This option will generate a report of the simulation results
+        for each clock cycle for registered designs, or for the
+        stabilized output values for combinatorial designs.
+
+( ) Detailed format
+        This option will generate a report of the simulation results
+        for each level in the sum-of-products logic circuit being
+        simulated. This "Detailed format" option is useful for
+        debugging complex logic circuits.
+
+( ) Clock format
+        Clock format generates a simulation report that shows
+        register values when the clock is 0, 1, and 0 again for each
+        vector.  Clock format is useful with the macro cell trace
+        for debugging asynchronous circuits.
+*Trace Signal,A
+Trace Signal
+
+Enter a white-space separated list of signals to display in the
+simulation results. The list can contain signal names or
+pin/node numbers. The following is an example of a signal
+name list.:
+
+        Signal: Clk Reset LoadA LoadB Q3 Q2 Q1
+
+If the "Signal" field is left blank, the simulation results will
+be displayed for all signals that are used in the circuit being
+simulated.
+*Trace Last Vector,A
+Trace Last Display Vector
+
+Enter the number of the last vector you want displayed in the
+simulation results file.  To stop display information at the fifth
+vector:
+
+        Last Display Vector: 5
+
+Leaving this field blank causes the simulator to display vectors 
+up to the last vector in the JEDEC/.tmv file.
+*Trace First Vector,A
+Trace First Display Vector
+
+Enter the number of the first vector to display in the simulation
+results file.  To start display information at the third vector:
+
+        First Display Vector: 3
+
+Leaving this field blank causes the simulator to display vectors
+starting with the first vector in the JEDEC/.tmv file.
+*Trace Powerup,A
+Trace Register Powerup
+
+Space bar selects the item.
+
+(.) Register Powerup 0
+        All registers are intialized to 0 before simulation
+        begins.
+
+( ) Register Powerup 1
+        All registers are intialized to 1 before simulation
+        begins.
+
+These are register powerup values and they may be opposite
+of what actually appears on the pin.
+*Trace X Value,A
+Trace X-value  (don't care)
+
+Space bar selects the item.
+
+(.) X-value 0
+        Use 0 as the value for don't care during simulation.
+        This is the default value.
+
+( ) X-value 1
+        Use 1 as the value for don't care during simulation.
+
+Switching the value of don't care is useful in verifying that the
+value of don't care does not matter in your circuit.
+*Trace Z Value,A
+Trace Z-value  (high impedance)
+
+Space bar selects the item.
+
+( ) Z-value 0
+        Use 0 as the value for high-Z during simulation.
+
+(.) Z-value 1
+        Use 1 as the value for high-Z during simulation.
+        This is the default value.
+
+Switching the value of Z is useful in verifying that the
+value of Z does not matter in your circuit.
+*Trace .tmv,A
+[X] Use .tmv File
+
+Space bar toggles the check box.
+
+This forces JEDsim to use the vectors in the .tmv file instead of
+the vectors in the JEDEC file.  This allows simulation of buried
+nodes.  PLASim always uses the .tmv file.
+*--Fitter--,A
+*Fitter Device,A
+Fit Device
+
+Press F2 to select a device from the list generated by the
+SmartPart Device Selector or enter the name of a specific PLD
+architecture in which to fit the design. The name must be
+exactly as specified in the device support list supplied with
+ABEL.
+
+Example:
+        Device: p22v10
+
+This device is used with the "Fit" menu selection (under
+SmartPart). Note that the device specified here will also be
+used as the device for PLDmap.
+*Fitter Device List File,A
+Fitter Device List File
+
+This file is used with the "Fit from List File" menu selection
+(under SmartPart). If the selector is used, this file name will
+automatically be filled in. If you wish to specify a device
+list file manually, you may type in that name here (default
+extension .sel). The file should be a list of devices to be fit,
+one device per line.
+
+If the file name you use is <module_name>.sel or if you leave
+this field blank, this file will also be used as the output file
+name for the SmartPart Device Selector. This file
+will be overwritten by the selector during auto-update, so you
+must choose a different file name if you want to use a custom list.
+
+If you want to choose one device from the SmartPart Selector list,
+press F2 on the "Device:" field, and run the fitter with "Fit".
+*Fitter Stop,A
+[X] Stop on first fit
+
+Space bar toggles the check box.
+
+Select this option if you want the Fitter to stop at the
+first successful fit of a device in the "Device list" when running
+from "Fit from List" on the SmartPart menu.
+*Fitter None,A
+[X] No fit on auto-update
+
+Space bar toggles the check box.
+
+Select this option if you do not want the Fitter to
+process the design. If this option is chosen, the ABEL-PLA file
+created by PLAopt (*.tt2) will be renamed (to *.tt3) and processed
+directly by the PLDmap program (fuseasm). If you suppress the
+operation of the Fitter by selecting this option, you must
+supply pin numbers for all signals in your ABEL-HDL source file.
+*Fitter Preassign,A
+Fitter Preassign options
+
+Space bar selects the item.
+
+Select the desired preassignment option from the following:
+
+( ) Keep preassignments
+        Do not change pin and node numbers specified in the ABEL-HDL
+        design.  Only equations that are unassigned (or assigned to
+        pin/node 0), will be assigned to pins/nodes. An error occurs
+        if the pin assignments do not work.
+
+(.) Attempt to keep preassignments
+        Attempt to preserve pin and node numbers specified in the
+        ABEL-HDL design.  This is the default.
+
+( ) Ignore preassignments
+        Ignore all pin and node numbers specified in the ABEL-HDL
+        design.  This runs the fastest and gives the best results.
+*Fitter Strategy,A
+Fitter Strategy options
+
+Use this feature to specify optional fitting strategies for
+fitters that have this capability. See the appropriate fitter
+manual for information on optional strategies.
+*--PLDmap (Fuseasm)--,A
+*PLDmap Device,A
+PLDmap Device
+
+Press F2 for Fitter generated list or enter the name of
+the device architecture in which to map the design. The architecture
+name must correspond to an architecture name published in the ABEL
+device support list. Note that the device specified here will also
+be used as the device for PLDmap.
+*PLDmap Checksum,A
+PLDmap Checksum
+
+Space bar selects the item.
+
+Select the desired checksum option. The following checksum options
+are supported:
+
+( ) None
+        Do not produce a checksum.
+
+(.) Full
+        Produce a full checksum at the end of the JEDEC file.
+
+( ) Dummy
+        Produce a dummy checksum (consisting of all zeroes) at the
+        end of the JEDEC file.
+*PLDmap Document,A
+PLDmap Document
+
+Space bar selects the item.
+
+Select the desired map documentation option. The following options
+are supported:
+
+(.) Brief document
+        A report is generated that includes mapped equations, a chip
+        diagram, and a utilization summary.
+
+( ) Long document
+        A report is generated that includes the information listed
+        above, as well as a fuse plot and test vectors.
+*PLDmap PLCC,A
+[X] PLCC Chip Diagram
+
+Forces the chip digram in the report file (.doc) to be PLCC format.
+*PLDmap Turbo,A
+[X] Turbo
+
+Space bar toggles the check box.
+
+Select this option if you wish to program the fuses that enable
+the high speed option (if supported) in the target architecture.
+*PLDmap Miser,A
+[X] Miser
+
+Space bar toggles the check box.
+
+Select this option if you wish to program the fuses that enable
+the low power mode (if supported) in the target architecture.
+*PLDmap Blow,A
+[X] Blow product terms
+
+Space bar toggles the check box.
+
+Select this option if you wish to disconnect all unused fuses in
+the target architecture (this can sometimes result in higher
+speed operation).
+*PLDmap Lock,A
+[X] Lock
+
+Space bar toggles the check box.
+
+Select this option if you wish to program the security fuse (if
+supported) in the target architecture.
+*PLDmap Format,A
+PLDmap Output Format
+
+Select the format of the programmer download file. The following
+formats are supported:
+
+Space bar selects the item.
+
+(.) Default format
+        Selects the download file format appropriate for the
+        part selected.  JEDEC brief format is used for most PLDs.
+
+( ) Brief JEDEC
+        Produce a JEDEC Standard 3 file containing fuse and test
+        vector data (.jed). Unused fuse rows are not included.
+
+( ) Hex JEDEC
+        Produce a JEDEC Standard 3 file containing fuse and test
+        vector data (.jed). Fuse data is provided in hexadecimal
+        rather than binary format.
+
+( ) Full JEDEC
+        Produce a JEDEC Standard 3 file containing fuse and test
+        vector data (.jed). All fuses are included.
+
+( ) 82 format
+        Produce a Motorola 8-bit PROM format file (.p82).
+
+( ) 83 format
+        Produce an Intel 8-bit PROM format file (.p83).
+
+( ) 87 format
+        Produce a Motorola 16-bit PROM format file (.p87).
+
+( ) 88 format
+        Produce an Intel 16-bit PROM format file (.p88).
+
+( ) POF format
+        Produce an Altera Programmer Object File format file (.pof).
+*PLDmap Signature,A
+PLDmap User Electronic Signature (UES)
+
+Enter a sequence of characters to program into the signature fuses
+(if supported) of the target architecture.  Eight fuses per
+character are used in the part.
+
+Example:
+        User Electronic Signature:  JP0690
+*--FPGA Translation--,A
+*FPGA Translation Format,A
+FPGA Translation Format
+
+FPGA translation format specifies the format of the file for
+the target FPGA back end software.  The options are:
+
+( ) PDS
+        Produces a PDS (PALASM II) format file that the Actel
+        software can import.  The file is module.pds.
+(.) Xilinx PDS
+        Produces a PDS (PALASM II) format file with special
+        extensions that the Xilinx XACT software can import.
+        The file is module.pds.
+( ) Signetics Snap
+        Produces Signetics Snap style files that can be read
+        by the Signetics Snap software. The fils are module.bee
+        and module.pin.
+( ) ABEL-PLA
+        Produces a Berkeley PLA file with Open ABEL Extensions.
+        The file is module.pla.
+
+*--SmartPart Device Selector--,A
+*SmartPart Database Directory,A
+SmartPart Device Selector Database Directory
+
+Defines the directory to use for an alternate device selector
+database.  This is useful if you have made a modified copy of the
+SmartPart Device Selector database and would like to use it instead
+of the standard database.
+
+Example:
+        Database directory: \dataio\lib4\custom
+*SmartPart Report File,A
+SmartPart Chip Report file name
+
+Specifies the name of a file to place the selector report file.
+This file contains chip and manufacturer information, including
+ordering information, part number and optionally user defined
+fields. This information is given for EVERY part that the
+selector determines the design will fit into. 
+
+This report file will not be created unless you specify the file
+name.
+
+Note: This file can get VERY large.
+
+Example:
+        Report file name:  decoder.chp
+*SmartPart Report Sort Order,A
+SmartPart Report Sort Order
+
+Specify the sorting order by selecting one or more names of
+data fields by which to sort the report. You should also
+specify a Report File otherwise the sorted information will go
+to STDOUT and be lost. The field names can be any of the
+following:
+
+        device          - device architecture name
+        desire          - desirability (user defined field)
+        erasability     - (UV, EE, yes or no)
+        hold            - flip-flop hold time (tIH)
+        jamload         - Preloadable (yes or no)
+        manufacturer    - manufacturer name
+        op_range        - operating range (MIL, COM, etc.)
+        package         - package type (DIP, PLCC, etc.)
+        partname        - manufacturer's part name
+        pins            - number of pins
+        power           - power consumption (iCC)
+        price           - price in whole units
+        setup           - setup time (tIS)
+        speed           - speed (tPD)
+        technology      - (TTL, CMOS, etc.)
+
+Multiple sort fields should be separated by spaces. You can also
+specify the sorting direction for each field by using the "up" or
+"down" modifiers. The default is up.
+
+Examples:
+        Sort Order: device up price down
+   or
+        Sort Order: power speed
+   or
+        Sort Order: price speed
+*SmartPart Jamload,A
+SmartPart Preload (Jamload)
+
+Press F2 to bring up select list. Press Enter to choose an
+item in list.
+
+Specify whether the devices selected are programmer preloadable.
+*SmartPart Eraseable,A
+SmartPart Erasable
+
+Press F2 to bring up select list. Press Enter to choose an
+item in list.
+
+Specify whether the devices selected are erasable or not.
+*SmartPart Device,A
+SmartPart Device
+
+Press F2 to bring up select list. Press Enter to
+select/deselect items in list. Press Esc when done.
+
+Select one or more names of specific PLD architectures to scan.
+This criteria is used when you wish to limit the database scan
+to specific PLD architectures, otherwise, all PLD architectures
+are checked.
+*SmartPart Manufacturer,A
+SmartPart Manufacturer
+
+Press F2 to bring up select list. Press Enter to
+select/deselect items in list. Press Esc when done.
+
+Specify one or more manufacturers from which to scan database.
+This criteria will limit device selection to those made by the
+specified manufacturers.
+*SmartPart Temperature Spec.,A
+SmartPart Temperature Spec.
+
+Press F2 to bring up select list. Press Enter to
+select/deselect items in list. Press Esc when done.
+
+Specify one or more temperature specifications. Allowable
+temperature specifications are:
+
+           COM     - Commercial
+           MIL     - Military
+           IND     - Industrial
+           STD     - Standard
+
+This criteria will limit device selections to devices with the
+specified temperature ranges.
+*SmartPart Technology,A
+SmartPart Technology
+
+Press F2 to bring up select list. Press Enter to
+select/deselect items in list. Press Esc when done.
+
+Specify one or more process technologies. Valid technologies are:
+
+           TTL
+           CMOS
+           ECL
+           GAAS
+
+This criteria will limit device selections to devices implemented
+in the specified technologies.
+*SmartPart Package Type,A
+SmartPart Package
+
+Press F2 to bring up select list. Press Enter to
+select/deselect items in list. Press Esc when done.
+
+Specify one or more package types. Valid package types are:
+
+           DIP     - Dual Inline Package
+           CDIP    - Ceramic Dual Inline Package
+           LCC     - Leadless Chip Carrier
+           PLCC    - Plastic Leaded Chip Carrier
+           PGA     - Pin Grid Array
+           SOIC    - Small Outline ICC
+           FPAK    - Flat Package
+           MISC    - Other. Please refer to manufacturer's data book.
+
+This criteria will limit device selection to devices using the
+specified package types.
+*SmartPart Pins,A
+SmartPart Pins
+
+Specify the number of pins. Values can be specified by including a
+greater than (>), less than (<) or range expression in the 
+following form:
+
+        #
+        < #
+        > #
+        # - #
+
+Example:
+        Pins: 16 (exactly 16 pins)
+    or
+        Pins: < 24 (less than 24 pins)
+    or
+        Pins: 16 - 24
+
+This criteria will limit device selection to devices with the
+specified number of pins.
+*SmartPart Speed,A
+SmartPart Speed
+
+Specify the required pin-to-pin speed (nanoseconds tPD). Values
+can be specified by including a greater than (>), less than (<)
+or range expression in the following form:
+
+        #
+        < #
+        > #
+        # - #
+
+Example:
+        Speed: 12 (exactly 12 nanoseconds)
+    or
+        Speed: < 22 (less than 22 nanoseconds)
+    or
+        Speed: > 25 (greater than 25 nanoseconds)
+    or
+        Speed: 10 - 24 (range 10 - 24 nanoseconds)
+
+This criteria limits device selection to those devices with the
+specified speed range.
+*SmartPart Set-Up Time,A
+SmartPart Set-up time
+
+Specify the required register setup time (nanoseconds tIS). Values
+can be specified by including a greater than (>), less than (<) 
+or range expression in the following form:
+
+        #
+        < #
+        > #
+        # - #
+
+Example:
+        Set-up time (ns): 12 (exactly 12 nanoseconds)
+    or
+        Set-up time (ns): < 22 (less than 22 nanoseconds)
+    or
+        Set-up time (ns): 10 - 24 (range 10 - 24 nanoseconds)
+
+This criteria limits device selection to devices with the specified
+register setup times.
+*SmartPart Hold Time,A
+SmartPart Hold Time
+
+Specify the required register hold time (nanoseconds tIH). Values
+can be specified by including a greater than (>), less than (<) 
+or range expression in the following form:
+
+        #
+        < #
+        > #
+        # - #
+
+Example:
+        Hold time (ns): 12 (exactly 12 nanoseconds)
+    or
+        Hold time (ns): < 22 (less than 22 nanoseconds)
+    or
+        Hold time (ns): 10 - 24 (range 10 - 24 nanooseconds)
+
+This criteria limits device selection to devices with the specified
+register times.
+*SmartPart Price,A
+SmartPart Price
+
+Specify the required price (user entered field). Values can be
+specified by including a greater than (>), less than (<) or range
+expression in the following form:
+
+        #
+        < #
+        > #
+        # - #
+
+Example:
+        Price: < 22
+    or
+        Price: 1 - 8
+
+This criteria limits device selection to devices in the specified
+price range.
+*SmartPart Utilization,A
+SmartPart Utilization
+
+Specify the required device utilization. This is a metric to 
+give some idea how full the PLD architecture is. The equation 
+used is:
+     100 *   reg_used    *  pins_used  *  terms_used
+              --------     -----------    ----------
+           reg_available pins_available terms_available
+
+Values range from 0 to 100. Note that some PLD architectures
+with many terms but few pins could give surprisingly small
+numbers, refer to the ratios added to the device candidates
+list for a better feel of the utilization metric. The
+utilization criteria can weed out architectures that are too
+underused or do not have enough patching capacity by using the
+proper range. The range can be specified by including a greater
+than (>), less than (<) or range expression in the following
+form: 
+
+        #
+        < #
+        > #
+        # - #
+
+Example:
+        Utilization: > 50
+
+This criteria will limit architecture selection to devices with the 
+specified utilization. 
+
+*SmartPart Power,A
+SmartPart Power
+
+Specify the required power consumption (MW @ 10MHZ). Values can
+be specified by including a greater than (>), less than (<) or
+range expression in the following form: 
+
+        #
+        < #
+        > #
+        # - #
+
+Example:
+        Power: < 22
+
+This criteria limits device selection to devices within
+specified power usage range.
+
+*SmartPart User,A
+SmartPart User Configurable Fields
+
+Specify optional user criteria field. Values can be specified
+by including a greater than (>), less than (<) or range 
+expression in the following form:
+
+        #
+        < #
+        > #
+        # - #
+
+Example:
+        User: 12
+    or
+        User: < 22
+    or
+        User: 10 - 24
+*--Other Options--,A
+*PLDgrade Document,A
+PLDgrade Document
+
+Space bar selects the item.
+
+Choose one of the following PLDgrade document file formats:
+
+( ) Brief Document
+    Give a condensed report which only contains AHDL equtions and 
+    testability analysis.
+
+(.) Long Document
+    Give a detail report which contains AHDL declarations, pin
+    assignments, pin types, and test vector coverage analysis.
+    This is the default.
+
+See Also:  PLDgrade manual
+
+*--Dialog Boxes--,A
+*File Open Options,A
+File Open Options
+
+The File Open dialog box is used to specify the name of the ABEL-HDL
+source file that you wish to edit or process. The file name should
+correspond to the file naming conventions for the operating system
+you are using. If no file name extension is specified, the .abl
+extension will be appended to the name entered. Drive and path
+specifications can be included in the file name.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to 
+the <Save> field and press Enter, or press F5.
+*Save As Options,A
+Save As Options
+
+The Save As dialog box is used to specify the name of a file in
+which to save the current design. The file name should correspond
+to the file naming conventions for the operating system you are
+using. If no file name extension is specified, the .ABL extension
+will be appended to the name entered. Drive and path specifications
+can be included in the file name.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<Save> field and press Enter, or press F5.
+*Print Options,A
+Print Options
+
+The Print dialog box is used to specify the file to be sent
+to the printer attached to your computer. The file name should
+correspond to the file naming conventions for the operating system
+you are using.  Drive and path specifications can be included in
+the file name.
+*Search Options,A
+Search Options
+
+The Search Options dialog box is used to specify a string to search
+for in the edit window. The cursor will move to the next occurrence
+of this string if it is found. To find the next occurence of
+the specified text, use CTRL-N. The search automatically wraps
+around.
+*Text Editor Options,A
+Text Editor Options
+
+The Text Editor Options dialog box is used to specify the name of a
+text editor to invoke when the "Edit" menu item is selected.
+
+The text editor program name should correspond to a program
+located somewhere on your system's search path. Drive and path
+specifications can be included in the file name if the program
+is not located on the search path.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to 
+the <OK> field and press Enter, or press F5.
+*View File Options,A
+View File Options
+
+The View File dialog box is used to specify the name of a file to
+display in a scrollable window. The file name should correspond
+to the file naming conventions for the operating system you are
+using. Drive and path specifications can be included in the file
+name. Pressing F5 without specifying a file name in the View File
+dialog box will return you to the current window display.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<OK> field and press Enter, or press F5.
+*Compile Options,A
+Compile Options
+
+The Compile Options dialog box is used to specify options to the
+ABEL-HDL compiler.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<OK> field and press Enter, or press F5.
+*Optimize Options,A
+Reduction Options
+
+The Reduction Options dialog box is used to specify options to the
+PLAopt optimizer.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<OK> field and press Enter, or press F5.
+*Simulate Trace Options,A
+Simulate Trace Options
+
+The Simulate Trace Options dialog box is used to specify options
+to the ABEL-HDL simulator. The options specified on this form will
+be used when the AHDL-HDL simulator is invoked at this point in
+the design process. These options do not supersede simulator
+options specified at other points in the process.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<OK> field and press Enter, or press F5.
+*SmartPart Device Selector Criteria,A
+SmartPart Criteria
+
+The SmartPart Criteria dialog box is used to enter or modify the
+device selection criteria. Data entered on this form is used in
+conjunction with design data to produce a list of candidate
+device architectures.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<OK> field and press Enter, or press F5.
+*Fitter Options,A
+Fit Options dialog box
+
+The Fit options dialog box is used to specify options to the device
+fitter.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<OK> field and press Enter, or press F5.
+*PLDmap Options,A
+PLDmap Options
+
+The PLDmap Options dialog box is used to specify options to the
+device mapping program.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<OK> field and press Enter, or press F5.
+*FPGA Translate Options,A
+FPGA Translate Options
+
+The FPGA Translate Options dialog box is used to specify which
+output format you would like for various FPGA tools.
+
+To cancel the data entered and restore this dialog box to its
+original state, move the cursor to the <Cancel> field and press
+Enter, or press Esc. To accept the data entered, move the cursor to the 
+<OK> field and press Enter, or press F5.
+*PLDgrade Options,A
+PLDgrade Options
+
+This allows you to set the options for the PLDgrade fault grade
+program, afsim. You can order this option in addition to the
+standard ABEL package. PLDgrade fault grades user-supplied seed
+vectors. Use PLDtest Plus for Automatic Test Vector Generation
+(ATVG).
+*====Menus Help====,A
+*File Menu,A
+File Menu
+
+The File menu provides selections for creating new designs, opening
+existing designs, and performing various design management
+functions.
+
+File menu items:
+
+New                     Clear the current design
+Open...                 Open and read a design file (create a .sav
+                        version of file being opened)
+
+Save                    Write the current design
+Save As...              Save the current design with a new name
+
+Print...                Print a file
+DOS Shell               Temporarily exit to a DOS Shell
+
+Save and Exit           Save design and exit the design environment
+Exit                    Exit the ABEL Design Environment without
+                        saving
+*Edit Menu,A
+Edit Menu
+
+The Edit menu provides selections for editing the design file
+displayed in the edit window. The direct editing functions
+available are limited; you may want to use your own text editor for the 
+majority of your design entry tasks.
+
+Edit menu items:
+
+Delete Line             Delete the current line in the edit window
+Replicate Line          Copy the current line in edit window
+
+Search...               Search for specified text in edit window
+Next                    Find next occurrence of Search text
+
+Edit                    Specify your text editor
+My Text Editor Is...    Invoke your text editor on current file
+
+Repaint                 Redraws the screen
+*View Menu,A
+View Menu
+
+The View menu allows you to examine the output reports generated 
+by the ABEL programs. If a report or output file is requested that 
+does not yet exist, the appropriate ABEL programs are invoked 
+(when possible) to create the requested file.
+
+View menu items:
+
+Compiler Listing        View the compiler listing file (*.lst)
+Compiled Equations      View the compiler-generated equations(*.tt1)
+Optimized Equations     View the optimized equations (*.tt2)
+Fitted Equations        View the fitted equations (*.tt3)
+
+Device Candidates       View the selector candidate list (*.sel)
+Fitter Assignments      View pin assignments made by Fitter (*.fit)
+
+PLDMap Report           View the PartMap documentation file (*.doc)
+JEDEC/PROM Fuse File    View the fuse file (*.jed, etc.)
+
+Simulation Results      View the latest simulation results (*.sm? or *.sim)
+PLDgrade Report         View the JEDEC fault grading results
+
+Errors                  View errors from the last program run
+View File...            View any file of your choice
+*Compile Menu,A
+Compile Menu
+
+The Compile menu selections allow you to control the operation of 
+the ABEL-HDL compiler program, ahdl2pla, and to invoke the ABEL-PLA 
+simulator to verify the correct operation of a compiled design.
+
+Compile menu items:
+
+Compile                 Compile the design and create ABEL-PLA files
+Error Check             Check the design for syntax errors only
+Vectors Only            Compile the test vectors only
+Options...              Set the compiler processing options
+
+Simulate Equations      Simulate the compiler-generated equations
+Re-Simulate             Simulate the design with updated test vectors
+Trace Options...        Set the simulation trace options
+*Optimize Menu,A
+Optimize Menu
+
+The Optimize menu selections allow you to control the
+operation of the PLAopt optimization program. PLAopt is based on the
+Espresso program developed at the University of California (at
+Berkeley) and has many options that allow designs to be optimized
+for different device architectures.
+
+Optimize menu items:
+
+Reduce                  Run PLAopt/Espresso
+Options...              Set the optimization options
+
+Simulate Optimized      Simulate the optimized equations
+Trace Options...        Set the simulation trace options
+*SmartPart Menu,A
+SmartPart Menu
+
+SmartPart is an optional upgrade to ABEL. If some of the menu
+items appear greyed out, it is because you do not have that
+option installed. Please see About... in the Help menu for
+ordering information. 
+
+The SmartPart menu includes selections for device selection and
+fitting. Select devices by entering selection criteria and invoking 
+the "Database search" function. The resulting device candidate list 
+can be used as input to the Fitter (the "Fit from List File" 
+selection) or a specific architecture may be selected from the 
+candidate list and specified to the Fitter program.
+
+SmartPart menu items:
+
+Database Search         Search the database and select candidates
+Modify Criteria...      Set the device selection criteria
+
+Fit                     Fit the design into specific architectures
+Fit from List File...   Fit the design from the list of devices
+Options...              Set the fitter options
+
+Simulate Fitted Design  Simulate the design after fitting
+Trace Options...        Set the fit simulation trace options
+*PartMap Menu,A
+PartMap Menu
+
+The PartMap menu allows you to control the operation of the
+device mapping program. The device mapper can be invoked for
+all devices successfully fitted by the SmartPart Fit selection
+or it can be invoked for a user-specified architecture. The
+device mapping program produces a programmer download file
+(typically a JEDEC or PROM format file) that can be transferred
+to a device programmer through the use of the terminal emulator
+(Alt-F1 or "Program Device"). 
+
+The "Simulate JEDEC (F4)" selection invokes the device
+simulator to verify that the mapped design will function as
+expected before programming an actual device. 
+
+PartMap menu items:
+
+PLDmap                  Map the design (create programmer load file)
+Options...              Set the PLDmap options
+
+FPGA Translate          Translate to a FPGA tool input format
+FPGA Options...         Set destination FPGA tool for translation
+
+Simulate JEDEC      F4  Simulate the JEDEC file
+Re-Simulate JEDEC       Simulate with new vectors
+Trace options...        Set the JEDEC simulation options
+
+PLDgrade                Fault grade the JEDEC file using PLDgrade
+PLDgrade options...     Set the PLDgrade options
+
+Program Device  Alt-F1  Invoke the terminal emulator
+*Defaults Menu,A
+Defaults Menu
+
+The Defaults menu provides selections that modify the ABEL
+design environment.
+
+Defaults menu items:
+
+Auto Update             Enable automatic design update
+Force Fit Update        Force the Fitter to be called during
+                        auto-update
+Spaces to tabs          Convert spaces to tabs when saving file
+Program Pause           Pause after a program is executed
+*Help Menu,A
+Help Menu
+
+The Help menu provides various methods of accessing ABEL
+on-line help.
+
+Help menu items:
+
+Help For Help...        Help on how and when to get help
+Index...                Indexed help topics
+Keyboard...             Help for Keys
+Design Process...       Help for ABEL Design Process
+Menus...                Help for Menus
+Program Options...      Help for ABEL Program Options
+Language...             Help for the ABEL-HDL Language
+
+Devices...              Help for ABEL Devices
+Errors...               Help for ABEL error numbers
+
+About...                About the ABEL-HDL Design Environment
+*====Keyboard Help====,A
+*Global Keys,A
+Global Keys
+    F1          Context sensitive, multi-level help
+    Esc         Toggles between Editor Window and Menu Bar
+    ^L          Redraw screen
+    Alt-letter  Pops up menu with highlighted character that
+                matches letter
+*Editor Keys,A
+Editor Keys
+    arrow keys  Moves cursor without modifying text
+    Pg Up       Scroll back a page
+    Pg Dn       Scroll forward a page
+    ^D          Deletes line
+    ^R          Replicates line
+    ^Home       Moves cursor to beginning of file
+    ^End        Moves cursor to end of file
+    ^L          Redraws the screen
+    Ins         Toggles insert mode in editor
+    Del         Deletes current character
+    Enter       Inserts line feed
+    Backspace   Deletes character before cursor, merges lines
+    F4          Simulate JEDEC
+    Alt-F1      Program Part - invoke terminal emulator
+
+*Menu Keys,A
+Menu Keys
+    <-          Pulls down menu to left of current menu
+    ->          Pulls down menu to right of current menu
+    Up/Dn Arrow Moves menu highlight bar
+    letter      Selects menu item that has highlighted character
+                that matches letter
+    Enter       Acts on currently highlighted menu item
+
+*Dialog Box Keys,A
+Dialog Box Keys
+    F2           Pops-up choice list
+    Tab or Enter Moves cursor to next item
+    Shift-Tab    Moves cursor to previous item
+    Space        Toggles check boxes   [ ]
+                 Selects mode buttons ( )
+    F6           Clears the field
+    Home         Move to first character in field
+    End          Move to last character in field
+    ^Home        Move to first field on dialog box
+    ^End         Move to last field on dialog box
+    F5 or <OK>   Saves all changes on dialog box
+    Esc,<Cancel> Cancels dialog box, discarding all changes
+*====Language Help====,A
+*--Miscellaneous--,A
+*Feedback,A
+Feedback
+
+This is how feedback is interpreted.  See the section of the manual
+on dot extensions for more detailed descriptions.
+When in doubt, use .FB.
+
+COUNT := COUNT.FB + 1 is interpreted as:
+    1. if register feedback exists, use it (normalized to
+       the pin) or
+    2. use pin feedback
+
+  Output Enable Note:
+    a. No .OE equations or .OE = 1: correct
+    b. Device has pin controlled Output Enable:
+       Fitter/Fuseasm: a warning will be generated
+    c. .OE equations other than .OE = 1:
+       Fitter: won't use pin feedback for .FB
+       Fuseasm: for backwards compatibility, pin feedback will
+       be allowed, but a warning will be generated.
+
+COUNT := COUNT + 1 is interpreted as:
+		When a signal appears on the right side of an
+                equation without a dot extension.
+Examples:
+    1. use pin feedback if it exists or
+    2. use register feedback (normalized to the pin)
+
+  Output Enable Note:
+    .OE equations (other than OE = 1), or pin controlled OE:
+    Fitter: warning
+    Fuseasm: silence
+
+COUNT := COUNT.PIN + 1 is interpreted as:
+    .PIN - is the pin in all cases. If pin feedback is not
+    available, .pin cannot be used.
+
+    Output enables are irrelevant.
+
+COUNT := COUNT.Q + 1 is interpreted as:
+    .Q - registered feedback only. Uses the same polarity as
+    the register regardless of the output pin polarity or 
+    which feedback (Q or Q-bar) is shown in the logic diagram.
+
+    Output enables are irrelevant.
+
+>>>>>>>>> No dot extension and .PIN are NOT the same. <<<<<<<<<<
+*Sets,A
+Sets            [ ]
+
+Definition:    A set is a collection of signals and constants that
+is operated on as one unit. Any operation applied to a set is
+applied  to each element in the set. Sets simplify ABEL-HDL logic
+descriptions  and test vectors by allowing groups of signals to be
+referenced with one name.
+
+For example, the outputs B0-B7 of an eight-bit multiplexer could be
+collected into the set named MULTOUT. The three selection lines
+might  be collected in the set, SELECT. The multiplexer could then
+be defined  in terms of MULTOUT and SELECT rather than being
+defined by all the  input and output bits individually specified.
+
+A set is represented by a list of constants and signals separated
+by commas, or the range operator (..), and surrounded by brackets.
+Example:
+
+--Sample Set--                         --Description--
+MULTOUT = [B0,B1,B2,B3,B4,B5,B6,B7];   "outputs (MULTOUT)
+SELECT = [S0,S1,S2];                   "select lines (SELECT)
+
+The above sets could also be expressed by using the range operator;
+for example,
+
+MULTOUT = [B0..B7];
+SELECT =  [S0..S2];
+
+Set Operations:  Most operators can be applied to sets. In
+general, this means that the operation is performed on each element
+of the set, sometimes individually and sometimes according to the
+rules of Boolean algebra. The following table lists the operators
+that may be used with sets.
+
+Operator           Example               Description
+
+
+=                  A = 5                 combinatorial assignment
+:=                 A := [1,0,1]          registered assignment
+!                  !A                    NOT (ones complement)
+&                  A & B                 AND
+#                  A # B                 OR
+$                  A $ B                 XOR: exclusive OR
+!$                 A!$ B                 XNOR: exclusive NOR
+-                  -A                    negate
+-                  A - B                 subtraction
++                  A + B                 addition
+==                 A == B                equal
+!=                 A != B                not equal
+<                  A < B                 less than
+<=                 A <= B                less than or equal
+>                  A > B                 greater than
+>=                 A >= B                greater than or equal
+
+
+Limitations/Restrictions on Sets
+
+If you are unsure about the interpretation of an equation, try the
+following hints:
+
+1. Fully parenthesize your equation. Most errors are simply
+caused by ignoring the precedence rules in the above table.
+
+2. Write out numbers as sets of 1s and 0s instead of as decimal
+numbers. If the width is not what you expected, you will get an
+error message.
+*Operators,A
+Operators
+
+ABEL-HDL operators are divided into four basic types: logical,
+arithmetic, relational, and assignment. Each of these types is
+discussed separately below, followed by a description of how they
+are combined into expressions. Following the descriptions is a
+summary of all the operators and the rules governing them, and
+finally an explanation of how equations  utilize expressions.
+
+Logical Operators
+
+Logical operators are used in expressions. ABEL-HDL incorporates
+the standard logical operators listed in the following table.
+
+Operator                 Description
+
+!                        NOT: ones complement
+&                        AND
+#                        OR
+$                        XOR: exclusive OR
+!$                       XNOR: exclusive NOR
+
+Arithmetic Operators
+
+Arithmetic operators define arithmetic relationships between
+items in an expression. The shift operators are included in this
+class because each left shift of one bit is equivalent to
+multiplication by 2 and a right shift of one bit is the same as
+division by 2. The following table lists the arithmetic operators.
+
+
+Operator                Description
+
+-A                      twos complement (negation)
+A-B                     subtraction
+A+B                     addition
+A*B                     multiplication
+A/B                     unsigned integer division
+A%B                     modulus: remainder from /
+A<<B                    shift A left by B bits
+A>>B                    shift A right by B bits
+
+Relational Operators
+
+Relational operators are used to compare two items in an
+expression. Expressions formed with relational operators produce
+a Boolean true or false value. The following table lists
+the relational operators.
+
+Operator                    Description
+
+=<|>=                       equal
+!=                          not equal
+<                           less than
+< =                         less than or equal
+>                           greater than
+> =                         greater than or equal
+
+Some examples of relational operators in expressions follow:
+
+Expression                 Value
+
+2 == 3                     false
+2 != 3                     true
+3 < 5                     true
+-1 > 2                    true
+
+
+Assignment Operators
+
+Assignment operators are a special class of operators used in
+equations rather than in expressions. Equations assign the value
+of an expression to output signals. See "Equations" below for a
+complete discussion of equations. There are two assignment
+operators: combinatorial or immediate assignment
+occurs without any delay as soon as the equation is evaluated; 
+registered assignment occurs at the next clock pulse from the
+clock associated with the output. The following table shows the
+assignment operators.
+
+Operator                 Description
+
+=                        Combinatorial assignment
+:=                       Registered assignment
+
+*Expressions,A
+Expressions
+
+Items such as constants and signal names can be brought together
+in expressions. Expressions combine, compare or perform operations
+on the items they include to produce a single result. The operations
+to be performed (addition and logical AND are two examples) are
+indicated by operators within the expression.
+
+Expressions are combinations of identifiers and operators that
+produce one result when evaluated. Any logical, arithmetic or
+relational operators may be used in expressions.
+
+*Equations,A
+Equations
+
+Equations assign the value of an expression to a signal or set of
+signals in a logic description. The identifier and expression must
+follow the rules already established for those elements.
+
+Equations use the two assignment operators = (combinatorial) 
+and := (registered) described above.
+
+See Also:       See "Equations" and "When-Then-Else" in the 
+                "Language Reference" chapter in the manual
+
+*Multiple Assignments to an Identifier,A
+Multiple Assignments to an Identifier
+
+When an identifier appears on the left side of more than one
+equation, the expressions being assigned to the identifier are
+first ORed together and then the assignment is made. If the
+identifier on the left side of the equation is complemented, the
+complement is performed after all the expressions have been ORed.
+*--Dot Extensions--,A
+*.<none>,A
+.<none>  No Dot Extension
+
+Description     When a signal appears on the right side of an
+                equation without a dot extension.
+
+Examples:
+COUNT := COUNT + 1 is interpreted as:
+    1. use pin feedback if it exists or else
+    2. use register feedback (normalized to the pin)
+
+  Output Enable Note:
+    .OE equations (other than OE = 1), or pin controlled OE:
+    Fitter: warning
+    Fuseasm: silence
+
+>>>>>>>>> No dot extension and .PIN are NOT the same. <<<<<<<<<<
+*.AP,A
+.AP Asynchronous Register Preset        Syntax: signal_name.ap
+
+Purpose/Usage:  Architecture-dependent dot extension for
+asynchronous register preset. Signal dot extensions are a way to
+more precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+
+See Also:       .AR             .PR             .RE
+                .SP             .SR
+*.AR,A
+.AR Asynchronous Register Reset         Syntax: signal_name.ar
+
+Purpose/Usage:  Architecture-dependent dot extension for
+asynchronous register reset. Signal dot extensions are a way
+to more precisely describe the behavior of a circuit in a
+logic description. Dot extensions are applied to signals and
+are used to remove the ambiguities in equations.
+
+See Also:       .AP             .PR             .RE
+                .SP             .SR
+*.CE,A
+.CE Clock-enable Input to a             Syntax: signal_name.ce
+    Gated-clock Flip-flop
+
+Purpose/Usage:  Architecture-dependent dot extension for
+clock-enable input to a gated-clock flip-flop. Signal dot
+extensions are a way to more precisely describe the behavior of
+a circuit in a logic description. Dot extensions are applied
+to signals and are used to remove the ambiguities in equations.
+
+See Also:       .CLK            .D
+*.CLK,A
+.CLK Clock Input                        Syntax: signal_name.clk
+
+Purpose/Usage:  Architecture-independent dot extension for clock
+input to an edge-triggered flip-flop. Signal dot extensions are a
+way to more precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used to
+remove the ambiguities in equations.
+
+Examples
+               declarations
+
+               foo       PIN ISTYPE 'reg';
+               Preset PIN;
+
+               equations
+
+               foo :=!foo # Preset;
+
+could describe many possible operating characteristics,
+depending on the architecture of the target device.
+
+           declarations
+
+           foo       PIN ISTYPE 'reg_D'
+           Preset,Clock   PIN;
+
+           equations
+
+           foo.clk = Clock;
+           foo.D = !foo.Q # Preset;
+
+more precisely describes the desired circuit as being a toggling
+D-type flip-flop that is clocked by the input clock.
+
+See Also:       .CLK            .D              .Q
+                ISTYPE
+*.D,A
+.D  D-type Flip-flop                    Syntax: signal_name.d
+
+Purpose/Usage:  Architecture-dependent dot extension for
+data input to a D-type flip-flop. Signal dot extensions are a
+way to more precisely describe the behavior of a circuit in a
+logic description. Dot extensions are applied to signals and
+are used to remove the ambiguities in equations.
+
+Examples
+            declarations
+
+            foo       PIN ISTYPE 'reg';
+            Preset PIN;
+
+            equations
+
+            foo :=!foo # Preset;
+
+could describe many possible operating characteristics, depending
+on the architecture of the target device.
+
+            declarations
+
+            foo       PIN ISTYPE 'reg_D'
+            Preset,Clock   PIN;
+
+            equations
+
+            foo.clk = Clock;
+            foo.D = !foo.Q # Preset;
+
+
+more precisely describes the desired circuit as being a toggling
+D-type flip-flop that is clocked by the input clock.
+
+See Also:       .PR             .Q              .R
+                .RE             .S              .SP
+                .SR             .T
+
+*.FB,A
+.FB  Register Feedback                  Syntax: signal_name.fb
+
+Purpose/Usage:  The .FB extension is used to specify the
+source of a fed back output signal when the source of that
+signal would otherwise be ambiguous. Using .FB will result
+in a feedback path corresponding to the output of the
+associated flip-flop, with the polarity of that feedback
+"normalized" to match the polarity observed on the
+associated output pin. If the design using .FB is implemented
+in a device with pin feedback only, the device fitter and
+fuse assemblers will ensure that the output is always enabled,
+allowing the pin feedback to be used for register feedback.
+
+Example         (A.D = X.FB = Y.FB)
+
+Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+
+See Also:       .Q              .PIN
+*.FC,A
+.FC  Flip-flop Mode Control             Syntax: signal_name.fc
+
+Purpose/Usage:  Architecture-dependent dot extension for
+flip-flop mode control. Signal dot extensions are a way to more
+precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+*.J,A
+.J J Input to JK Flip-flop              Syntax: signal_name.j
+
+Purpose/Usage:  Architecture-dependent dot extension for the J
+input to a JK-type flip-flop. Signal dot extensions are a way to
+more precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+
+See Also:       .K              .S              .R
+                .D              .T
+*.K,A
+.K  K Input to JK Flip-flop             Syntax: signal_name.k
+
+Purpose/Usage:  Architecture-dependent dot extension for the K
+input to a JK-type flip-flop. Signal dot extensions are a way to
+more precisely describe the behavior of a circuit in a
+logic description. Dot extensions are applied to signals and are
+used to remove the ambiguities in equations.
+
+See Also:       .D              .J              .R
+                .S              .T
+*.LD,A
+.LD Register Load Input                 Syntax: signal_name.ld
+
+Purpose/Usage:  Architecture-dependent dot extension for
+register load input. Signal dot extensions are a way to more
+precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+*.LE,A
+.LE  Latch-enable Input                 Syntax: signal_name.le
+
+Purpose/Usage:  Architecture-dependent dot extension for
+latch-enable input to a latch. Signal dot extensions are a way to
+more precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+
+See Also:       .LH
+*.LH,A
+.LH  Latch-enable (High)                Syntax: signal_name.lh
+
+Purpose/Usage:  Architecture-dependent dot extension for
+latch-enable (high) to a latch. Signal dot extensions are a way
+to more precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+
+See Also:       .LE
+*.OE,A
+.OE  Output Enable                      Syntax: signal_name.oe
+
+Purpose/Usage:  Architecture-independent dot extension for
+an output enable. Signal dot extensions are a way to more
+precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+
+DESCRIBING THREE-STATE OUTPUT ENABLES
+
+Output enables are described in ABEL with the .oe dot extension
+applied to an output signal name. The following equation
+specifies an output enable for an output signal named foo:
+
+foo.oe = !enab;
+
+The equation specifies that the input signal enab is to be used
+to control the output enable for foo. In previous versions of
+ABEL, it was sometimes useful to indicate explicitly the value
+of a fixed output enable. For example, the equation:
+
+foo.oe = 0;
+
+indicates that the output foo_in is permanently disabled (the
+signal is going to be used strictly as an input). In ABEL-HDL this
+is not necessary, and is discouraged since it restricts the device
+fitters' ability to map the indicated signal to a simple input pin
+instead of a three-state I/O pin.
+
+See Also:       "Attributes"
+                 The chapter, "Design Considerations"
+*.PIN,A
+.PIN - Pin Feedback                     Syntax: signal_name.pin
+
+Purpose/Usage: Architecture-independent dot extension for pin
+feedback. Only pin feedback will be used for .pin equations.
+Signal dot extensions are a way to more precisely describe the
+behavior of a circuit in a logic description. Dot extensions
+are applied to signals and are used to remove the ambiguities
+in equations. 
+
+Example         AZRDY: = XNAK.PIN
+
+The .PIN dot extension is used to specify the source of a fed
+back output signal when the source of that signal would
+otherwise be ambiguous. Using .PIN will result in a feedback
+path corresponding to the output pin associated with the
+indicated signal name.
+
+See Also:       .Q
+*.PR,A
+.PR  Register Preset                    Syntax: signal_name.pr
+
+Purpose/Usage:  Architecture-dependent dot extension for
+register preset. Signal dot extensions are a way to more
+precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are
+used to remove the ambiguities in equations.
+
+See Also:       .RE
+*.Q,A
+.Q  Register Feedback                   Syntax: signal_name.q
+
+Purpose/Usage:  .Q feedback is interpreted as "use whatever
+is in the register regardless of what is on the pin". .Q
+equations will always use register feedback. It is an
+architecture-dependent dot extension for register
+feedback. Signal dot extensions are a way to more precisely
+describe the behavior of a circuit in a logic description. Dot
+extensions are applied to signals and are used to remove the
+ambiguities in equations.
+
+Example         A := B.Q & !CLR;
+
+The .Q dot extension is used to specify the source of a fed
+back output signal when the source of that signal would
+otherwise be ambiguous. Using .Q will result in a feedback
+path corresponding to the output of the associated flip-flop,
+with no consideration of subsequent output inversion. In
+most cases you should use the .FB dot extension for feedback
+rather than the .Q dot extension.
+
+
+See Also:       .AP             .J              .PR
+                .AR             .K              .Q
+                .CE             .LD             .R
+                .CLK            .LE             .RE
+                                .LH             .S
+                .D              .OE             .SP
+                .FB             .PIN            .SR
+                                                .T
+*.R,A
+.R  R Input to an SR Flip-flop          Syntax: signal_name.r
+
+Purpose/Usage:  Architecture-dependent dot extension for the
+R input to an SR-type flip-flop. Signal dot extensions are a way
+to more precisely describe the behavior of a circuit in a
+logic description. Dot extensions are applied to signals and are
+used to remove the ambiguities in equations.
+
+See Also:       .AP             .J              .PR
+                .AR             .K              .Q
+                .CE             .LD             .R
+                .CLK            .LE             .RE
+                                .LH             .S
+                .D              .OE             .SP
+                .FB             .PIN            .SR
+                                                .T
+*.RE,A
+.RE  Register Reset                    Syntax: signal_name.re
+
+Purpose/Usage:  Architecture-dependent dot extension for register
+reset (synchronous or asynchronous). Signal dot extensions are a
+way to more precisely describe the behavior of a circuit in a
+logic description. Dot extensions are applied to signals and are
+used to remove the ambiguities in equations.
+
+See Also:       .AP             .J              .PR
+                .AR             .K              .Q
+                .CE             .LD             .R
+                .CLK            .LE             .RE
+                                .LH             .S
+                .D              .OE             .SP
+                .FB             .PIN            .SR
+                                                .T
+*.S,A
+.S  S Input to an SR Flip-flop          Syntax: signal_name.s
+
+Purpose/Usage:  Architecture-dependent dot extension for the S
+input to an SR-type flip-flop. Signal dot extensions are a way
+to more precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+
+See Also:       .D              .J              .K
+                .R              .T
+*.SP,A
+.SP  Synchronous Register Preset        Syntax: signal_name.sp
+
+Purpose/Usage:  Architecture-dependent dot extension for
+synchronous register preset. Signal dot extensions are a way to
+more precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used to
+remove the ambiguities in equations.
+
+See Also:       .PR             .RE             .SR
+*.SR,A
+.SR  Synchronous Register Reset         Syntax: signal_name.sr
+
+Purpose/Usage:  Architecture-dependent dot extension for
+synchronous register reset. Signal dot extensions are a way to
+more precisely describe the behavior of a circuit in a logic
+description. Dot extensions are applied to signals and are used
+to remove the ambiguities in equations.
+
+See Also:       .PR             .RE             .SP
+*.T,A
+.T T-type Flip-flop                     Syntax: signal_name.t
+
+Purpose/Usage: Architecture-dependent dot extension for the T
+input to a T-type (toggle) flip flop. Signal dot extensions are
+a way to more precisely describe the behavior of a circuit in a
+logic description. Dot extensions are applied to signals and are
+used to remove the ambiguities in equations.
+
+See Also:       .D              .J              .K
+                .R              .S
+*--ISTYPE Attributes--,A
+*BUFFER,A
+'buffer'  No Inverter Attribute     'buffer'
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The 'buffer' attribute indicates that the target
+architecture does not have an inverter between the associated
+flip-flop (if any) and the actual output pin. Control of output
+inversion in devices is accomplished through the
+use of the 'invert' or 'buffer' attributes. These attributes
+enforce the existence ('invert') or non-existence ('buffer') of a
+hardware inverter at the device pin associated with the output
+signal specified.
+
+
+Examples:       q0,q1,q2        pin  istype 'buffer';
+                a0a2            istype 'buffer';
+
+See Also:       'INVERT'
+
+*COM,A
+'com'     Combinatorial Signal Attribute
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The 'com' attribute is used to specify that a signal has no register
+element associated with it or that any register should be bypassed.
+
+See Also:       'REG'
+*INVERT,A
+'invert'  Inverter Attribute
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The 'invert' attribute indicates that the target architecture
+does not have an inverter between the associated flip-flop
+and the actual output pin. Control of output inversion in
+devices is accomplished through the use of the 'invert'
+or 'buffer' attributes. These attributes enforce the existence
+('invert') or non-existence ('buffer') of a hardware inverter
+at the device pin associated with the output signal specified.
+
+In registered devices, the 'invert' attribute ensures that an
+inverter will be located between the output pin and its associated
+register output. This is important because the location of the
+inverter affects a register's reset, preset, preload and powerup
+behavior as observed on the associated output pin.
+
+See Also:       'BUFFER'
+*FEED_OR,A
+'feed_or'  Feedback from OR attribute
+
+Purpose/Usage:  The 'feed_or' attribute is supported for backward 
+compatibility only. It specifies the precise configuration of a feedback 
+path for an output signal. The dot extensions .D, .T, .J and .S now take 
+the place of 'feed_or'. 
+
+Examples:	out2 = (a & b) # out1.d;
+        	out = clear & toggle.t;
+
+*FEED_PIN,A
+'feed_pin'  Feedback from PIN attribute
+
+Purpose/Usage:  The 'feed_pin' attribute is supported for backward 
+compatibility only. The correct way to use pin feedback is to write 
+equations using the .PIN dot extension.
+
+Examples:       out2 = (a & b ) # out1.pin;
+                count.d = count.pin + 1;
+
+See Also:       'FEED_REG'      'FEED_OR'
+*FEED_REG,A
+'feed_reg'
+
+Purpose/Usage:  The 'feed_reg' attribute is supported for backward 
+compatibility only. It specifies the precise configuration of a feedback 
+path for an output signal. The dot extension .FB now takes the place of 
+'feed_reg'. 
+
+Example:	count := count.fb + 1;
+
+*NEG,A
+'neg'  Complement Signal                Syntax: 'neg'
+
+Purpose/Usage:  Signal attributes are used to specify 
+architecture-related constraints for signals used in the design. 
+Attributes are usually applied to signals that are used as outputs.
+
+The 'neg' attribute indicates that the signal should be
+complemented prior to processing into sum-of-products equations.
+'Neg' is typically used in combination with the 'reduce fixed'
+option to precisely control the polarity of the final
+design. 'Neg' is also used to control the speed and size of
+sum-of-products processing within AHDL2PLA. This attribute does
+not affect the logical function of the associated output
+signal - the signal is complemented again by later processes.
+
+See Also:       'BUFFER'        'REG_SR'
+                'INVERT'        'REG_T'
+                'REG'           'XOR'
+                'REG_D'         ISTYPE
+                'REG_G'
+                'REG_JK'
+*POS,A
+'pos'
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+'Pos' indicates that the associated input or output has positive polarity.
+*REG,A
+'reg'  Clocked Memory Element           Syntax: 'reg'
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The 'reg' attribute indicates that the associated signal has a
+D-type flip-flop as its memory element. When 'reg' is specified,
+the equations resulting from an ABEL-HDL state diagram will be
+architecture-independent. You do not need to worry about the 
+existence of inverted output pins.
+
+See Also:       'BUFFER'        'REG_SR'
+                'INVERT'        'REG_T'
+                'NEG'           'XOR'
+                'REG_D'         ISTYPE
+                'REG_G'
+                'REG_JK'
+*REG_D,A
+'reg_D'  D Flip-flop Clocked            Syntax: 'reg_d'
+         Memory Element
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The associated signal has a D-type flip-flop as its memory
+element. Equations generated from an ABEL-HDL state diagram will
+assume a D-type register if this attribute is specified;
+however, you will need to specify the 'invert' or 'buffer'
+attribute to ensure consistent operation in different architectures.
+
+See Also:       'BUFFER'        'REG_SR'
+                'INVERT'        'REG_T'
+                'NEG'           'XOR'
+                'REG'           ISTYPE
+                'REG_G'
+                'REG_JK'
+*REG_G,A
+'reg_G'  D Flip-flop Gated              Syntax: 'reg_g'
+         Clock Memory Element
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The associated signal has a D-type flip-flop with gated clock as
+its memory element. Equations generated from an ABEL-HDL state
+diagram will assume this register type if the 'reg_g'
+attribute is specified; however, you will need to specify the
+'invert' or 'buffer' attribute to ensure consistent operation
+in different architectures.
+
+See Also:       'BUFFER'        'REG_SR'
+                'INVERT'        'REG_T'
+                'NEG'           'XOR'
+                'REG'           ISTYPE
+                'REG_D'
+                'REG_JK'
+*REG_JK,A
+'reg_JK'  JK Flip-flop Clocked          Syntax: 'reg_jk'
+          Memory Element
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The associated signal has a JK-type flip-flop as its memory
+element. Equations generated from an ABEL-HDL state diagram will
+assume this register type if the 'reg_jk' attribute is
+specified; however, you will need to specify the 'invert' or
+'buffer' attribute to ensure consistent operation in different
+architectures.
+
+See Also:       'BUFFER'        'REG_SR'
+                'INVERT'        'REG_T'
+                'NEG'           'XOR'
+                'REG'           ISTYPE
+                'REG_D'
+                'REG_G'
+*REG_SR,A
+'reg_SR'  SR Flip-flop Clocked          Syntax: 'reg_sr'
+          Memory Element
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The associated signal has an SR-type flip-flop as its memory
+element. Equations generated from an ABEL-HDL state giagram will
+assume this register type if the 'reg_sr' attribute is
+specified; however, you will need to specify the 'invert' or
+'buffer' attribute to ensure consistent operation in different
+architectures.
+
+
+See Also:       'BUFFER'        'REG_JK'
+                'INVERT'        'REG_T'
+                'NEG'           'XOR'
+                'REG'           ISTYPE
+                'REG_D'
+                'REG_G'
+*REG_T,A
+'reg_T'  T Flip-flop Clocked                    Syntax: 'reg_t'
+         Memory Element
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The associated signal has a T-type flip-flop as its memory
+element. Equations generated from an ABEL-HDL state diagram will
+assume this register type if the 'reg_t' attribute is
+specified; however, you will need to specify the 'invert' or
+'buffer' attribute to ensure consistent operation in different
+architectures.
+
+See Also:       'BUFFER'        'REG_JK'
+                'INVERT'        'REG_SR'
+                'NEG'           'XOR'
+                'REG'           ISTYPE
+                'REG_D'
+                'REG_G'
+*XOR,A
+'xor'  XOR Gate in Target Device                Syntax: 'xor'
+
+Purpose/Usage:  Signal attributes are used to specify
+architecture-related constraints for signals used in the design.
+Attributes are usually applied to signals that are used as outputs.
+
+The target architecture has an XOR gate, so one
+top-level exclusive-OR operator is retained in the design
+equations.
+
+See Also:       'BUFFER'        'REG_JK'
+                'INVERT'        'REG_SR'
+                'NEG'           'T'
+                'REG'           ISTYPE
+                'REG_D'
+                'REG_G'
+*--Compiler Directives--,A
+*@ALTERNATE,A
+@Alternate  Alternate Operator Set              Syntax: @alternate
+
+Purpose/Usage:  @ALTERNATE brings an alternate set of operators into
+effect that duplicate the normal ABEL-HDL operators. This is for
+users who feel more comfortable with the alternate set because of
+their familiarity with operators used in other languages. The
+alternate operators remain in effect until the @STANDARD directive
+is issued or the end of the module is reached.
+
+ABEL-HDL Operator      Alternate Operator      Description
+       !                      /                   NOT
+       &                      *                   AND
+       #                      +                   OR
+       $                    : + :                 XOR
+       !$                   : * :                 XNOR
+
+Note that the use of the alternate operator set precludes use of the 
+ABEL-HDL addition, multiplication and division operators because they 
+represent the OR, AND and NOT logical operators in the alternate set. 
+The !, &, $ and !$ will still work when @Alternate is in effect.
+
+See Also:       @STANDARD
+*@CONST,A
+@Const  Constant Declarations   Syntax: @const  id = expression ;
+                                (id is a valid identifier)
+                                (expression is a valid expression)
+
+Purpose/Usage:  @CONST allows new constant declarations to be made
+in a source file outside the normal (and required) declarations
+section.
+
+The @CONST directive is intended to be used inside macros to define
+internal constants. Constants defined with @CONST override previous
+constant declarations. Declaring an identifier as a constant in this
+manner constitutes an error if the identifier was used earlier in
+the source file as something other than a constant (i.e., a macro,
+pin, device).
+
+Examples:       @CONST count = count + 1;
+
+See Also:       "Special Constants" in the chapter "ABEL-HDL 
+                Language Structure"
+                DECLARATIONS
+*@DCSET,A
+@Dcset  Don't Care Set                          Syntax: @dcset
+
+Purpose/Usage:  ABEL-HDL uses don't-care conditions to help in
+the optimization of partially-specified logic functions. Partially
+specified logic functions are those that have less than 2n
+significant input conditions, where n is the number of input
+signals. This feature is most easily described by example.
+
+Consider the following ABEL or ABEL-HDL truth table:
+
+         truth_table ([i3,i2,i1,i0]->[f3,f2,f1,f0])
+
+                 [ 0, 0, 0, 0]->[ 0, 0, 0, 1];
+                 [ 0, 0, 0, 1]->[ 0, 0, 1, 1];
+                 [ 0, 0, 1, 1]->[ 0, 1, 1, 1];
+                 [ 0, 1, 1, 1]->[ 1, 1, 1, 1];
+                 [ 1, 1, 1, 1]->[ 1, 1, 1, 0];
+                 [ 1, 1, 1, 0]->[ 1, 1, 0, 0];
+                 [ 1, 1, 0, 0]->[ 1, 0, 0, 0];
+                 [ 1, 0, 0, 0]->[ 0, 0, 0, 0];
+
+This truth table has four inputs, and therefore sixteen (2^4)
+possible input combinations. The function specified, however,
+only indicates eight significant input combinations. For each of
+the design outputs (f3 through f0) the truth table specifies whether
+the resulting value should be 1 or 0. For each output, each
+of the eight individual truth table entries is a
+member of either a set of true functions (on-set), or a set of 
+false functions (off-set). Using output f3 for an example, we can 
+list the eight input conditions as on-sets and off-sets as 
+follows (maintaining the ordering of inputs as specified in the 
+truth table above):
+
+                  on-set of f3     off-set of f3
+
+                  0 1 1 1          0 0 0 0
+                  1 1 1 1          0 0 0 1
+                  1 1 1 0          0 0 1 1
+                  1 1 0 0          1 0 0 0
+
+The remaining eight input conditions that do not appear in either
+the on-set or off-set are then members of the dc-set, as
+follows for f3:
+
+                          dc-set of f3
+
+                          0 0 1 0
+                          0 1 0 0
+                          0 1 0 1
+                          0 1 1 0
+                          1 0 0 1
+                          1 0 1 0
+                          1 0 1 1
+                          1 1 0 1
+
+These dc-set conditions can be used to minimize the logic for
+the design, if the @dcset directive is specified in the design.
+
+See Also:       The Manual, Section 4
+                @ONSET
+                TRUTH_TABLE
+*@EXIT,A
+@Exit  Exit Directive                           Syntax: @exit
+
+Purpose/Usage:  The @exit directive causes AHDL to abort
+processing of the source file with error bits set. (Error bits
+allow the operating system to determine that a processing error
+has occurred.)
+*@EXPR,A
+@Expr  Expression Directive     Syntax: @expr [ block ] expression;
+                                (block is a valid block of text)
+                                (expression is a valid expression)
+
+Purpose/Usage:  @EXPR evaluates the given expression, and converts
+it to a string of digits in the default base numbering system.
+This string and the block are then inserted into the source file
+at the point at which the @EXPR directive occurs. The expression
+must produce a valid number.
+
+Examples:      @expr {Addr} 10+4 ;
+
+Assuming that the default base is base ten, this example causes
+the text ABC3 to be inserted into the source file.
+*@IF,A
+@If  If Directive               Syntax: @if expression block
+                                (expression is a valid expression)
+                                (block is a valid block of text)
+
+Purpose/Usage: @IF is used to include sections of ABEL source code
+based on the value resulting from an expression. If the expression
+is non-zero (logical true), the block of code is included as part
+of the source. Dummy argument substitution is valid in the
+expression.
+
+Examples:     @IF (A>17) {C = D$F;}
+*@IFB,A
+@Ifb  If Blank Directive        Syntax: @IFB (arg) block
+                                (arg is an actual argument or a
+                                dummy argument preceded by a "?")
+                                (block is a valid block of text)
+
+Purpose/Usage:  @IFB includes the text contained within the block
+if the argument is blank (has 0 characters).
+
+Examples
+
+    @IFB ()
+    { text here will be included with the rest of the source file. }
+
+    @IFB ( hello )
+    { this text will not be included }
+
+    @IFB (?A)
+    { this text will be included if no value is substituted for A. }
+
+See Also:       @IFNB
+*@IFDEF,A
+@Ifdef  If Defined Directive            Syntax: @ifdef id block
+                                        (id is an identifier)
+                                        (block is a valid block of
+                                        text)
+
+Purpose/Usage:  @IFDEF includes the text contained within the block
+if the identifier is defined.
+
+Examples:     A pin 5 ;
+              @IFDEF A {BASE = ^hE000;}
+              "the above assignment is made
+              because A was defined
+
+See Also:     @IFNDEF
+*@IFIDEN,A
+@Ifiden  If Identical           Syntax: @ifiden (arg1,arg2) block
+         Directive              (arg1,2 are actual arguments, or
+                                dummy argument names preceded by
+                                "?")
+                                (block is a valid block of text)
+
+Purpose/Usage:  The text in the block is included in the source
+file if arg1 and arg2 are identical.
+
+Examples:       @ifiden (?A,abcd) { ?A device 'P16R4'; }
+
+A device declaration for a P16R4 is made if the actual argument
+substituted for A is identical to abcd.
+
+See Also:       @IFNDEN
+*@IFNB,A
+@Ifnb  If Not Blank             Syntax: @ifnb (arg) block
+       Directive                (arg is actual argument, or
+                                dummy argument names preceded by
+                                "?")
+                                (block is a valid block of text)
+
+Purpose/Usage:  @IFNB includes the text contained within the block
+if the argument is not blank, meaning that it has more than 0
+characters.
+
+Examples:       @IFNB ()
+                { ABEL source here will not be included with the
+                rest of the source file. }
+
+                @IFNB ( hello )
+                { this text will be included }
+
+                @IFNB (?A)
+                { this text will be included if a value is
+                substituted for A}
+
+See Also:       @IFNDEN
+*@IFNDEF,A
+@Ifndef  If Not Defined Directive       Syntax: @ifndef id block
+                                        (id is an identifier)
+                                        (block is a valid block
+                                        of text)
+
+Purpose/Usage:  @IFNDEF includes the text contained within the
+block if the identifier is undefined. Thus, if no declaration
+(pin, node, device, macro or constant) has been made for the
+identifier, the text in the block will be inserted into the
+source file.
+
+Examples:  @IFNDEF A {BASE = ^hE000;"
+           "if A is not defined, the block is inserted in the text
+
+See Also:       @IFB
+*@IFNIDEN,A
+@Ifniden  If Not Identical      Syntax: @ifniden (arg1,arg2) block
+          Directive             (arg1,2 are actual arguments, or
+                                dummy argument names preceded by
+                                "?")
+                                (block is a valid block of text)
+
+Purpose/Usage:  The text in the block is included in the source
+file if arg1 and arg2 are not identical.
+
+Examples:       @ifniden (?A,abcd) { ?A device 'P16R8'; }
+
+A device declaration for a P16R8 is made if the actual argument
+substituted for A is not identical to abcd.
+
+See Also:       @IFIDEN
+*@INCLUDE,A
+@Include  Include Directive     Syntax: @include filespec
+                                (filespec is a string specifying
+                                the name of a file, where the
+                                specification follows the rules of
+                                the operating system being used)
+
+Purpose/Usage:  @INCLUDE causes the contents of the file identified
+by the file specification to be placed in the ABEL source file.
+The inclusion will begin at the location of the @INCLUDE directive.
+The file specification can include an explicit drive or path
+specification that indicates where the file is to be found. If no
+drive or path specification is given, the file is expected to
+be on either the default drive or path.
+
+Examples:       @INCLUDE 'macros.abl'   "file specification
+*@IRP,A
+@Irp  Indefinite Repeat Directive
+                Syntax: @irp dummy_arg ( arg [,arg]...  )  block
+                (dummy_arg is a dummy argument)
+                (arg is an actual argument, or a dummy argument
+                name preceded by a "?")
+                (block is a block of text)
+
+Purpose/Usage:  @IRP causes the block to be repeated in the source
+file n times, where n equals the number of arguments contained in
+the parentheses. Each time the block is repeated, the dummy argument
+takes on the value of the next successive argument.
+
+Examples:       @IRP A (1, ^h0A,0) {B = ?A;}
+
+                results in:
+
+                B = 1 ;
+                B = ^H0A ;
+                B = 0 ;
+
+which is inserted into the source file at the location of the @IRP
+directive. Multiple assignments to the same identifier cause an
+implicit OR to occur.
+
+See Also:       @IRPC
+*@IRPC,A
+@Irpc  Indefinite Repeat, Character Directive
+                Syntax: @irpc dummy_arg (arg) block
+                (dummy_arg is a dummy argument)
+                (arg is an actual argument, or a dummy argument
+                name preceded by a "?")
+                (block is a valid block of text)
+
+Purpose/Usage:  @IRPC causes the block to be repeated in the source
+file n times, where n equals the number of characters contained in
+arg. Each time the block is repeated, the dummy argument takes on
+the value of the next successive character.
+
+Examples:       @IRPC A (Cat)
+                {B = ?A ;
+                }
+
+                results in:
+
+                C ;
+                B = a ;
+                B = t ;
+
+                which is inserted into the source file at the
+                location of the @IRPC directive.
+
+See Also:       @IRP
+*@MESSAGE,A
+@Message  Message Directive     Syntax: @message 'string'
+                                (string is any valid string)
+
+Purpose/Usage:  @Message prints a message specified in string
+to your monitor. This can be used to monitor the progress of
+the parsing step of the language processor in AHDL2PLA, or as
+an aid to debugging complex sequences of directives.
+
+Examples:       @message 'Includes completed'
+*@ONSET,A
+@ONSET  Use On-Set             Syntax: @onset
+
+Purpose/Usage:  @ONSET disables the effects of @DCSET for
+subsequent truth tables and state diagrams.  You may enable
+don't care optimization with another @DCSET directive.
+
+See Also:     @DCSET
+*@PAGE,A
+@Page  Page Directive                   Syntax: @page
+
+Purpose/Usage:  Send a form feed to the compiler listing file. 
+If no listing is being created, @page has no effect.
+*@RADIX,A
+@Radix  Default Base                    Syntax: @radix expr ;
+        Numbering Directive
+
+(expr is a valid expression that produces the number 2, 8, 10 or
+16 to indicate a new default base numbering.)
+
+Purpose/Usage:  @Radix is used to change the default base
+numbering system. The default is base 10 (decimal). This directive
+is useful when many numbers need to be specified in a base other
+than 10. The @radix directive can be issued and all numbers that
+do not have their base explicitly stated are assumed to be in the
+new base. (See the chapter "Language Elements.")
+
+Examples:       @radix 2 ;        "change default base to binary
+                @radix 10 ;       "change to decimal
+*@REPEAT,A
+@Repeat  Repeat Directive       Syntax: @repeat expr block
+                                (expr is a valid expression that
+                                produces a number)
+                                (block is a valid block of text)
+
+Purpose/Usage:  @REPEAT causes the block to be repeated n times,
+where n is specified by the constant expression.
+
+Examples:       The following use of the repeat directive,
+
+                @repeat 5 {H,}
+
+results in the text "H,H,H,H,H," being inserted into the source
+file.
+*@STANDARD,A
+@Standard  Standard Operators           Syntax: @standard
+           Directive
+
+Purpose/Usage:  @Standard switches the operators in effect back to
+the ABEL standard operators from the alternate set. The alternate
+set is chosen with the @alternate directive.
+*--Keywords--,A
+*CASE,A
+Case            Syntax: CASE [ expression : state_exp; ]
+                             [ expression : state_exp; ]
+                             [ expression : state_exp; ]
+                                   :
+                             ENDCASE ;
+
+Purpose/Usage:  The CASE statement is used under the State_diagram
+section to indicate the transitions of a state machine when there
+are multiple possible conditions that affect the state transitions.
+Examples:                           See Also:       STATE_DIAGRAM
+        case a == 0 : 1 ;                           GOTO
+        a == 1 : 2 ;                                IF-THEN-ELSE
+        a == 2 : 3 ;                                WITH-ENDWIDTH
+        a == 3 : 0 ;
+        endcase ;
+*CONSTANT,A
+Constant Declarations
+                Syntax: id [, id ]...  =  expr [, expr ]...  ;
+
+Purpose/Usage:  A constant declaration defines constants used in
+a module. A constant is an identifier that retains a constant value
+throughout a module. (id is an identifier naming a constant to be
+used within a module, expr defines the constant value.)
+
+Errors will occur when constant declarations are self-referencing;
+
+                X = X;
+                a = b;
+                b = a:
+
+Examples:       X =.X.;             " X means 'don't care'
+                ADDR = [1,0,15];    " ADDR is a set with 3 elements
+                G = [1,2]+[3,4];    " set operations are legal
+                A = B & C;          " operations on identifiers are
+                                      valid
+*DECLARATIONS,A
+Declarations                            Syntax: declarations 
+
+Purpose/Usage:  A declaration is any valid declaration given after
+the Declarations keyword. Declarations can be declared in
+any part of the ABEL-HDL source file.
+
+Signal Declarations
+
+Example         module  Declare
+                        declare device   'P16V8C';
+                        A,B,Out1        pin 1,2,15;
+                Equations
+                        Out1 = A & B;
+                Declarations
+                        C,D,E,F,Out2    pin 3,4,5,6,16;
+                        Temp1 = C & D;
+                        Temp2 = E & F;
+                Equations
+                        Out2 = Temp1  #  Temp2;
+                end;
+
+=  Constant Declarations             Syntax: id = expr [, expr]...;
+
+(id is an identifier naming a constant to be used within a module)
+(expr is an expression defining the constant value)
+
+Purpose/Usage:  The constant declaration statement defines
+constants to be used within a module. A constant is an identifier
+that retains a constant value throughout a module. The identifiers
+listed on the left side of the equals sign are assigned the
+values on the right side. There is a one-to-one correspondence
+between the identifiers and the expressions listed and there must
+be one expression for each identifier. The ending semicolon is
+required.
+
+Examples:  Some examples of valid constant declarations follow:
+
+           X =.X.;                 " X means 'don't care'
+           ADDR = [1,0,15];        " ADDR is a set with 3 elements
+           G = [1,2]+[3,4];        " set operations are legal
+           A = B & C;              " operations on identifiers are
+                                    valid
+See Also:       DECLARATIONS
+                "Special Constants" in the chapter "ABEL-HDL Language
+                Structure"
+
+See Also:       demo1800.abl
+*DEVICE,A
+Device          Syntax: device_id DEVICE real_device ;
+                (device_id is an identifier used for the
+                programmer load filenames)
+                (real_device is a string describing the industry
+                part number of the real device represented by
+                device_id. Only supported devices can be specified.)
+
+Purpose/Usage:  The device declaration is optional. It associates
+the device name used in a module with an actual programmable
+logic device on which designs are implemented. Device identifiers
+used in device declarations should be valid filenames since JEDEC
+files are created by appending the extension .jed to the identifier.
+The ending semicolon is required.
+
+Example         D1 DEVICE 'P16R4' ;
+*ENABLE,A
+ENABLE      obsolete keyword
+
+Enable is no longer used.  If you want to specify output enable
+equations use .OE
+
+Example:      out.oe = !ena;
+
+See Also:       .OE
+*EQUATIONS,A
+Equations                               Syntax: equations
+
+Purpose/Usage:  The equations statement defines the beginning of
+a group of equations associated with a device. Equations specify
+logic functions with Boolean algebra. An ending semicolon is
+required after each equation. The equations following the equation
+statement are any valid ABEL equations as described in the chapter 
+"ABEL-HDL Language Structure."
+
+Examples:       equations          See Also:       MODULE
+                A = B & C # A ;                    STATE_DIAGRAM
+                [W,Y] = 3 ;                        TRUTH_TABLE
+                !F = B == C ;                      Chapter 5
+*FLAG,A
+FLAG       obsolete
+
+The FLAG keyword was once used to specify command line options
+from withint the ABEL source file.  The ABEL-HDL method for doing
+this is with the OPTIONS keyword.
+
+Example:        OPTIONS '-red group fixed'
+
+See Also:       OPTIONS
+*FUSES,A
+Fuses           Syntax: fuses
+                        fuse_number = fuse value;
+                                or
+                        fuse_set = fuse value ;
+
+                (fuse_number is the fuse number obtained from
+                logic diagram of device)
+                (fuse_number_set is the set of fuse numbers
+                contained in square brackets)
+                (fuse_value is the number indicating fuse(s) states)
+
+Purpose/Usage:  The FUSES section of the source file provides a
+means for explicitly declaring the state of any fuse in the
+associated device. Fuse values appearing on the right side of
+the = symbol can be any number. In the case of only a single
+fuse number being specified on the left side of the = symbol,
+the least significant (LSB) bit of the fuse value is assigned
+to the fuse; a 0 indicates a fuse intact, and a 1 indicates a
+fuse blown. In the case of multiple fuse numbers, the fuse value
+is expanded to a binary number and truncated or given leading
+zeros to obtain fuse values for each fuse number.
+
+Examples:       FUSES                See Also:   MODULE
+                3552 = 1 ;                       orxor.abl
+                [3478...3491] = ^Hff;            cnt10rom.abl
+*GOTO,A
+Goto    Syntax: GOTO state_exp ;
+
+        (state_exp is an expression identifying the next state,
+        optionally followed by WITH_ENDWITH transition equations.
+
+Purpose/Usage:  The GOTO statement causes an unconditional
+transition to the state indicated by state_exp. GOTO statements
+can be nested with If-Then-Else, CASE and With-endwith
+statements.
+
+Examples:       GOTO 0 ; "goto state 0
+                GOTO x+y ;  "goto the state x + y
+
+See Also:       STATE_DIAGRAM
+                CASE
+                IF-THEN-ELSE
+                WITH-ENDWITH
+*IF-THEN-ELSE,A
+If-Then-Else    Syntax: IF-THEN-ELSE
+
+                        IF expression THEN state_exp
+                        [ ELSE state_exp ] ;
+
+Chained IF-THEN-ELSE    IF expression THEN state_expression
+
+                        ELSE IF expression THEN state_expression
+                        ELSE IF expression THEN state_expression
+                        ELSE state_expression ;
+
+        (expression is any valid expression)
+        (state_exp is an expression identifying the next state,
+        optionally followed by WITH_ENDWITH transition equations.
+
+Purpose/Usage:  The IF-THEN-ELSE statement is an easy way to
+describe the progression from one state to another in a state
+machine. The expression following the IF keyword is
+evaluated, and if the result is true, the machine goes
+to the state indicated by the state_exp following the
+THEN keyword. If the result of the expression is
+false, the machine advances to the state indicated by
+the ELSE keyword.
+
+Additional IF-THEN-ELSE statements can be chained to the ELSE
+clause of an IF-THEN-ELSE statement. Any number of IF-THEN-ELSE
+statements can be chained, but the final statement must end
+with a semicolon.
+
+Examples
+       B then 2 ; "if A equals B goto state 2
+       if x-y then j else k; "if x-y is not 0 goto j, else goto k
+       if A then b*c; "if A is true (non-zero) goto state b*c
+
+Chained IF-THEN-ELSE               See Also:       STATE_DIAGRAM
+                                                   CASE
+                if a then 1                        GOTO
+                  else                             WITH-ENDWITH
+                if b then 2
+                  else
+                if c then 3
+                  else 0 ;
+*IN,A
+IN      obsolete PIN modifier keyword
+
+The IN keyword is no longer supported.
+See Also:     Utilities-PLAsplit in the manual for a
+              method of splitting multiple device designs.
+*ISTYPE,A
+Istype  Attribute specifier
+        Syntax: signal [,signal]...  ISTYPE 'attr [,attr]...';
+                        or
+             signal [,signal]... pin ISTYPE 'attr [,attr]...';
+
+(signal is a pin or node identifier)
+(attr is a string that specifies attributes for the signal(s).
+Valid strings are listed in the manual.)
+
+Purpose/Usage:  The ISTYPE statement defines attributes or
+characteristics of pins and nodes for devices with programmable
+characteristics. Signal attributes are specified through the use
+of the ISTYPE statement. The syntax for signal declarations
+allow pin or node declarations to be combined with ISTYPE
+statements in a single declaration. Valid attributes are 'buffer',
+'com', 'invert', 'neg', 'pos', 'reg', 'reg_d', 'reg_g',
+'reg_jk', 'reg_sr', 'reg_t', and 'xor'.
+
+Examples:       F0, A istype 'neg, reg' ;
+
+                This declaration statement defines F0 and A as
+                negative polarity latches. Both F0 and A had to
+                have been defined previously in the module.
+
+                The following signal declarations are all valid
+
+                q3,q2,q1,q0    NODE   ISTYPE 'reg_SR';
+                Clk,a,b,c      PIN    1,2,3,4;
+                reset          PIN;
+                reset          ISTYPE 'com';
+                Output         PIN 15    ISTYPE 'reg,invert';
+
+See Also:       "Dot Extensions" and "Attribute Assignment" in the 
+                chapter "ABEL-HDL Language Structure"
+                NODE
+                PIN
+*LIBRARY,A
+Library         Syntax: LIBRARY 'name'
+
+                (name is a string that specifies the name of the 
+                file, excluding the file extension)
+
+Purpose/Usage: The LIBRARY statement causes the contents of the
+indicated file to be inserted in the ABEL source file. The
+insertion begins at the point where the LIBRARY statement is
+located. The file extension of '.inc' is appended to the name
+specified, and the resulting file name is searched for. If no
+file is found, ABEL will attempt to find the file in the
+abel4lib.inc library file. Refer to "Utilities" in the chapter
+"Using ABEL Processing Modules" for more information on
+libraries. 
+
+See Also:       MODULE
+*MACRO,A
+Macro
+Syntax: macro_id MACRO [ ( dummy_arg[,dummy_arg]...  ) ] {block} ;
+
+(macro_id is an identifier naming the macro)
+(dummy_arg is a dummy argument)
+(block is a block)
+
+Purpose/Usage:  The macro declaration statement defines a macro.
+Macros are used to include ABEL code in a source file without typing
+or copying the code everywhere it is needed. A macro is defined once
+in the declarations section of a module and then used anywhere
+within the module as frequently as needed. Macros can be used
+only within the module in which they are declared.
+
+Examples:      The dummy arguments used in the declaration of the
+macro allow different actual arguments to be used in the macro
+each time it is invoked in the module. Within the macro, dummy
+arguments are preceded by a "?" to indicate that an actual
+argument will be substituted for the dummy by the ABEL compiler.
+
+                D = NAND3 (Clock,Hello,Busy)  ;
+
+                brings the text in the block associated with NAND3
+                into the code, with Clock substituted for ?A,
+                Hello for ?B and Busy for ?C. This results in
+
+                D = ! (  Clock  &  Hello  &  Busy  )  ;
+
+                which is the three input NAND.
+
+See Also:       "Arguments and Argument Substitution" in the chapter 
+                "ABEL-HDL Language Structure"
+                DECLARATIONS
+*MODULE,A
+Module
+
+Syntax: MODULE modname  [  (  dummy_arg  [,dummy_arg]  ...   )  ]
+(modname is a valid identifier naming the module)
+(dummy_arg is a dummy argument)
+
+Purpose/Usage:  The module statement defines the beginning of
+a module and must be paired with an END statement that defines
+the module's end.
+
+Example         MODULE MY_EXAMPLE  (A,B)
+                  :
+                  :
+                  C = ?B + ?A
+                  :
+                  :
+                END
+
+In the module named MY_EXAMPLE, C will take on the value of "A + B"
+where A and B contain actual arguments passed to the module when
+the language processor is invoked.
+*NODE,A
+Node    Syntax: [!]node_id[,[!]node_id...] NODE [node#[,node#]] 
+                [ISTYPE 'attr'];
+
+        (node_id is an identifier used for reference to a node in a
+        logic design)
+        (node # is the node number on the real device)
+        (attr is a string that specifies node attributes for devices
+        with programmable nodes. Valid attributes are listed under
+        'attr' in the chapter "Language Reference.")
+
+Purpose/Usage:  The NODE keyword is used to declare those signals
+that may be assigned to buried nodes within a device.
+
+Example         The node attribute string, attr, specifies node
+attributes. Attributes can be defined in this way or with the
+ISTYPE statement.
+
+                The node declaration,
+
+                B NODE istype 'reg' ;
+
+                specifies that node B is a buried flip-flop.
+
+See Also:       ISTYPE
+                PIN
+                MODULE
+                "Architecture-independent Designs" in the chapter
+                "Design Considerations"
+*OPTIONS,A
+Options         Syntax: OPTIONS 'option [, option ]...'    [;]
+
+Purpose/Usage:  Provides an alternate method of defining
+processing options that affect the way in which the source file
+is processed by the language processor. Options are normally
+passed from the command line or from a batch file when the
+language processor is invoked. Options entered from the
+command line override options specified with the Options statement.
+
+Options Not   -i, -o, -device, -vectors, -syntax, -silent, -list,
+Allowed       and -errlog are not allowed. Complete information on
+              command line options is in the chapter "Using ABEL".
+
+Example       options '-trace wave';
+
+might be used to simulate the design with the results in wave
+format.
+
+See Also:       MODULE
+*PIN,A
+Pin             Syntax: [!]pin_id[,[!]pin_id...] PIN [pin#[,pin#]]
+                [ISTYPE 'attr'];
+
+                (pin_id is an identifier used to refer to a pin
+		throughout a module) (pin# is the pin number on
+		the real device) (attr is a string that
+		specifies pin attributes for devices with
+		programmable pins. Valid attributes are listed
+		under 'attr' in the chapter "Language Reference.
+		") 
+
+Purpose/Usage:  The PIN keyword is used to declare those input and
+output signals that must eventually be available on
+a device I/O pin. The declaration can also specify pin attributes.
+
+When lists of pin_ids and pin #s are used in one pin declaration
+statement, there is a one-to-one correspondence between the
+identifiers and numbers given. There must be one pin number
+associated with each identifier listed.
+
+Example         !Clock, Reset, S1 PIN 12,15,3;
+
+This pin declaration assigns the pin name, Clock, to pin 12; Reset
+to pin 15; and S1 to pin 3.
+
+The use of the "!' operator in pin declarations indicates that the
+pin is active-low, and will be automatically negated when processed
+by the language processor.
+
+Errors          The following are pin assignment errors that cause
+errors in ABEL software:
+
+Assigning the same pin number to two signals (A1, A0 pin 17,17;).
+
+Assigning invalid pin numbers when a device has been specified
+(Q3 pin 28 in a 20 pin device). The fitter for a device can
+optionally correct invalid pin assignments.
+
+See Also:       ISTYPE
+                NODE
+                MODULE
+                Architecture-independent Designs" in the chapter
+                "Design Considerations"
+*PROPERTY,A
+Property        Syntax:	property_id  PROPERTY 'string' ;
+
+Purpose/Usage: The PROPERTY declaration statement allows you
+to specify additional design information associated with an
+external processing module (such as a specialized device fitter).
+
+The property_id is used to identify properties relevant to
+specific external modules, and the string argument contains the
+actual property data.
+
+See Also:       amd_cm8.abl
+*STATE_DIAGRAM,A
+State_diagram   Syntax: State_diagram state_reg
+                           [-> state_out]
+                        [STATE state_exp : [equation]
+                           [equation]
+                          :
+                          :
+                          :
+                        trans_stmt  ...]
+
+(state_reg is an identifier or set of identifiers specifying the
+signals that determine the current state of the machine.)
+(state_out is an identifier or set of identifiers that determine
+the next state of the machine (for designs with external registers)
+(state_exp is an expression giving the current state)
+(equation is a valid equation that defines the state machine
+outputs)
+(trans_stmt is an IF-THEN-ELSE, CASE or GOTO statement, optionally
+followed by WITH-ENDWITH transition equations.)
+
+Purpose/Usage:  The state description describes the operation
+of a sequential state machine implemented with programmable
+logic. An alternative to describing logic with Boolean
+equations or truth tables is to use a state description.
+
+
+Examples:       Following is an example of a simple state machine
+that advances from one state to the next, setting the output
+to the current state, and then starting over again. Note
+that the states do not need to be specified in any
+particular order. Note also that state 2 is identified
+by an expression rather than by a constant. The
+state register is composed of the signals a and b.
+
+                state_diagram [a,b]
+                state 3    : y = 3 ;
+                  goto 0 ;
+                state 1    : y = 1 ;
+                  goto 2 ;
+                state 0       : y = 0 ;
+                  goto 1 ;
+                state 1 + 1   : y = 2 ;
+                  goto 3 ;
+
+See Also:        CASE
+                 IF-THEN-ELSE
+                 GOTO
+                 WITH-ENDWITH
+                 EQUATIONS
+                 TRUTH_TABLES
+                 MODULE
+                 The chapter "Design Considerations"
+*TEST_VECTORS,A
+Test_vectors    Syntax: TEST_VECTORS [note]
+                        (inputs -> outputs)
+
+                        [invalues -> outvalues;]
+                          :
+
+(note is a string used to describe the test vectors)
+(inputs is an identifier or set of identifiers specifying the
+names of the input signals to the device, or feedback output
+signals)
+(outputs is an identifier or set of identifiers specifying the
+output signals from the device)
+(invalues is an input value or set of input values)
+(outvalues is an output value or set of output values resulting
+from the given inputs)
+
+Purpose/Usage:  Test vectors specify the expected functional
+operation of a logic device by explicitly defining the device
+outputs as functions of the inputs. Test vectors are used
+for simulation of an internal model of the device and
+functional testing of the programmed device.
+
+
+Examples:       Following is a simple test vectors table:
+
+                TEST_VECTORS
+                ( [A,B] -> [C, D] )
+
+                [0,0] -> [1,1] ;
+                [0,1] -> [1,0] ;
+                [1,0] -> [0,1] ;
+                [1,1] -> [0,0] ;
+
+The following test vector table is equivalent to the table
+specified above because values for sets can be specified with
+numeric constants.
+
+                TEST_VECTORS
+                ( [A,B] -> [C,D] )
+
+                0 -> 3 ;
+                1 -> 2 ;
+                2 -> 1 ;
+                3 -> 0 ;
+
+If the signal identifiers used in the test vector header were
+declared as active-low in the declaration section, then constant
+values specified in the test vectors will be inverted accordingly.
+
+See Also:    MODULE
+             "Simulating a Design" in the chapter "Using ABEL Processing 
+             Modules"
+             "Test Vectors and Simulation" in the chapter 
+             "Advanced Features"
+*TITLE,A
+Title                   Syntax: title 'string'
+
+Purpose/Usage:  The title statement is used to give a module a title
+that will appear as a header in both the programmer load file and
+documentation file created by the language processor. The title
+is specified in the string following the keyword, TITLE. The
+string is opened and closed by an apostrophe. Use of the title
+statement is optional.
+
+Examples:       An example of a title statement that spans three
+lines and describes the logic design follows:
+
+                module m6809a
+                title '6809 memory decode
+                Jean Designer
+                Data I/O Corp Redmond WA'
+
+See Also:       MODULE
+*TRACE,A
+Trace           (inputs -> outputs) ;
+
+Purpose/Usage:  The TRACE statement is used to control the display
+features of the PLASim and JEDSim simulation modules. TRACE
+statements can be placed before a test vector section, or imbedded
+within a sequence of test vectors.
+
+Example         TRACE           (  [A,B] -> [C  ]  >;
+                TEST_VECTORS    (  [A,B] -> [C,D]  >
+                                     0   ->   3     ;
+                                     1   ->   2     ;
+                TRACE           (  [A,B] -> [  D]  >;
+                                     2   ->   1     ;
+                                     3   ->   0     ;
+*TRUTH_TABLE,A
+TRUTH_TABLE     Syntax: 
+
+                    TRUTH_TABLE ( inputs -> outputs )
+                                    or
+                    TRUTH_TABLE ( inputs :> reg_outs )
+                                    or
+                    TRUTH_TABLE ( inputs :> reg_outs -> outputs )
+
+(inputs are the inputs to the logic function)
+(outputs are the outputs from the logic function)
+(reg_outs are the registered (clocked) outputs)
+( -> indicates the input to output function for combinational
+outputs.)
+(:> indicates the input to output function for registered outputs.)
+
+Purpose/Usage:  Truth tables specify outputs as functions of
+different input combinations in a tabular form. Truth tables are
+another way to describe logic designs with ABEL and may be used in
+lieu of, or in addition to, equations and state diagrams. A truth
+table is specified with a header describing the format of the table
+and with the table itself.
+
+See Also:       MODULE
+                EQUATIONS
+                STATE_DIAGRAM
+                @DCSET
+		@ONSET
+                led1.abl
+                led7.abl
+*WHEN-THEN-ELSE,A
+WHEN-THEN-ELSE  Syntax: [ WHEN condition
+                          THEN ] [  ! ] element=expression
+                        [ ELSE equation ];
+
+                                or
+
+                        [ WHEN condition
+                          THEN ] equation
+                        [ ELSE equation ];
+
+(condition is any valid expression)
+(element is an identifier naming a signal or set of signals, or an
+actual set, to which the value of the expression will be assigned)
+(expression is any valid expression)
+
+Purpose/Usage:  This statement is used in equations. Equations use
+the two assignment operators = (combinatorial) and := (registered).
+
+Example WHEN B THEN A=B; ELSE A=C;
+
+See Also:       "Equations" in the chapter "Language Reference"
+*WITH-ENDWITH,A
+WITH-ENDWITH    Syntax: transition_stmt state_exp WITH equation
+                        [equation]
+                          :
+                        ENDWITH ;
+
+(transition_stmt is an IF, ELSE, or CASE statement)
+(state_exp is the next state)
+(equation is an equation for state machine outputs)
+
+Purpose/Usage:  The WITH-ENDWITH statement is used under the
+State_diagram section and, when used in conjunction with the
+IF-THEN or CASE statement, allows output equations to be
+written in terms of transitions.
+
+Examples:       state 5 : IF a == 1 then 1
+                WITH x : = 1 ;
+                     y : = 1 ;
+                ENDWITH;
+                ELSE 2   WITH
+                     x : = 0 ;
+                     y : = 1 ;
+                ENDWITH ;
+
+See Also:       STATE_DIAGRAM
+                CASE
+                GOTO
+                IF-THEN-ELSE
+*XOR_FACTORS,A
+XOR_FACTORS     Syntax: XOR_Factors
+                        signal name = xor_factors
+
+Purpose/Usage: The XOR_Factor section allows you to specify a 
+Boolean expression that is to be factored out of, and XORed with, 
+the sum-of-products reduced equations. This can result in dramatic 
+reductions in the size of the reduced equations. The XOR_Factor 
+feature is a technique for converting a sum of products (SOP) 
+equation into an exclusive OR (XOR) equation. The resulting 
+equation contains the sum of product functions, which when 
+exclusive ORed together have the same function as the original 
+equation. The XOR_Factor equation you provide will be divided into 
+the original equation, placing the factor (or its complement) on 
+one side of the XOR and the remainder on the other.
+
+Examples:      As an example of factors, consider the following:
+
+               !Q16 =    A &   B &      !D
+                       # A &   B &  !C
+                       #      !B &   C & D
+                       #!A &         C & D
+
+               The following is a good example.
+
+               XOR_Factors
+
+               Q16 = A & B;
+
+See also        octalf.abl
+*====Design Process Help====,A
+*--ABEL4--,A
+*Auto Update,A
+Auto Update
+
+Purpose/Usage: This ABEL Design Environment feature lets you
+choose an end result without concern for whether all the
+previous design steps have been completed; ABEL will complete
+those steps if necessary using the current options for each
+step. When Auto update is turned off in the Defaults menu, each
+design step must be explicitly invoked and no warnings are
+issued if previous steps have not been completed. 
+
+Example:        If you had compiled your source file but hadn't
+optimized it and then picked PLDmap, ABEL would automatically
+optimize and then map your design.
+
+*--SmartPart--,A
+*SmartPart Design Process,A
+SmartPart Design Process
+
+SmartPart is a combination of automatic device selection and 
+automatic device fitting (pin assigning).
+
+Introduction
+
+The SmartPart Device Selector is used to access a database
+containing over 3000 parts, representing 250 architectures. The
+Selector will choose candidate parts that your design is likely
+to fit in. Some of the criteria used to make that selection can
+be set by the user. The "SmartPart-Modify Criteria..." dialog
+box is used to specify criteria used in the device selection
+process. For example, you can specify which manufacturers to
+use and the pin count configurations as criteria for device
+selection. Once the Selector has suggested some architectures,
+you can use the SmartPart Fitter to determine which of those
+parts actually fit your design, and to do the pin assignments.
+Finally, you can select one of the parts that actually fit to
+generate your architecture-specific programmer load files
+(typically JEDEC). 
+
+Smartpart Device Selector Criteria
+
+Set the SmartPart Device Selector selection criteria with the
+"SmartPart-Modify Criteria..." dialog box. Specifying no
+criteria tells the Selector to use all possible conbinations.
+The more criteria you specify, the faster the selector will run.
+
+
+Running the Smartpart Device Selector
+
+To invoke the SmartPart Device Selector, choose "SmartPart-
+Database Search". If you have a simple design, with few or no
+selection criteria specified, the search will take longer
+because the design will fit into many architectures. 
+
+Smartpart Device Selector Results
+
+Once the selector is done, you can view the devices it selected
+in two different ways. You can choose "View-Device Candidates"
+to see the list of devices, or you can choose "SmartPart-
+(Fit)Options..." and press F2 on the "Device:" field to see the
+list generated by the Selector. At this point, you can choose
+any of these devices by using the arrow keys and press Enter. 
+
+Smartpart Fitter
+
+To run the SmartPart Fitter, you have two choices. To invoke
+the Fitter on the single device specified in the "Device:"
+field (which can be chosen as above), select "SmartPart-Fit".
+If you wish to run the Fitter on the entire list of devices
+that the selector generated, choose "SmartPart-Fit from List."
+The Fitter is fairly fast, so running it on a list of devices
+doesn't take very long. 
+
+Partmap
+
+Creating the JEDEC file:          
+If you used the "SmartPart-Fit" option to run the Fitter on a
+single device and the Fitter ran succesfully, you can
+immediately choose "PartMap-PLDmap" to generate a JEDEC file.
+If you used the "SmartPart-Fit from List" option you can view
+the parts that actually fit by selecting "PartMap-
+(PLDmap)Options..." and press F2 on the "Device:" field. Once
+you have chosen which part you want to use, run "PartMap-
+PLDmap" to create your JEDEC file. 
+
+*Speeding the Database Search,A
+Speeding Up the Database Search
+
+The selector has two phases of database searching. First it
+finds a device architecture, then it collects the devices for
+that architecture to help generate a chip report. If you do not
+want a chip report, you can use the alternate device database
+that contains only device architectures and one dummy device
+per architecture. The alternate database is called "mini" and
+should have been installed in the same directory as the full
+database "devices" (see environment variable ABEL4DB for
+location). To use the architecture-only database, either change
+ABEL4DB to point to the mini database or enter the pathname for
+the mini database in the "Database Directory:" field in the
+SmartPart Selector Criteria form. Note that you cannot use any
+criteria when using the mini database and that the chip report
+will only list dummy devices for potential architectures. 
+
+*Getting Chip Details,A
+Getting Chip Information Details
+
+The default mode of the SmartPart Device selector is to
+generate a candidate list of device architectures for a given
+design only. To see the chips for those architectures and thier
+details, you must specify a file in the "Report File Name:"
+field of the SmartPart Modify Criteria form (the default
+extension will be *.chp). Note that specifying a sorting order
+without specifying a chip report file will cause the chip
+report to go out to the screen. 
+
+See also: Sorting Chip Report
+          Accessing User Fields
+          Alternate Chip Report Formats
+
+*Sorting Chip Report,A
+Sorting the Chip Report
+
+The default sorting order for a chip report will be in the
+order selected, which is usually sorted by the device
+architecture name. To change the sorting order so that the
+fastest or cheapest devices are on the top of the list, you
+must specify a sorting order in the "Sort Order" field of the
+SmartPart Selector Criteria form. The sort order is a list of
+up to four field names optionally followed by "up" or "down".
+The records will be sorted by the first (leftmost) field name
+followed by the next field name if the values are identical.
+The field names are "PINS PRICE SPEED SETUP HOLD MAN PARTNAME
+DEVICE ...", the sorting order is normally "up" which is
+smallest value first. 
+
+Examples:  getting the fastest chip to the top of the report:
+
+           Sort Order: SPEED
+              
+            group all devices by manufacturer with their largest
+            devices first:
+
+           Sort Order: MAN PINS DOWN
+
+See Also: Accessing User Fields
+          Alternate Chip Report Formats
+
+*Alternate Chip Report Formats,A
+Alternate Chip Report Formats
+
+The default "chip report" format will omit the user fields from
+the report and use 132 column mode (each record is one line
+long). The command line flag --C will use the 132 column mode
+and include the user fields (each record is 2 lines long). The
+command line flag --B will use a 5 line 80 column format that
+includes the user fields. All three formats are compatible with
+DEVMRG and DEVBLD. 
+
+See Also:  Building a New Database
+           Updating an Existing Database
+           Modifying the Database
+
+*Accessing User Fields,A
+Accessing the User fields in the Chip Report
+
+The user-defined fields in the database are normally omitted
+from the "chip report" file. You must use a special command
+line flag to gain access to the data. 
+
+Use the command line flag --C to get this format: 
+
+$C2 mfg  part-name devtype ... <<normal 132 column info>>
+$USER desirability user1 user2 stock_name user3
+
+Desirability is an encoding on how easy is it for your
+company to get this part
+
+Stock_name is your company's identification for the part
+
+user1 and user2 are user-defined integer fields
+
+user3 is a user-defined string field.
+
+When entering the user line in a report file to build/modify a
+database, note that the stock_name is a string of 40 characters
+without whitespace (no spaces or tabs), the user3 field will
+accept anything up to 40 characters. (Hint: use "_" in the
+stock_name if separation is required).
+
+See Also: Using Desirability
+
+*Using Desirability,A
+How to use Desirability in the Database
+
+The desirability field in the "chip" records is an integer field to
+help encode the favorability of some devices over others. There
+are no enforcements on what you can enter into this field. Following
+are some suggestions:
+
+  0  device is in stock and readily available
+  1  device is in stock but few are available
+  2  device is out of stock (must be ordered to have on-hand)
+  3  device is not in company's MIS system (must be approved to
+     order)
+  4  device is obsolete/undesirable
+ -1  purchaser bought too many, must get rid of excess
+
+The sort options will accept "DESIRE" as a sorting field, this will
+place the most desirable devcies on the top of the report (using the
+default UP sorting direction).
+
+*Modifying the Database,A
+Modifying the Database
+
+There are two ways of making a customized database. 1. Modify
+the existing database or 2. Create a new database. You may want
+to change the database because: 
+
+1. You want to delete certain manufacturers, package types ..
+that you will never use to make the database smaller and the
+search speed slightly faster. 
+
+2. You may want to use the user fields.
+
+To modify the existing database, use the following procedure.
+
+A. Make a backup of the database. Best done by copying the 
+directory with the database to another place on the disk or 
+using an archiver like PKZIP.
+B. Create a "chip report" of the devices that will be affected.
+Several "chip reports" can be made and concatenated together if
+needed (remove all but the last $END). Unaffected records can
+be removed by your text editor (in non-document mode). If
+adding/changing user fields, use the --C flag to insert them
+into the report. 
+C. Modify the "chip report" file with your text editor; for the 
+132 column report, editors with horizontal scrolling such as WordStar
+or Zortech Zed will make the process a little easier.
+D. Use DEVMRG with the appropriate -TAKE option
+   -TAKE AWAY             remove the record from the database
+   -TAKE ALL              replace the record in the database
+   -TAKE field_name ...   replace only those fields in the database
+
+To build a new database:
+
+A. Create a "chip report" of the records that will go into the
+new database. Several "chip reports" can be concatenated
+together (remove all but the last $END). Use --C to include the
+user fields if they are being used. 
+B. Modify any fields desired with your text editor.
+C. Use DEVBLD, it will default to creating a database called
+devices in the current directory. You can specify another
+name/location by using the -DATABASE option.
+
+See Also:  Building a New Database
+           Updating an Existing Database
+
+*Building a New Database,A
+Using DEVBLD to build a new database
+
+DEVBLD takes a "chip report" file and creates a database with the
+information. Note that the environment variable DB_DICT must be set
+to point to the directory where the blank prototype database
+resides (typically c:\dataio\lib4\dbase ).
+
+Command line options:
+
+-I report_file       This is the input "chip report" file to build
+                     the database from. (no default.)
+-DATABASE directory  This gives the new database a name, the
+                     default is .\devices.
+-LOG file            This file collects all the messages generated
+                     by DEVBLD for later inspection (output will go
+                     to both screen and this file).
+
+*Updating an Existing Database,A
+Using DEVMRG to update an existing database
+
+DEVMRG takes a "chip report" file and will modify a database. There
+are three types of actions: 1. change fields of existing records or
+add new records. 2. delete records and 3. restructure device 
+architecture information.
+
+Note that records in the database are matched to the record in the
+"chip report" file by the triple (part_name, manufacturer,
+device_type). Following are the command line options:
+
+-I report_file  This is the input "chip report" file with data to
+                modify the database. (no default.)
+
+-FRESHEN        Rebuild device architecture information,
+                needed only when Data I/O rebuilds the device
+                library ABEL4LIB.DEV.
+
+-TAKE AWAY      Matched records are deleted from the database
+                Warning are issued for a no match.
+
+-TAKE option    Certain fields on the matched record are
+                modified according to the option. A new "chip"
+                record is made for any no match.
+
+The options are:
+
+    ALL         All fields in the record are replaced.
+    NONE        No fields are touched (only new records will
+                be added to the database)
+    STANDARD    User defined fields are only modified (user1,
+                user2, user3, desire, stock_name, price)
+    UPDATE      All but the user defined fields are modified.
+                This is used when Data I/O updates the
+                database, this will not disturb the existing
+                user data.
+
+Following are the individual fields that can be modified. You 
+can specify any combination of them. Note that Manufacturer 
+Part_name, and Device_type are used to identify the record in 
+the database and therefore cannot be changed.
+
+    USER1
+    USER2
+    USER3
+    HOLD
+    SETUP
+    PRICE
+    SPEED
+    STOCK_NAME
+    DATAIO
+    FAMILY
+    PINOUT
+    TECHNOLOGY
+    ERASEABILITY
+    JAMLOAD
+    SPC
+    NUM_PINS
+    POWER
+    PACKAGE
+    DESIREABILITY
+
+*Unjamming the Database,A
+How to Unjam the Database Lock
+
+The selector has a simple interlock mechanism built in to
+prevent two users from interfering with each other when using
+the database. One user checks out the database by placing a
+lock in the database that will prevent any other users from
+opening the database. The lock is removed whenever the program
+is completed or is aborted. The lock mechanism can become
+jammed due to a power failure or an unexpected crash. If you
+suspect the lock is jammed (that is, you are the only user of
+the database and the database is still locked), you can delete
+the lock. The lock is a file devsel.lck inside the database
+directory, it contains the user_name of the person accessing
+the database. Delete only devsel.lck (any others will destroy
+the database!). 
+
+*====Help For Help====,A
+
+*How To Get Help,A
+How To Get Help
+
+Context sensitive online help is available from almost anywhere
+in the ABEL Design Environment by pressing F1. Pressing F1 will give
+different results depending on where you are and what you are doing.
+
+F1 while editing/viewing a file:
+        Pressing F1 while editing or viewing a file will search for
+        help for the word that the cursor is currently on.
+        For example, if you press F1 while on the word MODULE,
+        you will be given help on the MODULE keyword.  This type
+        of help is case insensitive.
+
+F1 while looking at a menu:
+        This will pull up help on the current menu with a summary
+        of each menu item.
+
+F1 while looking at a dialog box:
+        The first time you press F1 while in a dialog box you will
+        be given help for the current field that the cursor is on.
+
+        If you press F1 again while in help for that field, you
+        will be given help on the entire dialog box.
+
+If you need technical assistance you may call our Customer
+Resource Center (CRC) between 6:00AM and 5:00PM PST.  When you
+call have: 1) product version number, 2) serial number (if
+available), 3) detailed description of problem, 4) any error
+messages, 5) Device type, 6) Product manual.
+    USA and Canada: 800-247-5700,  FAX 206-882-1043
+    Data I/O Japan: 03 432-6991
+    Data I/O Europe: +31 (0)20 6622866
+    Intercontinental: 206 881-6444
+    Written:  Data I/O Corporation
+              10525 Willows Rd N.E.
+              P.O. Box 97046
+              Redmond, WA 98072-9746 USA
+
+Data I/O's Bulletin Board System (BBS) can provide you with a
+wide variety of information including product information,
+known bugs and work arounds, and helpful application notes.
+You may also leave messages for CRC personnel.
+    BBS: 206-881-3211  (protocol 1200/2400/9600 (Courier HST)
+                        baud, 8 data bits, 1 stop bit, no parity)
+
+See the Preface in the manual for more information.
+*Help In Help,A
+Help In Help
+
+Use the arrow keys to position the selection bar over the subject
+that you want help on and press Enter.
+*About,A
+                     ABEL Design Environment
+                          Version 1.0
+
+The ABEL Design Environment was designed and written at Data I/O
+Corporation.
+
+If you need technical assistance you may call our Customer
+Resource Center (CRC) between 6:00AM and 5:00PM PST.  When you
+call have: 1) product version number, 2) serial number (if
+available), 3) detailed description of problem, 4) any error
+messages, 5) Device type, 6) Product manual.
+    USA and Canada: 800-247-5700,  FAX 206-882-1043
+    Data I/O Japan: 03 432-6991
+    Data I/O Europe: +31 (0)20 6622866
+    Intercontinental: 206 881-6444
+    Written:  Data I/O Corporation
+              10525 Willows Rd N.E.
+              P.O. Box 97046
+              Redmond, WA 98072-9746 USA
+
+Data I/O's Bulletin Board System (BBS) can provide you with a
+wide variety of information including product information,
+known bugs and work arounds, and helpful application notes.
+You may also leave messages for CRC personnel.
+    BBS: 206-881-3211  (protocol 1200/2400/9600 (Courier HST)
+                        baud, 8 data bits, 1 stop bit, no parity)
+
+See the Preface in the manual for more information.
+*Program Options Help,A
+--Setting Program Options--
+Multiple Choice Fields
+Dialog Box
+Cancel button
+OK button
+--File Menu Options--
+File Open Name
+Save As Name
+File Print Name
+Exit
+--Edit Menu Options--
+Search String
+Search Insensitive
+Editor Name
+--View Menu Options--
+View File
+--Compile Menu Options--
+Compile Listing
+Compile Args
+--Optimize Menu Options--
+Reduction Options
+Reduce Exact
+--Simulation Trace Options--
+Trace Format
+Trace Output
+Trace Signal
+Trace Last Vector
+Trace First Vector
+Trace Powerup
+Trace X Value
+Trace Z Value
+Trace .tmv
+--Fitter--
+Fitter Device
+Fitter Device List File
+Fitter Stop
+Fitter None
+Fitter Preassign
+Fitter Strategy
+--PLDmap (Fuseasm)--
+PLDmap Device
+PLDmap Checksum
+PLDmap Document
+PLDmap PLCC
+PLDmap Turbo
+PLDmap Miser
+PLDmap Blow
+PLDmap Lock
+PLDmap Format
+PLDmap Signature
+--FPGA Translation--
+FPGA Translation Format
+--SmartPart Device Selector--
+SmartPart Database Directory
+SmartPart Report File
+SmartPart Report Sort Order
+SmartPart Jamload
+SmartPart Eraseable
+SmartPart Device
+SmartPart Manufacturer
+SmartPart Temperature Spec.
+SmartPart Technology
+SmartPart Package Type
+SmartPart Pins
+SmartPart Speed
+SmartPart Set-Up Time
+SmartPart Hold Time
+SmartPart Price
+SmartPart Utilization
+SmartPart Power
+SmartPart User
+--Other Options--
+PLDgrade Document
+--Dialog Boxes--
+File Open Options
+Save As Options
+Print Options
+Search Options
+Text Editor Options
+View File Options
+Compile Options
+Optimize Options
+Simulate Trace Options
+SmartPart Device Selector Criteria
+Fitter Options
+PLDmap Options
+FPGA Translate Options
+PLDgrade Options
+*Menus Help,A
+File Menu
+Edit Menu
+View Menu
+Compile Menu
+Optimize Menu
+SmartPart Menu
+PartMap Menu
+Defaults Menu
+Help Menu
+*Keyboard Help,A
+Global Keys
+Editor Keys
+Menu Keys
+Dialog Box Keys
+*Language Help,A
+--Miscellaneous--
+Feedback
+Sets
+Operators
+Expressions
+Equations
+Multiple Assignments to an Identifier
+--Dot Extensions--
+.<none>
+.AP
+.AR
+.CE
+.CLK
+.D
+.FB
+.FC
+.J
+.K
+.LD
+.LE
+.LH
+.OE
+.PIN
+.PR
+.Q
+.R
+.RE
+.S
+.SP
+.SR
+.T
+--ISTYPE Attributes--
+BUFFER
+COM
+INVERT
+FEED_OR
+FEED_PIN
+FEED_REG
+NEG
+POS
+REG
+REG_D
+REG_G
+REG_JK
+REG_SR
+REG_T
+XOR
+--Compiler Directives--
+@ALTERNATE
+@CONST
+@DCSET
+@EXIT
+@EXPR
+@IF
+@IFB
+@IFDEF
+@IFIDEN
+@IFNB
+@IFNDEF
+@IFNIDEN
+@INCLUDE
+@IRP
+@IRPC
+@MESSAGE
+@ONSET
+@PAGE
+@RADIX
+@REPEAT
+@STANDARD
+--Keywords--
+CASE
+CONSTANT
+DECLARATIONS
+DEVICE
+ENABLE
+EQUATIONS
+FLAG
+FUSES
+GOTO
+IF-THEN-ELSE
+IN
+ISTYPE
+LIBRARY
+MACRO
+MODULE
+NODE
+OPTIONS
+PIN
+PROPERTY
+STATE_DIAGRAM
+TEST_VECTORS
+TITLE
+TRACE
+TRUTH_TABLE
+WHEN-THEN-ELSE
+WITH-ENDWITH
+XOR_FACTORS
+*Design Process Help,A
+--ABEL4--
+Auto Update
+--SmartPart--
+SmartPart Design Process
+Speeding the Database Search
+Getting Chip Details
+Sorting Chip Report
+Alternate Chip Report Formats
+Accessing User Fields
+Using Desirability
+Modifying the Database
+Building a New Database
+Updating an Existing Database
+Unjamming the Database
+*Index Help,A
+.<none>
+.AP
+.AR
+.CE
+.CLK
+.D
+.FB
+.FC
+.J
+.K
+.LD
+.LE
+.LH
+.OE
+.PIN
+.PR
+.Q
+.R
+.RE
+.S
+.SP
+.SR
+.T
+@ALTERNATE
+@CONST
+@DCSET
+@EXIT
+@EXPR
+@IF
+@IFB
+@IFDEF
+@IFIDEN
+@IFNB
+@IFNDEF
+@IFNIDEN
+@INCLUDE
+@IRP
+@IRPC
+@MESSAGE
+@ONSET
+@PAGE
+@RADIX
+@REPEAT
+@STANDARD
+Accessing User Fields
+Alternate Chip Report Formats
+Auto Update
+BUFFER
+Building a New Database
+Cancel button
+CASE
+COM
+Compile Args
+Compile Listing
+Compile Menu
+Compile Options
+CONSTANT
+DECLARATIONS
+Defaults Menu
+DEVICE
+Dialog Box
+Dialog Box Keys
+Edit Menu
+Editor Keys
+Editor Name
+ENABLE
+Equations
+EQUATIONS
+Exit
+Expressions
+Feedback
+FEED_OR
+FEED_PIN
+FEED_REG
+File Menu
+File Open Name
+File Open Options
+File Print Name
+Fitter Device
+Fitter Device List File
+Fitter None
+Fitter Options
+Fitter Preassign
+Fitter Stop
+Fitter Strategy
+FLAG
+FPGA Translate Options
+FPGA Translation Format
+FUSES
+Getting Chip Details
+Global Keys
+GOTO
+Help Menu
+IF-THEN-ELSE
+IN
+INVERT
+ISTYPE
+LIBRARY
+MACRO
+Menu Keys
+Modifying the Database
+MODULE
+Multiple Assignments to an Identifier
+Multiple Choice Fields
+NEG
+NODE
+OK button
+Operators
+Optimize Menu
+Optimize Options
+OPTIONS
+PartMap Menu
+PIN
+PLDgrade Document
+PLDgrade Options
+PLDmap Blow
+PLDmap Checksum
+PLDmap Device
+PLDmap Document
+PLDmap Format
+PLDmap Lock
+PLDmap Miser
+PLDmap Options
+PLDmap PLCC
+PLDmap Signature
+PLDmap Turbo
+POS
+Print Options
+PROPERTY
+Reduce Exact
+Reduction Options
+REG
+REG_D
+REG_G
+REG_JK
+REG_SR
+REG_T
+Save As Name
+Save As Options
+Search Insensitive
+Search Options
+Search String
+Sets
+Simulate Trace Options
+SmartPart Database Directory
+SmartPart Design Process
+SmartPart Device
+SmartPart Device Selector Criteria
+SmartPart Eraseable
+SmartPart Hold Time
+SmartPart Jamload
+SmartPart Manufacturer
+SmartPart Menu
+SmartPart Package Type
+SmartPart Pins
+SmartPart Power
+SmartPart Price
+SmartPart Report File
+SmartPart Report Sort Order
+SmartPart Set-Up Time
+SmartPart Speed
+SmartPart Technology
+SmartPart Temperature Spec.
+SmartPart User
+SmartPart Utilization
+Sorting Chip Report
+Speeding the Database Search
+STATE_DIAGRAM
+TEST_VECTORS
+Text Editor Options
+TITLE
+TRACE
+Trace .tmv
+Trace First Vector
+Trace Format
+Trace Last Vector
+Trace Output
+Trace Powerup
+Trace Signal
+Trace X Value
+Trace Z Value
+TRUTH_TABLE
+Unjamming the Database
+Updating an Existing Database
+Using Desirability
+View File
+View File Options
+View Menu
+WHEN-THEN-ELSE
+WITH-ENDWITH
+XOR
+XOR_FACTORS
+

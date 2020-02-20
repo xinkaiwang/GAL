@@ -1,0 +1,50 @@
+module preset 
+title '2-bit counter to demonstrate power on preset   9 Aug 1990
+Bjorn Freeman-Benson   Data I/O Corp'
+
+        preset  device 'F167';
+
+        Clk,Hold        pin  1,2;
+        PR              pin  16;        "Preset/Enable 
+        P1,P0           pin  15,14;
+
+        Ck,X = .C.,.X.;
+        
+equations
+        [P1,P0].PR  =  PR;
+        [P1,P0].C   =  Clk;
+
+        [P1.R,P0.S] = !P1 & !P0 & !Hold;   " state 0
+        [P1.S,P0.R] = !P1 &  P0 & !Hold;   " state 1
+        [P1.S,P0.S] =  P1 & !P0 & !Hold;   " state 2
+        [P1.R,P0.R] =  P1 &  P0 & !Hold;   " state 3
+
+test_vectors   
+       ([Clk,PR,Hold] -> [P1,P0])
+        [ 1 , 1,  0 ] ->    3; 
+        [ 1 , 0,  0 ] ->    3; " Provides a High-to-Low on clock
+        [ 0 , 0,  0 ] ->    3; " to enable clocking
+        [ Ck, 0,  0 ] ->    0; 
+        [ Ck, 0,  0 ] ->    1;
+        [ Ck, 0,  0 ] ->    2; " Hold count
+        [ Ck, 0,  1 ] ->    2;
+        [ Ck, 0,  0 ] ->    3;
+        [ Ck, 0,  0 ] ->    0; " Roll over
+        [ Ck, 0,  0 ] ->    1;
+        [ 1 , 1,  0 ] ->    3; " Preset high
+        [ 1 , 0,  0 ] ->    3; " Preset low
+        [ Ck, 0,  0 ] ->    0; 
+        [ Ck, 0,  0 ] ->    1;
+
+" Notes on preset from the Signetics Data Sheet
+"
+" The PR input provides an asynchronous preset to logic '1' of all
+" State and Output Register bits. Preset overrides the Clock, and
+" when held High, clocking is inhibited and all outputs are High.
+" Normal clocking resumes with the first clock pulse following 
+" a High-to-Low clock transition after PR goes Low.
+"
+" The power on preset also inhibites clocking until a High-to-Low
+" clock transition. This is provided by the first 2 test vectors.
+
+end 

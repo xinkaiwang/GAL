@@ -1,0 +1,106 @@
+module DEMO331
+title 'Cypress 331 example    12 Sep 1990'
+
+"    Feedback register node numbers.
+"    Pin number      15  16  17  18  19  20  23  24  25  26  27  28
+"    Feedback Node  143 144 145 146 147 148 149 150 151 152 153 154
+
+	demo331	device	'P331';
+
+	I1,I2,I3,I4,I5,I6,I7,I9		pin  1, 2, 3, 4, 5, 6, 7, 9;
+	I10,I11,Ena14			pin 10,11,14;
+	Q15,Q16,Q17,Q18,Q19,Q20		pin 15,16,17,18,19,20;
+	Q23,Q24,Q25,Q26,Q27,Q28		pin 23,24,25,26,27,28;
+
+	C,H,L,Z,X = .C.,1,0,.Z.,.X.;
+
+" Active High Combinatorial output
+Equations
+	Q15    =  I1 & I2 & I3;
+	Q15.OE = !Ena14;
+
+Test_Vectors   ([I1,I2,I3,Ena14] -> Q15)
+		[ 0, 0, 0,  0  ] ->  0;
+		[ 0, 1, 1,  0  ] ->  0;
+		[ 1, 1, 1,  0  ] ->  1;
+		[ 1, 1, 1,  1  ] ->  Z;
+
+" Combinatorial feedback from a pin
+Equations
+	Q17	= Q16 & I7;
+
+Test_Vectors   ([Q16,I7] -> Q17)
+		[ 0 , 1]  ->  0;
+		[ 1 , 1]  ->  1;
+		[ 0 , 1]  ->  0;
+		[ 1 , 1]  ->  1;
+		[ 1 , 0]  ->  0;
+		[ 0 , 0]  ->  0;
+
+" Registered feedback from a pin
+Declarations
+	Q18in	node 146;
+
+Equations
+	!Q19	 = Q18in.Q & I7;
+
+	Q18in.D  = Q18;
+	Q18in.C	 = I1;
+	Q18in.AR = I10;
+	Q18in.AP = I11;
+
+Test_Vectors   ([I1,I10,I11,I7,Q18] -> [Q19,Q18in])
+		[ 0, 0 , 1 , 1, 0 ] -> [ 0 ,  1  ];
+		[ 0, 1 , 0 , 1, 0 ] -> [ 1 ,  0  ];
+		[ C, 0 , 0 , 1, 1 ] -> [ 0 ,  1  ];
+		[ C, 0 , 0 , 1, 0 ] -> [ 1 ,  0  ];
+		[ C, 0 , 0 , 0, 1 ] -> [ 1 ,  1  ];
+
+Test_Vectors  'Test flow through register mode, will fail in PLASIM'
+	       ([I1,I10,I11,I7,Q18] -> [Q19,Q18in])
+		[ 0, 1 , 1 , 1, 1 ] -> [ 0 ,  1  ];
+		[ 0, 1 , 1 , 1, 0 ] -> [ 1 ,  0  ];
+		[ 0, 1 , 1 , 1, 1 ] -> [ 0 ,  1  ];
+		[ 0, 1 , 1 , 0, 1 ] -> [ 1 ,  1  ];
+
+" Use of shared array input
+Declarations
+	Q27in	node 153;
+	Q27	istype 'reg_T';
+
+Equations
+	 Q27.T   = I1 # I2;
+	 Q27.AR	 = I3;
+	 Q27.C	 = I4;
+	 Q27.OE	 = !I5;
+
+	 Q27in.D = Q27;		" Input register equations
+	 Q27in.C = I6;
+
+	 Q26	 = Q27in.Q;	
+
+Test_Vectors   'Q27 Hi-Z'
+	       ([I5,I6,Q27] -> [Q26,Q27in,Q27])
+		[ 1, C, X ] -> [ X ,  X  , Z ];
+
+Test_Vectors   'Q27 Hi-Z, used as input'
+	       ([I5,I6,Q27] -> [Q26,Q27in])
+		[ 1, C, 0 ] -> [ 0 ,  0  ];
+		[ 1, C, 0 ] -> [ 0 ,  0  ];
+		[ 1, C, 1 ] -> [ 1 ,  1  ];
+		[ 1, 0, 0 ] -> [ 1 ,  1  ];
+		[ 1, C, 0 ] -> [ 0 ,  0  ];
+
+Test_Vectors   ([I1,I2,I3,I4,I5] -> Q27)
+		[ 0, 0, 1, 0, 0] ->  1;
+		[ 0, 0, 0, C, 0] ->  1;
+		[ 1, 1, 0, C, 0] ->  0;
+		[ 1, 1, 0, C, 0] ->  1;
+		[ 1, 1, 0, C, 0] ->  0;
+		[ 0, 0, 0, C, 0] ->  0;
+		[ 0, 0, 0, C, 0] ->  0;
+		[ 1, 1, 0, C, 0] ->  1;
+		[ 1, 1, 0, C, 0] ->  0;
+		[ 1, 1, 0, C, 0] ->  1;
+		[ 0, 0, 0, 0, 1] ->  Z;
+End

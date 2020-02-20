@@ -1,0 +1,14 @@
+
+FUSEASM    Fusemap Assembler
+ABEL 4.00 Copyright 1990 Data I/O Corp.  All Rights Reserved
+
+Input file: 'DS00.tt2'
+Device: 'P16V8S'
+Choosing best polarities...
+Mapping equations...
+16 of 64 terms used; 0 vectors loaded
+Programmer load file: 'io.jed'
+Generating report...
+Report file: 'DS00.doc'
+
+FUSEASM complete.  Time: 1 seconds

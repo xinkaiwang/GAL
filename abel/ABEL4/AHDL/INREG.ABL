@@ -1,0 +1,35 @@
+module INREG
+title 'Input registers 
+Michael Holley   Data I/O     15 Aug 1989'
+
+	inreg	device 'P19L8R';
+
+	D7,D6,D5,D4,D3,D2,D1,D0 pin  2, 3, 4, 5, 6, 7, 8, 9;
+	F7,F6,F5,F4,F3,F2,F1,F0	pin 22,21,20,19,18,17,16,15;
+	InClk,OE		pin 14,13;
+
+	Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0 node 29,30,31,32,33,34,35,36;
+	Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0	IsType 'reg_D';
+
+	Input	 = [D7,D6,D5,D4,D3,D2,D1,D0];
+	Register = [Q7,Q6,Q5,Q4,Q3,Q2,Q1,Q0];
+	Output   = [F7,F6,F5,F4,F3,F2,F1,F0];
+
+equations
+
+	Register.d = Input;
+	Register.c = InClk;
+	Output     = Register.q;
+	Output.oe  = !OE;
+
+test_vectors 'Input Registers'
+	([InClk,OE,Input] -> [Register,Output])
+	 [ .C. , 0, ^hFF] -> [  ^hFF  , ^hFF ];
+	 [ .C. , 0, ^h55] -> [  ^h55  , ^h55 ];
+	 [ .C. , 0, ^hAA] -> [  ^hAA  , ^hAA ];
+	 [ .C. , 0, ^hAA] -> [  ^hAA  , ^hAA ];
+	 [  0  , 0, ^hFF] -> [  ^hAA  , ^hAA ];
+	 [  0  , 0, ^h00] -> [  ^hAA  , ^hAA ];
+	 [ .C. , 0, ^h00] -> [  ^h00  , ^h00 ];
+	 [ .C. , 1, ^h00] -> [  ^h00  ,  .Z. ];
+end

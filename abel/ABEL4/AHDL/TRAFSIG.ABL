@@ -1,0 +1,77 @@
+module TRAFSIG
+title 'Traffic Signal Controller  
+Michael McClure   Data I/O Corp   2 May 1990'
+
+        H,L,Ck,X        = 1, 0, .C., .X.;
+
+        trafsig device  'F159';
+
+        Clk,Clr,SenA,SenB       pin 1,2,3,4; 
+        GreenA,YellowA,RedA     pin 12,13,14;
+        GreenB,YellowB,RedB     pin 15,16,17;
+        Wait1,Wait0             pin 18,19;
+
+        GreenA,YellowA,RedA     istype 'reg_JK,invert';
+        GreenB,YellowB,RedB     istype 'reg_JK,invert';
+        Wait1,Wait0             istype 'reg_JK,invert';
+
+        StateReg = [GreenA,YellowA,RedA,GreenB,YellowB,RedB,Wait1,Wait0];
+        A1       = [   1  ,   0   ,  0 ,   0  ,   0   ,  1 ,  0  ,  0  ];
+        A2       = [   1  ,   0   ,  0 ,   0  ,   0   ,  1 ,  0  ,  1  ];
+        A3       = [   1  ,   0   ,  0 ,   0  ,   0   ,  1 ,  1  ,  1  ];
+        A4       = [   1  ,   0   ,  0 ,   0  ,   0   ,  1 ,  1  ,  0  ];
+        A5       = [   0  ,   1   ,  0 ,   0  ,   0   ,  1 ,  0  ,  0  ];
+
+        B1       = [   0  ,   0   ,  1 ,   1  ,   0   ,  0 ,  0  ,  0  ];
+        B2       = [   0  ,   0   ,  1 ,   1  ,   0   ,  0 ,  0  ,  1  ];
+        B3       = [   0  ,   0   ,  1 ,   1  ,   0   ,  0 ,  1  ,  1  ];
+        B4       = [   0  ,   0   ,  1 ,   1  ,   0   ,  0 ,  1  ,  0  ];
+        B5       = [   0  ,   0   ,  1 ,   0  ,   1   ,  0 ,  0  ,  0  ];
+
+        Start    = [   0  ,   0   ,  0 ,   0  ,   0   ,  0 ,  0  ,  0  ];
+
+@page 
+test_vectors   ([Clk,Clr,SenA,SenB] -> StateReg)
+                [ Ck, 1 , 1  , 0  ] ->   Start;
+                [ Ck, 1 , 1  , 0  ] ->   Start;
+                [ Ck, 0 , 1  , 0  ] ->    A1  ;
+                [ Ck, 0 , 1  , 0  ] ->    A1  ;
+                [ Ck, 0 , 1  , 0  ] ->    A1  ;
+                [ Ck, 0 , 1  , 1  ] ->    A2  ;
+                [ Ck, 0 , 1  , 1  ] ->    A3  ;
+                [ Ck, 0 , 1  , 1  ] ->    A4  ;
+                [ Ck, 0 , 1  , 1  ] ->    A5  ;
+                [ Ck, 0 , 1  , 0  ] ->    B1  ;
+                [ Ck, 0 , 1  , 0  ] ->    B5  ;
+                [ Ck, 0 , 1  , 0  ] ->    A1  ;
+                [ Ck, 0 , 1  , 0  ] ->    A1  ;
+                [ Ck, 0 , 1  , 1  ] ->    A2  ;
+                [ Ck, 0 , 1  , 1  ] ->    A3  ;
+@dcset 
+equations
+        StateReg.ap  = Clr;
+        StateReg.clk = Clk;
+
+state_diagram StateReg
+
+        State Start:    goto  A1;
+
+        State A1:       if ( SenA & !SenB ) then A1;
+                        if (!SenA &  SenB ) then A5;
+                        if ( SenA == SenB ) then A2;
+
+        State A2:       goto  A3;
+        State A3:       goto  A4;
+        State A4:       goto  A5;
+        State A5:       goto  B1;
+
+        State B1:       if (!SenA &  SenB ) then B1;
+                        if ( SenA & !SenB ) then B5;
+                        if ( SenA == SenB ) then B2;
+
+        State B2:       goto  B3;
+        State B3:       goto  B4;
+        State B4:       goto  B5;
+        State B5:       goto  A1;
+end 
+

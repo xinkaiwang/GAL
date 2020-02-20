@@ -1,0 +1,45 @@
+
+GAL16V8
+A TEST EXAMPLE 
+2011-11-07，by Moen
+e-mail:MoenYoung@126.com
+
+Q7 Q6 Q5 Q4 Q3 Q2 Q1 Q0 NC GND
+NC OUT1 OUT2 NC NC NC NC NC NC VCC
+
+OUT2=Q7*Q6
+OUT1=Q7+Q6
+
+DESCRIPTION
+
+GAL16V8
+A TEST EXAMPLE 
+2011-11-07，by Moen
+e-mail:MoenYoung@126.com
+
+                            __________    __________ 
+                            |         \__/         | 
+                            |                      | 
+                      Q7    | 01                20 |         VCC
+                            |                      | 
+                      Q6    | 02                19 |          NC
+                            |                      | 
+                      Q5    | 03                18 |          NC
+                            |                      | 
+                      Q4    | 04                17 |          NC
+                            |                      | 
+                      Q3    | 05                16 |          NC
+                            |                      | 
+                      Q2    | 06                15 |          NC
+                            |                      | 
+                      Q1    | 07                14 |          NC
+                            |                      | 
+                      Q0    | 08                13 |        OUT2
+                            |                      | 
+                      NC    | 09                12 |        OUT1
+                            |                      | 
+                     GND    | 10                11 |          NC
+                            |                      | 
+                            |______________________| 
+
+
