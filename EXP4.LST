@@ -1,0 +1,59 @@
+
+GAL16V8
+4 BIT ADD/SUB COUNTER
+VER1.0 2006-11-2
+DESIGNED BY XXX
+
+CLK I3 I2 I1 I0 NULL NULL CNTL1 CNTL0 GND 
+OE NULL NULL NULL NULL Q3 Q2 Q1 Q0 VCC
+
+Q3:=/CNTL1*CNTL0*I3+CNTL1*/CNTL0*/Q0*/Q1*/Q2*/Q3 
+    + CNTL1*/CNTL0*Q0*Q1*Q2*Q3 + CNTL1*CNTL0*/Q0*/Q1*/Q2*Q3
+    + CNTL1*CNTL0*Q0*Q1*Q2*/Q3 + CNTL1*Q0*/Q2*Q3 
+    + CNTL1*/Q1*Q2*Q3 + CNTL1*/Q0*Q1*Q3
+
+Q2:=/CNTL1*CNTL0*I2 + CNTL1*/CNTL0*/Q0*/Q1*/Q2
+    + CNTL1*/CNTL0*Q1*Q2 + CNTL1*CNTL0*/Q1*Q2 
+    + CNTL1*CNTL0*Q0*Q1*/Q2 + CNTL1*/Q0*Q1*Q2 
+    + CNTL1*Q0*/Q1*Q2
+
+Q1:=/CNTL1*CNTL0*I1 + CNTL1*/CNTL0*/Q0*/Q1 
+    + CNTL1*/CNTL0*Q0*Q1 + CNTL1*CNTL0*/Q0*Q1 
+    + CNTL1*CNTL0*Q0*/Q1
+
+Q0:=/CNTL1*CNTL0*I0 + CNTL1*/Q0
+
+DESCRIPTION
+
+
+GAL16V8
+4 BIT ADD/SUB COUNTER
+VER1.0 2006-11-2
+DESIGNED BY XXX
+
+                            __________    __________ 
+                            |         \__/         | 
+                            |                      | 
+                     CLK    | 01                20 |         VCC
+                            |                      | 
+                      I3    | 02                19 |          Q0
+                            |                      | 
+                      I2    | 03                18 |          Q1
+                            |                      | 
+                      I1    | 04                17 |          Q2
+                            |                      | 
+                      I0    | 05                16 |          Q3
+                            |                      | 
+                    NULL    | 06                15 |        NULL
+                            |                      | 
+                    NULL    | 07                14 |        NULL
+                            |                      | 
+                   CNTL1    | 08                13 |        NULL
+                            |                      | 
+                   CNTL0    | 09                12 |        NULL
+                            |                      | 
+                     GND    | 10                11 |          OE
+                            |                      | 
+                            |______________________| 
+
+

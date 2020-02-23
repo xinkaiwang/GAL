@@ -1,0 +1,56 @@
+
+GAL16V8
+6 BIT SHIFTER
+VER1.0 2006-11-2
+DESIGNED BY XXX
+
+CLK S1 S0 D5 D4 D3 D2 D1 D0 GND
+OE RILO Q5 Q4 Q3 Q2 Q1 Q0 LIRO VCC
+
+Q0:=/S1*/S0*Q0+/S1*S0*Q1+S1*/S0*LIRO+S1*S0*D0 
+Q1:=/S1*/S0*Q1+/S1*S0*Q2+S1*/S0*Q2+S1*S0*D1 
+Q2:=/S1*/S0*Q2+/S1*S0*Q3+S1*/S0*Q1+S1*S0*D2
+
+Q3:=/S1*/S0*Q3+/S1*S0*Q4+S1*/S0*Q2+S1*S0*D3
+Q4:=/S1*/S0*Q4+/S1*S0*Q5+S1*/S0*Q3+S1*S0*D4
+Q5:=/S1*/S0*Q5+/S1*S0*RILO+S1*/S0*Q4+S1*S0*D5
+
+LIRO=Q0 
+LIRO.OE=S0*/S1
+RILO=Q5 
+RILO.OE=/S0*S1 
+
+DESCRIPTION
+
+
+GAL16V8
+6 BIT SHIFTER
+VER1.0 2006-11-2
+DESIGNED BY XXX
+
+                            __________    __________ 
+                            |         \__/         | 
+                            |                      | 
+                     CLK    | 01                20 |         VCC
+                            |                      | 
+                      S1    | 02                19 |        LIRO
+                            |                      | 
+                      S0    | 03                18 |          Q0
+                            |                      | 
+                      D5    | 04                17 |          Q1
+                            |                      | 
+                      D4    | 05                16 |          Q2
+                            |                      | 
+                      D3    | 06                15 |          Q3
+                            |                      | 
+                      D2    | 07                14 |          Q4
+                            |                      | 
+                      D1    | 08                13 |          Q5
+                            |                      | 
+                      D0    | 09                12 |        RILO
+                            |                      | 
+                     GND    | 10                11 |          OE
+                            |                      | 
+                            |______________________| 
+
+

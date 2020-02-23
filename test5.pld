@@ -1,0 +1,17 @@
+GAL16V8B
+A EXAMPLE for clock logic
+2020-02-17，by xinkai
+e-mail:aakwxk@hotmail.com
+
+CLK A B RESET NC NC NC NC NC GND
+OE A1 Q1 Q2 Q3 Q4 Q5 Q6 NC VCC
+
+A1:=A
+Q1:=Q6 + RESET
+Q2:=Q1*/RESET
+Q3:=Q2*/RESET
+Q4:=Q3*/RESET
+Q5:=Q4*/RESET
+Q6:=Q5*/RESET
+
+DESCRIPTION
