@@ -1,0 +1,104 @@
+module reg8_qd
+    IO device 'P22V10';
+    CLK,A,B,T,OE pin 1,2,3,4,13;
+    A0,A1 pin 22,23 istype 'reg';
+    Q0,Q1,Q2,Q3,Q4,Q5,Q6,Q7 pin 14,15,16,17,18,19,20,21 istype 'reg';
+    OUT=[Q7..Q0];
+    MID=[A0,A1];
+equations
+    OUT.CLK=CLK;
+    MID.CLK=CLK;
+    A0:=A;
+    A1:=A0;
+    Q0 := !A0*A1*B*!Q0 # A0*!A1*B*!Q0 # !A0*!A1*Q0 # A0*A1*Q0 # !B*Q0;
+    Q1 := !A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*!Q1 # !B*Q1 # !A0*!A1*Q1 # A0*!Q0*Q1 # A1*Q0*Q1;
+
+    Q2:=Q2*!(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1) # (!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*!Q2;
+
+    Q3:=Q3*!(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1) # !Q3*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*Q2 # !Q3*(!A0*A1*B*!Q0*!Q1 
+        # A0*!A1*B*Q0*Q1)*!A0*!Q2 # Q3*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*!Q2 # Q3*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*!A0*Q2;
+        
+    Q4:=!A0*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*!Q2*!Q3*!Q4 # A0*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*Q2*Q3*!Q4 # !(!A0*A1*B*!Q0*!Q1 
+        # A0*!A1*B*Q0*Q1)*Q4 # !A0*Q3*Q4 # Q2*!Q3*Q4 # A0*!Q2*Q4;
+
+    Q5:=Q5*!(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1) # !Q5*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*Q2*Q3*Q4 # !Q5*(!A0*A1*B*!Q0*!Q1 
+        # A0*!A1*B*Q0*Q1)*!A0*(!Q2*!Q3*!Q4) # Q5*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*!(Q2*Q3*Q4) # Q5*(!A0*A1*B*!Q0*!Q1 
+        # A0*!A1*B*Q0*Q1)*!A0*(Q2#Q3#Q4);
+
+    Q6 := Q6*!(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1) # !Q6*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*Q2*Q3*Q4*Q5 # !Q6*(!A0*A1*B*!Q0*!Q1 
+        # A0*!A1*B*Q0*Q1)*!A0*(!Q2*!Q3*!Q4*!Q5) # Q6*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*!(Q2*Q3*Q4*Q5) # Q6*(!A0*A1*B*!Q0*!Q1 
+        # A0*!A1*B*Q0*Q1)*!A0*(Q2#Q3#Q4#Q5);
+
+    Q7 := Q7*!(!A0*A1*B*!Q0*!Q1*!Q2*!Q3*!Q4*!Q5*!Q6 # A0*!A1*B*Q0*Q1*Q2*Q3*Q4*Q5*Q6) 
+        # (!A0*A1*B*!Q0*!Q1*!Q2*!Q3*!Q4*!Q5*!Q6 # A0*!A1*B*Q0*Q1*Q2*Q3*Q4*Q5*Q6)*!Q7;
+
+end reg8_qd
+
+/*
+
+A1:=A0:=A
+
+M=!A1*A0*B + A1*!A0*B
+
+Q0:=Q0*!M + M*!Q0
+=> (set in M)
+Q0:=Q0*!(!A1*A0*B + A1*!A0*B) + (!A1*A0*B + A1*!A0*B)*!Q0
+=> (simplify with BExpred)
+Q0:=!A0*A1*B*!Q0 + A0*!A1*B*!Q0 + !A0*!A1*Q0 + A0*A1*Q0 + !B*Q0
+
+Q1:=Q1*!M + !Q1*M*A0*Q0 + !Q1*M*!A0*!Q0 + Q1*M*A0*!Q0 + Q1*M*!A0*Q0
+=> (set in M)
+Q1:=Q1*!(!A1*A0*B + A1*!A0*B) + !Q1*(!A1*A0*B + A1*!A0*B)*A0*Q0 + !Q1*(!A1*A0*B + A1*!A0*B)*!A0*!Q0 + Q1*(!A1*A0*B + A1*!A0*B)*A0*!Q0 + Q1*(!A1*A0*B + A1*!A0*B)*!A0*Q0
+=> (simplify with BExpred)
+Q1:=!A0*A1*B*!Q0*!Q1 + A0*!A1*B*Q0*!Q1 + !B*Q1 + !A0*!A1*Q1 + A0*!Q0*Q1 + A1*Q0*Q1
+
+<Note M2 is sync, not clock buffered>
+M2=M*(A0*Q0*Q1 + !A0*!Q0*!Q1)
+=> (set in M)
+M2=(!A1*A0*B + A1*!A0*B)*(A0*Q0*Q1 + !A0*!Q0*!Q1)
+=> (simplify with BExpred)
+M2=!A0*A1*B*!Q0*!Q1 + A0*!A1*B*Q0*Q1
+
+Q2:=Q2*!M2 + M2*!Q2
+(replace M2)
+Q2:=Q2*!(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1) # (!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*!Q2
+
+
+Q3:=Q3*/M2 + /Q3*M2*A0*Q2 + /Q3*M2*/A0*/Q2 + Q3*M2*A0*/Q2 + Q3*M2*/A0*Q2
+(replace M2)
+Q3:=Q3*!(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1) # !Q3*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*Q2 # !Q3*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*!A0*!Q2 # Q3*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*!Q2 # Q3*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*!A0*Q2
+
+Q4:=Q4*!M2 + !Q4*M2*A0*Q2*Q3 + !Q4*M2*!A0*(!Q2*!Q3) + Q4*M2*A0*!(Q2*Q3) + Q4*M2*!A0*(Q2+Q3)
+=> (simplify)
+Q4:=!A0*M2*!Q2*!Q3*!Q4 + A0*M2*Q2*Q3*!Q4 + !M2*Q4 + !A0*Q3*Q4 + Q2*!Q3*Q4 + A0*!Q2*Q4
+(replace M2)
+Q4:=!A0*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*!Q2*!Q3*!Q4 # A0*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*Q2*Q3*!Q4 # !(!A0*A1*B*!Q0*!Q1 
+    # A0*!A1*B*Q0*Q1)*Q4 # !A0*Q3*Q4 # Q2*!Q3*Q4 # A0*!Q2*Q4
+
+
+Q5:=Q5*!M2 + !Q5*M2*A0*Q2*Q3*Q4 + !Q5*M2*!A0*(!Q2*!Q3*!Q4) + Q5*M2*A0*!(Q2*Q3*Q4) + Q5*M2*!A0*(Q2+Q3+Q4)
+=> (simplify)
+Q5:=!A0*M2*!Q2*!Q3*!Q4*!Q5 + A0*M2*Q2*Q3*Q4*!Q5 + !M2*Q5 + !A0*Q4*Q5 + Q3*!Q4*Q5 + A0*!Q3*Q5 + !Q2*Q4*Q5 + !A0*Q2*Q5
+=> (simplify by abel4)
+Q5:=Q3&!Q4&Q5 + !Q2 & Q4 & Q5 +  A0 & !Q3 & Q5 + !A0 & Q2 & Q5 +  !A0 & M2 & !Q2 & !Q3 & !Q4 & !Q5 + A0 & M2 & Q2 & Q3 & Q4 & !Q5 +  !M2 & Q5
+
+(replace M2)
+Q5:=Q5*!(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1) # !Q5*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*Q2*Q3*Q4 # !Q5*(!A0*A1*B*!Q0*!Q1 
+    # A0*!A1*B*Q0*Q1)*!A0*(!Q2*!Q3*!Q4) # Q5*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*!(Q2*Q3*Q4) # Q5*(!A0*A1*B*!Q0*!Q1 
+    # A0*!A1*B*Q0*Q1)*!A0*(Q2#Q3#Q4)
+
+
+Q6:=Q6*!M2 # !Q6*M2*A0*Q2*Q3*Q4*Q5 # !Q6*M2*!A0*(!Q2*!Q3*!Q4*!Q5) # Q6*M2*A0*!(Q2*Q3*Q4*Q5) # Q6*M2*!A0*(Q2#Q3#Q4#Q5)
+(replace M2)
+Q6:=Q6*!(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1) # !Q6*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*Q2*Q3*Q4*Q5 # !Q6*(!A0*A1*B*!Q0*!Q1 
+    # A0*!A1*B*Q0*Q1)*!A0*(!Q2*!Q3*!Q4*!Q5) # Q6*(!A0*A1*B*!Q0*!Q1 # A0*!A1*B*Q0*Q1)*A0*!(Q2*Q3*Q4*Q5) # Q6*(!A0*A1*B*!Q0*!Q1 
+    # A0*!A1*B*Q0*Q1)*!A0*(Q2#Q3#Q4#Q5)
+
+Q7:=Q7*!M2 # !Q7*M2*A0*Q2*Q3*Q4*Q5*Q6 # !Q7*M2*!A0*(!Q2*!Q3*!Q4*!Q5*!Q6) # Q7*M2*A0*!(Q2*Q3*Q4*Q5*Q6) # Q7*M2*!A0*(Q2#Q3#Q4#Q5#Q6)
+(replace M2)
+
+M7=!A0*A1*B*!Q0*!Q1*!Q2*!Q3*!Q4*!Q5*!Q6 + A0*!A1*B*Q0*Q1*Q2*Q3*Q4*Q5*Q6
+Q7:=Q7*!M7 + M7*!Q7
+Q7:=Q7*!(!A0*A1*B*!Q0*!Q1*!Q2*!Q3*!Q4*!Q5*!Q6 + A0*!A1*B*Q0*Q1*Q2*Q3*Q4*Q5*Q6) + (!A0*A1*B*!Q0*!Q1*!Q2*!Q3*!Q4*!Q5*!Q6 + A0*!A1*B*Q0*Q1*Q2*Q3*Q4*Q5*Q6)*!Q7
+
+*/

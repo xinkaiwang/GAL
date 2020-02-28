@@ -1,0 +1,187 @@
+
+
+
+                                                                      Page 1
+ABEL 4.00  -  Device Utilization Chart         Wed Feb 26 20:40:19 19<0
+
+
+
+    ==== P22V10 Programmed Logic ====
+
+
+Q5.D   = (  Q4 ); " ISTYPE 'BUFFER'
+Q5.C   = (  CLK );
+
+Q4.D   = (  Q3 ); " ISTYPE 'BUFFER'
+Q4.C   = (  CLK );
+
+Q3.D   = (  Q2 ); " ISTYPE 'BUFFER'
+Q3.C   = (  CLK );
+
+Q2.D   = (  Q1 ); " ISTYPE 'BUFFER'
+Q2.C   = (  CLK );
+
+Q1.D   = (  Q0 ); " ISTYPE 'BUFFER'
+Q1.C   = (  CLK );
+
+Q0.D   = (  A ); " ISTYPE 'BUFFER'
+Q0.C   = (  CLK );
+
+
+
+
+                                                                      Page 2
+ABEL 4.00  -  Device Utilization Chart         Wed Feb 26 20:40:19 19<0
+
+
+
+                 ==== P22V10 Chip Diagram ====
+
+
+
+                            P22V10
+
+                 +---------\       /---------+
+                 |          \     /          |
+                 |           -----           |
+             CLK |  1                    24  | Vcc             
+                 |                           |
+               A |  2                    23  | M2              
+                 |                           |
+               B |  3                    22  | Q5              
+                 |                           |
+               T |  4                    21  | Q4              
+                 |                           |
+                 |  5                    20  | Q3              
+                 |                           |
+                 |  6                    19  | Q2              
+                 |                           |
+                 |  7                    18  | Q1              
+                 |                           |
+                 |  8                    17  | Q0              
+                 |                           |
+                 |  9                    16  | A1              
+                 |                           |
+                 | 10                    15  | A0              
+                 |                           |
+                 | 11                    14  | B0              
+                 |                           |
+             GND | 12                    13  | OE              
+                 |                           |
+                 |                           |
+                 `---------------------------'
+
+                SIGNATURE: N/A
+
+
+                                                                      Page 3
+ABEL 4.00  -  Device Utilization Chart         Wed Feb 26 20:40:19 19<0
+
+
+
+                ==== P22V10 Resource Allocations ====
+
+
+        Device        | Resource  |   Design    |    Part     |  
+       Resources      | Available | Requirement | Utilization | Unused
+======================|===========|=============|=============|==============
+                      |           |             |             |
+Dedicated input pins  |     12    |       2     |     2       |    10 ( 83 %)
+Combinatorial inputs  |     12    |       2     |     2       |    10 ( 83 %)
+Registered inputs     |      -    |       0     |     -       |     -
+                      |           |             |             |
+Dedicated output pins |      -    |       1     |     -       |     -
+Bidirectional pins    |     10    |       5     |     6       |     4 ( 40 %)
+Combinatorial outputs |      -    |       0     |     -       |     -
+Registered outputs    |      -    |       6     |     -       |     -
+Reg/Com outputs       |     10    |       -     |     6       |     4 ( 40 %)
+Two-input XOR         |      -    |       0     |     -       |     -
+                      |           |             |             |
+Buried nodes          |      -    |       0     |     -       |     -
+Buried registers      |      -    |       0     |     -       |     -
+Buried combinatorials |      -    |       0     |     -       |     -
+
+
+
+                                                                      Page 4
+ABEL 4.00  -  Device Utilization Chart         Wed Feb 26 20:40:19 19<0
+
+
+
+                ==== P22V10 Product Terms Distribution ====
+
+
+            Signal             |    Pin   | Terms | Terms | Terms
+             Name              | Assigned | Used  |  Max  | Unused
+===============================|==========|=======|=======|=======
+Q5.REG                         |   22     |   1   |  10   |   9
+Q4.REG                         |   21     |   1   |  12   |  11
+Q3.REG                         |   20     |   1   |  14   |  13
+Q2.REG                         |   19     |   1   |  16   |  15
+Q1.REG                         |   18     |   1   |  16   |  15
+Q0.REG                         |   17     |   1   |  14   |  13
+
+
+     ==== List of Inputs/Feedbacks ====
+
+Signal Name                    | Pin      | Pin Type
+============================== |==========|=========
+CLK                            |    1     | CLK/IN
+A                              |    2     | INPUT
+Q0                             |   17     | BIDIR
+Q1                             |   18     | BIDIR
+Q2                             |   19     | BIDIR
+Q3                             |   20     | BIDIR
+Q4                             |   21     | BIDIR
+
+
+
+                                                                      Page 5
+ABEL 4.00  -  Device Utilization Chart         Wed Feb 26 20:40:19 19<0
+
+
+
+    ==== P22V10 Unused Resources ====
+
+
+ Pin   |  Pin   |   Product   | Flip-flop
+Number |  Type  |   Terms     |   Type
+=======|========|=============|==========
+    3  |  INPUT |      -      |    -   
+    4  |  INPUT |      -      |    -   
+    5  |  INPUT |      -      |    -   
+    6  |  INPUT |      -      |    -   
+    7  |  INPUT |      -      |    -   
+    8  |  INPUT |      -      |    -   
+    9  |  INPUT |      -      |    -   
+   10  |  INPUT |      -      |    -   
+   11  |  INPUT |      -      |    -   
+   13  |  INPUT |      -      |    -   
+   14  |  BIDIR | NORMAL  8   |    D
+   15  |  BIDIR | NORMAL 10   |    D
+   16  |  BIDIR | NORMAL 12   |    D
+   23  |  BIDIR | NORMAL  8   |    D
+
+
+
+                                                                      Page 6
+ABEL 4.00  -  Device Utilization Chart         Wed Feb 26 20:40:19 19<0
+
+
+
+    ==== I/O Files ====
+
+
+Module: 'ds00'
+
+
+Input files
+===========
+ABEL PLA file: DS00.tt2
+Vector file: ds00.tmv
+Device library: P22V10.dev
+
+Output files
+============
+Report file: DS00.doc
+Programmer load file: io.jed
